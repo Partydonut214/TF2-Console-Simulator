@@ -23,7 +23,7 @@ namespace TF2_Simulator
             Console.WriteLine();
             Console.Write("Choose a Class, or type a Command: ");
             string UserInput = Console.ReadLine();
-            if (UserInput == "!Help") 
+            if (UserInput == "!Help")
             {
                 Console.Clear();
                 Console.WriteLine("====Help Topics====");
@@ -34,7 +34,7 @@ namespace TF2_Simulator
                 Console.WriteLine();
                 Console.Write("Input: ");
                 string HelpInput = Console.ReadLine();
-                
+
                 if (HelpInput == "1")
                 {
                     Console.Clear();
@@ -50,7 +50,7 @@ namespace TF2_Simulator
                     Console.WriteLine("9. Spy");
                     Console.WriteLine();
                     string HelpClasses = Console.ReadLine();
-                    if (HelpClasses == "1") 
+                    if (HelpClasses == "1")
                     {
                         Console.Clear();
                         Console.WriteLine("====The Scout====");
@@ -138,13 +138,13 @@ namespace TF2_Simulator
                     Thread.Sleep(5000);
                     Console.WriteLine("Implement more info later...");
                 }
-                else 
+                else
                 {
-                    Console.WriteLine("Invalid Command"); 
+                    Console.WriteLine("Invalid Command");
                 }
             }
-            if (UserInput == "1") 
-            { 
+            if (UserInput == "1")
+            {
                 Console.Clear();
                 Console.WriteLine("Scout Selected");
                 Console.WriteLine("Implement Later");
@@ -191,7 +191,7 @@ namespace TF2_Simulator
                 Console.WriteLine("Sniper Selected");
                 Console.WriteLine("Implement Later");
             }
-            if (UserInput == "9") 
+            if (UserInput == "9")
             {
                 Console.Clear();
                 Console.WriteLine("Spy Selected");
@@ -200,7 +200,7 @@ namespace TF2_Simulator
             if (UserInput == "no")
             {
                 Console.Clear();
-                Console.WriteLine(); 
+                Console.WriteLine();
                 Console.WriteLine("Why not?");
                 Thread.Sleep(10000);
             }
@@ -239,20 +239,108 @@ namespace TF2_Simulator
                     Console.ResetColor();
                     Console.WriteLine();
                     Thread.Sleep(1000);
-                    Console.ForegroundColor= ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Heavy's Health: {Heavy.HeavyHealth() - TotalDamage}");
                     Console.ResetColor();
                     //Console Color helped by Scott
                 }
             }
-        }
-            // Implement an easier way to Select Classes
-            // Console.WriteLine($"{classSelected} Selected")' 
+            if (UserInput == "EndTest")
+            {
+                Console.Write("Set Player HP: ");
+                string PlayerHP = Console.ReadLine();
+                Console.Write("Set Enemy HP: ");
+                string EnemyHP = Console.ReadLine();
+                if (int.TryParse(PlayerHP, out int PlayerHPint))
+                {
+                    if (int.TryParse(EnemyHP, out int EnemyHPint))
+                    {
+
+                        Console.Clear();
+                        while (PlayerHPint >= 0 && EnemyHPint >= 0)
+                        {
+                            EnemyHPint--;
+                            if (EnemyHPint == 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("The Enemy's HP Reached 0! You Won!");
+                                Console.ResetColor();
+                                break;
+                            }
+                            PlayerHPint--;
+                            if (PlayerHPint == 0)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Your HP Reached 0! You Lost the Battle!");
+                                Console.ResetColor();
+                                break;
+                            }
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"Enemy took 1 damage! Their HP is now {EnemyHPint}");
+                            Thread.Sleep(1000);
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"You took 1 damage! Your HP is now {PlayerHPint}");
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+            }
+            if (UserInput == "HeavyBattleTest")
+            {
+                Console.Write("Type 'Start' to Start!: ");
+                string StartConfirm = Console.ReadLine();
+                int PlayerHP = 300;
+                int EnemyHP = 300;
+                if (StartConfirm == "Start")
+                {
+                    Console.Clear();
+                    while (PlayerHP >= 0 && EnemyHP >= 0)
+                    {
+                        var randomdamage = new Random();
+                        int TotalDamage;
+                        int BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
+                        int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
+                        Console.WriteLine($"{BaseDamage} Base Damage Dealt");
+                        Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
+                        Console.WriteLine($"{TotalDamage = BaseDamage * BulletsFired} Total Damage");
+                        Console.WriteLine(TotalDamage);
+                        Console.WriteLine(EnemyHP = EnemyHP - TotalDamage);
+                        Console.WriteLine();
+                        if (EnemyHP == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("The Enemy's HP Reached 0! You Won!");
+                            Console.ResetColor();
+                            break;
+                        }
+                        if (PlayerHP == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Your HP Reached 0! You Lost the Battle!");
+                            Console.ResetColor();
+                            break;
+                        }
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Enemy took {TotalDamage} damage! Their HP is now {EnemyHP}");
+                        Thread.Sleep(1000);
+
+                        BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
+                        BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
+                        Console.WriteLine($"{BaseDamage} Base Damage Dealt");
+                        Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
+                        Console.WriteLine($"{TotalDamage = BaseDamage * BulletsFired} Total Damage");
+                        Console.WriteLine(TotalDamage);
+                        Console.WriteLine(PlayerHP = PlayerHP - TotalDamage);
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"You took {TotalDamage} damage! Your HP is now {PlayerHP}");
+                        Thread.Sleep(1000);
+
+                    }
+                    // Implement an easier way to Select Classes
+                    // Console.WriteLine($"{classSelected} Selected")' 
+                }
+            }
         }
     }
-
-
-
-
-
-
+}
