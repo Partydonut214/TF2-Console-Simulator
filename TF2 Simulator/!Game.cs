@@ -300,39 +300,43 @@ namespace TF2_Simulator
                         int TotalDamage;
                         int BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
                         int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
-                        Console.WriteLine($"{BaseDamage} Base Damage Dealt");
-                        Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
-                        Console.WriteLine($"{TotalDamage = BaseDamage * BulletsFired} Total Damage");
-                        Console.WriteLine(TotalDamage);
-                        Console.WriteLine(EnemyHP = EnemyHP - TotalDamage);
+                      //Console.WriteLine($"{BaseDamage} Base Damage Dealt");
+                      //Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
+                      //Console.WriteLine($"{TotalDamage = BaseDamage * BulletsFired} Total Damage");
+                        TotalDamage = BaseDamage * BulletsFired;
+                      //Console.WriteLine(TotalDamage);
+                      //Console.WriteLine(EnemyHP = EnemyHP - TotalDamage);
+                        EnemyHP = EnemyHP - TotalDamage;
                         Console.WriteLine();
                         if (EnemyHP == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
+                           // Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("The Enemy's HP Reached 0! You Won!");
-                            Console.ResetColor();
+                           // Console.ResetColor();
                             break;
                         }
                         if (PlayerHP == 0)
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
+                            //Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Your HP Reached 0! You Lost the Battle!");
-                            Console.ResetColor();
+                            //Console.ResetColor();
                             break;
                         }
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        //Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"Enemy took {TotalDamage} damage! Their HP is now {EnemyHP}");
                         Thread.Sleep(1000);
 
                         BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
                         BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
-                        Console.WriteLine($"{BaseDamage} Base Damage Dealt");
-                        Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
-                        Console.WriteLine($"{TotalDamage = BaseDamage * BulletsFired} Total Damage");
-                        Console.WriteLine(TotalDamage);
-                        Console.WriteLine(PlayerHP = PlayerHP - TotalDamage);
+                      //Console.WriteLine($"{BaseDamage} Base Damage Dealt");
+                      //Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
+                      //Console.WriteLine($"{TotalDamage = BaseDamage * BulletsFired} Total Damage");
+                        TotalDamage = BaseDamage * BulletsFired;
+                      //Console.WriteLine(TotalDamage);
+                      //Console.WriteLine(PlayerHP = PlayerHP - TotalDamage);
+                        PlayerHP = PlayerHP - TotalDamage;
                         Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Red;
+                       // Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine($"You took {TotalDamage} damage! Your HP is now {PlayerHP}");
                         Thread.Sleep(1000);
 
