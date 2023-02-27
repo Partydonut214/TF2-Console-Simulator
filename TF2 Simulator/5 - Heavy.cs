@@ -8,6 +8,23 @@ namespace TF2_Simulator
 {
     internal class Heavy
     {
+        public static int HeavyHealth()
+        {
+            int Health = 300;
+            return Health;
+        }
+        /* public static int HeavyPrimaryDamage()
+
+         {
+         // Weapon Name: Minigun
+         // Damage 6-12 x 1-5
+         var randomdamage = new Random();
+
+         int BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
+         int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
+         }*/
+
+
         /* 
         Class Name: Heavy [heavyweapons / Heavy / Heavyweapons] 
         HP: 300

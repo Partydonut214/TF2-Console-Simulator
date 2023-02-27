@@ -9,8 +9,19 @@ namespace TF2_Simulator
         static void Main(string[] args)
         {
             Console.WriteLine("Pick your class! or type '!Help' to view the class choices and other important info!");
-
-            Console.Write("Class or Command:");
+            Console.WriteLine();
+            Console.WriteLine("====Available Classes====");
+            Console.WriteLine("1. Scout");
+            Console.WriteLine("2. Soldier");
+            Console.WriteLine("3. Pyro");
+            Console.WriteLine("4. Demoman");
+            Console.WriteLine("5. Heavy");
+            Console.WriteLine("6. Engineer");
+            Console.WriteLine("7. Medic");
+            Console.WriteLine("8. Sniper");
+            Console.WriteLine("9. Spy");
+            Console.WriteLine();
+            Console.Write("Choose a Class, or type a Command: ");
             string UserInput = Console.ReadLine();
             if (UserInput == "!Help") 
             {
@@ -132,9 +143,114 @@ namespace TF2_Simulator
                     Console.WriteLine("Invalid Command"); 
                 }
             }
+            if (UserInput == "1") 
+            { 
+                Console.Clear();
+                Console.WriteLine("Scout Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "2")
+            {
+                Console.Clear();
+                Console.WriteLine("Soldier Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "3")
+            {
+                Console.Clear();
+                Console.WriteLine("Pyro Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "4")
+            {
+                Console.Clear();
+                Console.WriteLine("Demoman Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "5")
+            {
+                Console.Clear();
+                Console.WriteLine("Heavy Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "6")
+            {
+                Console.Clear();
+                Console.WriteLine("Engineer Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "7")
+            {
+                Console.Clear();
+                Console.WriteLine("Medic Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "8")
+            {
+                Console.Clear();
+                Console.WriteLine("Sniper Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "9") 
+            {
+                Console.Clear();
+                Console.WriteLine("Spy Selected");
+                Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "no")
+            {
+                Console.Clear();
+                Console.WriteLine(); 
+                Console.WriteLine("Why not?");
+                Thread.Sleep(10000);
+            }
+            if (UserInput == "Damage")
+            {
+                var randomdamage = new Random();
+
+                int BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
+                int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
+                Console.WriteLine($"{BaseDamage} Base Damage Dealt");
+                Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
+                Console.WriteLine($"{BaseDamage * BulletsFired} Total Damage");
+            }
+            if (UserInput == "CheckHP")
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Heavy's HP is: {Heavy.HeavyHealth()}");
+                Console.ResetColor();
+                Console.Write("Type 'Next' to Continue & Roll 1 Attack ");
+                string userconfirm = Console.ReadLine();
+                if (userconfirm == "Next")
+                {
+                    var randomdamage = new Random();
+
+                    int TotalDamage;
+                    int BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
+                    int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Debug: {BaseDamage} Base Damage Dealt");
+                    Thread.Sleep(1000);
+                    Console.WriteLine($"Debug: {BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
+                    Thread.Sleep(1000);
+                    Console.WriteLine($"Debug: {TotalDamage = BaseDamage * BulletsFired} Total Damage");
+                    Thread.Sleep(1000);
+                    Console.WriteLine($"Taken {TotalDamage} Damage from Enemy!");
+                    Console.ResetColor();
+                    Console.WriteLine();
+                    Thread.Sleep(1000);
+                    Console.ForegroundColor= ConsoleColor.Green;
+                    Console.WriteLine($"Heavy's Health: {Heavy.HeavyHealth() - TotalDamage}");
+                    Console.ResetColor();
+                    //Console Color helped by Scott
+                }
+            }
+        }
+            // Implement an easier way to Select Classes
+            // Console.WriteLine($"{classSelected} Selected")' 
         }
     }
-}
+
 
 
 

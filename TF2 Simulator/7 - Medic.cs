@@ -9,7 +9,7 @@ namespace TF2_Simulator
     internal class Medic
     {
         /* 
-        Class Name: Medic [medic / Medic] 
+        Class Name: Medic
         HP: 150
         --Weapons Used:
         -Primary: Blutsauger [Check TF2 Wiki for Stats]
