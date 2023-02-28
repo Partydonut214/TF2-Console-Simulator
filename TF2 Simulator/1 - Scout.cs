@@ -54,7 +54,7 @@ namespace TF2_Simulator
             return Totaldamage;
         }
         /* 
-        Class Name: Scout [scout / Scout] 
+        Class Name: Scout [ID: 1] 
         HP: 125
         --Weapons Used:
         -Primary: Scattergun

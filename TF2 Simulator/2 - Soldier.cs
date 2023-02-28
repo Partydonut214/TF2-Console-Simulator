@@ -9,7 +9,7 @@ namespace TF2_Simulator
     internal class Soldier
     {
         /* 
-        Class Name: Soldier [soldier / Soldier]  
+        Class Name: Soldier [ID: 2]  
         HP: 200
         --Weapons Used: 
         -Primary: Rocket Launcher

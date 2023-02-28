@@ -55,15 +55,13 @@ namespace TF2_Simulator
                     {
                         Console.Clear();
                         Console.WriteLine("====The Scout====");
-                        Console.WriteLine("Scout Help Selected");
-                        Console.WriteLine("Implement Stats and Info Later");
+                        Console.WriteLine("Class Name: Scout [ID: 1] \r\n        HP: 125\r\n        --Weapons Used:\r\n        -Primary: Scattergun\r\n         Damage: 4-10 [x10]\r\n         Ammo: 6/32\r\n         Reload: 1-6 Shells per Turn\r\n         Rate of Fire: 1 Shell per Turn\r\n        ---Secondary: Pistol\r\n         Damage: 8-12\r\n         Ammo: 12/36\r\n         Reload: Full Mag [12] in 1 Turn\r\n         Rate of Fire: 3-6 bullets.\r\n        ---Melee: Bat\r\n         Damage: 20-35\r\n         Rate of Fire: 1 with a 20% chance for a second hit per Turn.\r\n        --Passive Stats:\r\n          - 2% Chance to get a Second Turn...?");
                     }
                     else if (HelpClasses == "2")
                     {
                         Console.Clear();
                         Console.WriteLine("====The Soldier====");
-                        Console.WriteLine("Soldier Help Selected");
-                        Console.WriteLine("Implement Stats and Info Later");
+                        Console.WriteLine("Class Name: Soldier [ID:2]  \r\n        HP: 200\r\n        --Weapons Used: \r\n        -Primary: Rocket Launcher\r\n         Damage: 36-50 [20% Chance to Deal 10-35 Self-Damage]\r\n         Ammo: 4/20\r\n         Reload: 1-4 Per Turn \r\n         Rate of Fire: 1 Per Turn\r\n        -Secondary: Shotgun\r\n         Damage: 4-6 [x10]\r\n         Ammo: 6/32\r\n         Rate of Fire: 1 Shot per Turn. may hit 1-10 pellets [4-60 HP]\r\n         Reload: 1-3 Shells per Turn\r\n        -Melee: Market Gardener\r\n         Damage: 30-65\r\n         Rate of Fire: 1 Hit Per Turn \r\n         Special: Deal 25-30 Self Damage, and recieve a 10% Chance to deal 195 Damage to the Enemy with a Market Garden\r\n        --Passive Stats:\r\n          - None");
                     }
                     else if (HelpClasses == "3")
                     {
@@ -139,10 +137,6 @@ namespace TF2_Simulator
                     Thread.Sleep(5000);
                     Console.WriteLine("Implement more info later...");
                 }
-                else
-                {
-                    Console.WriteLine("Invalid Command");
-                }
             }
             if (UserInput == "1")
             {
@@ -197,6 +191,18 @@ namespace TF2_Simulator
                 Console.Clear();
                 Console.WriteLine("Spy Selected");
                 Console.WriteLine("Implement Later");
+            }
+            if (UserInput == "Cheats") 
+            {
+                Console.Clear();
+                Console.WriteLine("====Cheats & Secrets====");
+                Console.WriteLine("Take a Screenshot or Take Notes of this Screen");
+                Console.WriteLine("-- Damage");
+                Console.WriteLine("-- CheckHP");
+                Console.WriteLine("-- EndTest");
+                Console.WriteLine("-- HeavyBattleTest");
+                Console.WriteLine("-- Weapon Switch Test");
+                Console.WriteLine("-- SpecialTest");
             }
             if (UserInput == "no")
             {
@@ -397,6 +403,27 @@ namespace TF2_Simulator
                 int Totaldamage = BaseDamage * SpecialBonus;
                 Console.WriteLine($"Total Damage: {Totaldamage}");
             }
+            if (UserInput == "Take a Screenshot or Take Notes of this Screen")
+            {
+                Console.Clear();
+                Console.WriteLine("=========================");
+                Console.ForegroundColor= ConsoleColor.Magenta;
+                Console.WriteLine("B");
+                Thread.Sleep(1000);
+                Console.ForegroundColor= ConsoleColor.Yellow;
+                Console.WriteLine("R");
+                Thread.Sleep(1000);
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine("U");
+                Thread.Sleep(1000);
+                Console.ForegroundColor= ConsoleColor.DarkGreen;
+                Console.WriteLine("H");
+                Console.ResetColor();
+                Console.WriteLine("=========================");
+
+
+            }
+           
         }
     }
 }
