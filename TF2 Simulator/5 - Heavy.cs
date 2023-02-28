@@ -13,17 +13,39 @@ namespace TF2_Simulator
             int Health = 300;
             return Health;
         }
-        /* public static int HeavyPrimaryDamage()
+        public static int HeavyPrimaryDamage()
 
-         {
-         // Weapon Name: Minigun
-         // Damage 6-12 x 1-5
-         var randomdamage = new Random();
+        {
+            // Weapon Name: Minigun
+            // Damage 6-12 x 1-5
+            var randomdamage = new Random();
 
-         int BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
-         int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
-         }*/
+            int BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
+            int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
+            int Totaldamage = BaseDamage * BulletsFired;
+            return Totaldamage;
+        }
+        public static int HeavySecondaryDamage()
+        {
+            //Weapon Name: Minigun
+            //Damage 4-6 x 1-10
+            var randomdamage = new Random();
 
+            int BaseDamage = randomdamage.Next(4, 7); // creates a number between 4 & 6
+            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implement random damage per bullet later.)
+            int Totaldamage = BaseDamage * BulletsFired;
+            return Totaldamage;
+        }
+        public static int HeavyMeleeDamage()
+        {
+            //Weapon Name: Fists
+            //Damage: 30-65
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(30, 66); // creates a number between 30 & 65
+            int Totaldamage = BaseDamage;
+            return Totaldamage;
+        }
 
         /* 
         Class Name: Heavy [heavyweapons / Heavy / Heavyweapons] 

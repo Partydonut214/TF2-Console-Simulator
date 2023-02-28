@@ -10,23 +10,24 @@ namespace TF2_Simulator
     {
         /* 
         Class Name:  
-        HP: 
+        HP: 125
         --Weapons Used:
-        -Primary: 
-         Damage: 
-         Ammo: 
-         Reload: 
-         Rate of Fire: 
-        -Secondary: 
-         Damage: 
-         Ammo:
-         Reload:
-         Rate of Fire: 
-        -Melee: 
-         Damage: 
-         Rate of Fire: 
+        -Primary: Revolver
+         Damage: 20-60
+         Ammo: 6/24
+         Reload: 1 Turn
+         Rate of Fire: 1 shot Per Turn
+        -Secondary: Invis Watch
+         Damage: 0
+         Ammo: 1
+         Reload: 1 Turn
+         Rate of Fire: 1 
+        -Melee: Knife
+         Damage: 40-50
+         Rate of Fire: 1 Per Turn
+         Special: 0.1% Chance to Instantly Kill Enemy
         --Passive Stats:
-          - 
+          - None
         */
     }
 }

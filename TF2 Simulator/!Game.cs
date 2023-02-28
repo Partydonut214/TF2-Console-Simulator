@@ -1,6 +1,7 @@
 ﻿// TF2 Text Based Fighting Sim
 using System.ComponentModel.Design;
 using System.Data;
+using System.Xml.Schema;
 
 namespace TF2_Simulator
 {
@@ -310,9 +311,9 @@ namespace TF2_Simulator
                         Console.WriteLine();
                         if (EnemyHP == 0)
                         {
-                           // Console.ForegroundColor = ConsoleColor.Green;
+                          //Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("The Enemy's HP Reached 0! You Won!");
-                           // Console.ResetColor();
+                          //Console.ResetColor();
                             break;
                         }
                         if (PlayerHP == 0)
@@ -336,7 +337,7 @@ namespace TF2_Simulator
                       //Console.WriteLine(PlayerHP = PlayerHP - TotalDamage);
                         PlayerHP = PlayerHP - TotalDamage;
                         Console.WriteLine();
-                       // Console.ForegroundColor = ConsoleColor.Red;
+                      //Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine($"You took {TotalDamage} damage! Your HP is now {PlayerHP}");
                         Thread.Sleep(1000);
 
@@ -344,6 +345,57 @@ namespace TF2_Simulator
                     // Implement an easier way to Select Classes
                     // Console.WriteLine($"{classSelected} Selected")' 
                 }
+            }
+            if (UserInput == "Weapon Switch Test")
+            {
+                Console.Clear();
+                Console.WriteLine("====Weapon Switch Test====");
+                Console.WriteLine("What Weapon do you want to use?");
+                Console.WriteLine("1. Minigun");
+                Console.WriteLine("2. Shotgun");
+                Console.WriteLine("3. Fists");
+                Console.Write("Action: ");
+                int Health = Heavy.HeavyHealth();
+                int Totaldamage = 0;
+                string WeaponChoice = Console.ReadLine();
+                if (WeaponChoice == "1")
+                {
+                    Heavy.HeavyPrimaryDamage();
+                    Health = Health - Totaldamage;
+                    Console.WriteLine($"Enemy Heavy took Damage! [Weapon: Minigun]");
+                    Console.WriteLine($"Damage Taken: {Totaldamage}, Current HP: {Health}");
+                }
+                else if (WeaponChoice == "2")
+                {
+                    Heavy.HeavySecondaryDamage();
+                    Health = Health - Totaldamage;
+                    Console.WriteLine($"Enemy Heavy took Damage! [Weapon: Shotgun]");
+                    Console.WriteLine($"Damage Taken: {Totaldamage}, Current HP: {Health}");
+                }
+                else if (WeaponChoice == "3")
+                {
+                    Heavy.HeavyMeleeDamage();
+                    Health = Health - Totaldamage;
+                    Console.WriteLine($"Enemy Heavy took Damage! [Weapon: Fists]");
+                    Console.WriteLine($"Damage Taken: {Totaldamage}, Current HP: {Health}");
+                }
+                else { Console.WriteLine("Error, Listed Actions not selected."); }
+            }
+            if (UserInput == "SpecialTest")
+            {
+                var randomdamage = new Random();
+
+                int BaseDamage = randomdamage.Next(20, 36); // creates a number between 20 & 36
+                int Special = randomdamage.Next(0, 101); // creates a number between 0 & 100, if the number is 2 or lower, Special Bonus will be activated.
+                int SpecialBonus = 1;
+                Console.WriteLine($"Special Roll: {Special}");
+                if (Special <= 2)
+                {
+                    SpecialBonus = 2;
+                    Console.WriteLine("Special Activated!: Swing 2 Times [x2 Damage]");
+                }
+                int Totaldamage = BaseDamage * SpecialBonus;
+                Console.WriteLine($"Total Damage: {Totaldamage}");
             }
         }
     }
