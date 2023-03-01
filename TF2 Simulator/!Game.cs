@@ -1,6 +1,7 @@
 ﻿// TF2 Text Based Fighting Sim
 using System.ComponentModel.Design;
 using System.Data;
+using System.Diagnostics;
 using System.Xml.Schema;
 
 namespace TF2_Simulator
@@ -9,6 +10,24 @@ namespace TF2_Simulator
     {
         static void Main(string[] args)
         {
+            int PlayerHP;
+            int PlayerPrimaryDamage;
+            int PlayerSecondaryDamage;
+            int PlayerMeleeDamage;
+            int PlayerSpecial;
+            string PlayerPrimaryName;
+            string PlayerSecondaryName;
+            string PlayerMeleeName;
+            string PlayerSpecialName;
+            int EnemyHP;
+            int EnemyPrimaryDamage;
+            int EnemySecondaryDamage;
+            int EnemyMeleeDamage;
+            int EnemySpecial;
+            string EnemyPrimaryName;
+            string EnemySecondaryName;
+            string EnemyMeleeName;
+            string EnemySpecialName;
             bool InputOK=false;
             while (InputOK == false)
             {
@@ -151,18 +170,46 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.WriteLine("Scout Selected");
-                    Console.WriteLine("Implement Later");
+                    PlayerHP = 125;
+                    PlayerPrimaryDamage = Scout.ScoutPrimaryDamage();
+                    PlayerSecondaryDamage = Scout.ScoutSecondaryDamage();
+                    PlayerMeleeDamage = Scout.ScoutMeleeDamage();
+                    PlayerSpecial = Scout.ScoutPrimaryDamage();
+                    PlayerPrimaryName = Scout.ScoutPrimaryName();
+                    PlayerSecondaryName = Scout.ScoutSecondaryName();
+                    PlayerMeleeName= Scout.ScoutMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    Console.WriteLine("...Scout Settings Applied");
                 }
                 else if (UserInput == "2")
                 {
                     Console.Clear();
                     Console.WriteLine("Soldier Selected");
-                    Console.WriteLine("Implement Later");
+                    PlayerHP = 200;
+                    PlayerPrimaryDamage= Soldier.SoldierPrimaryDamage();
+                    PlayerSecondaryDamage = Soldier.SoldierSecondaryDamage();
+                    PlayerMeleeDamage = Soldier.SoldierMeleeDamage();
+                    PlayerSpecial = Soldier.SoldierSpecial();
+                    PlayerPrimaryName = Soldier.SoldierPrimaryName();
+                    PlayerSecondaryName = Soldier.SoldierSecondaryName();
+                    PlayerMeleeName = Soldier.SoldierMeleeName();
+                    PlayerSpecialName = Soldier.SoldierSpecialName();
+                    Console.WriteLine("...Soldier Settings Applied");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
                 }
                 else if (UserInput == "3")
                 {
                     Console.Clear();
                     Console.WriteLine("Pyro Selected");
+                    PlayerHP = 175;
                     Console.WriteLine("Implement Later");
                 }
                 else if (UserInput == "4")
@@ -264,12 +311,12 @@ namespace TF2_Simulator
                 else if (UserInput == "EndTest")
                 {
                     Console.Write("Set Player HP: ");
-                    string PlayerHP = Console.ReadLine();
+                    string PlayerHP_EndTest = Console.ReadLine();
                     Console.Write("Set Enemy HP: ");
-                    string EnemyHP = Console.ReadLine();
-                    if (int.TryParse(PlayerHP, out int PlayerHPint))
+                    string EnemyHP_EndTest = Console.ReadLine();
+                    if (int.TryParse(PlayerHP_EndTest, out int PlayerHPint))
                     {
-                        if (int.TryParse(EnemyHP, out int EnemyHPint))
+                        if (int.TryParse(EnemyHP_EndTest, out int EnemyHPint))
                         {
 
                             Console.Clear();
@@ -305,12 +352,12 @@ namespace TF2_Simulator
                 {
                     Console.Write("Type 'Start' to Start!: ");
                     string StartConfirm = Console.ReadLine();
-                    int PlayerHP = 300;
-                    int EnemyHP = 300;
+                    int PlayerHP_BattleTest = 300;
+                    int EnemyHP_BattleTest = 300;
                     if (StartConfirm == "Start")
                     {
                         Console.Clear();
-                        while (PlayerHP >= 0 && EnemyHP >= 0)
+                        while (PlayerHP_BattleTest >= 0 && EnemyHP_BattleTest >= 0)
                         {
                             var randomdamage = new Random();
                             int TotalDamage;
@@ -322,16 +369,16 @@ namespace TF2_Simulator
                             TotalDamage = BaseDamage * BulletsFired;
                             //Console.WriteLine(TotalDamage);
                             //Console.WriteLine(EnemyHP = EnemyHP - TotalDamage);
-                            EnemyHP = EnemyHP - TotalDamage;
+                            EnemyHP_BattleTest = EnemyHP_BattleTest - TotalDamage;
                             Console.WriteLine();
-                            if (EnemyHP == 0)
+                            if (EnemyHP_BattleTest <= 0)
                             {
                                 //Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("The Enemy's HP Reached 0! You Won!");
                                 //Console.ResetColor();
                                 break;
                             }
-                            if (PlayerHP == 0)
+                            if (PlayerHP_BattleTest <= 0)
                             {
                                 //Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Your HP Reached 0! You Lost the Battle!");
@@ -339,21 +386,21 @@ namespace TF2_Simulator
                                 break;
                             }
                             //Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Enemy took {TotalDamage} damage! Their HP is now {EnemyHP}");
+                            Console.WriteLine($"Enemy took {TotalDamage} damage! Their HP is now {EnemyHP_BattleTest}");
                             Thread.Sleep(1000);
 
                             BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
                             BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
-                                                                    //Console.WriteLine($"{BaseDamage} Base Damage Dealt");
-                                                                    //Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
-                                                                    //Console.WriteLine($"{TotalDamage = BaseDamage * BulletsFired} Total Damage");
+                            //Console.WriteLine($"{BaseDamage} Base Damage Dealt");
+                            //Console.WriteLine($"{BulletsFired} Damage Muliplier (Bullets Fired/Hit) ");
+                            //Console.WriteLine($"{TotalDamage = BaseDamage * BulletsFired} Total Damage");
                             TotalDamage = BaseDamage * BulletsFired;
                             //Console.WriteLine(TotalDamage);
                             //Console.WriteLine(PlayerHP = PlayerHP - TotalDamage);
-                            PlayerHP = PlayerHP - TotalDamage;
+                            PlayerHP_BattleTest = PlayerHP_BattleTest - TotalDamage;
                             Console.WriteLine();
                             //Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine($"You took {TotalDamage} damage! Your HP is now {PlayerHP}");
+                            Console.WriteLine($"You took {TotalDamage} damage! Your HP is now {PlayerHP_BattleTest}");
                             Thread.Sleep(1000);
 
                         }
@@ -366,9 +413,9 @@ namespace TF2_Simulator
                     Console.Clear();
                     Console.WriteLine("====Weapon Switch Test====");
                     Console.WriteLine("What Weapon do you want to use?");
-                    Console.WriteLine("1. Minigun");
-                    Console.WriteLine("2. Shotgun");
-                    Console.WriteLine("3. Fists");
+                    Console.WriteLine($"1. {Heavy.HeavyPrimaryName()}");
+                    Console.WriteLine($"2. {Heavy.HeavySecondaryName()}");
+                    Console.WriteLine($"3. {Heavy.HeavyMeleeName()}");
                     Console.Write("Action: ");
                     int Health = Heavy.HeavyHealth();
                     int Totaldamage = 0;
@@ -376,6 +423,7 @@ namespace TF2_Simulator
                     if (WeaponChoice == "1")
                     {
                         Heavy.HeavyPrimaryDamage();
+                        Totaldamage = Heavy.HeavyPrimaryDamage();
                         Health = Health - Totaldamage;
                         Console.WriteLine($"Enemy Heavy took Damage! [Weapon: Minigun]");
                         Console.WriteLine($"Damage Taken: {Totaldamage}, Current HP: {Health}");
@@ -383,6 +431,7 @@ namespace TF2_Simulator
                     else if (WeaponChoice == "2")
                     {
                         Heavy.HeavySecondaryDamage();
+                        Totaldamage = Heavy.HeavySecondaryDamage();
                         Health = Health - Totaldamage;
                         Console.WriteLine($"Enemy Heavy took Damage! [Weapon: Shotgun]");
                         Console.WriteLine($"Damage Taken: {Totaldamage}, Current HP: {Health}");
@@ -390,6 +439,7 @@ namespace TF2_Simulator
                     else if (WeaponChoice == "3")
                     {
                         Heavy.HeavyMeleeDamage();
+                        Totaldamage = Heavy.HeavyMeleeDamage();
                         Health = Health - Totaldamage;
                         Console.WriteLine($"Enemy Heavy took Damage! [Weapon: Fists]");
                         Console.WriteLine($"Damage Taken: {Totaldamage}, Current HP: {Health}");

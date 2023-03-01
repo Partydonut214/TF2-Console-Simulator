@@ -13,6 +13,18 @@ namespace TF2_Simulator
             int Health = 300;
             return Health;
         }
+        public static string HeavyPrimaryName()
+        {
+            return "Minigun";
+        }
+        public static string HeavySecondaryName()
+        {
+            return "Shotgun";
+        }
+        public static string HeavyMeleeName()
+        {
+            return "Fists";
+        }
         public static int HeavyPrimaryDamage()
 
         {
@@ -27,8 +39,8 @@ namespace TF2_Simulator
         }
         public static int HeavySecondaryDamage()
         {
-            //Weapon Name: Minigun
-            //Damage 4-6 x 1-10
+            // Weapon Name: Shotgun
+            // Damage 4-6 x 1-10
             var randomdamage = new Random();
 
             int BaseDamage = randomdamage.Next(4, 7); // creates a number between 4 & 6

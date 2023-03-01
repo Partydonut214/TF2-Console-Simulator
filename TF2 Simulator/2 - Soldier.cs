@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,74 @@ namespace TF2_Simulator
 {
     internal class Soldier
     {
+        public static int SoldierHealth()
+        {
+            int Health = 200;
+            return Health;
+        }
+        public static string SoldierPrimaryName()
+        {
+            return "Rocket Launcher";
+        }
+        public static string SoldierSecondaryName()
+        {
+            return "Shotgun";
+        }
+        public static string SoldierMeleeName()
+        {
+            return "Shovel";
+        }
+        public static string SoldierSpecialName() 
+        {
+            return "Market Garden";
+        }
+        public static int SoldierPrimaryDamage()
+        {
+            // Weapon Name: Rocket Launcher
+            // Damage 6-12 x 1-5
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(4, 11); // creates a number between 4 & 10
+            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 10 (Implement random damage per bullet later.)
+            int Totaldamage = BaseDamage * BulletsFired;
+            return Totaldamage;
+        }
+        public static int SoldierSecondaryDamage()
+        {
+            // Weapon Name: Shotgun
+            // Damage 4-6 x 1-10
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(4, 7); // creates a number between 4 & 6
+            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implement random damage per bullet later.)
+            int Totaldamage = BaseDamage * BulletsFired;
+            return Totaldamage;
+        }
+        public static int SoldierMeleeDamage()
+        {
+            //Weapon Name: Fists
+            //Damage: 30-65
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(30, 66); // creates a number between 30 & 65
+            int Totaldamage = BaseDamage;
+            return Totaldamage;
+        }
+        public static int SoldierSpecial()
+        { 
+            var randomchance = new Random();
+
+            int totaldamage = 195;
+            int Special = randomchance.Next(1, 11);
+            if (Special == 1) 
+            {
+                return totaldamage;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         /* 
         Class Name: Soldier [ID: 2]  
         HP: 200

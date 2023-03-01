@@ -13,8 +13,19 @@ namespace TF2_Simulator
             int Health = 125;
             return Health;
         }
+        public static string ScoutPrimaryName()
+        {
+            return "Scattergun";
+        }
+        public static string ScoutSecondaryName()
+        {
+            return "Pistol";
+        }
+        public static string ScoutMeleeName()
+        {
+            return "Bat";
+        }
         public static int ScoutPrimaryDamage()
-
         {
             // Weapon Name: Scattergun
             // Damage 6-12 x 1-5
