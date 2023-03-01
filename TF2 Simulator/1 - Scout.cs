@@ -13,6 +13,14 @@ namespace TF2_Simulator
             int Health = 125;
             return Health;
         }
+        public static string ScoutName() 
+        { 
+            return "Scout"; 
+        }
+        public static string ScoutMaxHP() 
+        { 
+            return "125"; 
+        }
         public static string ScoutPrimaryName()
         {
             return "Scattergun";

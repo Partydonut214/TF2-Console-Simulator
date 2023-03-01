@@ -11,6 +11,8 @@ namespace TF2_Simulator
         static void Main(string[] args)
         {
             int PlayerHP;
+            string PlayerMaxHP;
+            string PlayerClass;
             int PlayerPrimaryDamage;
             int PlayerSecondaryDamage;
             int PlayerMeleeDamage;
@@ -20,6 +22,8 @@ namespace TF2_Simulator
             string PlayerMeleeName;
             string PlayerSpecialName;
             int EnemyHP;
+            string EnemyMaxHP;
+            string EnemyClass;
             int EnemyPrimaryDamage;
             int EnemySecondaryDamage;
             int EnemyMeleeDamage;
@@ -44,6 +48,7 @@ namespace TF2_Simulator
                 Console.WriteLine("7. Medic");
                 Console.WriteLine("8. Sniper");
                 Console.WriteLine("9. Spy");
+                Console.WriteLine("=========================");
                 Console.WriteLine();
                 Console.Write("Choose a Class, or type a Command: ");
                 string UserInput = Console.ReadLine();
@@ -180,6 +185,15 @@ namespace TF2_Simulator
                     PlayerMeleeName= Scout.ScoutMeleeName();
                     PlayerSpecialName = "No Special - Replaced By Primary";
                     Console.WriteLine("...Scout Settings Applied");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
                 }
                 else if (UserInput == "2")
                 {
@@ -210,6 +224,7 @@ namespace TF2_Simulator
                     Console.Clear();
                     Console.WriteLine("Pyro Selected");
                     PlayerHP = 175;
+                    
                     Console.WriteLine("Implement Later");
                 }
                 else if (UserInput == "4")
@@ -222,7 +237,25 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.WriteLine("Heavy Selected");
+                    PlayerHP = 300;
+                    PlayerPrimaryDamage = Heavy.HeavyPrimaryDamage();
+                    PlayerSecondaryDamage = Heavy.HeavySecondaryDamage();
+                    PlayerMeleeDamage = Heavy.HeavyMeleeDamage();
+                    PlayerSpecial = Heavy.HeavyPrimaryDamage();
+                    PlayerPrimaryName = Heavy.HeavyPrimaryName();
+                    PlayerSecondaryName = Heavy.HeavySecondaryName();
+                    PlayerMeleeName = Heavy.HeavyMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
                     Console.WriteLine("Implement Later");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
                 }
                 else if (UserInput == "6")
                 {

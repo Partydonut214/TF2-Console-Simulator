@@ -13,6 +13,14 @@ namespace TF2_Simulator
             int Health = 300;
             return Health;
         }
+        public static string HeavyName() 
+        {
+            return "Heavy";
+        }
+        public static string HeavyMaxHP() 
+        {
+            return "300";
+        }
         public static string HeavyPrimaryName()
         {
             return "Minigun";

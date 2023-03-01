@@ -14,6 +14,14 @@ namespace TF2_Simulator
             int Health = 200;
             return Health;
         }
+        public static string SoldierName() 
+        {
+            return "Soldier";
+        }
+        public static string SoldierMaxHP() 
+        {
+            return "200";
+        }
         public static string SoldierPrimaryName()
         {
             return "Rocket Launcher";
