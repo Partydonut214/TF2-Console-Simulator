@@ -8,6 +8,7 @@ namespace TF2_Simulator
 {
     internal class Spy
     {
+
         /* 
         Class Name:  
         HP: 125

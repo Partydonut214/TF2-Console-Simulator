@@ -17,6 +17,7 @@ namespace TF2_Simulator
             int PlayerSecondaryDamage;
             int PlayerMeleeDamage;
             int PlayerSpecial;
+            int PlayerWeaponFeature = 0; //Add to Classes
             string PlayerPrimaryName;
             string PlayerSecondaryName;
             string PlayerMeleeName;
@@ -32,6 +33,7 @@ namespace TF2_Simulator
             string EnemySecondaryName;
             string EnemyMeleeName;
             string EnemySpecialName;
+            int EnemyWeaponFeature = 0; //Add to Classes
             bool InputOK=false;
             while (InputOK == false)
             {
@@ -170,7 +172,6 @@ namespace TF2_Simulator
                         }
                     }
                 }
-
                 else if (UserInput == "1")
                 {
                     Console.Clear();
@@ -565,6 +566,29 @@ namespace TF2_Simulator
                     Console.ResetColor();
                     Console.WriteLine("=========================");
 
+
+                }
+                else if (UserInput == "Stickybomb Test")
+                {
+                    for (int i = 0; i < 10;)
+                    {
+                        Console.WriteLine("=====Sticky Bomb Add Test=====");
+                        Console.WriteLine($"Sticky Bombs Placed: {PlayerWeaponFeature}");
+                        Console.WriteLine("Type 'Place' to Place another Sticky, or 'Detonate' to Detonate the Stickies");
+                        string DemoInput = Console.ReadLine();
+                        if (DemoInput == "Place")
+                        {
+                            Console.WriteLine("Sticky Bomb Placed");
+                            Demoman.DemomanSecondaryDamage(PlayerWeaponFeature++);
+                            Console.WriteLine(PlayerWeaponFeature);
+                        }
+                        else if (DemoInput == "Detonate")
+                        {
+                            Console.WriteLine();
+
+
+                        }
+                    }
 
                 }
                 else
