@@ -52,14 +52,13 @@ namespace TF2_Simulator
             // Heals: 24-36
             var randomdamage = new Random();
 
-            int BaseDamage = randomdamage.Next(4, 7); // creates a number between 4 & 6
-            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implement random damage per bullet later.)
-            int Totaldamage = BaseDamage * BulletsFired;
+            int BaseDamage = randomdamage.Next(24, 36); // creates a number between 4 & 6
+            int Totaldamage = BaseDamage;
             return Totaldamage;
         }
-        public static int HeavyMeleeDamage()
+        public static int MedicMeleeDamage()
         {
-            //Weapon Name: Fists
+            //Weapon Name: Bonesaw
             //Damage: 30-65
             var randomdamage = new Random();
 

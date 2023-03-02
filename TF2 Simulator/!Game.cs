@@ -224,8 +224,24 @@ namespace TF2_Simulator
                     Console.Clear();
                     Console.WriteLine("Pyro Selected");
                     PlayerHP = 175;
-                    
-                    Console.WriteLine("Implement Later");
+                    PlayerPrimaryDamage = Pyro.PyroPrimaryDamage();
+                    PlayerSecondaryDamage = Pyro.PyroSecondaryDamage();
+                    PlayerMeleeDamage = Pyro.PyroMeleeDamage();
+                    PlayerSpecial = Pyro.PyroPrimaryDamage();
+                    PlayerPrimaryName = Pyro.PyroPrimaryName();
+                    PlayerSecondaryName = Pyro.PyroSecondaryName();
+                    PlayerMeleeName = Pyro.PyroMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    Console.WriteLine("...Pyro Settings Applied");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
                 }
                 else if (UserInput == "4")
                 {
@@ -261,13 +277,49 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.WriteLine("Engineer Selected");
-                    Console.WriteLine("Implement Later");
+                    PlayerHP = 125;
+                    PlayerPrimaryDamage = Engineer.EngineerPrimaryDamage();
+                    PlayerSecondaryDamage = Engineer.EngineerSecondaryDamage();
+                    PlayerMeleeDamage = Engineer.EngineerMeleeDamage();
+                    PlayerSpecial = Engineer.EngineerPrimaryDamage();
+                    PlayerPrimaryName = Engineer.EngineerPrimaryName();
+                    PlayerSecondaryName = Engineer.EngineerSecondaryName();
+                    PlayerMeleeName = Engineer.EngineerMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    Console.WriteLine("...Engineer Settings Applied");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
                 }
                 else if (UserInput == "7")
                 {
                     Console.Clear();
                     Console.WriteLine("Medic Selected");
-                    Console.WriteLine("Implement Later");
+                    PlayerHP = 150;
+                    PlayerPrimaryDamage = Medic.MedicPrimaryDamage();
+                    PlayerSecondaryDamage = Medic.MedicSecondaryDamage();
+                    PlayerMeleeDamage = Medic.MedicMeleeDamage();
+                    PlayerSpecial = Medic.MedicPrimaryDamage();
+                    PlayerPrimaryName = Medic.MedicPrimaryName();
+                    PlayerSecondaryName = Medic.MedicSecondaryName();
+                    PlayerMeleeName = Medic.MedicMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    Console.WriteLine("...Medic Settings Applied");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Heal - Secondary: {PlayerHP+PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
                 }
                 else if (UserInput == "8")
                 {

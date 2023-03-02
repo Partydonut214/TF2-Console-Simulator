@@ -8,6 +8,63 @@ namespace TF2_Simulator
 {
     internal class Pyro
     {
+        public static int PyroHealth()
+        {
+            int Health = 175;
+            return Health;
+        }
+        public static string PyroName()
+        {
+            return "Pyro";
+        }
+        public static string PyroMaxHP()
+        {
+            return "175";
+        }
+        public static string PyroPrimaryName()
+        {
+            return "Flame Thrower";
+        }
+        public static string PyroSecondaryName()
+        {
+            return "Shotgun";
+        }
+        public static string PyroMeleeName()
+        {
+            return "Fire Axe";
+        }
+        public static int PyroPrimaryDamage()
+        {
+            // Weapon Name: Flame Thrower
+            // Damage 6-13 x 1-5
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(6, 13); // creates a number between 4 & 10
+            int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 10 (Implement random damage per bullet later.)
+            int Totaldamage = BaseDamage * BulletsFired;
+            return Totaldamage;
+        }
+        public static int PyroSecondaryDamage()
+        {
+            // Weapon Name: Shotgun
+            // Damage 4-6 x 1-10
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(4, 7); // creates a number between 4 & 6
+            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implement random damage per bullet later.)
+            int Totaldamage = BaseDamage * BulletsFired;
+            return Totaldamage;
+        }
+        public static int PyroMeleeDamage()
+        {
+            //Weapon Name: Fire Axe
+            //Damage: 30-65
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(30, 66); // creates a number between 30 & 65
+            int Totaldamage = BaseDamage;
+            return Totaldamage;
+        }
         /* 
         Class Name: Pyro [ID: 3] 
         HP: 175
