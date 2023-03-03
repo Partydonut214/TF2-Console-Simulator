@@ -32,7 +32,7 @@ namespace TF2_Simulator
         }
         public static string SoldierMeleeName()
         {
-            return "Shovel";
+            return "Market Gardener";
         }
         public static string SoldierSpecialName() 
         {
@@ -41,12 +41,11 @@ namespace TF2_Simulator
         public static int SoldierPrimaryDamage()
         {
             // Weapon Name: Rocket Launcher
-            // Damage 6-12 x 1-5
+            // Damage 36-52
             var randomdamage = new Random();
 
-            int BaseDamage = randomdamage.Next(4, 11); // creates a number between 4 & 10
-            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 10 (Implement random damage per bullet later.)
-            int Totaldamage = BaseDamage * BulletsFired;
+            int BaseDamage = randomdamage.Next(26, 53); // creates a number between 26-52
+            int Totaldamage = BaseDamage; // basically goes unused with the random bullets fired removed, but I leave it here because it is a bit easier to troubleshoot.
             return Totaldamage;
         }
         public static int SoldierSecondaryDamage()
@@ -62,7 +61,7 @@ namespace TF2_Simulator
         }
         public static int SoldierMeleeDamage()
         {
-            //Weapon Name: Fists
+            //Weapon Name: Market Gardener
             //Damage: 30-65
             var randomdamage = new Random();
 
