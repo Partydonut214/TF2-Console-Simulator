@@ -370,7 +370,25 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.WriteLine("Spy Selected");
-                    Console.WriteLine("Implement Later");
+                    PlayerHP = 125;
+                    PlayerPrimaryDamage = Spy.SpySecondaryDamage();
+                    PlayerSecondaryDamage = Spy.SpySecondaryDamage();
+                    PlayerMeleeDamage = Spy.SpyMeleeDamage();
+                    PlayerSpecial = Spy.SpySecondaryDamage();
+                    PlayerPrimaryName = "No Primary - Replaced by Secondary";
+                    PlayerSecondaryName = Spy.SpySecondaryName();
+                    PlayerMeleeName = Spy.SpyMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Secondary";
+                    Console.WriteLine("...Spy Settings Applied");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary [Secondary]: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Special Roll [Secondary] - {PlayerSpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
                 }
                 else if (UserInput == "Cheats")
                 {
