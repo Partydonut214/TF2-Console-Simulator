@@ -8,6 +8,72 @@ namespace TF2_Simulator
 {
     internal class Sniper
     {
+        public static int SniperHealth()
+        {
+            int Health = 125;
+            return Health;
+        }
+        public static string SniperName()
+        {
+            return "Sniper";
+        }
+        public static string SniperMaxHP()
+        {
+            return "125";
+        }
+        public static string SniperPrimaryName()
+        {
+            return "Sniper Rifle";
+        }
+        public static string SniperSecondaryName()
+        {
+            return "SMG";
+        }
+        public static string SniperMeleeName()
+        {
+            return "Kukri";
+        }
+        public static string SniperSpecialName()
+        {
+            return "Sniper Rifle - Charge";
+        }
+        public static int SniperPrimaryDamage(int PlayerWeaponFeature)
+        {
+            // Weapon Name: Sniper Rifle
+            // Damage 50 [x Charge Level]
+            int Damage = 50;
+            int Totaldamage = Damage * PlayerWeaponFeature;
+
+            return Totaldamage;
+        }
+        public static int SniperSecondaryDamage()
+        {
+            // Weapon Name: SMG
+            // Damage 4-12 * 1-5
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(4, 13); // creates a number between 4 & 12
+            int BulletsFired = randomdamage.Next(1, 6); // creates a number between 1 & 5
+            int Totaldamage = BaseDamage * BulletsFired;
+            return Totaldamage;
+        }
+        public static int SniperMeleeDamage()
+        {
+            //Weapon Name: Kukri
+            //Damage: 30-65
+            var randomdamage = new Random();
+
+            int BaseDamage = randomdamage.Next(30, 66); // creates a number between 30 & 65
+            int Totaldamage = BaseDamage;
+            return Totaldamage;
+        }
+        public static int SniperSpecial(int PlayerWeaponFeature)
+        {
+            int Damage = 50;
+            int Totaldamage = Damage * PlayerWeaponFeature;
+            return Totaldamage;
+        }
+
         /* 
         Class Name:  
         HP: 

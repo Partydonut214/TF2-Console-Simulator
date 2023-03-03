@@ -10,6 +10,8 @@ namespace TF2_Simulator
     {
         static void Main(string[] args)
         {
+            string H1 = "┌────────────────────────┬────────────────────────┐";
+            string H2 = "└────────────────────────┴────────────────────────┘";
             int PlayerHP;
             string PlayerMaxHP;
             string PlayerClass;
@@ -183,7 +185,7 @@ namespace TF2_Simulator
                     PlayerSpecial = Scout.ScoutPrimaryDamage();
                     PlayerPrimaryName = Scout.ScoutPrimaryName();
                     PlayerSecondaryName = Scout.ScoutSecondaryName();
-                    PlayerMeleeName= Scout.ScoutMeleeName();
+                    PlayerMeleeName = Scout.ScoutMeleeName();
                     PlayerSpecialName = "No Special - Replaced By Primary";
                     Console.WriteLine("...Scout Settings Applied");
                     Console.WriteLine("=====Debug=====");
@@ -201,7 +203,7 @@ namespace TF2_Simulator
                     Console.Clear();
                     Console.WriteLine("Soldier Selected");
                     PlayerHP = 200;
-                    PlayerPrimaryDamage= Soldier.SoldierPrimaryDamage();
+                    PlayerPrimaryDamage = Soldier.SoldierPrimaryDamage();
                     PlayerSecondaryDamage = Soldier.SoldierSecondaryDamage();
                     PlayerMeleeDamage = Soldier.SoldierMeleeDamage();
                     PlayerSpecial = Soldier.SoldierSpecial();
@@ -333,7 +335,7 @@ namespace TF2_Simulator
                     Console.WriteLine("...Medic Settings Applied");
                     Console.WriteLine("=====Debug=====");
                     Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
-                    Console.WriteLine($"Heal - Secondary: {PlayerHP+PlayerSecondaryDamage}");
+                    Console.WriteLine($"Heal - Secondary: {PlayerHP + PlayerSecondaryDamage}");
                     Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
                     Console.WriteLine($"Special Roll - {PlayerSpecial}");
                     Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
@@ -345,7 +347,24 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.WriteLine("Sniper Selected");
-                    Console.WriteLine("Implement Later");
+                    PlayerHP = 125;
+                    PlayerPrimaryDamage = Sniper.SniperPrimaryDamage(PlayerWeaponFeature++); //PlayerWeaponFeature is reserved for Weapon Charge for this class. [++ = +1 Charge Level [Damage Multiplier]
+                    PlayerSecondaryDamage = Sniper.SniperSecondaryDamage();
+                    PlayerMeleeDamage = Sniper.SniperMeleeDamage();
+                    PlayerSpecial = Sniper.SniperSpecial(PlayerWeaponFeature); //Detonate Stickies. Uses PlayerWeaponFeature as a Damage Multiplier.
+                    PlayerPrimaryName = Sniper.SniperPrimaryName();
+                    PlayerSecondaryName = Sniper.SniperSecondaryName();
+                    PlayerMeleeName = Sniper.SniperMeleeName();
+                    PlayerSpecialName = Sniper.SniperSpecialName();
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerSpecial}");
+                    Console.WriteLine($"Charge - Primary: {PlayerWeaponFeature}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Primary Weapon Move Name: {PlayerSpecialName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
                 }
                 else if (UserInput == "9")
                 {
@@ -611,6 +630,73 @@ namespace TF2_Simulator
                             PlayerWeaponFeature = 0;
                             Console.WriteLine($"Sticky Bombs Currently Placed: {PlayerWeaponFeature}");
                             Thread.Sleep(20000);
+                        }
+                    }
+
+                }
+                else if (UserInput == "Sniper Test")
+                {
+                    for (int i = 0; i < 10;)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("=====Sniper Charge Test=====");
+                        Console.WriteLine("Warning: Charge Level will start at 0. When the Sniper is loaded normally, the charge will be one.");
+                        Console.WriteLine($"Sniper Charge: {PlayerWeaponFeature}");
+                        Console.WriteLine("Type 'Charge' to Charge your Damage, or 'Fire' to Fire your Weapon");
+                        string SniperInput = Console.ReadLine();
+                        if (SniperInput == "Charge")
+                        {
+                            Console.WriteLine("Spent Turn Charging Sniper");
+                            Sniper.SniperPrimaryDamage(PlayerWeaponFeature++);
+                            Console.WriteLine(PlayerWeaponFeature);
+                        }
+                        else if (SniperInput == "Fire")
+                        {
+                            Console.WriteLine("Sniper Shot Fired");
+                            PlayerSpecial = Sniper.SniperSpecial(PlayerWeaponFeature);
+                            Console.WriteLine($"Total Damage {PlayerSpecial}");
+                            Console.WriteLine($"Charge Level When Shot: {PlayerWeaponFeature}");
+                            PlayerWeaponFeature = 1;
+                            Console.WriteLine($"Current Charge Level: {PlayerWeaponFeature}");
+                            Thread.Sleep(20000);
+                        }
+                    }
+
+
+                }
+                else if (UserInput == "Design")
+                {
+                    for (int i = 0; i < 10;)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("=====Sniper Charge Test=====");
+                        Console.WriteLine(H1);
+                        Console.WriteLine($"Sniper Charge: {PlayerWeaponFeature}");
+                        Console.WriteLine(H2);
+                        Console.WriteLine("1. Fire");
+                        Console.WriteLine("2. Charge");
+                        Console.Write("├ Action: ");
+                        string SniperInput = Console.ReadLine();
+                        if (SniperInput == "2")
+                        {
+                            Console.WriteLine(H1);
+                            Console.WriteLine("├ Spent Turn Charging Sniper");
+                            Sniper.SniperPrimaryDamage(PlayerWeaponFeature++);
+                            Console.WriteLine($"├ Charge Level: {PlayerWeaponFeature}");
+                            Console.WriteLine(H2);
+                            Thread.Sleep(2000);
+                        }
+                        else if (SniperInput == "1")
+                        {
+                            Console.WriteLine(H1);
+                            Console.WriteLine("Sniper Shot Fired");
+                            PlayerSpecial = Sniper.SniperSpecial(PlayerWeaponFeature);
+                            Console.WriteLine($"Total Damage {PlayerSpecial}");
+                            Console.WriteLine($"Charge Level When Shot: {PlayerWeaponFeature}");
+                            PlayerWeaponFeature = 1;
+                            Console.WriteLine($"Current Charge Level: {PlayerWeaponFeature}");
+                            Console.WriteLine(H2);
+                            Thread.Sleep(2000);
                         }
                     }
 
