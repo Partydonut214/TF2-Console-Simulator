@@ -16,7 +16,7 @@ namespace TF2_Simulator
             int PlayerPrimaryDamage;
             int PlayerSecondaryDamage;
             int PlayerMeleeDamage;
-            int PlayerSpecial;
+            int PlayerSpecial = 0;
             int PlayerWeaponFeature = 0; //Add to Classes
             string PlayerPrimaryName;
             string PlayerSecondaryName;
@@ -248,7 +248,26 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.WriteLine("Demoman Selected");
+                    PlayerHP = 175;
+                    PlayerPrimaryDamage = Demoman.DemomanPrimaryDamage();
+                    PlayerSecondaryDamage = Demoman.DemomanSecondaryDamage(PlayerWeaponFeature++); //PlayerWeaponFeature is reserved for Sticky Placement for this class. [++ = +1 Sticky Placed [Damage Multiplier]
+                    PlayerWeaponFeature--;
+                    PlayerMeleeDamage = Demoman.DemomanMeleeDamage();
+                    PlayerSpecial = Demoman.DemomanSpecial(PlayerWeaponFeature); //Detonate Stickies. Uses PlayerWeaponFeature as a Damage Multiplier.
+                    PlayerPrimaryName = Demoman.DemomanPrimaryName();
+                    PlayerSecondaryName = Demoman.DemomanSecondaryName();
+                    PlayerMeleeName = Demoman.DemomanMeleeName();
+                    PlayerSpecialName = Demoman.DemomanSpecialName();
                     Console.WriteLine("Implement Later");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Stickies Placed - Secondary: {PlayerWeaponFeature}");
+                    Console.WriteLine($"Sticky Detonate Damage - {PlayerSpecial}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Secondary Weapon Move Name: {PlayerSpecialName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
                 }
                 else if (UserInput == "5")
                 {
@@ -572,6 +591,7 @@ namespace TF2_Simulator
                 {
                     for (int i = 0; i < 10;)
                     {
+                        Console.Clear();
                         Console.WriteLine("=====Sticky Bomb Add Test=====");
                         Console.WriteLine($"Sticky Bombs Placed: {PlayerWeaponFeature}");
                         Console.WriteLine("Type 'Place' to Place another Sticky, or 'Detonate' to Detonate the Stickies");
@@ -584,9 +604,13 @@ namespace TF2_Simulator
                         }
                         else if (DemoInput == "Detonate")
                         {
-                            Console.WriteLine();
-
-
+                            Console.WriteLine("Sticky Bomb(s) Detonated");
+                            PlayerSpecial = Demoman.DemomanSpecial(PlayerWeaponFeature);
+                            Console.WriteLine($"Total Damage {PlayerSpecial}");
+                            Console.WriteLine($"Sticky Bombs Detonated: {PlayerWeaponFeature}");
+                            PlayerWeaponFeature = 0;
+                            Console.WriteLine($"Sticky Bombs Currently Placed: {PlayerWeaponFeature}");
+                            Thread.Sleep(20000);
                         }
                     }
 

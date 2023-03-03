@@ -27,11 +27,15 @@ namespace TF2_Simulator
         }
         public static string DemomanSecondaryName()
         {
-            return "Stickybomb Launcher";
+            return "Stickybomb Launcher - Place Sticky";
         }
         public static string DemomanMeleeName()
         {
             return "Bottle";
+        }
+        public static string DemomanSpecialName()
+        {
+            return "Stickybomb Launcher - Detonate Stickies";
         }
         public static int DemomanPrimaryDamage()
         {
@@ -51,7 +55,7 @@ namespace TF2_Simulator
             var randomdamage = new Random();
 
             StickyPlaced = 0;
-            int BaseDamage = randomdamage.Next(22, 35); // creates a number between 22 & 34
+            int BaseDamage = randomdamage.Next(22, 35); // doesn't actually do anything but the counter works and I am too scared to touch this
             int BulletsFired = StickyPlaced++; // adds a Multiplier to the Sticky Count (Implement random damage per bullet later.)
             int Totaldamage = BaseDamage * BulletsFired;
             return Totaldamage;
@@ -64,6 +68,13 @@ namespace TF2_Simulator
 
             int BaseDamage = randomdamage.Next(30, 66); // creates a number between 30 & 65
             int Totaldamage = BaseDamage;
+            return Totaldamage;
+        }
+        public static int DemomanSpecial(int PlayerWeaponFeature)
+        {
+            var randomdamage = new Random();
+            int BaseDamage = randomdamage.Next(22, 35); // this one actually does something.
+            int Totaldamage = BaseDamage * PlayerWeaponFeature;
             return Totaldamage;
         }
         /* 
