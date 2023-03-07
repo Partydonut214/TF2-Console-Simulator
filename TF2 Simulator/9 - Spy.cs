@@ -17,7 +17,7 @@ namespace TF2_Simulator
         {
             return "Spy";
         }
-        public static string SniperMaxHP()
+        public static string SpyMaxHP()
         {
             return "125";
         }
