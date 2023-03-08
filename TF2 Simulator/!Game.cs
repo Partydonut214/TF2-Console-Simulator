@@ -30,6 +30,69 @@ namespace TF2_Simulator
                 Console.WriteLine("[Soldier]: No!");
                 Thread.Sleep(1000);
             }
+            if (PlayerName.ToLower() == "red")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
+            if (PlayerName.ToLower() == "blu" || PlayerName.ToLower() == "blue")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
+            if (PlayerName.ToLower() == "grn")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
+            if (PlayerName.ToLower() == "ylw")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
+            if (PlayerName.ToLower() == "markiplier")
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
+            if (PlayerName.ToLower() == "jacksepticeye")
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
+            if (PlayerName.ToLower() == "dantdm")
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
+            if (PlayerName.ToLower() == "fallout 3")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
+            if (PlayerName.ToLower() == "fallout new vegas")
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("┌───────────┬────────────┐");
+                Console.WriteLine("Secret Name Discovered");
+                Console.WriteLine("└───────────┴────────────┘");
+            }
             string Header = "┌────────────────────────┬────────────────────────┐";
             string Footer = "└────────────────────────┴────────────────────────┘";
             string HeaderLong = "┌────────────────────────────────────────────────┬────────────────────────────────────────────────┐";
