@@ -1,4 +1,6 @@
 ﻿// TF2 Text Based Fighting Sim
+using System;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Diagnostics;
@@ -30,9 +32,12 @@ namespace TF2_Simulator
             }
             string Header = "┌────────────────────────┬────────────────────────┐";
             string Footer = "└────────────────────────┴────────────────────────┘";
+            string HeaderLong = "┌────────────────────────────────────────────────┬────────────────────────────────────────────────┐";
+            string FooterLong = "└────────────────────────────────────────────────┴────────────────────────────────────────────────┘";
             int PlayerHP;
-            string PlayerMaxHP; 
-            string PlayerClass; 
+            string PlayerMaxHP;
+            string PlayerClass;
+            int PlayerCooldown = 0;
             int PlayerPrimaryDamage;
             int PlayerSecondaryDamage;
             int PlayerMeleeDamage;
@@ -45,8 +50,9 @@ namespace TF2_Simulator
             bool PlayerSetClass = false;
             string PlayerChoice; //Implement
             int EnemyHP;
-            string EnemyMaxHP; 
-            string EnemyClass; 
+            string EnemyMaxHP;
+            string EnemyClass;
+            int EnemyCooldown = 0;
             int EnemyPrimaryDamage;
             int EnemySecondaryDamage;
             int EnemyMeleeDamage;
@@ -56,9 +62,9 @@ namespace TF2_Simulator
             string EnemyMeleeName;
             string EnemySpecialName;
             int EnemyWeaponFeature = 0; //Add to Classes
-            bool  EnemySetClass = false; //Implement
-            string EnemyChoice; // Implement
-            bool InputOK=false;
+            bool EnemySetClass = false; //Implement
+            int EnemyChoice; // Implement
+            bool InputOK = false;
             bool InputEnemy = false;
             while (InputOK == false)
             {
@@ -298,7 +304,7 @@ namespace TF2_Simulator
                     Console.WriteLine("Demoman Selected");
                     PlayerHP = 175;
                     PlayerClass = Demoman.DemomanName();
-                    PlayerMaxHP = Demoman.DemomanMaxHP(); 
+                    PlayerMaxHP = Demoman.DemomanMaxHP();
                     PlayerPrimaryDamage = Demoman.DemomanPrimaryDamage();
                     PlayerSecondaryDamage = Demoman.DemomanSecondaryDamage(PlayerWeaponFeature++); //PlayerWeaponFeature is reserved for Sticky Placement for this class. [++ = +1 Sticky Placed [Damage Multiplier]
                     PlayerWeaponFeature--;
@@ -891,70 +897,161 @@ namespace TF2_Simulator
                     string StartConfirm = Console.ReadLine();
                     if (StartConfirm == "Start")
                     {
-                            while (PlayerHP >= 0 && EnemyHP >= 0)
+                        while (PlayerHP >= 0 && EnemyHP >= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"{PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
+                            Console.WriteLine($"The Enemy's Class is {EnemyClass} with {EnemyHP}/{EnemyMaxHP}");
+                            Console.WriteLine($"Actions:");
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"4. {PlayerSpecialName}");
+                            Console.WriteLine(Footer);
+                            Console.Write($"{PlayerName}'s Choice: ");
+                            PlayerChoice = Console.ReadLine();
+                            if (PlayerChoice == "1")
                             {
-                                Console.Clear();
-                                Console.WriteLine(Header);
-                                Console.WriteLine($"{PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
-                                Console.WriteLine($"The Enemy's Class is {EnemyClass} with {EnemyHP}/{EnemyMaxHP}");
-                                Console.WriteLine($"{PlayerName} Starts First!");
-                                Console.WriteLine($"Actions:");
-                                Console.WriteLine($"1. {PlayerPrimaryName}");
-                                Console.WriteLine($"2. {PlayerSecondaryName}");
-                                Console.WriteLine($"3. {PlayerMeleeName}");
-                                Console.WriteLine($"4. {PlayerSpecialName}");
-                                Console.Write($"{PlayerName}'s Choice: ");
-                                PlayerChoice = Console.ReadLine();
-                                if (PlayerChoice == "1.")
-                                {
-                                    PlayerPrimaryDamage = Soldier.SoldierPrimaryDamage();
-                                    EnemyHP -= PlayerPrimaryDamage;
-                                    Console.WriteLine($"{PlayerName} Dealt {PlayerPrimaryDamage} to the Enemy using their {PlayerPrimaryName}! Their HP is now {EnemyHP}");
-                                    Thread.Sleep(1000);
-                                }
-                                if (PlayerChoice == "2.")
-                                {
-                                    PlayerSecondaryDamage = Soldier.SoldierSecondaryDamage();
-                                    EnemyHP -= PlayerSecondaryDamage;
-                                    Console.WriteLine($"{PlayerName} Dealt {PlayerSecondaryDamage} to the Enemy using their {PlayerSecondaryName}! Their HP is now {EnemyHP}!");
-                                    Thread.Sleep(1000);
-                                }
-                                if (PlayerChoice == "3.")
-                                {
-                                    PlayerMeleeDamage = Soldier.SoldierMeleeDamage();
-                                    EnemyHP -= PlayerMeleeDamage;
-                                    Console.WriteLine($"{PlayerName} Dealt {PlayerMeleeDamage} to the Enemy using their {PlayerMeleeName}! Their HP is now {EnemyHP}!");
+                                Console.WriteLine();
+                                Console.WriteLine(HeaderLong);
+                                PlayerPrimaryDamage = Soldier.SoldierPrimaryDamage();
+                                EnemyHP = EnemyHP - PlayerPrimaryDamage;
+                                Console.WriteLine($"{PlayerName} Dealt {PlayerPrimaryDamage} to the Enemy {EnemyClass} using {PlayerPrimaryName}! Their HP is now {EnemyHP}");
                                 Thread.Sleep(1000);
-                                }
-                                if (PlayerChoice == "4.")
-                                {
-                                    Console.WriteLine("You Choose to attempt the Legendary Market Garden.");
-                                    Thread.Sleep(1000);
-                                    PlayerPrimaryDamage = Soldier.SoldierPrimaryDamage();
-                                    PlayerHP -= PlayerPrimaryDamage;
-                                    Console.WriteLine($"You Took {PlayerPrimaryDamage} during the Rocket Jump. Your HP is now {PlayerHP};");
-                                    Thread.Sleep(1000);
+                                Console.WriteLine(FooterLong);
+                            }
+                            if (PlayerChoice == "2")
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(HeaderLong);
+                                PlayerSecondaryDamage = Soldier.SoldierSecondaryDamage();
+                                EnemyHP = EnemyHP - PlayerSecondaryDamage;
+                                Console.WriteLine($"{PlayerName} Dealt {PlayerSecondaryDamage} to the Enemy {EnemyClass} using {PlayerSecondaryName}! Their HP is now {EnemyHP}!");
+                                Thread.Sleep(1000);
+                                Console.WriteLine(FooterLong);
+                            }
+                            if (PlayerChoice == "3")
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(HeaderLong);
+                                PlayerMeleeDamage = Soldier.SoldierMeleeDamage();
+                                EnemyHP = EnemyHP - PlayerMeleeDamage;
+                                Console.WriteLine($"{PlayerName} Dealt {PlayerMeleeDamage} to the Enemy {EnemyClass} using {PlayerMeleeName}! Their HP is now {EnemyHP}!");
+                                Thread.Sleep(1000);
+                                Console.WriteLine(FooterLong);
+                            }
+                            if (PlayerChoice == "4")
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(Header);
+                                Console.WriteLine($"{PlayerName} choose to attempt the Market Garden.");
+                                Console.WriteLine(Footer);
+                                Thread.Sleep(1000);
+                                PlayerPrimaryDamage = Soldier.SoldierPrimaryDamage();
+                                PlayerHP = PlayerHP - PlayerPrimaryDamage;
+                                Console.WriteLine();
+                                Console.WriteLine(Header);
+                                Console.WriteLine($"You Took {PlayerPrimaryDamage} from the Rocket Jump.");
+                                Console.WriteLine($"Your HP is now {PlayerHP}.");
+                                Console.WriteLine(Footer);
+                                Thread.Sleep(1000);
                                 if (PlayerHP < 0)
                                 {
-                                        Console.WriteLine("The Rocket Jump sent you to your grave instead of your shovel to your enemy's face. You need to watch your HP!");
-                                    Thread.Sleep(1000);
+                                    Console.WriteLine();
+                                    Console.WriteLine(Header);
+                                    Console.WriteLine("The Rocket Jump sent you to your grave instead of ");
+                                    Console.WriteLine("your shovel to your enemy's face.");
+                                    Console.WriteLine(" -- You need to watch your HP!");
+                                    Console.WriteLine(Footer);
+                                    Thread.Sleep(5000);
                                 }
-                                    if (PlayerHP > 0)
-                                    { 
-                                        PlayerSpecial = Soldier.SoldierSpecial();
-                                        EnemyHP -= PlayerSpecial;
-                                        if (PlayerSpecial == 0)
-                                        {
-                                            Console.WriteLine($"You Missed the Market Garden :( The Enemy's HP is still {EnemyHP}");
-                                            Thread.Sleep(1000);
+                                if (PlayerHP >= 0)
+                                {
+                                    PlayerSpecial = Soldier.SoldierSpecial();
+                                    EnemyHP -= PlayerSpecial;
+                                    if (PlayerSpecial == 0)
+                                    {
+                                        Console.WriteLine();
+                                        Console.WriteLine(Header);
+                                        Console.WriteLine($"You Missed the Market Garden!");
+                                        Console.WriteLine($"The Enemy's HP is still {EnemyHP}");
+                                        Console.WriteLine(Footer);
+                                        Thread.Sleep(3000);
                                     }
-                                        if (PlayerSpecial == 195)
-                                        {
-                                            Console.WriteLine($"You Hit the Market Garden and hit the enemy! You Dealt 195 Damage, their HP is now {EnemyHP}");
-                                            Thread.Sleep(1000);
+                                    if (PlayerSpecial == 195)
+                                    {
+                                        Console.WriteLine();
+                                        Console.WriteLine(HeaderLong);
+                                        Console.WriteLine($"You Hit the Market Garden and hit the enemy! You Dealt 195 Damage, their HP is now {EnemyHP}");
+                                        Console.WriteLine(FooterLong);
+                                        Thread.Sleep(3000);
                                     }
                                 }
+
                             }
+                            if (EnemyHP > 0)
+                            {
+                                EnemyChoice = EnemyTurn.EnemyChoice(EnemyCooldown);
+                                if (EnemyChoice == 1)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(HeaderLong);
+                                    EnemyPrimaryDamage = Heavy.HeavyPrimaryDamage();
+                                    PlayerHP = PlayerHP - EnemyPrimaryDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass} Dealt {EnemyPrimaryDamage} to {PlayerName} using their {EnemyPrimaryName}! Your HP is now {PlayerHP}!");
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(2000);
+                                }
+                                if (EnemyChoice == 2)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(HeaderLong);
+                                    EnemySecondaryDamage = Heavy.HeavySecondaryDamage();
+                                    PlayerHP = PlayerHP - EnemySecondaryDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass} Dealt {EnemySecondaryDamage} to {PlayerName} using their {EnemySecondaryName}! Your HP is now {PlayerHP}!");
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(2000);
+                                }
+                                if (EnemyChoice == 3)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(HeaderLong);
+                                    EnemyMeleeDamage = Heavy.HeavyMeleeDamage();
+                                    PlayerHP = PlayerHP - EnemyMeleeDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass} Dealt {EnemyMeleeDamage} to {PlayerName} using their {EnemyMeleeName}! Your HP is now {PlayerHP}!");
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(2000);
+                                }
+                                if (EnemyChoice == 4)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(HeaderLong);
+                                    EnemySpecial = Heavy.HeavyPrimaryDamage();
+                                    PlayerHP = PlayerHP - EnemyPrimaryDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass} Dealt {EnemyPrimaryDamage} to {PlayerName} using their {EnemyPrimaryName}! Your HP is now {PlayerHP}!");
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(2000);
+                                }
+
+                            }
+
+                        }
+                        if (PlayerHP <= 0)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"You Died! The Enemy {EnemyClass} Defeated you. ");
+                            Console.WriteLine($"They had {EnemyHP}/{EnemyMaxHP} HP Remaining.");
+                            Console.WriteLine(Footer);
+                        }
+                        if (EnemyHP <= 0)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"You Won! The Enemy {EnemyClass} Was Defeated! ");
+                            Console.WriteLine($"You have {PlayerHP}/{PlayerMaxHP} HP Remaining!");
+                            Console.WriteLine(Footer);
                         }
                     }
                 }
@@ -966,7 +1063,7 @@ namespace TF2_Simulator
                     Console.WriteLine();
                 }
             }
-            if (PlayerSetClass == true) 
+            if (PlayerSetClass == true)
             {
                 while (InputEnemy == false)
                 {
@@ -1243,6 +1340,10 @@ namespace TF2_Simulator
                     }
 
                 }
+            }
+            if (EnemySetClass == true) //Game
+            {
+
             }
         }
     }
