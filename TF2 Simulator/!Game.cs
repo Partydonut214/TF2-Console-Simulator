@@ -18,6 +18,7 @@ namespace TF2_Simulator
             {
                 PlayerName = "someone who apparently doesn't have a name";
             }
+            #region Secret Names
             if (PlayerName == "bucket" || (PlayerName == "Bucket"))
             {
                 Thread.Sleep(1000);
@@ -93,10 +94,14 @@ namespace TF2_Simulator
                 Console.WriteLine("Secret Name Discovered");
                 Console.WriteLine("└───────────┴────────────┘");
             }
+            #endregion
+            #region Dividers & Borders
             string Header = "┌────────────────────────┬────────────────────────┐";
             string Footer = "└────────────────────────┴────────────────────────┘";
             string HeaderLong = "┌────────────────────────────────────────────────┬────────────────────────────────────────────────┐";
             string FooterLong = "└────────────────────────────────────────────────┴────────────────────────────────────────────────┘";
+            #endregion
+            #region Player Stats
             int PlayerHP;
             string PlayerMaxHP;
             string PlayerClass;
@@ -112,6 +117,8 @@ namespace TF2_Simulator
             string PlayerSpecialName;
             bool PlayerSetClass = false;
             string PlayerChoice; //Implement
+            #endregion
+            #region Enemy Stats
             int EnemyHP;
             string EnemyMaxHP;
             string EnemyClass;
@@ -127,8 +134,10 @@ namespace TF2_Simulator
             int EnemyWeaponFeature = 0; //Add to Classes
             bool EnemySetClass = false; //Implement
             int EnemyChoice; // Implement
+            #endregion
             bool InputOK = false;
             bool InputEnemy = false;
+            #region MainMenu
             while (InputOK == false)
             {
                 InputOK = true;
@@ -150,6 +159,7 @@ namespace TF2_Simulator
                 Console.WriteLine();
                 Console.Write("Choose a Class, or type a Command: ");
                 string UserInput = Console.ReadLine();
+                #region Help Menu
                 if ((UserInput.ToLower() == "!help") || (UserInput.ToLower() == "help"))
                 {
                     bool InputOKHelp = false;
@@ -268,6 +278,8 @@ namespace TF2_Simulator
                         }
                     }
                 }
+                #endregion
+                #region Player Classes
                 else if (UserInput == "1")
                 {
                     Console.Clear();
@@ -546,6 +558,8 @@ namespace TF2_Simulator
                     Thread.Sleep(2000);
                     break;
                 }
+                #endregion
+                #region Tests
                 else if (UserInput.ToLower() == "cheats")
                 {
                     Console.Clear();
@@ -1118,6 +1132,8 @@ namespace TF2_Simulator
                         }
                     }
                 }
+                #endregion
+                #region MainMenu Reset
                 else
                 {
                     InputOK = false;
@@ -1125,7 +1141,10 @@ namespace TF2_Simulator
                     Console.Write("Invalid Command Entered."); Thread.Sleep(1000); Console.Write(" Try Again");
                     Console.WriteLine();
                 }
+                #endregion
             }
+            #endregion
+            #region Pick Enemy
             if (PlayerSetClass == true)
             {
                 while (InputEnemy == false)
@@ -1404,6 +1423,7 @@ namespace TF2_Simulator
 
                 }
             }
+            #endregion
             if (EnemySetClass == true) //Game
             {
 
