@@ -102,40 +102,41 @@ namespace TF2_Simulator
             string FooterLong = "└────────────────────────────────────────────────┴────────────────────────────────────────────────┘";
             #endregion
             #region Player Stats
-            int PlayerHP;
-            string PlayerMaxHP;
-            string PlayerClass;
+            int PlayerHP = 0;
+            string PlayerMaxHP = "Not Set";
+            string PlayerClass = "Unselected";
             int PlayerCooldown = 0;
             int PlayerPrimaryDamage;
             int PlayerSecondaryDamage;
             int PlayerMeleeDamage;
             int PlayerSpecial = 0;
             int PlayerWeaponFeature = 0; //Add to Classes
-            string PlayerPrimaryName;
-            string PlayerSecondaryName;
-            string PlayerMeleeName;
-            string PlayerSpecialName;
+            string PlayerPrimaryName = "Not Defined";
+            string PlayerSecondaryName = "Not Defined";
+            string PlayerMeleeName = "Not Defined";
+            string PlayerSpecialName = "Not Defined";
             bool PlayerSetClass = false;
-            string PlayerChoice; //Implement
+            string PlayerChoice = "9999"; //Implement
             #endregion
             #region Enemy Stats
-            int EnemyHP;
-            string EnemyMaxHP;
-            string EnemyClass;
+            int EnemyHP = 0;
+            string EnemyMaxHP = "Not Set";
+            string EnemyClass = "Unselected";
             int EnemyCooldown = 0;
             int EnemyPrimaryDamage;
             int EnemySecondaryDamage;
             int EnemyMeleeDamage;
             int EnemySpecial;
-            string EnemyPrimaryName;
-            string EnemySecondaryName;
-            string EnemyMeleeName;
-            string EnemySpecialName;
+            string EnemyPrimaryName = "Not Defined";
+            string EnemySecondaryName = "Not Defined";
+            string EnemyMeleeName = "Not Defined";
+            string EnemySpecialName = "Not Defined";
             int EnemyWeaponFeature = 0; //Add to Classes
             bool EnemySetClass = false; //Implement
             int EnemyChoice; // Implement
             #endregion
             bool InputOK = false;
+            bool GameInputOK = false;
             bool InputEnemy = false;
             #region MainMenu
             while (InputOK == false)
@@ -1366,6 +1367,8 @@ namespace TF2_Simulator
                         Console.Clear();
                         Console.WriteLine("Enemy Scout Selected");
                         EnemyHP = 125;
+                        EnemyClass = Scout.ScoutName();
+                        EnemyMaxHP = Scout.ScoutMaxHP();
                         EnemyPrimaryDamage = Scout.ScoutPrimaryDamage();
                         EnemySecondaryDamage = Scout.ScoutSecondaryDamage();
                         EnemyMeleeDamage = Scout.ScoutMeleeDamage();
@@ -1374,6 +1377,7 @@ namespace TF2_Simulator
                         EnemySecondaryName = Scout.ScoutSecondaryName();
                         EnemyMeleeName = Scout.ScoutMeleeName();
                         EnemySpecialName = "No Special - Replaced By Primary";
+                        Thread.Sleep(1000);
                         Console.WriteLine("...Scout Settings Applied");
                         Console.WriteLine("=====Debug=====");
                         Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
@@ -1384,6 +1388,9 @@ namespace TF2_Simulator
                         Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
                         Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
                         Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                        Console.WriteLine(".....");
+                        Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else if (UserInput == "2")
                     {
@@ -1413,6 +1420,7 @@ namespace TF2_Simulator
                         Console.WriteLine($"Special Move Name: {EnemySpecialName}");
                         Console.WriteLine(".....");
                         Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else if (UserInput == "3")
                     {
@@ -1442,6 +1450,7 @@ namespace TF2_Simulator
                         Console.WriteLine($"Special Move Name: {EnemySpecialName}");
                         Console.WriteLine(".....");
                         Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else if (UserInput == "4")
                     {
@@ -1471,6 +1480,8 @@ namespace TF2_Simulator
                         Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
                         Console.WriteLine($"Special Move Name: {EnemySpecialName}");
                         Console.WriteLine(".....");
+                        Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else if (UserInput == "5")
                     {
@@ -1498,6 +1509,8 @@ namespace TF2_Simulator
                         Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
                         Console.WriteLine($"Special Move Name: {EnemySpecialName}");
                         Console.WriteLine(".....");
+                        Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else if (UserInput == "6")
                     {
@@ -1526,6 +1539,8 @@ namespace TF2_Simulator
                         Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
                         Console.WriteLine($"Special Move Name: {EnemySpecialName}");
                         Console.WriteLine(".....");
+                        Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else if (UserInput == "7")
                     {
@@ -1554,6 +1569,8 @@ namespace TF2_Simulator
                         Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
                         Console.WriteLine($"Special Move Name: {EnemySpecialName}");
                         Console.WriteLine(".....");
+                        Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else if (UserInput == "8")
                     {
@@ -1581,6 +1598,8 @@ namespace TF2_Simulator
                         Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
                         Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
                         Console.WriteLine(".....");
+                        Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else if (UserInput == "9")
                     {
@@ -1609,6 +1628,8 @@ namespace TF2_Simulator
                         Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
                         Console.WriteLine($"Special Move Name: {EnemySpecialName}");
                         Console.WriteLine(".....");
+                        Thread.Sleep(2000);
+                        EnemySetClass = true;
                     }
                     else
                     {
@@ -1618,9 +1639,74 @@ namespace TF2_Simulator
                 }
             }
             #endregion
-            if (EnemySetClass == true) //Game
+            if (EnemySetClass == true) //Game Start
             {
-
+                while (GameInputOK == false)
+                {
+                    GameInputOK = true;
+                    Console.Clear();
+                    Console.WriteLine(Header);
+                    Console.WriteLine($"{PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
+                    Console.WriteLine($"The Enemy's Class is {EnemyClass} with {EnemyHP}/{EnemyMaxHP}");
+                    Console.WriteLine($"Actions:");
+                    if (PlayerClass == "Scout")
+                    { 
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSecondaryName}");
+                        Console.WriteLine($"3. {PlayerMeleeName}");
+                    }
+                    if (PlayerClass == "Soldier")
+                    {
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSecondaryName}");
+                        Console.WriteLine($"3. {PlayerMeleeName}");
+                        Console.WriteLine($"4. {PlayerSpecialName}");
+                    }
+                    if (PlayerClass == "Pyro")
+                    {
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSecondaryName}");
+                        Console.WriteLine($"3. {PlayerMeleeName}");
+                    }
+                    if (PlayerClass == "Demoman")
+                    {
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSecondaryName}");
+                        Console.WriteLine($"3. {PlayerSpecialName}");
+                        Console.WriteLine($"4. {PlayerMeleeName}");
+                    }
+                    if (PlayerClass == "Heavy")
+                    {
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSecondaryName}");
+                        Console.WriteLine($"3. {PlayerMeleeName}");
+                    }
+                    if (PlayerClass == "Engineer")
+                    {
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSecondaryName}");
+                        Console.WriteLine($"3. {PlayerMeleeName}");
+                    }
+                    if (PlayerClass == "Medic")
+                    {
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSecondaryName}");
+                        Console.WriteLine($"3. {PlayerMeleeName}");
+                    }
+                    if (PlayerClass == "Sniper")
+                    {
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSpecialName}");
+                        Console.WriteLine($"3. {PlayerSecondaryName}");
+                        Console.WriteLine($"4. {PlayerMeleeName}");
+                    }
+                    if (PlayerClass == "Spy")
+                    {
+                        Console.WriteLine($"1. {PlayerPrimaryName}");
+                        Console.WriteLine($"2. {PlayerSecondaryName}");
+                        Console.WriteLine($"3. {PlayerMeleeName}");
+                    }
+                }
             }
         }
     }
