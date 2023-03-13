@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace TF2_Simulator
 {
@@ -33,8 +35,7 @@ namespace TF2_Simulator
         {
             return "Bonesaw";
         }
-        public static int  MedicPrimaryDamage()
-
+        public static int MedicPrimaryDamage(int cooldown)
         {
             // Weapon Name: Blutsauger
             // Damage 5-12 * 1-4
@@ -44,9 +45,13 @@ namespace TF2_Simulator
             int BulletsFired = randomdamage.Next(1, 4); // creates a multiplier between 1 & 4 (Implement random damage per bullet later.)
             int SelfHeal = BulletsFired;
             int Totaldamage = BaseDamage * BulletsFired;
+            if (cooldown >= 1)
+            {
+                cooldown--;
+            }
             return Totaldamage;
         }
-        public static int MedicSecondaryDamage()
+        public static int MedicSecondaryDamage(int cooldown)
         {
             // Weapon Name: Medigun
             // Heals: 24-36
@@ -54,9 +59,17 @@ namespace TF2_Simulator
 
             int BaseDamage = randomdamage.Next(24, 36); // creates a number between 4 & 6
             int Totaldamage = BaseDamage;
+            if (cooldown >= 1)
+            {
+                Totaldamage = Totaldamage * -1;
+            }
+            else
+            {
+                cooldown = 3;
+            }
             return Totaldamage;
         }
-        public static int MedicMeleeDamage()
+        public static int MedicMeleeDamage(int cooldown)
         {
             //Weapon Name: Bonesaw
             //Damage: 30-65
@@ -64,6 +77,10 @@ namespace TF2_Simulator
 
             int BaseDamage = randomdamage.Next(30, 66); // creates a number between 30 & 65
             int Totaldamage = BaseDamage;
+            if (cooldown >= 1)
+            {
+                cooldown--;
+            }
             return Totaldamage;
         }
         /* 

@@ -473,10 +473,10 @@ namespace TF2_Simulator
                     PlayerHP = 150;
                     PlayerClass = Medic.MedicName();
                     PlayerMaxHP = Medic.MedicMaxHP();
-                    PlayerPrimaryDamage = Medic.MedicPrimaryDamage();
-                    PlayerSecondaryDamage = Medic.MedicSecondaryDamage();
-                    PlayerMeleeDamage = Medic.MedicMeleeDamage();
-                    PlayerSpecial = Medic.MedicPrimaryDamage();
+                    PlayerPrimaryDamage = Medic.MedicPrimaryDamage(PlayerCooldown);
+                    PlayerSecondaryDamage = Medic.MedicSecondaryDamage(PlayerCooldown);
+                    PlayerMeleeDamage = Medic.MedicMeleeDamage(PlayerCooldown);
+                    PlayerSpecial = Medic.MedicPrimaryDamage(PlayerCooldown);
                     PlayerPrimaryName = Medic.MedicPrimaryName();
                     PlayerSecondaryName = Medic.MedicSecondaryName();
                     PlayerMeleeName = Medic.MedicMeleeName();
@@ -901,7 +901,6 @@ namespace TF2_Simulator
                 }
                 else if (UserInput.ToLower() == "market garden")
                 {
-                    bool SoldierTest = false;
                     Console.WriteLine(Header);
                     Console.WriteLine("Testing: The Soldier's Market Garden.");
                     Thread.Sleep(2000);
@@ -1105,6 +1104,201 @@ namespace TF2_Simulator
                                     Console.WriteLine();
                                     Console.WriteLine(HeaderLong);
                                     EnemySpecial = Heavy.HeavyPrimaryDamage();
+                                    PlayerHP = PlayerHP - EnemyPrimaryDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass} Dealt {EnemyPrimaryDamage} to {PlayerName} using their {EnemyPrimaryName}! Your HP is now {PlayerHP}!");
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(2000);
+                                }
+
+                            }
+
+                        }
+                        if (PlayerHP <= 0)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"You Died! The Enemy {EnemyClass} Defeated you. ");
+                            Console.WriteLine($"They had {EnemyHP}/{EnemyMaxHP} HP Remaining.");
+                            Console.WriteLine(Footer);
+                        }
+                        if (EnemyHP <= 0)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"You Won! The Enemy {EnemyClass} Was Defeated! ");
+                            Console.WriteLine($"You have {PlayerHP}/{PlayerMaxHP} HP Remaining!");
+                            Console.WriteLine(Footer);
+                        }
+                    }
+                }
+                else if (UserInput.ToLower() == "medigun")
+                {
+                    Console.WriteLine(Header);
+                    Console.WriteLine("Testing: The Medic's Medigun Cooldown.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Selected Classes:");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Player: Medic");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Enemy: Medic");
+                    Thread.Sleep(1000);
+                    Console.WriteLine(".....Loading Classes");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine(Header);
+                    Console.WriteLine("Medic Selected");
+                    PlayerHP = 1200;
+                    PlayerClass = Medic.MedicName();
+                    PlayerMaxHP = Medic.MedicMaxHP();
+                    PlayerPrimaryDamage = Medic.MedicPrimaryDamage(PlayerCooldown);
+                    PlayerSecondaryDamage = Medic.MedicSecondaryDamage(PlayerCooldown); //Add Cooldown
+                    PlayerMeleeDamage = Medic.MedicMeleeDamage(PlayerCooldown);
+                    PlayerSpecial = Medic.MedicPrimaryDamage(PlayerCooldown);
+                    PlayerPrimaryName = Medic.MedicPrimaryName();
+                    PlayerSecondaryName = Medic.MedicSecondaryName();
+                    PlayerMeleeName = Medic.MedicMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    Thread.Sleep(1000);
+                    Console.WriteLine("...Medic Settings Applied");
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
+                    Console.WriteLine(".....Loading Enemy Class");
+                    Thread.Sleep(2000);
+                    Console.WriteLine(Footer);
+                    Console.WriteLine();
+                    Console.WriteLine(Header);
+                    Console.WriteLine("Enemy Medic Selected");
+                    EnemyHP = 1200;
+                    EnemyClass = Medic.MedicName();
+                    EnemyMaxHP = Medic.MedicMaxHP();
+                    EnemyPrimaryDamage = Medic.MedicPrimaryDamage(EnemyCooldown);
+                    EnemySecondaryDamage = Medic.MedicSecondaryDamage(EnemyCooldown);
+                    EnemyMeleeDamage = Medic.MedicMeleeDamage(EnemyCooldown);
+                    EnemySpecial = Medic.MedicPrimaryDamage(EnemyCooldown);
+                    EnemyPrimaryName = Medic.MedicPrimaryName();
+                    EnemySecondaryName = Medic.MedicSecondaryName();
+                    EnemyMeleeName = Medic.MedicMeleeName();
+                    EnemySpecialName = "No Special - Replaced By Primary";
+                    Thread.Sleep(1000);
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                    Console.WriteLine($"Special Roll - {EnemySpecial}");
+                    Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                    Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                    Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                    Console.WriteLine(".....");
+                    Console.WriteLine(Footer);
+                    Console.WriteLine();
+                    Console.WriteLine(Header);
+                    Console.WriteLine("Classes Selected...");
+                    Console.Write("Type 'Start' to Start!: ");
+                    string StartConfirm = Console.ReadLine();
+                    if (StartConfirm == "Start")
+                    {
+                        while (PlayerHP >= 0 && EnemyHP >= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"{PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
+                            Console.WriteLine($"The Enemy's Class is {EnemyClass} with {EnemyHP}/{EnemyMaxHP}");
+                            Console.WriteLine($"Actions:");
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"4. {PlayerSpecialName}");
+                            Console.WriteLine(Footer);
+                            Console.Write($"{PlayerName}'s Choice: ");
+                            PlayerChoice = Console.ReadLine();
+                            if (PlayerChoice == "1")
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(HeaderLong);
+                                PlayerPrimaryDamage = Medic.MedicPrimaryDamage(PlayerCooldown);
+                                EnemyHP = EnemyHP - PlayerPrimaryDamage;
+                                PlayerHP = PlayerHP + (PlayerPrimaryDamage / 2);
+                                Console.WriteLine($"{PlayerName} Dealt {PlayerPrimaryDamage} to the Enemy {EnemyClass} using {PlayerPrimaryName}! Their HP is now {EnemyHP}");
+                                Thread.Sleep(1000);
+                                Console.WriteLine(FooterLong);
+                            }
+                            if (PlayerChoice == "2")
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(HeaderLong);
+                                PlayerSecondaryDamage = Medic.MedicSecondaryDamage(PlayerCooldown);
+                                PlayerHP = PlayerHP + PlayerSecondaryDamage;
+                                Console.WriteLine($"{PlayerName} Healed {PlayerSecondaryDamage} using {PlayerSecondaryName}! Your HP is now {PlayerHP}!");
+                                Thread.Sleep(1000);
+                                Console.WriteLine(FooterLong);
+                            }
+                            if (PlayerChoice == "3")
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(HeaderLong);
+                                PlayerMeleeDamage = Medic.MedicMeleeDamage(PlayerCooldown);
+                                EnemyHP = EnemyHP - PlayerMeleeDamage;
+                                Console.WriteLine($"{PlayerName} Dealt {PlayerMeleeDamage} to the Enemy {EnemyClass} using {PlayerMeleeName}! Their HP is now {EnemyHP}!");
+                                Thread.Sleep(1000);
+                                Console.WriteLine(FooterLong);
+                            }
+                            if (PlayerChoice == "4")
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(HeaderLong);
+                                PlayerPrimaryDamage = Medic.MedicPrimaryDamage(PlayerCooldown);
+                                EnemyHP = EnemyHP - PlayerPrimaryDamage;
+                                Console.WriteLine($"{PlayerName} Dealt {PlayerPrimaryDamage} to the Enemy {EnemyClass} using {PlayerPrimaryName}! Their HP is now {EnemyHP}");
+                                Thread.Sleep(1000);
+                                Console.WriteLine(FooterLong);
+                            }
+                            if (EnemyHP > 0)
+                            {
+                                EnemyChoice = EnemyTurn.EnemyChoice(EnemyCooldown);
+                                if (EnemyChoice == 1)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(HeaderLong);
+                                    EnemyPrimaryDamage = Medic.MedicPrimaryDamage(EnemyCooldown);
+                                    PlayerHP = PlayerHP - EnemyPrimaryDamage;
+                                    EnemyHP = EnemyHP + (EnemyPrimaryDamage / 2);
+                                    Console.WriteLine($"The Enemy {EnemyClass} Dealt {EnemyPrimaryDamage} to {PlayerName} using their {EnemyPrimaryName}! Your HP is now {PlayerHP}!");
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(2000);
+                                }
+                                if (EnemyChoice == 2)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(HeaderLong);
+                                    EnemySecondaryDamage = Medic.MedicSecondaryDamage(EnemyCooldown);
+                                    EnemyHP = EnemyHP + EnemySecondaryDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass} Healed {EnemySecondaryDamage} using their {EnemySecondaryName}! Their HP is now {EnemyHP}!");
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(2000);
+                                }
+                                if (EnemyChoice == 3)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(HeaderLong);
+                                    EnemyMeleeDamage = Medic.MedicMeleeDamage(EnemyCooldown);
+                                    PlayerHP = PlayerHP - EnemyMeleeDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass} Dealt {EnemyMeleeDamage} to {PlayerName} using their {EnemyMeleeName}! Your HP is now {PlayerHP}!");
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(2000);
+                                }
+                                if (EnemyChoice == 4)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(HeaderLong);
+                                    EnemySpecial = Medic.MedicPrimaryDamage(EnemyCooldown);
                                     PlayerHP = PlayerHP - EnemyPrimaryDamage;
                                     Console.WriteLine($"The Enemy {EnemyClass} Dealt {EnemyPrimaryDamage} to {PlayerName} using their {EnemyPrimaryName}! Your HP is now {PlayerHP}!");
                                     Console.WriteLine(FooterLong);
@@ -1340,10 +1534,10 @@ namespace TF2_Simulator
                         EnemyHP = 150;
                         EnemyClass = Medic.MedicName();
                         EnemyMaxHP = Medic.MedicMaxHP();
-                        EnemyPrimaryDamage = Medic.MedicPrimaryDamage();
-                        EnemySecondaryDamage = Medic.MedicSecondaryDamage();
-                        EnemyMeleeDamage = Medic.MedicMeleeDamage();
-                        EnemySpecial = Medic.MedicPrimaryDamage();
+                        EnemyPrimaryDamage = Medic.MedicPrimaryDamage(EnemyCooldown);
+                        EnemySecondaryDamage = Medic.MedicSecondaryDamage(EnemyCooldown);
+                        EnemyMeleeDamage = Medic.MedicMeleeDamage(EnemyCooldown);
+                        EnemySpecial = Medic.MedicPrimaryDamage(EnemyCooldown);
                         EnemyPrimaryName = Medic.MedicPrimaryName();
                         EnemySecondaryName = Medic.MedicSecondaryName();
                         EnemyMeleeName = Medic.MedicMeleeName();
