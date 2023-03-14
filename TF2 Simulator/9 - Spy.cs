@@ -47,8 +47,8 @@ namespace TF2_Simulator
             var randomdamage = new Random();
 
             int BaseDamage = randomdamage.Next(35, 61); // creates a number between 20 & 36
-            int Special = randomdamage.Next(0, 1001); // creates a number between 0 & 1000, if the number is 1 or lower, Special Bonus will be activated.
-            int SpecialBonus = 1;
+            int Special = randomdamage.Next(0, 101); // creates a number between 0 & 100, if the number is 1 or lower, the Special will be activated.
+            int SpecialBonus = 1; // probably for the scout's special, but I cannot confirm if this affects the spy yet. will leave here
             if (Special == 1)
             {
                 return 99999;
@@ -73,7 +73,7 @@ namespace TF2_Simulator
         -Melee: Knife
          Damage: 40-50
          Rate of Fire: 1 Per Turn
-         Special: 0.1% Chance to Instantly Kill Enemy
+         Special: 1% Chance to Instantly Kill Enemy
         --Passive Stats:
           - None
         */
