@@ -71,6 +71,10 @@ namespace TF2_Simulator
         {
             int Damage = 50;
             int Totaldamage = Damage * PlayerWeaponFeature;
+            if (PlayerWeaponFeature >= 4)
+            {
+                Totaldamage = Damage * PlayerWeaponFeature * 2;
+            }
             return Totaldamage;
         }
 
@@ -93,7 +97,7 @@ namespace TF2_Simulator
          Damage: 30-65
          Rate of Fire: 1 Per Turn 
         --Passive Stats: 
-          - None
+          - If Charge passes 4. Damage is Doubled.
         */
     }
 }

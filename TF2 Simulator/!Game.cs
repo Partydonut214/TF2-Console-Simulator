@@ -106,9 +106,9 @@ namespace TF2_Simulator
             string PlayerMaxHP = "Not Set";
             string PlayerClass = "Unselected";
             int PlayerCooldown = 0;
-            int PlayerPrimaryDamage;
-            int PlayerSecondaryDamage;
-            int PlayerMeleeDamage;
+            int PlayerPrimaryDamage = 0;
+            int PlayerSecondaryDamage = 0;
+            int PlayerMeleeDamage = 0;
             int PlayerSpecial = 0;
             int PlayerWeaponFeature = 0; //Add to Classes
             string PlayerPrimaryName = "Not Defined";
@@ -123,17 +123,17 @@ namespace TF2_Simulator
             string EnemyMaxHP = "Not Set";
             string EnemyClass = "Unselected";
             int EnemyCooldown = 0;
-            int EnemyPrimaryDamage;
-            int EnemySecondaryDamage;
-            int EnemyMeleeDamage;
-            int EnemySpecial;
+            int EnemyPrimaryDamage = 0;
+            int EnemySecondaryDamage = 0;
+            int EnemyMeleeDamage = 0;
+            int EnemySpecial = 0;
             string EnemyPrimaryName = "Not Defined";
             string EnemySecondaryName = "Not Defined";
             string EnemyMeleeName = "Not Defined";
             string EnemySpecialName = "Not Defined";
             int EnemyWeaponFeature = 0; //Add to Classes
             bool EnemySetClass = false; //Implement
-            int EnemyChoice; // Implement
+            int EnemyChoice = 0; // Implement
             #endregion
             bool InputOK = false;
             bool GameInputOK = false;
@@ -854,8 +854,6 @@ namespace TF2_Simulator
                             Thread.Sleep(20000);
                         }
                     }
-
-
                 }
                 else if (UserInput.ToLower() == "design")
                 {
@@ -1327,384 +1325,587 @@ namespace TF2_Simulator
                         }
                     }
                 }
-                #endregion
-                #region MainMenu Reset
-                else
+                else if (UserInput.ToLower() == "snipertest 2")
                 {
-                    InputOK = false;
-                    Console.Clear();
-                    Console.Write("Invalid Command Entered."); Thread.Sleep(1000); Console.Write(" Try Again");
-                    Console.WriteLine();
-                }
-                #endregion
-            }
-            #endregion
-            #region Pick Enemy
-            if (PlayerSetClass == true)
-            {
-                while (InputEnemy == false)
-                {
-                    InputEnemy = true;
-                    Console.Clear();
-                    Console.WriteLine("Pick The Enemy's class!");
-                    Console.WriteLine();
-                    Console.WriteLine("====Available Classes====");
-                    Console.WriteLine("1. Scout");
-                    Console.WriteLine("2. Soldier");
-                    Console.WriteLine("3. Pyro");
-                    Console.WriteLine("4. Demoman");
-                    Console.WriteLine("5. Heavy");
-                    Console.WriteLine("6. Engineer");
-                    Console.WriteLine("7. Medic");
-                    Console.WriteLine("8. Sniper");
-                    Console.WriteLine("9. Spy");
-                    Console.WriteLine("=========================");
-                    Console.WriteLine();
-                    Console.Write("Choose a Class: ");
-                    string UserInput = Console.ReadLine();
-                    if (UserInput == "1")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Scout Selected");
-                        EnemyHP = 125;
-                        EnemyClass = Scout.ScoutName();
-                        EnemyMaxHP = Scout.ScoutMaxHP();
-                        EnemyPrimaryDamage = Scout.ScoutPrimaryDamage();
-                        EnemySecondaryDamage = Scout.ScoutSecondaryDamage();
-                        EnemyMeleeDamage = Scout.ScoutMeleeDamage();
-                        EnemySpecial = Scout.ScoutPrimaryDamage();
-                        EnemyPrimaryName = Scout.ScoutPrimaryName();
-                        EnemySecondaryName = Scout.ScoutSecondaryName();
-                        EnemyMeleeName = Scout.ScoutMeleeName();
-                        EnemySpecialName = "No Special - Replaced By Primary";
-                        Thread.Sleep(1000);
-                        Console.WriteLine("...Scout Settings Applied");
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
-                        Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Special Roll - {EnemySpecial}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine($"Special Move Name: {EnemySpecialName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else if (UserInput == "2")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Soldier Selected");
-                        EnemyHP = 200;
-                        EnemyClass = Soldier.SoldierName();
-                        EnemyMaxHP = Soldier.SoldierMaxHP();
-                        EnemyPrimaryDamage = Soldier.SoldierPrimaryDamage();
-                        EnemySecondaryDamage = Soldier.SoldierSecondaryDamage();
-                        EnemyMeleeDamage = Soldier.SoldierMeleeDamage();
-                        EnemySpecial = Soldier.SoldierSpecial();
-                        EnemyPrimaryName = Soldier.SoldierPrimaryName();
-                        EnemySecondaryName = Soldier.SoldierSecondaryName();
-                        EnemyMeleeName = Soldier.SoldierMeleeName();
-                        EnemySpecialName = Soldier.SoldierSpecialName();
-                        Thread.Sleep(1000);
-                        Console.WriteLine("...Soldier Settings Applied");
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
-                        Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Special Roll - {EnemySpecial}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine($"Special Move Name: {EnemySpecialName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else if (UserInput == "3")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Pyro Selected");
-                        EnemyHP = 175;
-                        EnemyClass = Pyro.PyroName();
-                        EnemyMaxHP = Pyro.PyroMaxHP();
-                        EnemyPrimaryDamage = Pyro.PyroPrimaryDamage();
-                        EnemySecondaryDamage = Pyro.PyroSecondaryDamage();
-                        EnemyMeleeDamage = Pyro.PyroMeleeDamage();
-                        EnemySpecial = Pyro.PyroPrimaryDamage();
-                        EnemyPrimaryName = Pyro.PyroPrimaryName();
-                        EnemySecondaryName = Pyro.PyroSecondaryName();
-                        EnemyMeleeName = Pyro.PyroMeleeName();
-                        EnemySpecialName = "No Special - Replaced By Primary";
-                        Thread.Sleep(1000);
-                        Console.WriteLine("...Pyro Settings Applied");
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
-                        Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Special Roll - {EnemySpecial}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine($"Special Move Name: {EnemySpecialName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else if (UserInput == "4")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Demoman Selected");
-                        EnemyHP = 175;
-                        EnemyClass = Demoman.DemomanName();
-                        EnemyMaxHP = Demoman.DemomanMaxHP();
-                        EnemyPrimaryDamage = Demoman.DemomanPrimaryDamage();
-                        EnemySecondaryDamage = Demoman.DemomanSecondaryDamage(EnemyWeaponFeature++); //EnemyWeaponFeature is reserved for Sticky Placement for this class. [++ = +1 Sticky Placed [Damage Multiplier]
-                        EnemyWeaponFeature--;
-                        EnemyMeleeDamage = Demoman.DemomanMeleeDamage();
-                        EnemySpecial = Demoman.DemomanSpecial(EnemyWeaponFeature); //Detonate Stickies. Uses EnemyWeaponFeature as a Damage Multiplier.
-                        EnemyPrimaryName = Demoman.DemomanPrimaryName();
-                        EnemySecondaryName = Demoman.DemomanSecondaryName();
-                        EnemyMeleeName = Demoman.DemomanMeleeName();
-                        EnemySpecialName = Demoman.DemomanSpecialName();
-                        Thread.Sleep(1000);
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
-                        Console.WriteLine($"Stickies Placed - Secondary: {EnemyWeaponFeature}");
-                        Console.WriteLine($"Sticky Detonate Damage - {EnemySpecial}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Secondary Weapon Move Name: {EnemySpecialName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine($"Special Move Name: {EnemySpecialName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else if (UserInput == "5")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Heavy Selected");
-                        EnemyHP = 300;
-                        EnemyClass = Heavy.HeavyName();
-                        EnemyMaxHP = Heavy.HeavyMaxHP();
-                        EnemyPrimaryDamage = Heavy.HeavyPrimaryDamage();
-                        EnemySecondaryDamage = Heavy.HeavySecondaryDamage();
-                        EnemyMeleeDamage = Heavy.HeavyMeleeDamage();
-                        EnemySpecial = Heavy.HeavyPrimaryDamage();
-                        EnemyPrimaryName = Heavy.HeavyPrimaryName();
-                        EnemySecondaryName = Heavy.HeavySecondaryName();
-                        EnemyMeleeName = Heavy.HeavyMeleeName();
-                        EnemySpecialName = "No Special - Replaced By Primary";
-                        Thread.Sleep(1000);
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
-                        Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Special Roll - {EnemySpecial}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine($"Special Move Name: {EnemySpecialName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else if (UserInput == "6")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Engineer Selected");
-                        EnemyHP = 125;
-                        EnemyClass = Engineer.EngineerName();
-                        EnemyMaxHP = Engineer.EngineerMaxHP();
-                        EnemyPrimaryDamage = Engineer.EngineerPrimaryDamage();
-                        EnemySecondaryDamage = Engineer.EngineerSecondaryDamage();
-                        EnemyMeleeDamage = Engineer.EngineerMeleeDamage();
-                        EnemySpecial = Engineer.EngineerPrimaryDamage();
-                        EnemyPrimaryName = Engineer.EngineerPrimaryName();
-                        EnemySecondaryName = Engineer.EngineerSecondaryName();
-                        EnemyMeleeName = Engineer.EngineerMeleeName();
-                        EnemySpecialName = "No Special - Replaced By Primary";
-                        Thread.Sleep(1000);
-                        Console.WriteLine("...Engineer Settings Applied");
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
-                        Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Special Roll - {EnemySpecial}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine($"Special Move Name: {EnemySpecialName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else if (UserInput == "7")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Medic Selected");
-                        EnemyHP = 150;
-                        EnemyClass = Medic.MedicName();
-                        EnemyMaxHP = Medic.MedicMaxHP();
-                        EnemyPrimaryDamage = Medic.MedicPrimaryDamage(EnemyCooldown);
-                        EnemySecondaryDamage = Medic.MedicSecondaryDamage(EnemyCooldown);
-                        EnemyMeleeDamage = Medic.MedicMeleeDamage(EnemyCooldown);
-                        EnemySpecial = Medic.MedicPrimaryDamage(EnemyCooldown);
-                        EnemyPrimaryName = Medic.MedicPrimaryName();
-                        EnemySecondaryName = Medic.MedicSecondaryName();
-                        EnemyMeleeName = Medic.MedicMeleeName();
-                        EnemySpecialName = "No Special - Replaced By Primary";
-                        Thread.Sleep(1000);
-                        Console.WriteLine("...Medic Settings Applied");
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
-                        Console.WriteLine($"Heal - Secondary: {EnemyHP + EnemySecondaryDamage}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Special Roll - {EnemySpecial}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine($"Special Move Name: {EnemySpecialName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else if (UserInput == "8")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Sniper Selected");
-                        EnemyHP = 125;
-                        EnemyClass = Sniper.SniperName();
-                        EnemyMaxHP = Sniper.SniperMaxHP();
-                        EnemyPrimaryDamage = Sniper.SniperPrimaryDamage(EnemyWeaponFeature++); //EnemyWeaponFeature is reserved for Weapon Charge for this class. [++ = +1 Charge Level [Damage Multiplier]
-                        EnemySecondaryDamage = Sniper.SniperSecondaryDamage();
-                        EnemyMeleeDamage = Sniper.SniperMeleeDamage();
-                        EnemySpecial = Sniper.SniperSpecial(EnemyWeaponFeature); //Detonate Stickies. Uses EnemyWeaponFeature as a Damage Multiplier.
-                        EnemyPrimaryName = Sniper.SniperPrimaryName();
-                        EnemySecondaryName = Sniper.SniperSecondaryName();
-                        EnemyMeleeName = Sniper.SniperMeleeName();
-                        EnemySpecialName = Sniper.SniperSpecialName();
-                        Thread.Sleep(1000);
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary: {EnemySpecial}");
-                        Console.WriteLine($"Charge - Primary: {EnemyWeaponFeature}");
-                        Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Primary Weapon Move Name: {EnemySpecialName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else if (UserInput == "9")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enemy Spy Selected");
-                        EnemyHP = 125;
-                        EnemyClass = Spy.SpyName();
-                        EnemyMaxHP = Spy.SpyMaxHP();
-                        EnemyPrimaryDamage = Spy.SpySecondaryDamage();
-                        EnemySecondaryDamage = Spy.SpySecondaryDamage();
-                        EnemyMeleeDamage = Spy.SpyMeleeDamage();
-                        EnemySpecial = Spy.SpySecondaryDamage();
-                        EnemyPrimaryName = "No Primary - Replaced by Secondary";
-                        EnemySecondaryName = Spy.SpySecondaryName();
-                        EnemyMeleeName = Spy.SpyMeleeName();
-                        EnemySpecialName = "No Special - Replaced By Secondary";
-                        Thread.Sleep(1000);
-                        Console.WriteLine("...Spy Settings Applied");
-                        Console.WriteLine("=====Debug=====");
-                        Console.WriteLine($"Attack - Primary [Secondary]: {EnemyPrimaryDamage}");
-                        Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
-                        Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
-                        Console.WriteLine($"Special Roll [Secondary] - {EnemySpecial}");
-                        Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
-                        Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
-                        Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
-                        Console.WriteLine($"Special Move Name: {EnemySpecialName}");
-                        Console.WriteLine(".....");
-                        Thread.Sleep(2000);
-                        EnemySetClass = true;
-                    }
-                    else
-                    {
-                        InputEnemy = true;
-                    }
-
-                }
-            }
-            #endregion
-            if (EnemySetClass == true) //Game Start
-            {
-                while (GameInputOK == false)
-                {
-                    GameInputOK = true;
+                    Console.WriteLine(Header);
+                    Console.WriteLine("Testing: The Sniper's Sniper Rifle Charge.");
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Selected Classes:");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Player: Sniper");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Enemy: None");
+                    Thread.Sleep(1000);
+                    Console.WriteLine(".....Loading Class");
+                    Thread.Sleep(1000);
                     Console.Clear();
                     Console.WriteLine(Header);
-                    Console.WriteLine($"{PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
-                    Console.WriteLine($"The Enemy's Class is {EnemyClass} with {EnemyHP}/{EnemyMaxHP}");
-                    Console.WriteLine($"Actions:");
-                    if (PlayerClass == "Scout")
-                    { 
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSecondaryName}");
-                        Console.WriteLine($"3. {PlayerMeleeName}");
-                    }
-                    if (PlayerClass == "Soldier")
+                    Console.WriteLine("Sniper Selected");
+                    PlayerHP = 125;
+                    PlayerClass = Sniper.SniperName();
+                    PlayerMaxHP = Sniper.SniperMaxHP();
+                    PlayerPrimaryDamage = Sniper.SniperPrimaryDamage(PlayerWeaponFeature++); //PlayerWeaponFeature is reserved for Weapon Charge for this class. [++ = +1 Charge Level [Damage Multiplier]
+                    PlayerSecondaryDamage = Sniper.SniperSecondaryDamage();
+                    PlayerMeleeDamage = Sniper.SniperMeleeDamage();
+                    PlayerSpecial = Sniper.SniperSpecial(PlayerWeaponFeature); //Detonate Stickies. Uses PlayerWeaponFeature as a Damage Multiplier.
+                    PlayerPrimaryName = Sniper.SniperPrimaryName();
+                    PlayerSecondaryName = Sniper.SniperSecondaryName();
+                    PlayerMeleeName = Sniper.SniperMeleeName();
+                    PlayerSpecialName = Sniper.SniperSpecialName();
+                    Thread.Sleep(1000);
+                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine($"Attack - Primary: {PlayerSpecial}");
+                    Console.WriteLine($"Charge - Primary: {PlayerWeaponFeature}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"Primary Weapon Move Name: {PlayerSpecialName}");
+                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine(".....");
+                    Thread.Sleep(2000);
+                    Console.Write("Type 'Start' to Start!: ");
+                    string SniperStartConfirm = Console.ReadLine();
+                    if (SniperStartConfirm == "Start")
                     {
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSecondaryName}");
-                        Console.WriteLine($"3. {PlayerMeleeName}");
-                        Console.WriteLine($"4. {PlayerSpecialName}");
+                        for (int i = 0; i < 10;)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Sniper Charge: {PlayerWeaponFeature}");
+                            Console.WriteLine("Type '2' to Charge your Damage, or '1' to Fire your Weapon! {Type 'Quit' to Quit the Game}");
+                            string SniperInput = Console.ReadLine();
+                            if (SniperInput == "2")
+                            {
+                                Console.WriteLine("Charging Weapon...");
+                                Sniper.SniperPrimaryDamage(PlayerWeaponFeature++);
+                                Console.WriteLine($"Charge: {PlayerWeaponFeature}");
+                            }
+                            else if (SniperInput == "1")
+                            {
+                                Console.WriteLine("Attacking...");
+                                PlayerSpecial = Sniper.SniperSpecial(PlayerWeaponFeature);
+                                Console.WriteLine($"Total Damage: {PlayerSpecial}");
+                                Console.WriteLine($"Charge Level When Shot: {PlayerWeaponFeature}");
+                                PlayerWeaponFeature = 1;
+                                Console.WriteLine($"Current Charge Level: {PlayerWeaponFeature}");
+                                Thread.Sleep(2000);
+                            }
+                            else if (SniperInput.ToLower() == "quit")
+                            {
+                                PlayerSetClass = false;
+                                EnemySetClass = false;
+                                break;
+                            }
+                        }
                     }
-                    if (PlayerClass == "Pyro")
+                    #endregion
+                    #region MainMenu Reset
+                    else
                     {
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSecondaryName}");
-                        Console.WriteLine($"3. {PlayerMeleeName}");
+                        InputOK = false;
+                        Console.Clear();
+                        Console.Write("Invalid Command Entered."); Thread.Sleep(1000); Console.Write(" Try Again");
+                        Console.WriteLine();
                     }
-                    if (PlayerClass == "Demoman")
+                    #endregion
+                }
+                #endregion
+                #region Pick Enemy
+                if (PlayerSetClass == true)
+                {
+                    while (InputEnemy == false)
                     {
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSecondaryName}");
-                        Console.WriteLine($"3. {PlayerSpecialName}");
-                        Console.WriteLine($"4. {PlayerMeleeName}");
+                        InputEnemy = true;
+                        Console.Clear();
+                        Console.WriteLine("Pick The Enemy's class!");
+                        Console.WriteLine();
+                        Console.WriteLine("====Available Classes====");
+                        Console.WriteLine("1. Scout");
+                        Console.WriteLine("2. Soldier");
+                        Console.WriteLine("3. Pyro");
+                        Console.WriteLine("4. Demoman");
+                        Console.WriteLine("5. Heavy");
+                        Console.WriteLine("6. Engineer");
+                        Console.WriteLine("7. Medic");
+                        Console.WriteLine("8. Sniper");
+                        Console.WriteLine("9. Spy");
+                        Console.WriteLine("=========================");
+                        Console.WriteLine();
+                        Console.Write("Choose a Class: ");
+                        string UserInputEnemy = Console.ReadLine();
+                        if (UserInputEnemy == "1")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Scout Selected");
+                            EnemyHP = 125;
+                            EnemyClass = Scout.ScoutName();
+                            EnemyMaxHP = Scout.ScoutMaxHP();
+                            EnemyPrimaryDamage = Scout.ScoutPrimaryDamage();
+                            EnemySecondaryDamage = Scout.ScoutSecondaryDamage();
+                            EnemyMeleeDamage = Scout.ScoutMeleeDamage();
+                            EnemySpecial = Scout.ScoutPrimaryDamage();
+                            EnemyPrimaryName = Scout.ScoutPrimaryName();
+                            EnemySecondaryName = Scout.ScoutSecondaryName();
+                            EnemyMeleeName = Scout.ScoutMeleeName();
+                            EnemySpecialName = "No Special - Replaced By Primary";
+                            Thread.Sleep(1000);
+                            Console.WriteLine("...Scout Settings Applied");
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
+                            Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Special Roll - {EnemySpecial}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else if (UserInput == "2")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Soldier Selected");
+                            EnemyHP = 200;
+                            EnemyClass = Soldier.SoldierName();
+                            EnemyMaxHP = Soldier.SoldierMaxHP();
+                            EnemyPrimaryDamage = Soldier.SoldierPrimaryDamage();
+                            EnemySecondaryDamage = Soldier.SoldierSecondaryDamage();
+                            EnemyMeleeDamage = Soldier.SoldierMeleeDamage();
+                            EnemySpecial = Soldier.SoldierSpecial();
+                            EnemyPrimaryName = Soldier.SoldierPrimaryName();
+                            EnemySecondaryName = Soldier.SoldierSecondaryName();
+                            EnemyMeleeName = Soldier.SoldierMeleeName();
+                            EnemySpecialName = Soldier.SoldierSpecialName();
+                            Thread.Sleep(1000);
+                            Console.WriteLine("...Soldier Settings Applied");
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
+                            Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Special Roll - {EnemySpecial}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else if (UserInput == "3")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Pyro Selected");
+                            EnemyHP = 175;
+                            EnemyClass = Pyro.PyroName();
+                            EnemyMaxHP = Pyro.PyroMaxHP();
+                            EnemyPrimaryDamage = Pyro.PyroPrimaryDamage();
+                            EnemySecondaryDamage = Pyro.PyroSecondaryDamage();
+                            EnemyMeleeDamage = Pyro.PyroMeleeDamage();
+                            EnemySpecial = Pyro.PyroPrimaryDamage();
+                            EnemyPrimaryName = Pyro.PyroPrimaryName();
+                            EnemySecondaryName = Pyro.PyroSecondaryName();
+                            EnemyMeleeName = Pyro.PyroMeleeName();
+                            EnemySpecialName = "No Special - Replaced By Primary";
+                            Thread.Sleep(1000);
+                            Console.WriteLine("...Pyro Settings Applied");
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
+                            Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Special Roll - {EnemySpecial}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else if (UserInput == "4")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Demoman Selected");
+                            EnemyHP = 175;
+                            EnemyClass = Demoman.DemomanName();
+                            EnemyMaxHP = Demoman.DemomanMaxHP();
+                            EnemyPrimaryDamage = Demoman.DemomanPrimaryDamage();
+                            EnemySecondaryDamage = Demoman.DemomanSecondaryDamage(EnemyWeaponFeature++); //EnemyWeaponFeature is reserved for Sticky Placement for this class. [++ = +1 Sticky Placed [Damage Multiplier]
+                            EnemyWeaponFeature--;
+                            EnemyMeleeDamage = Demoman.DemomanMeleeDamage();
+                            EnemySpecial = Demoman.DemomanSpecial(EnemyWeaponFeature); //Detonate Stickies. Uses EnemyWeaponFeature as a Damage Multiplier.
+                            EnemyPrimaryName = Demoman.DemomanPrimaryName();
+                            EnemySecondaryName = Demoman.DemomanSecondaryName();
+                            EnemyMeleeName = Demoman.DemomanMeleeName();
+                            EnemySpecialName = Demoman.DemomanSpecialName();
+                            Thread.Sleep(1000);
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
+                            Console.WriteLine($"Stickies Placed - Secondary: {EnemyWeaponFeature}");
+                            Console.WriteLine($"Sticky Detonate Damage - {EnemySpecial}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Secondary Weapon Move Name: {EnemySpecialName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else if (UserInput == "5")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Heavy Selected");
+                            EnemyHP = 300;
+                            EnemyClass = Heavy.HeavyName();
+                            EnemyMaxHP = Heavy.HeavyMaxHP();
+                            EnemyPrimaryDamage = Heavy.HeavyPrimaryDamage();
+                            EnemySecondaryDamage = Heavy.HeavySecondaryDamage();
+                            EnemyMeleeDamage = Heavy.HeavyMeleeDamage();
+                            EnemySpecial = Heavy.HeavyPrimaryDamage();
+                            EnemyPrimaryName = Heavy.HeavyPrimaryName();
+                            EnemySecondaryName = Heavy.HeavySecondaryName();
+                            EnemyMeleeName = Heavy.HeavyMeleeName();
+                            EnemySpecialName = "No Special - Replaced By Primary";
+                            Thread.Sleep(1000);
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
+                            Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Special Roll - {EnemySpecial}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else if (UserInput == "6")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Engineer Selected");
+                            EnemyHP = 125;
+                            EnemyClass = Engineer.EngineerName();
+                            EnemyMaxHP = Engineer.EngineerMaxHP();
+                            EnemyPrimaryDamage = Engineer.EngineerPrimaryDamage();
+                            EnemySecondaryDamage = Engineer.EngineerSecondaryDamage();
+                            EnemyMeleeDamage = Engineer.EngineerMeleeDamage();
+                            EnemySpecial = Engineer.EngineerPrimaryDamage();
+                            EnemyPrimaryName = Engineer.EngineerPrimaryName();
+                            EnemySecondaryName = Engineer.EngineerSecondaryName();
+                            EnemyMeleeName = Engineer.EngineerMeleeName();
+                            EnemySpecialName = "No Special - Replaced By Primary";
+                            Thread.Sleep(1000);
+                            Console.WriteLine("...Engineer Settings Applied");
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
+                            Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Special Roll - {EnemySpecial}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else if (UserInput == "7")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Medic Selected");
+                            EnemyHP = 150;
+                            EnemyClass = Medic.MedicName();
+                            EnemyMaxHP = Medic.MedicMaxHP();
+                            EnemyPrimaryDamage = Medic.MedicPrimaryDamage(EnemyCooldown);
+                            EnemySecondaryDamage = Medic.MedicSecondaryDamage(EnemyCooldown);
+                            EnemyMeleeDamage = Medic.MedicMeleeDamage(EnemyCooldown);
+                            EnemySpecial = Medic.MedicPrimaryDamage(EnemyCooldown);
+                            EnemyPrimaryName = Medic.MedicPrimaryName();
+                            EnemySecondaryName = Medic.MedicSecondaryName();
+                            EnemyMeleeName = Medic.MedicMeleeName();
+                            EnemySpecialName = "No Special - Replaced By Primary";
+                            Thread.Sleep(1000);
+                            Console.WriteLine("...Medic Settings Applied");
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary: {EnemyPrimaryDamage}");
+                            Console.WriteLine($"Heal - Secondary: {EnemyHP + EnemySecondaryDamage}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Special Roll - {EnemySpecial}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else if (UserInput == "8")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Sniper Selected");
+                            EnemyHP = 125;
+                            EnemyClass = Sniper.SniperName();
+                            EnemyMaxHP = Sniper.SniperMaxHP();
+                            EnemyPrimaryDamage = Sniper.SniperPrimaryDamage(EnemyWeaponFeature++); //EnemyWeaponFeature is reserved for Weapon Charge for this class. [++ = +1 Charge Level [Damage Multiplier]
+                            EnemySecondaryDamage = Sniper.SniperSecondaryDamage();
+                            EnemyMeleeDamage = Sniper.SniperMeleeDamage();
+                            EnemySpecial = Sniper.SniperSpecial(EnemyWeaponFeature); //Detonate Stickies. Uses EnemyWeaponFeature as a Damage Multiplier.
+                            EnemyPrimaryName = Sniper.SniperPrimaryName();
+                            EnemySecondaryName = Sniper.SniperSecondaryName();
+                            EnemyMeleeName = Sniper.SniperMeleeName();
+                            EnemySpecialName = Sniper.SniperSpecialName();
+                            Thread.Sleep(1000);
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary: {EnemySpecial}");
+                            Console.WriteLine($"Charge - Primary: {EnemyWeaponFeature}");
+                            Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Primary Weapon Move Name: {EnemySpecialName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else if (UserInput == "9")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enemy Spy Selected");
+                            EnemyHP = 125;
+                            EnemyClass = Spy.SpyName();
+                            EnemyMaxHP = Spy.SpyMaxHP();
+                            EnemyPrimaryDamage = Spy.SpySecondaryDamage();
+                            EnemySecondaryDamage = Spy.SpySecondaryDamage();
+                            EnemyMeleeDamage = Spy.SpyMeleeDamage();
+                            EnemySpecial = Spy.SpySecondaryDamage();
+                            EnemyPrimaryName = "No Primary - Replaced by Secondary";
+                            EnemySecondaryName = Spy.SpySecondaryName();
+                            EnemyMeleeName = Spy.SpyMeleeName();
+                            EnemySpecialName = "No Special - Replaced By Secondary";
+                            Thread.Sleep(1000);
+                            Console.WriteLine("...Spy Settings Applied");
+                            Console.WriteLine("=====Debug=====");
+                            Console.WriteLine($"Attack - Primary [Secondary]: {EnemyPrimaryDamage}");
+                            Console.WriteLine($"Attack - Secondary: {EnemySecondaryDamage}");
+                            Console.WriteLine($"Attack - Melee: {EnemyMeleeDamage}");
+                            Console.WriteLine($"Special Roll [Secondary] - {EnemySpecial}");
+                            Console.WriteLine($"Primary Weapon Name: {EnemyPrimaryName}");
+                            Console.WriteLine($"Secondary Weapon Name: {EnemySecondaryName}");
+                            Console.WriteLine($"Melee Weapon Name: {EnemyMeleeName}");
+                            Console.WriteLine($"Special Move Name: {EnemySpecialName}");
+                            Console.WriteLine(".....");
+                            Thread.Sleep(2000);
+                            EnemySetClass = true;
+                        }
+                        else
+                        {
+                            InputEnemy = true;
+                        }
+
                     }
-                    if (PlayerClass == "Heavy")
+                }
+                #endregion
+                if (EnemySetClass == true) //Game Start
+                {
+                    while (GameInputOK == false)
                     {
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSecondaryName}");
-                        Console.WriteLine($"3. {PlayerMeleeName}");
-                    }
-                    if (PlayerClass == "Engineer")
-                    {
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSecondaryName}");
-                        Console.WriteLine($"3. {PlayerMeleeName}");
-                    }
-                    if (PlayerClass == "Medic")
-                    {
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSecondaryName}");
-                        Console.WriteLine($"3. {PlayerMeleeName}");
-                    }
-                    if (PlayerClass == "Sniper")
-                    {
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSpecialName}");
-                        Console.WriteLine($"3. {PlayerSecondaryName}");
-                        Console.WriteLine($"4. {PlayerMeleeName}");
-                    }
-                    if (PlayerClass == "Spy")
-                    {
-                        Console.WriteLine($"1. {PlayerPrimaryName}");
-                        Console.WriteLine($"2. {PlayerSecondaryName}");
-                        Console.WriteLine($"3. {PlayerMeleeName}");
+                        GameInputOK = true;
+                        Console.Clear();
+                        Console.WriteLine(Header);
+                        Console.WriteLine($"{PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
+                        Console.WriteLine($"The Enemy's Class is {EnemyClass} with {EnemyHP}/{EnemyMaxHP}");
+                        Console.WriteLine($"Actions:");
+                        #region PlayerClass - Actions
+                        if (PlayerClass == "Scout")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                        }
+                        if (PlayerClass == "Soldier")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"4. {PlayerSpecialName}");
+                        }
+                        if (PlayerClass == "Pyro")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                        }
+                        if (PlayerClass == "Demoman")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerSpecialName}");
+                            Console.WriteLine($"4. {PlayerMeleeName}");
+                        }
+                        if (PlayerClass == "Heavy")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                        }
+                        if (PlayerClass == "Engineer")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                        }
+                        if (PlayerClass == "Medic")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                        }
+                        if (PlayerClass == "Sniper")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSpecialName}");
+                            Console.WriteLine($"3. {PlayerSecondaryName}");
+                            Console.WriteLine($"4. {PlayerMeleeName}");
+                        }
+                        if (PlayerClass == "Spy")
+                        {
+                            Console.WriteLine($"1. {PlayerPrimaryName}");
+                            Console.WriteLine($"2. {PlayerSecondaryName}");
+                            Console.WriteLine($"3. {PlayerMeleeName}");
+                        }
+                        #endregion
+                        string PlayerAction = Console.ReadLine();
+                        if (PlayerClass == "Scout" || PlayerClass == "Pyro" || PlayerClass == "Heavy" || PlayerClass == "Engineer" || PlayerClass == "Spy")
+                        {
+                            if (PlayerAction == "1")
+                            {
+                                Console.Clear();
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                            if (PlayerAction == "2")
+                            {
+                                Console.Clear();
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                            if (PlayerAction == "3")
+                            {
+                                Console.Clear();
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                        }
+                        if (PlayerClass == "Soldier")
+                        {
+                            if (PlayerAction == "1")
+                            {
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                            if (PlayerAction == "2")
+                            {
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                            if (PlayerAction == "3")
+                            {
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                            if (PlayerAction == "4")
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine(Header);
+                                Console.WriteLine($"{PlayerName} choose to attempt the Market Garden.");
+                                Console.WriteLine(Footer);
+                                Thread.Sleep(1000);
+                                PlayerPrimaryDamage = Soldier.SoldierPrimaryDamage();
+                                PlayerHP = PlayerHP - PlayerPrimaryDamage;
+                                Console.WriteLine();
+                                Console.WriteLine(Header);
+                                Console.WriteLine($"You Took {PlayerPrimaryDamage} from the Rocket Jump.");
+                                Console.WriteLine($"Your HP is now {PlayerHP}.");
+                                Console.WriteLine(Footer);
+                                Thread.Sleep(1000);
+                                if (PlayerHP < 0)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine(Header);
+                                    Console.WriteLine("The Rocket Jump sent you to your grave instead of ");
+                                    Console.WriteLine("your shovel to your enemy's face.");
+                                    Console.WriteLine(" -- You need to watch your HP!");
+                                    Console.WriteLine(Footer);
+                                    Thread.Sleep(5000);
+                                }
+                                if (PlayerHP >= 0)
+                                {
+                                    PlayerSpecial = Soldier.SoldierSpecial();
+                                    EnemyHP -= PlayerSpecial;
+                                    if (PlayerSpecial == 0)
+                                    {
+                                        Console.WriteLine();
+                                        Console.WriteLine(Header);
+                                        Console.WriteLine($"You Missed the Market Garden!");
+                                        Console.WriteLine($"The Enemy's HP is still {EnemyHP}");
+                                        Console.WriteLine(Footer);
+                                        Thread.Sleep(3000);
+                                    }
+                                    if (PlayerSpecial == 195)
+                                    {
+                                        Console.WriteLine();
+                                        Console.WriteLine(HeaderLong);
+                                        Console.WriteLine($"You Hit the Market Garden and hit the enemy! You Dealt 195 Damage, their HP is now {EnemyHP}");
+                                        Console.WriteLine(FooterLong);
+                                        Thread.Sleep(3000);
+                                    }
+                                }
+                            }
+                        }
+                        if (PlayerClass == "Demoman")
+                        {
+                            if (PlayerAction == "1")
+                            {
+                                Console.Clear();
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                            if (PlayerAction == "2")
+                            {
+                                Console.Clear();
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                            if (PlayerAction == "3")
+                            {
+                                Console.Clear();
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                            }
+                        }
                     }
                 }
             }
