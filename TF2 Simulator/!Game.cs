@@ -2049,8 +2049,17 @@ namespace TF2_Simulator
                                 Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerSecondaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                if (PlayerAction == "2")
+                            {
+                                Console.Clear();
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
+                                PlayerSecondaryDamage = Spy.SpySecondaryDamage();
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                EnemyHP = EnemyHP - PlayerSecondaryDamage;
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
-                            if (PlayerAction == "2")
+                            if (PlayerAction == "3")
                             {
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
