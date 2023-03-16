@@ -40,11 +40,12 @@ namespace TF2_Simulator
             // Weapon Name: Blutsauger
             // Damage 5-12 * 1-4
             var randomdamage = new Random();
-
-            int BaseDamage = randomdamage.Next(5, 13); // creates a number between 5 & 12
-            int BulletsFired = randomdamage.Next(1, 4); // creates a multiplier between 1 & 4 (Implement random damage per bullet later.)
-            int SelfHeal = BulletsFired;
-            int Totaldamage = BaseDamage * BulletsFired;
+            int Totaldamage = 0;
+            int BulletsFired = randomdamage.Next(1, 4); // creates a multiplier between 1 & 11 (Implementing random damage per bullet now.)
+            for (int i = 0; i < BulletsFired; i++)
+            {
+                Totaldamage = Totaldamage + randomdamage.Next(5, 13); // creates a number between 4 & 6
+            }
             if (cooldown >= 1)
             {
                 cooldown--;
@@ -54,19 +55,11 @@ namespace TF2_Simulator
         public static int MedicSecondaryDamage(int cooldown)
         {
             // Weapon Name: Medigun
-            // Heals: 24-36
+            // Heals: 12-48
             var randomdamage = new Random();
 
-            int BaseDamage = randomdamage.Next(24, 36); // creates a number between 4 & 6
+            int BaseDamage = randomdamage.Next(12, 49); // creates a number between 12 & 48
             int Totaldamage = BaseDamage;
-            if (cooldown >= 1)
-            {
-                Totaldamage = Totaldamage * -1;
-            }
-            else
-            {
-                cooldown = 3;
-            }
             return Totaldamage;
         }
         public static int MedicMeleeDamage(int cooldown)

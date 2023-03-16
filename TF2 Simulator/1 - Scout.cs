@@ -38,10 +38,12 @@ namespace TF2_Simulator
             // Weapon Name: Scattergun
             // Damage 6-12 x 1-5
             var randomdamage = new Random();
-
-            int BaseDamage = randomdamage.Next(4, 11); // creates a number between 4 & 10
-            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 10 (Implement random damage per bullet later.)
-            int Totaldamage = BaseDamage * BulletsFired;
+            int Totaldamage = 0;
+            int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implementing random damage per bullet now.)
+            for (int i = 0; i < BulletsFired; i++)
+            {
+                Totaldamage = Totaldamage + randomdamage.Next(6, 13); // creates a number between 6 & 12
+            }
             return Totaldamage;
         }
         public static int ScoutSecondaryDamage()
@@ -49,10 +51,12 @@ namespace TF2_Simulator
             //Weapon Name: Pistol
             //Damage 8-12 * 3-6
             var randomdamage = new Random();
-
-            int BaseDamage = randomdamage.Next(8, 13); // creates a number between 8 & 12
-            int BulletsFired = randomdamage.Next(3, 7); // creates a multiplier between 3 & 6 (Implement random damage per bullet later.)
-            int Totaldamage = BaseDamage * BulletsFired;
+            int Totaldamage = 0;
+            int BulletsFired = randomdamage.Next(3, 7); // creates a number between 3 & 7 (Implementing random damage per bullet now.)
+            for (int i = 0; i < BulletsFired; i++)
+            {
+                Totaldamage = Totaldamage + randomdamage.Next(8, 13); // creates a number between 8 & 12
+            }
             return Totaldamage;
         }
         public static int ScoutMeleeDamage()

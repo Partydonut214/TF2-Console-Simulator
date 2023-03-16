@@ -32,12 +32,14 @@ namespace TF2_Simulator
         public static int SpySecondaryDamage()
         {
             // Weapon Name: Revolver
-            // Damage 4-6
+            // Damage 4-20 * 1-2
             var randomdamage = new Random();
-
-            int BaseDamage = randomdamage.Next(4, 7); // creates a number between 4 & 6
-            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implement random damage per bullet later.)
-            int Totaldamage = BaseDamage * BulletsFired;
+            int Totaldamage = 0;
+            int BulletsFired = randomdamage.Next(1, 3); // creates a multiplier between 1 & 11 (Implementing random damage per bullet now.)
+            for (int i = 0; i < BulletsFired; i++)
+            {
+                Totaldamage = Totaldamage + randomdamage.Next(4, 21); // creates a number between 4 & 6
+            }
             return Totaldamage;
         }
         public static int SpyMeleeDamage()

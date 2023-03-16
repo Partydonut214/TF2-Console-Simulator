@@ -51,10 +51,12 @@ namespace TF2_Simulator
             // Weapon Name: SMG
             // Damage 4-12 * 1-5
             var randomdamage = new Random();
-
-            int BaseDamage = randomdamage.Next(4, 13); // creates a number between 4 & 12
-            int BulletsFired = randomdamage.Next(1, 6); // creates a number between 1 & 5
-            int Totaldamage = BaseDamage * BulletsFired;
+            int Totaldamage = 0;
+            int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 11 (Implementing random damage per bullet now.)
+            for (int i = 0; i < BulletsFired; i++)
+            {
+                Totaldamage = Totaldamage + randomdamage.Next(4, 13); // creates a number between 4 & 6
+            }
             return Totaldamage;
         }
         public static int SniperMeleeDamage()

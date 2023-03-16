@@ -39,10 +39,12 @@ namespace TF2_Simulator
             // Weapon Name: Minigun
             // Damage 6-12 x 1-5
             var randomdamage = new Random();
-
-            int BaseDamage = randomdamage.Next(6, 13); // creates a number between 6 & 12
-            int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 5 (Implement random damage per bullet later.)
-            int Totaldamage = BaseDamage * BulletsFired;
+            int Totaldamage = 0;
+            int BulletsFired = randomdamage.Next(1, 6); // creates a multiplier between 1 & 11 (Implementing random damage per bullet now.)
+            for (int i = 0; i < BulletsFired; i++)
+            {
+                Totaldamage = Totaldamage + randomdamage.Next(6, 13); // creates a number between 4 & 6
+            }
             return Totaldamage;
         }
         public static int HeavySecondaryDamage()
@@ -50,10 +52,12 @@ namespace TF2_Simulator
             // Weapon Name: Shotgun
             // Damage 4-6 x 1-10
             var randomdamage = new Random();
-
-            int BaseDamage = randomdamage.Next(4, 7); // creates a number between 4 & 6
-            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implement random damage per bullet later.)
-            int Totaldamage = BaseDamage * BulletsFired;
+            int Totaldamage = 0;
+            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implementing random damage per bullet now.)
+            for (int i = 0; i < BulletsFired; i++)
+            {
+                Totaldamage = Totaldamage + randomdamage.Next(4, 7); // creates a number between 4 & 6
+            }
             return Totaldamage;
         }
         public static int HeavyMeleeDamage()

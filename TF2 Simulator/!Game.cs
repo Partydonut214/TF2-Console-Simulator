@@ -14,6 +14,21 @@ namespace TF2_Simulator
         {
             Console.Write("What is your Name: ");
             string PlayerName = Console.ReadLine();
+            string ColorResult = CheckName_for_Colors.CheckName_for_Color(PlayerName);
+            if (ColorResult != "none")
+            {
+                if (ColorResult == "SetRed") { Console.WriteLine("'red' found in your name, setting Game Color to Red...."); Console.ForegroundColor = ConsoleColor.Red; }
+                if (ColorResult == "SetYellow") { Console.WriteLine("'yellow' found in your name, setting Game Color to Yellow...."); Console.ForegroundColor = ConsoleColor.Yellow; }
+                if (ColorResult == "SetGreen") { Console.WriteLine("'green' found in your name, setting Game Color to Green...."); Console.ForegroundColor = ConsoleColor.Green; }
+                if (ColorResult == "SetBlue") { Console.WriteLine("'blue' found in your name, setting Game Color to Blue...."); Console.ForegroundColor = ConsoleColor.Blue; }
+                if (ColorResult == "SetPink") { Console.WriteLine("'pink' found in your name, setting Game Color to Pink...."); Console.ForegroundColor = ConsoleColor.Magenta; }
+                if (ColorResult == "SetDarkRed") { Console.WriteLine("'darkred' found in your name, setting Game Color to DarkRed...."); Console.ForegroundColor = ConsoleColor.DarkRed; }
+                if (ColorResult == "SetDarkYellow") { Console.WriteLine("'darkyellow' found in your name, setting Game Color to DarkYellow...."); Console.ForegroundColor = ConsoleColor.DarkYellow; }
+                if (ColorResult == "SetDarkGreen") { Console.WriteLine("'darkgreen' found in your name, setting Game Color to DarkGreen...."); Console.ForegroundColor = ConsoleColor.DarkGreen; }
+                if (ColorResult == "SetDarkBlue") { Console.WriteLine("'darkblue' found in your name, setting Game Color to DarkBlue...."); Console.ForegroundColor = ConsoleColor.DarkBlue; }
+                if (ColorResult == "SetDarkCyan") { Console.WriteLine("'darkcyan' found in your name, setting Game Color to DarkCyan...."); Console.ForegroundColor = ConsoleColor.DarkCyan; }
+                if (ColorResult == "SetDarkPurple") { Console.WriteLine("'purple' found in your name, setting Game Color to Purple...."); Console.ForegroundColor = ConsoleColor.DarkMagenta; }
+            }
             if (PlayerName == "")
             {
                 PlayerName = "someone who apparently doesn't have a name";
@@ -31,6 +46,11 @@ namespace TF2_Simulator
                 Console.WriteLine("[Soldier]: No!");
                 Thread.Sleep(1000);
             }
+            #region Contains a Color
+
+            //Checks all colors.
+            #endregion
+            #region TF2 Teams
             if (PlayerName.ToLower() == "red")
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -59,6 +79,8 @@ namespace TF2_Simulator
                 Console.WriteLine("Secret Name Discovered");
                 Console.WriteLine("└───────────┴────────────┘");
             }
+            #endregion
+            #region YT
             if (PlayerName.ToLower() == "markiplier")
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -80,6 +102,8 @@ namespace TF2_Simulator
                 Console.WriteLine("Secret Name Discovered");
                 Console.WriteLine("└───────────┴────────────┘");
             }
+            #endregion
+            #region Other Games
             if (PlayerName.ToLower() == "fallout 3")
             {
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -94,6 +118,7 @@ namespace TF2_Simulator
                 Console.WriteLine("Secret Name Discovered");
                 Console.WriteLine("└───────────┴────────────┘");
             }
+            #endregion
             #endregion
             #region Dividers & Borders
             string Header = "┌────────────────────────┬────────────────────────┐";
@@ -162,6 +187,15 @@ namespace TF2_Simulator
                 Console.WriteLine();
                 Console.Write("Choose a Class, or type a Command: ");
                 string UserInput = Console.ReadLine();
+                #region Player Commands
+                if (UserInput.ToLower() == "colorclear")
+                {
+                    Console.ResetColor();
+                    Console.WriteLine("Color Cleared.");
+                    Thread.Sleep(1000);
+                    InputOK = false;
+                }
+                #endregion
                 #region Help Menu
                 if ((UserInput.ToLower() == "!help") || (UserInput.ToLower() == "help"))
                 {
@@ -171,9 +205,10 @@ namespace TF2_Simulator
                         InputOKHelp = true;
                         Console.Clear();
                         Console.WriteLine("====Help Topics====");
-                        Console.WriteLine("Select Using Numbers");
+                        Console.WriteLine("Select Using Numbers, or type 'Back' to go back");
                         Console.WriteLine("1. Classes");
                         Console.WriteLine("2. About the Game");
+                        Console.WriteLine("3. Commands");
                         Console.WriteLine();
                         Console.Write("Input: ");
                         string HelpInput = Console.ReadLine();
@@ -273,6 +308,21 @@ namespace TF2_Simulator
                             Console.WriteLine("Implement more info later...");
                             Thread.Sleep(5000);
                             InputOKHelp = false;
+                        }
+                        else if (HelpInput == "3")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("-- ClearColor -- Works on the Main Menu, will reverse any colors back to normal");
+                            Console.Write("Press Enter to Go Back:");
+                            string GoBack = Console.ReadLine();
+                            if (GoBack != null)
+                            {
+                                InputOKHelp = false;
+                            }
+                        }
+                        else if (HelpInput.ToLower() == "back")
+                        {
+                            InputOK = false;
                         }
                         else
                         {
@@ -1334,8 +1384,6 @@ namespace TF2_Simulator
                 {
                     InputOK = false;
                     Console.Clear();
-                    Console.Write("Invalid Command Entered."); Thread.Sleep(1000); Console.Write(" Try Again");
-                    Console.WriteLine();
                 }
                 #endregion
             }
@@ -1645,9 +1693,13 @@ namespace TF2_Simulator
                 while (GameInputOK == false)
                 {
                     GameInputOK = true;
-                    while (PlayerHP >= 0 && EnemyHP >= 0)
+                    while (PlayerHP > 0 && EnemyHP > 0)
                     {
                         Console.Clear();
+                        if (PlayerCooldown < 0)
+                        {
+                            PlayerCooldown = 0; //Checks if the Cooldown went into the negatives and reversed it to 0.
+                        }
                         Console.WriteLine(Header);
                         Console.WriteLine($"{PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
                         Console.WriteLine($"The Enemy's Class is {EnemyClass} with {EnemyHP}/{EnemyMaxHP}");
@@ -1658,7 +1710,7 @@ namespace TF2_Simulator
                         if (PlayerClass == "Medic")
                         {
                             if (PlayerCooldown == 0)
-                            { 
+                            {
                                 Console.WriteLine("====Medigun Ready!====");
                             }
                             if (PlayerCooldown >= 1)
@@ -1740,7 +1792,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
                                 PlayerPrimaryDamage = Scout.ScoutPrimaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerPrimaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1750,7 +1802,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
                                 PlayerSecondaryDamage = Scout.ScoutSecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerSecondaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1760,20 +1812,20 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
                                 PlayerMeleeDamage = Scout.ScoutMeleeDamage();
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerMeleeDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
                         }
                         if (PlayerClass == "Soldier")
                         {
-                           if (PlayerAction == "1")
+                            if (PlayerAction == "1")
                             {
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
                                 PlayerPrimaryDamage = Soldier.SoldierPrimaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerPrimaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1783,7 +1835,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
                                 PlayerSecondaryDamage = Soldier.SoldierSecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerSecondaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1793,7 +1845,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
                                 PlayerMeleeDamage = Soldier.SoldierMeleeDamage();
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerMeleeDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1854,7 +1906,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
                                 PlayerPrimaryDamage = Pyro.PyroPrimaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerPrimaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1864,7 +1916,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
                                 PlayerSecondaryDamage = Pyro.PyroSecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerSecondaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1874,7 +1926,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
                                 PlayerMeleeDamage = Pyro.PyroMeleeDamage();
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerMeleeDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1914,7 +1966,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
                                 PlayerPrimaryDamage = Heavy.HeavyPrimaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerPrimaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1924,7 +1976,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
                                 PlayerSecondaryDamage = Heavy.HeavySecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerSecondaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1934,20 +1986,20 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
                                 PlayerMeleeDamage = Heavy.HeavyMeleeDamage();
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerMeleeDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
                         }
                         if (PlayerClass == "Engineer")
-                        { 
+                        {
                             if (PlayerAction == "1")
                             {
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
                                 PlayerPrimaryDamage = Engineer.EngineerPrimaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerPrimaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1957,7 +2009,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
                                 PlayerSecondaryDamage = Engineer.EngineerSecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerSecondaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1967,7 +2019,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
                                 PlayerMeleeDamage = Engineer.EngineerMeleeDamage();
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerMeleeDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -1980,19 +2032,37 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
                                 PlayerPrimaryDamage = Medic.MedicPrimaryDamage(PlayerCooldown);
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerPrimaryDamage;
+                                PlayerHP = PlayerHP + (PlayerPrimaryDamage / 2);
+                                PlayerCooldown--;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                Thread.Sleep(2000);
                             }
                             if (PlayerAction == "2")
                             {
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
-                                Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
-                                PlayerSecondaryDamage = Medic.MedicSecondaryDamage(PlayerCooldown);
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
-                                EnemyHP = EnemyHP - PlayerSecondaryDamage;
-                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                Console.WriteLine($"{PlayerName} healed themselves with their {PlayerSecondaryName}!");
+                                if (PlayerCooldown == 0)
+                                {
+                                    PlayerSecondaryDamage = Medic.MedicSecondaryDamage(PlayerCooldown);
+                                    PlayerHP = PlayerHP + PlayerSecondaryDamage;
+                                    PlayerCooldown = 3;
+                                    Console.WriteLine($"It Healed {PlayerSecondaryDamage} HP!");
+                                    Console.WriteLine($"The Medigun needs to cooldown for {PlayerCooldown} Turns");
+                                    Thread.Sleep(2000);
+                                }
+                                else if (PlayerCooldown >= 1)
+                                {
+                                    PlayerSecondaryDamage = Medic.MedicSecondaryDamage(PlayerCooldown);
+                                    PlayerHP = PlayerHP - PlayerSecondaryDamage;
+                                    PlayerCooldown++;
+                                    Console.WriteLine($"The Medigun Backfired! it was still cooling down from the last use");
+                                    Console.WriteLine($"{PlayerName} took {PlayerSecondaryDamage} from the Backfire!");
+                                    Console.WriteLine($"{PlayerName}'s Health is now {PlayerHP}");
+                                    Thread.Sleep(2000);
+                                }
                             }
                             if (PlayerAction == "3")
                             {
@@ -2000,9 +2070,11 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
                                 PlayerMeleeDamage = Medic.MedicMeleeDamage(PlayerCooldown);
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerMeleeDamage;
+                                PlayerCooldown--;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                Thread.Sleep(2000);
                             }
                         }
                         if (PlayerClass == "Sniper")
@@ -2013,7 +2085,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
                                 PlayerPrimaryDamage = Sniper.SniperPrimaryDamage(PlayerWeaponFeature);
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerPrimaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -2023,7 +2095,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
                                 PlayerSecondaryDamage = Sniper.SniperSecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerSecondaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -2033,7 +2105,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
                                 PlayerMeleeDamage = Sniper.SniperMeleeDamage();
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerMeleeDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                             }
@@ -2046,28 +2118,29 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
                                 PlayerSecondaryDamage = Spy.SpySecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
                                 EnemyHP = EnemyHP - PlayerSecondaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                                 if (PlayerAction == "2")
-                            {
-                                Console.Clear();
-                                Console.WriteLine(HeaderLong);
-                                Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
-                                PlayerSecondaryDamage = Spy.SpySecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage! to the Enemy {EnemyClass}!");
-                                EnemyHP = EnemyHP - PlayerSecondaryDamage;
-                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
-                            }
-                            if (PlayerAction == "3")
-                            {
-                                Console.Clear();
-                                Console.WriteLine(HeaderLong);
-                                Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
-                                PlayerMeleeDamage = Spy.SpyMeleeDamage();
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage! to the Enemy {EnemyClass}!");
-                                EnemyHP = EnemyHP - PlayerMeleeDamage;
-                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine(HeaderLong);
+                                    Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
+                                    PlayerSecondaryDamage = Spy.SpySecondaryDamage();
+                                    Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
+                                    EnemyHP = EnemyHP - PlayerSecondaryDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                }
+                                if (PlayerAction == "3")
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine(HeaderLong);
+                                    Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
+                                    PlayerMeleeDamage = Spy.SpyMeleeDamage();
+                                    Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
+                                    EnemyHP = EnemyHP - PlayerMeleeDamage;
+                                    Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                }
                             }
                         }
                     }

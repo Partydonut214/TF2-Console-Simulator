@@ -53,10 +53,13 @@ namespace TF2_Simulator
             // Weapon Name: Shotgun
             // Damage 4-6 x 1-10
             var randomdamage = new Random();
+            int Totaldamage = 0;
+            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implementing random damage per bullet now.)
+            for (int i = 0; i < BulletsFired; i++ )
+            {
+                Totaldamage = Totaldamage + randomdamage.Next(4, 7); // creates a number between 4 & 6
+            }
 
-            int BaseDamage = randomdamage.Next(4, 7); // creates a number between 4 & 6
-            int BulletsFired = randomdamage.Next(1, 11); // creates a multiplier between 1 & 11 (Implement random damage per bullet later.)
-            int Totaldamage = BaseDamage * BulletsFired;
             return Totaldamage;
         }
         public static int SoldierMeleeDamage()
