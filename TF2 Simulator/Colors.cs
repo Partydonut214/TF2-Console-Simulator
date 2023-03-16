@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TF2_Simulator
 {
-    internal class CheckName_for_Colors
+    internal class Colors
     {
         public static string CheckName_for_Color(string PlayerNameInput)
         {
@@ -54,6 +54,17 @@ namespace TF2_Simulator
                 else if (DKPurpleTrue== true) { return "SetDarkPurple"; }
             }
             return "none";
+        }
+        public static ConsoleColor SetColor(string ColorInput)
+        {
+            if (ColorInput.ToLower() == "red") { return ConsoleColor.Red; }
+            if (ColorInput.ToLower() == "yellow") { return ConsoleColor.Yellow; }
+            if (ColorInput.ToLower() == "green") { return ConsoleColor.Green; }
+            if (ColorInput.ToLower() == "blue") { return ConsoleColor.Blue; }
+            if (ColorInput.ToLower() == "cyan") { return ConsoleColor.Cyan; }
+            if (ColorInput.ToLower() == "purple") { return ConsoleColor.DarkMagenta; }
+            if (ColorInput.ToLower() == "pink") { return ConsoleColor.Magenta; }
+            return ConsoleColor.White;
         }
     }
 }
