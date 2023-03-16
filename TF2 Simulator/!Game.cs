@@ -175,7 +175,9 @@ namespace TF2_Simulator
             {
                 InputOK = true;
                 Console.WriteLine();
+                Console.ForegroundColor = PlayerFavoriteColor;
                 Console.WriteLine($"Welcome {PlayerName}!");
+                Console.ForegroundColor = GameFavoriteColor;
                 Console.WriteLine("Pick your class! or type '!Help' to view the class choices and other important info!");
                 Console.WriteLine();
                 Console.WriteLine(HeaderShort);
@@ -200,6 +202,7 @@ namespace TF2_Simulator
               //Console.WriteLine("=========================");
                 Console.WriteLine();
                 Console.Write("Choose a Class, or type a Command: ");
+                Console.ForegroundColor = ConsoleColor.White;
                 string UserInput = Console.ReadLine();
                 #region Player Commands
                 if (UserInput.ToLower() == "clearcolor" || UserInput == "11")

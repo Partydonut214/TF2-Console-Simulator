@@ -64,6 +64,7 @@ namespace TF2_Simulator
             if (ColorInput.ToLower() == "cyan") { return ConsoleColor.Cyan; }
             if (ColorInput.ToLower() == "purple") { return ConsoleColor.DarkMagenta; }
             if (ColorInput.ToLower() == "pink") { return ConsoleColor.Magenta; }
+            if (ColorInput.ToLower() == "grey" || ColorInput.ToLower() == "gray") { return ConsoleColor.Gray; }
             return ConsoleColor.White;
         }
     }
