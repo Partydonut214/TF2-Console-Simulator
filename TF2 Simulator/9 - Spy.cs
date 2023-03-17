@@ -35,10 +35,10 @@ namespace TF2_Simulator
             // Damage 4-20 * 1-2
             var randomdamage = new Random();
             int Totaldamage = 0;
-            int BulletsFired = randomdamage.Next(1, 3); // creates a multiplier between 1 & 11 (Implementing random damage per bullet now.)
+            int BulletsFired = randomdamage.Next(1, 3); // creates a multiplier between 1 & 2 (Implementing random damage per bullet now.)
             for (int i = 0; i < BulletsFired; i++)
             {
-                Totaldamage = Totaldamage + randomdamage.Next(4, 21); // creates a number between 4 & 6
+                Totaldamage = Totaldamage + randomdamage.Next(4, 21); // creates a number between 4 & 20 [4-40 Damage Possible]
             }
             return Totaldamage;
         }
@@ -48,9 +48,9 @@ namespace TF2_Simulator
             //Damage: 35-60
             var randomdamage = new Random();
 
-            //int BaseDamage = randomdamage.Next(35, 61); // creates a number between 20 & 36
-            int BaseDamage = randomdamage.Next(1, 2); // creates a number between 20 & 36
-            int Special = randomdamage.Next(0, 11); // creates a number between 0 & 100, if the number is 1 or lower, the Special will be activated.
+            int BaseDamage = randomdamage.Next(35, 61); // creates a number between 35 & 60
+            //int BaseDamage = randomdamage.Next(1, 2); // creates a number between 1 & 1
+            int Special = randomdamage.Next(0, 101); // creates a number between 0 & 100, if the number is 1 or lower, the Special will be activated.
             int SpecialBonus = 1; // probably for the scout's special, but I cannot confirm if this affects the spy yet. will leave here
             if (Special == 1)
             {
