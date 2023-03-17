@@ -46,6 +46,7 @@ namespace TF2_Simulator
                 else if (blueTrue == true) { return "SetBlue"; }
                 else if (cyanTrue == true) { return "SetCyan"; }
                 else if (pinkTrue == true) { return "SetPink"; }
+                else if (greyTrue == true) { return "SetGrey"; }
                 else if (DKRedTrue== true) { return "SetDarkRed"; }
                 else if (DKYellowTrue== true) { return "SetDarkYellow"; }
                 else if (DKGreenTrue== true) { return "SetDarkGreen"; }
@@ -65,7 +66,13 @@ namespace TF2_Simulator
             if (ColorInput.ToLower() == "purple") { return ConsoleColor.DarkMagenta; }
             if (ColorInput.ToLower() == "pink") { return ConsoleColor.Magenta; }
             if (ColorInput.ToLower() == "grey" || ColorInput.ToLower() == "gray") { return ConsoleColor.Gray; }
-            return ConsoleColor.White;
+            if (ColorInput.ToLower() == "dark red") { return ConsoleColor.DarkRed; }
+            if (ColorInput.ToLower() == "dark yellow") { return ConsoleColor.DarkYellow; }
+            if (ColorInput.ToLower() == "dark green") { return ConsoleColor.DarkGreen; }
+            if (ColorInput.ToLower() == "dark blue") { return ConsoleColor.DarkBlue; }
+            if (ColorInput.ToLower() == "dark cyan") { return ConsoleColor.DarkCyan; }
+            if (ColorInput.ToLower() == "white") {return ConsoleColor.White; }
+                return ConsoleColor.Gray;
         }
     }
 }

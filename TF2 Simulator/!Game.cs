@@ -15,24 +15,26 @@ namespace TF2_Simulator
             Console.Write("What is your Name: ");
             string PlayerName = Console.ReadLine();
             string EnemyPrefix = "Enemy";
-            ConsoleColor GameFavoriteColor = ConsoleColor.White;
-            ConsoleColor PlayerFavoriteColor = ConsoleColor.White;
-            ConsoleColor EnemyFavoriteColor = ConsoleColor.White;
-            Console.WriteLine(PlayerFavoriteColor);
+            ConsoleColor GameFavoriteColor = ConsoleColor.Gray;
+            ConsoleColor PlayerFavoriteColor = ConsoleColor.Gray;
+            ConsoleColor EnemyFavoriteColor = ConsoleColor.Gray;
+            ConsoleColor InputColor = ConsoleColor.Gray;
+            ConsoleColor BorderColor = ConsoleColor.Gray;
             string ColorResult = Colors.CheckName_for_Color(PlayerName);
             if (ColorResult != "none")
             {
-                if (ColorResult == "SetRed") { Console.WriteLine("'red' found in your name, setting Game Color to Red...."); Console.ForegroundColor = ConsoleColor.Red; }
-                if (ColorResult == "SetYellow") { Console.WriteLine("'yellow' found in your name, setting Game Color to Yellow...."); Console.ForegroundColor = ConsoleColor.Yellow; }
-                if (ColorResult == "SetGreen") { Console.WriteLine("'green' found in your name, setting Game Color to Green...."); Console.ForegroundColor = ConsoleColor.Green; }
-                if (ColorResult == "SetBlue") { Console.WriteLine("'blue' found in your name, setting Game Color to Blue...."); Console.ForegroundColor = ConsoleColor.Blue; }
-                if (ColorResult == "SetPink") { Console.WriteLine("'pink' found in your name, setting Game Color to Pink...."); Console.ForegroundColor = ConsoleColor.Magenta; }
-                if (ColorResult == "SetDarkRed") { Console.WriteLine("'darkred' found in your name, setting Game Color to DarkRed...."); Console.ForegroundColor = ConsoleColor.DarkRed; }
-                if (ColorResult == "SetDarkYellow") { Console.WriteLine("'darkyellow' found in your name, setting Game Color to DarkYellow...."); Console.ForegroundColor = ConsoleColor.DarkYellow; }
-                if (ColorResult == "SetDarkGreen") { Console.WriteLine("'darkgreen' found in your name, setting Game Color to DarkGreen...."); Console.ForegroundColor = ConsoleColor.DarkGreen; }
-                if (ColorResult == "SetDarkBlue") { Console.WriteLine("'darkblue' found in your name, setting Game Color to DarkBlue...."); Console.ForegroundColor = ConsoleColor.DarkBlue; }
-                if (ColorResult == "SetDarkCyan") { Console.WriteLine("'darkcyan' found in your name, setting Game Color to DarkCyan...."); Console.ForegroundColor = ConsoleColor.DarkCyan; }
-                if (ColorResult == "SetDarkPurple") { Console.WriteLine("'purple' found in your name, setting Game Color to Purple...."); Console.ForegroundColor = ConsoleColor.DarkMagenta; }
+                if (ColorResult == "SetRed") { Console.WriteLine("'red' found in your name, setting Game Color to Red...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.Red; }
+                if (ColorResult == "SetYellow") { Console.WriteLine("'yellow' found in your name, setting Game Color to Yellow...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.Yellow; }
+                if (ColorResult == "SetGreen") { Console.WriteLine("'green' found in your name, setting Game Color to Green...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.Green; }
+                if (ColorResult == "SetBlue") { Console.WriteLine("'blue' found in your name, setting Game Color to Blue...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.Blue; }
+                if (ColorResult == "SetPink") { Console.WriteLine("'pink' found in your name, setting Game Color to Pink...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.Magenta; }
+                if (ColorResult == "SetGrey") { Console.WriteLine("'grey' found in your name, setting Game Color to Grey...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.DarkGray; }
+                if (ColorResult == "SetDarkRed") { Console.WriteLine("'darkred' found in your name, setting Game Color to DarkRed...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.DarkRed; }
+                if (ColorResult == "SetDarkYellow") { Console.WriteLine("'darkyellow' found in your name, setting Game Color to DarkYellow...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.DarkYellow; }
+                if (ColorResult == "SetDarkGreen") { Console.WriteLine("'darkgreen' found in your name, setting Game Color to DarkGreen...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.DarkGreen; }
+                if (ColorResult == "SetDarkBlue") { Console.WriteLine("'darkblue' found in your name, setting Game Color to DarkBlue...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.DarkBlue; }
+                if (ColorResult == "SetDarkCyan") { Console.WriteLine("'darkcyan' found in your name, setting Game Color to DarkCyan...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.DarkCyan; }
+                if (ColorResult == "SetDarkPurple") { Console.WriteLine("'purple' found in your name, setting Game Color to Purple...."); GameFavoriteColor = PlayerFavoriteColor = ConsoleColor.DarkMagenta; }
             }
             if (PlayerName == "")
             {
@@ -42,7 +44,9 @@ namespace TF2_Simulator
             if (PlayerName.StartsWith("BLU "))
             {
                 EnemyPrefix = "RED";
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                PlayerFavoriteColor = ConsoleColor.DarkCyan;
+                EnemyFavoriteColor = ConsoleColor.DarkRed;
+                
             }
             if (PlayerName.StartsWith("RED "))
             {
@@ -177,6 +181,8 @@ namespace TF2_Simulator
                 Console.WriteLine();
                 Console.ForegroundColor = PlayerFavoriteColor;
                 Console.WriteLine($"Welcome {PlayerName}!");
+                Console.ForegroundColor = EnemyFavoriteColor;
+                Console.WriteLine($"Enemy Prefix: {EnemyPrefix}");
                 Console.ForegroundColor = GameFavoriteColor;
                 Console.WriteLine("Pick your class! or type '!Help' to view the class choices and other important info!");
                 Console.WriteLine();
@@ -198,11 +204,13 @@ namespace TF2_Simulator
                 Console.WriteLine("  10. Help");
                 Console.WriteLine("  11. Clear Color(s)");
                 Console.WriteLine("  12. Set Game Colors");
+                Console.WriteLine("  13. Set Enemy Prefix");
                 Console.WriteLine(FooterShort);
               //Console.WriteLine("=========================");
                 Console.WriteLine();
                 Console.Write("Choose a Class, or type a Command: ");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = InputColor;
+
                 string UserInput = Console.ReadLine();
                 #region Player Commands
                 if (UserInput.ToLower() == "clearcolor" || UserInput == "11")
@@ -218,13 +226,22 @@ namespace TF2_Simulator
                 if (UserInput == "12")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = GameFavoriteColor;
                     Console.WriteLine(HeaderShort);
                     Console.WriteLine("  1. Set Game Color");
+                    Console.ForegroundColor = PlayerFavoriteColor;
                     Console.WriteLine("  2. Set Player's Color");
+                    Console.ForegroundColor = EnemyFavoriteColor;
                     Console.WriteLine("  3. Set Enemy's Color");
+                    Console.ForegroundColor = InputColor;
+                    Console.WriteLine("  4. Set Input Color");
+                    Console.ForegroundColor = GameFavoriteColor;
                     Console.WriteLine(FooterShort);
                     Console.WriteLine();
                     Console.Write("Action: ");
+                    Console.ForegroundColor = InputColor;
+
                     string ColorChoice = Console.ReadLine();
                     if (ColorChoice == "1")
                     {
@@ -238,32 +255,192 @@ namespace TF2_Simulator
                         Console.WriteLine("- Cyan");
                         Console.WriteLine("- Purple");
                         Console.WriteLine("- Pink");
-                        Console.WriteLine("- Grey");
+                        Console.WriteLine("- White");
                         Console.WriteLine("- Dark Red");
                         Console.WriteLine("- Dark Yellow");
                         Console.WriteLine("- Dark Green");
                         Console.WriteLine("- Dark Blue");
                         Console.WriteLine("- Dark Cyan");
-                        Console.Write("Color Choice: ");
+                        Console.WriteLine("- Dark Grey");
+                        Console.Write("  -Color Choice: ");
                         string GameColorChoice = Console.ReadLine();
                         GameFavoriteColor = Colors.SetColor(GameColorChoice);
-                        if (GameFavoriteColor != ConsoleColor.White)
+                        if (GameFavoriteColor != ConsoleColor.Gray)
                         {
                             Console.WriteLine($"Game Color set to {GameFavoriteColor}");
                             Thread.Sleep(1000);
                         }
-                        if (GameFavoriteColor == ConsoleColor.White) 
+                        if (GameFavoriteColor == ConsoleColor.Gray) 
                         {
-                            Console.WriteLine("There was an error. We set the color back to White.");
+                            Console.WriteLine("There was an error. We set the color back to Grey.");
                             Thread.Sleep(5000);
                             InputOK = false;
                         }
 
                     }
                     if (ColorChoice == "2")
-                    { }
+                    {
+                        Console.WriteLine(HeaderShort);
+                        Console.WriteLine("  Setting Player's Color");
+                        Console.WriteLine("  Color List:");
+                        Console.WriteLine("- Red");
+                        Console.WriteLine("- Yellow");
+                        Console.WriteLine("- Green");
+                        Console.WriteLine("- Blue");
+                        Console.WriteLine("- Cyan");
+                        Console.WriteLine("- Purple");
+                        Console.WriteLine("- Pink");
+                        Console.WriteLine("- White");
+                        Console.WriteLine("- Dark Red");
+                        Console.WriteLine("- Dark Yellow");
+                        Console.WriteLine("- Dark Green");
+                        Console.WriteLine("- Dark Blue");
+                        Console.WriteLine("- Dark Cyan");
+                        Console.WriteLine("- Dark Grey");
+                        Console.Write("  -Color Choice: ");
+                        string PlayerColorChoice = Console.ReadLine();
+                        PlayerFavoriteColor = Colors.SetColor(PlayerColorChoice);
+                        if (PlayerFavoriteColor != ConsoleColor.Gray)
+                        {
+                            Console.WriteLine($"Game Color set to {PlayerFavoriteColor}");
+                            Thread.Sleep(1000);
+                        }
+                        if (PlayerFavoriteColor == ConsoleColor.Gray)
+                        {
+                            Console.WriteLine("There was an error. We set the color back to Grey.");
+                            Thread.Sleep(5000);
+                            InputOK = false;
+                        }
+
+                    }
                     if (ColorChoice == "3")
-                    { }
+                    {
+                        Console.WriteLine(HeaderShort);
+                        Console.WriteLine("  Setting Enemy's Color");
+                        Console.WriteLine("  Color List:");
+                        Console.WriteLine("- Red");
+                        Console.WriteLine("- Yellow");
+                        Console.WriteLine("- Green");
+                        Console.WriteLine("- Blue");
+                        Console.WriteLine("- Cyan");
+                        Console.WriteLine("- Purple");
+                        Console.WriteLine("- Pink");
+                        Console.WriteLine("- White");
+                        Console.WriteLine("- Dark Red");
+                        Console.WriteLine("- Dark Yellow");
+                        Console.WriteLine("- Dark Green");
+                        Console.WriteLine("- Dark Blue");
+                        Console.WriteLine("- Dark Cyan");
+                        Console.WriteLine("- Dark Grey");
+                        Console.Write("  -Color Choice: ");
+                        string EnemyColorChoice = Console.ReadLine();
+                        EnemyFavoriteColor = Colors.SetColor(EnemyColorChoice);
+                        if (EnemyFavoriteColor != ConsoleColor.Gray)
+                        {
+                            Console.WriteLine($"Game Color set to {EnemyFavoriteColor}");
+                            Thread.Sleep(1000);
+                        }
+                        if (EnemyFavoriteColor == ConsoleColor.Gray)
+                        {
+                            Console.WriteLine("There was an error. We set the color back to Grey.");
+                            Thread.Sleep(5000);
+                            InputOK = false;
+                        }
+
+
+                    }
+                    if (ColorChoice == "4")
+                    {
+                        Console.WriteLine(HeaderShort);
+                        Console.WriteLine("  Setting Input's Color");
+                        Console.WriteLine("  Color List:");
+                        Console.WriteLine("- Red");
+                        Console.WriteLine("- Yellow");
+                        Console.WriteLine("- Green");
+                        Console.WriteLine("- Blue");
+                        Console.WriteLine("- Cyan");
+                        Console.WriteLine("- Purple");
+                        Console.WriteLine("- Pink");
+                        Console.WriteLine("- White");
+                        Console.WriteLine("- Dark Red");
+                        Console.WriteLine("- Dark Yellow");
+                        Console.WriteLine("- Dark Green");
+                        Console.WriteLine("- Dark Blue");
+                        Console.WriteLine("- Dark Cyan");
+                        Console.WriteLine("- Dark Grey");
+                        Console.Write("  -Color Choice: ");
+                        string InputColorChoice = Console.ReadLine();
+                        InputColor = Colors.SetColor(InputColorChoice);
+                        if (InputColor != ConsoleColor.Gray)
+                        {
+                            Console.WriteLine($"Game Color set to {InputColor}");
+                            Thread.Sleep(1000);
+                        }
+                        if (InputColor == ConsoleColor.Gray) 
+                        {
+                            Console.WriteLine("There was an error. We set the color back to Grey.");
+                            Thread.Sleep(5000);
+                            InputOK = false;
+                        }
+
+                    }
+                    if (ColorChoice == "5")
+                    {
+                        Console.WriteLine(HeaderShort);
+                        Console.WriteLine("  Setting Border's Color");
+                        Console.WriteLine("  Color List:");
+                        Console.WriteLine("- Red");
+                        Console.WriteLine("- Yellow");
+                        Console.WriteLine("- Green");
+                        Console.WriteLine("- Blue");
+                        Console.WriteLine("- Cyan");
+                        Console.WriteLine("- Purple");
+                        Console.WriteLine("- Pink");
+                        Console.WriteLine("- White");
+                        Console.WriteLine("- Dark Red");
+                        Console.WriteLine("- Dark Yellow");
+                        Console.WriteLine("- Dark Green");
+                        Console.WriteLine("- Dark Blue");
+                        Console.WriteLine("- Dark Cyan");
+                        Console.WriteLine("- Dark Grey");
+                        Console.Write("  -Color Choice: ");
+                        string BorderColorChoice = Console.ReadLine();
+                        InputColor = Colors.SetColor(BorderColorChoice);
+                        if (BorderColor != ConsoleColor.Gray)
+                        {
+                            Console.WriteLine($"Game Color set to {BorderColor}");
+                            Thread.Sleep(1000);
+                        }
+                        if (BorderColor == ConsoleColor.Gray)
+                        {
+                            Console.WriteLine("There was an error. We set the color back to Grey.");
+                            Thread.Sleep(5000);
+                            InputOK = false;
+                        }
+
+                    }
+                }
+                if (UserInput == "13")
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = GameFavoriteColor;
+                    Console.WriteLine(HeaderShort);
+                    Console.ForegroundColor = EnemyFavoriteColor;
+                    Console.WriteLine($"  Enemy Prefix: {EnemyPrefix}");
+                    Console.ForegroundColor = GameFavoriteColor;
+                    Console.WriteLine("  Enter a New One, or keep blank to keep current one.");
+                    Console.Write("New Prefix: ");
+                    Console.ForegroundColor = InputColor;
+                    string PrefixInput = Console.ReadLine();
+                    if (PrefixInput == "")
+                    {
+                        Console.WriteLine($"Prefix Unchanged: {EnemyPrefix}");
+                    }
+                    if (PrefixInput != "")
+                    {
+                        EnemyPrefix = PrefixInput;
+                        Console.WriteLine($"Prefix Changed to: {EnemyPrefix}");
+                    }
                 }
                 #endregion
                 #region Help Menu
@@ -1770,12 +1947,16 @@ namespace TF2_Simulator
                         {
                             PlayerCooldown = 0; //Checks if the Cooldown went into the negatives and reversed it to 0.
                         }
+                        Console.ForegroundColor = GameFavoriteColor;
                         Console.WriteLine(Header);
-                        Console.WriteLine($"{PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
-                        Console.WriteLine($"The {EnemyPrefix} {EnemyClass} has {EnemyHP}/{EnemyMaxHP}");
+                        Console.ForegroundColor = PlayerFavoriteColor;
+                        Console.WriteLine($"  {PlayerName}'s Class is {PlayerClass} with {PlayerHP}/{PlayerMaxHP}"!);
+                        Console.ForegroundColor = EnemyFavoriteColor;
+                        Console.WriteLine($"  The {EnemyPrefix} {EnemyClass} has {EnemyHP}/{EnemyMaxHP}");
+                        Console.ForegroundColor = PlayerFavoriteColor;
                         if (PlayerClass == "Demoman")
                         {
-                            Console.WriteLine($"Stickies Placed: {PlayerWeaponFeature}");
+                            Console.WriteLine($"  Stickies Placed: {PlayerWeaponFeature}");
                         }
                         if (PlayerClass == "Medic")
                         {
@@ -1785,74 +1966,77 @@ namespace TF2_Simulator
                             }
                             if (PlayerCooldown >= 1)
                             {
-                                Console.WriteLine($"Medigun Cooldown: {PlayerCooldown} Turns Remaining");
+                                Console.WriteLine($"  Medigun Cooldown: {PlayerCooldown} Turns Remaining");
                             }
                         }
                         if (PlayerClass == "Sniper")
                         {
-                            Console.WriteLine($"Charge Level: {PlayerWeaponFeature}");
+                            Console.WriteLine($"  Charge Level: {PlayerWeaponFeature}");
                         }
-                        Console.WriteLine($"Actions:");
+                        Console.WriteLine($"  Actions:");
                         #region PlayerClass - Actions
 
                         if (PlayerClass == "Scout")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSecondaryName}");
-                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSecondaryName}");
+                            Console.WriteLine($"  3. {PlayerMeleeName}");
                         }
                         if (PlayerClass == "Soldier")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSecondaryName}");
-                            Console.WriteLine($"3. {PlayerMeleeName}");
-                            Console.WriteLine($"4. {PlayerSpecialName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSecondaryName}");
+                            Console.WriteLine($"  3. {PlayerMeleeName}");
+                            Console.WriteLine($"  4. {PlayerSpecialName}");
                         }
                         if (PlayerClass == "Pyro")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSecondaryName}");
-                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSecondaryName}");
+                            Console.WriteLine($"  3. {PlayerMeleeName}");
                         }
                         if (PlayerClass == "Demoman")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSecondaryName}"); //Place Sticky
-                            Console.WriteLine($"3. {PlayerSpecialName}"); //Detonate Stickies
-                            Console.WriteLine($"4. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSecondaryName}"); //Place Sticky
+                            Console.WriteLine($"  3. {PlayerSpecialName}"); //Detonate Stickies
+                            Console.WriteLine($"  4. {PlayerMeleeName}");
                         }
                         if (PlayerClass == "Heavy")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSecondaryName}");
-                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSecondaryName}");
+                            Console.WriteLine($"  3. {PlayerMeleeName}");
                         }
                         if (PlayerClass == "Engineer")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSecondaryName}");
-                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSecondaryName}");
+                            Console.WriteLine($"  3. {PlayerMeleeName}");
                         }
                         if (PlayerClass == "Medic")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSecondaryName}");
-                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSecondaryName}");
+                            Console.WriteLine($"  3. {PlayerMeleeName}");
                         }
                         if (PlayerClass == "Sniper")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSpecialName}");
-                            Console.WriteLine($"3. {PlayerSecondaryName}");
-                            Console.WriteLine($"4. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSpecialName}");
+                            Console.WriteLine($"  3. {PlayerSecondaryName}");
+                            Console.WriteLine($"  4. {PlayerMeleeName}");
                         }
                         if (PlayerClass == "Spy")
                         {
-                            Console.WriteLine($"1. {PlayerPrimaryName}");
-                            Console.WriteLine($"2. {PlayerSecondaryName}");
-                            Console.WriteLine($"3. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerPrimaryName}");
+                            Console.WriteLine($"  2. {PlayerSecondaryName}");
+                            Console.WriteLine($"  3. {PlayerMeleeName}");
                         }
                         #endregion
+                        Console.WriteLine(Footer);
+                        Console.Write("Action: ")
+                        Console.ForegroundColor = InputColor;
                         string PlayerAction = Console.ReadLine();
                         if (PlayerClass == "Scout")
                         {
@@ -2007,27 +2191,41 @@ namespace TF2_Simulator
                             if (PlayerAction == "1")
                             {
                                 Console.Clear();
+                                Console.ForegroundColor = GameFavoriteColor;
                                 Console.WriteLine(HeaderLong);
+                                Console.ForegroundColor = PlayerFavoriteColor;
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} damage to the Enemy {EnemyClass}!");
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                Thread.Sleep(2000);
                             }
                             if (PlayerAction == "2")
                             {
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
-                                Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage}! to the Enemy {EnemyClass}!");
-                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                Console.WriteLine($"{PlayerName} placed a Sticky with their {PlayerSecondaryName}!");
+                                Console.WriteLine($"Player has {PlayerWeaponFeature} stickies placed!");
+                                Thread.Sleep(2000);
                             }
-                            if (PlayerAction == "3")
+                            if (PlayerAction == "3") 
+                            {
+                                Console.Clear();
+                                Console.WriteLine(HeaderLong);
+                                Console.WriteLine($"{PlayerName} detonated their stickies!");
+                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} damage to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                Thread.Sleep(2000);
+                            }
+                            if (PlayerAction == "4")
                             {
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage}! to the Enemy {EnemyClass}!");
+                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} damage to the Enemy {EnemyClass}!");
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
+                                Thread.Sleep(2000);
                             }
+
                         }
                         if (PlayerClass == "Heavy")
                         {
