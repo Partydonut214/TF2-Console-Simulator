@@ -48,8 +48,9 @@ namespace TF2_Simulator
             //Damage: 35-60
             var randomdamage = new Random();
 
-            int BaseDamage = randomdamage.Next(35, 61); // creates a number between 20 & 36
-            int Special = randomdamage.Next(0, 101); // creates a number between 0 & 100, if the number is 1 or lower, the Special will be activated.
+            //int BaseDamage = randomdamage.Next(35, 61); // creates a number between 20 & 36
+            int BaseDamage = randomdamage.Next(1, 2); // creates a number between 20 & 36
+            int Special = randomdamage.Next(0, 11); // creates a number between 0 & 100, if the number is 1 or lower, the Special will be activated.
             int SpecialBonus = 1; // probably for the scout's special, but I cannot confirm if this affects the spy yet. will leave here
             if (Special == 1)
             {
