@@ -272,8 +272,8 @@ namespace TF2_Simulator
                         }
                         if (GameFavoriteColor == ConsoleColor.Gray)
                         {
-                            Console.WriteLine("There was an error. We set the color back to Grey.");
-                            Thread.Sleep(5000);
+                            Console.WriteLine("There was an error. The color was set back to Grey.");
+                            Thread.Sleep(3000);
                             InputOK = false;
                         }
 
@@ -307,7 +307,7 @@ namespace TF2_Simulator
                         }
                         if (PlayerFavoriteColor == ConsoleColor.Gray)
                         {
-                            Console.WriteLine("There was an error. We set the color back to Grey.");
+                            Console.WriteLine("There was an error. The color was set back to Grey.");
                             Thread.Sleep(5000);
                             InputOK = false;
                         }
@@ -342,12 +342,10 @@ namespace TF2_Simulator
                         }
                         if (EnemyFavoriteColor == ConsoleColor.Gray)
                         {
-                            Console.WriteLine("There was an error. We set the color back to Grey.");
+                            Console.WriteLine("There was an error. The color was set back to Grey.");
                             Thread.Sleep(5000);
                             InputOK = false;
                         }
-
-
                     }
                     if (ColorChoice == "4")
                     {
@@ -373,7 +371,7 @@ namespace TF2_Simulator
                         InputColor = Colors.SetColor(InputColorChoice);
                         if (InputColor != ConsoleColor.Gray)
                         {
-                            Console.WriteLine($"Game Color set to {InputColor}");
+                            Console.WriteLine($"Input Color set to {InputColor}");
                             Thread.Sleep(1000);
                         }
                         if (InputColor == ConsoleColor.Gray)
@@ -583,6 +581,8 @@ namespace TF2_Simulator
                 else if (UserInput == "1")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
                     Console.WriteLine("Scout Selected");
                     PlayerHP = 125;
                     PlayerClass = Scout.ScoutName();
@@ -594,19 +594,18 @@ namespace TF2_Simulator
                     PlayerPrimaryName = Scout.ScoutPrimaryName();
                     PlayerSecondaryName = Scout.ScoutSecondaryName();
                     PlayerMeleeName = Scout.ScoutMeleeName();
-                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    PlayerSpecialName = "No Special";
                     Thread.Sleep(1000);
-                    Console.WriteLine("...Scout Settings Applied");
-                    Console.WriteLine("=====Debug=====");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
                     Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
                     Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
                     Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine($"Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine($"Name - Special Move: {PlayerSpecialName}");
+                    Console.WriteLine(FooterShort);
                     PlayerSetClass = true;
                     Thread.Sleep(2000);
                     break;
@@ -614,6 +613,8 @@ namespace TF2_Simulator
                 else if (UserInput == "2")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
                     Console.WriteLine("Soldier Selected");
                     PlayerHP = 200;
                     PlayerClass = Soldier.SoldierName();
@@ -627,17 +628,17 @@ namespace TF2_Simulator
                     PlayerMeleeName = Soldier.SoldierMeleeName();
                     PlayerSpecialName = Soldier.SoldierSpecialName();
                     Thread.Sleep(1000);
-                    Console.WriteLine("...Soldier Settings Applied");
-                    Console.WriteLine("=====Debug=====");
-                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
-                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
-                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Attack - Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine($"  Name - Special: {PlayerSpecialName}");
+                    Console.WriteLine(FooterShort);
                     Thread.Sleep(2000);
                     PlayerSetClass = true;
                     break;
@@ -645,6 +646,8 @@ namespace TF2_Simulator
                 else if (UserInput == "3")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
                     Console.WriteLine("Pyro Selected");
                     PlayerHP = 175;
                     PlayerClass = Pyro.PyroName();
@@ -658,17 +661,15 @@ namespace TF2_Simulator
                     PlayerMeleeName = Pyro.PyroMeleeName();
                     PlayerSpecialName = "No Special - Replaced By Primary";
                     Thread.Sleep(1000);
-                    Console.WriteLine("...Pyro Settings Applied");
-                    Console.WriteLine("=====Debug=====");
-                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
-                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
-                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
                     Thread.Sleep(2000);
                     PlayerSetClass = true;
                     break;
@@ -676,6 +677,8 @@ namespace TF2_Simulator
                 else if (UserInput == "4")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here                    
                     Console.WriteLine("Demoman Selected");
                     PlayerHP = 175;
                     PlayerClass = Demoman.DemomanName();
@@ -690,17 +693,17 @@ namespace TF2_Simulator
                     PlayerMeleeName = Demoman.DemomanMeleeName();
                     PlayerSpecialName = Demoman.DemomanSpecialName();
                     Thread.Sleep(1000);
-                    Console.WriteLine("=====Debug=====");
-                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
-                    Console.WriteLine($"Stickies Placed - Secondary: {PlayerWeaponFeature}");
-                    Console.WriteLine($"Sticky Detonate Damage - {PlayerSpecial}");
-                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Secondary Weapon Move Name: {PlayerSpecialName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Information - Stickies Placed - Secondary: {PlayerWeaponFeature}");
+                    Console.WriteLine($"  Attack - Sticky Detonate Damage - {PlayerSpecial}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Secondary Alt Use: {PlayerSpecialName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
                     PlayerSetClass = true;
                     Thread.Sleep(2000);
                     break;
@@ -708,6 +711,8 @@ namespace TF2_Simulator
                 else if (UserInput == "5")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
                     Console.WriteLine("Heavy Selected");
                     PlayerHP = 300;
                     PlayerClass = Heavy.HeavyName();
@@ -719,18 +724,17 @@ namespace TF2_Simulator
                     PlayerPrimaryName = Heavy.HeavyPrimaryName();
                     PlayerSecondaryName = Heavy.HeavySecondaryName();
                     PlayerMeleeName = Heavy.HeavyMeleeName();
-                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    PlayerSpecialName = "No Special";
                     Thread.Sleep(1000);
-                    Console.WriteLine("=====Debug=====");
-                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
-                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
-                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
                     PlayerSetClass = true;
                     Thread.Sleep(2000);
                     break;
@@ -738,6 +742,8 @@ namespace TF2_Simulator
                 else if (UserInput == "6")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
                     Console.WriteLine("Engineer Selected");
                     PlayerHP = 125;
                     PlayerClass = Engineer.EngineerName();
@@ -751,17 +757,17 @@ namespace TF2_Simulator
                     PlayerMeleeName = Engineer.EngineerMeleeName();
                     PlayerSpecialName = "No Special - Replaced By Primary";
                     Thread.Sleep(1000);
-                    Console.WriteLine("...Engineer Settings Applied");
-                    Console.WriteLine("=====Debug=====");
-                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
-                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
-                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Attack - Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine($"  Name - Special Move: {PlayerSpecialName}");
+                    Console.WriteLine(FooterShort);
                     PlayerSetClass = true;
                     Thread.Sleep(2000);
                     break;
@@ -769,6 +775,8 @@ namespace TF2_Simulator
                 else if (UserInput == "7")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
                     Console.WriteLine("Medic Selected");
                     PlayerHP = 150;
                     PlayerClass = Medic.MedicName();
@@ -782,17 +790,15 @@ namespace TF2_Simulator
                     PlayerMeleeName = Medic.MedicMeleeName();
                     PlayerSpecialName = "No Special - Replaced By Primary";
                     Thread.Sleep(1000);
-                    Console.WriteLine("...Medic Settings Applied");
-                    Console.WriteLine("=====Debug=====");
-                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
-                    Console.WriteLine($"Heal - Secondary: {PlayerHP + PlayerSecondaryDamage}");
-                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Special Roll - {PlayerSpecial}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Heal - Secondary: {PlayerHP + PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
                     PlayerSetClass = true;
                     Thread.Sleep(2000);
                     break;
@@ -800,6 +806,8 @@ namespace TF2_Simulator
                 else if (UserInput == "8")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
                     Console.WriteLine("Sniper Selected");
                     PlayerHP = 125;
                     PlayerClass = Sniper.SniperName();
@@ -813,16 +821,17 @@ namespace TF2_Simulator
                     PlayerMeleeName = Sniper.SniperMeleeName();
                     PlayerSpecialName = Sniper.SniperSpecialName();
                     Thread.Sleep(1000);
-                    Console.WriteLine("=====Debug=====");
-                    Console.WriteLine($"Attack - Primary: {PlayerSpecial}");
-                    Console.WriteLine($"Charge - Primary: {PlayerWeaponFeature}");
-                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
-                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Primary Weapon Move Name: {PlayerSpecialName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerSpecial}");
+                    Console.WriteLine($"  Charge - Primary: {PlayerWeaponFeature}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Primary Alt Use: {PlayerSpecialName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
                     PlayerSetClass = true;
                     Thread.Sleep(2000);
                     break;
@@ -830,6 +839,8 @@ namespace TF2_Simulator
                 else if (UserInput == "9")
                 {
                     Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
                     Console.WriteLine("Spy Selected");
                     PlayerHP = 125;
                     PlayerClass = Spy.SpyName();
@@ -843,17 +854,13 @@ namespace TF2_Simulator
                     PlayerMeleeName = Spy.SpyMeleeName();
                     PlayerSpecialName = "No Special - Replaced By Secondary";
                     Thread.Sleep(1000);
-                    Console.WriteLine("...Spy Settings Applied");
-                    Console.WriteLine("=====Debug=====");
-                    Console.WriteLine($"Attack - Primary [Secondary]: {PlayerPrimaryDamage}");
-                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
-                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
-                    Console.WriteLine($"Special Roll [Secondary] - {PlayerSpecial}");
-                    Console.WriteLine($"Primary Weapon Name: {PlayerPrimaryName}");
-                    Console.WriteLine($"Secondary Weapon Name: {PlayerSecondaryName}");
-                    Console.WriteLine($"Melee Weapon Name: {PlayerMeleeName}");
-                    Console.WriteLine($"Special Move Name: {PlayerSpecialName}");
-                    Console.WriteLine(".....");
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
                     PlayerSetClass = true;
                     Thread.Sleep(2000);
                     break;
