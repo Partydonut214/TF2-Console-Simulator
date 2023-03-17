@@ -2035,7 +2035,7 @@ namespace TF2_Simulator
                         }
                         #endregion
                         Console.WriteLine(Footer);
-                        Console.Write("Action: ")
+                        Console.Write("Action: ");
                         Console.ForegroundColor = InputColor;
                         string PlayerAction = Console.ReadLine();
                         if (PlayerClass == "Scout")
@@ -2195,7 +2195,9 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = PlayerFavoriteColor;
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerPrimaryName}!");
+                                PlayerPrimaryDamage = Demoman.DemomanPrimaryDamage();
                                 Console.WriteLine($"It Dealt {PlayerPrimaryDamage} damage to the Enemy {EnemyClass}!");
+                                EnemyHP = EnemyHP - PlayerPrimaryDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                                 Thread.Sleep(2000);
                             }
@@ -2204,6 +2206,7 @@ namespace TF2_Simulator
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} placed a Sticky with their {PlayerSecondaryName}!");
+                                PlayerWeaponFeature++;
                                 Console.WriteLine($"Player has {PlayerWeaponFeature} stickies placed!");
                                 Thread.Sleep(2000);
                             }
@@ -2212,7 +2215,9 @@ namespace TF2_Simulator
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} detonated their stickies!");
-                                Console.WriteLine($"It Dealt {PlayerPrimaryDamage} damage to the Enemy {EnemyClass}!");
+                                PlayerSpecial = Demoman.DemomanSpecial(PlayerWeaponFeature);
+                                Console.WriteLine($"It Dealt {PlayerSpecial} damage to the Enemy {EnemyClass}!");
+                                EnemyHP = EnemyHP - PlayerSpecial;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                                 Thread.Sleep(2000);
                             }
@@ -2221,7 +2226,9 @@ namespace TF2_Simulator
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
+                                PlayerMeleeDamage = Demoman.DemomanMeleeDamage();
                                 Console.WriteLine($"It Dealt {PlayerMeleeDamage} damage to the Enemy {EnemyClass}!");
+                                EnemyHP = EnemyHP - PlayerMeleeDamage;
                                 Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
                                 Thread.Sleep(2000);
                             }
