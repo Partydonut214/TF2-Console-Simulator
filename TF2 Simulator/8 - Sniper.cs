@@ -43,7 +43,10 @@ namespace TF2_Simulator
             // Damage 50 [x Charge Level]
             int Damage = 50;
             int Totaldamage = Damage * PlayerWeaponFeature;
-
+            if (PlayerWeaponFeature >= 4)
+            {
+                Totaldamage = Damage * PlayerWeaponFeature * 2;
+            }
             return Totaldamage;
         }
         public static int SniperSecondaryDamage()
@@ -67,16 +70,6 @@ namespace TF2_Simulator
 
             int BaseDamage = randomdamage.Next(30, 66); // creates a number between 30 & 65
             int Totaldamage = BaseDamage;
-            return Totaldamage;
-        }
-        public static int SniperSpecial(int PlayerWeaponFeature)
-        {
-            int Damage = 50;
-            int Totaldamage = Damage * PlayerWeaponFeature;
-            if (PlayerWeaponFeature >= 4)
-            {
-                Totaldamage = Damage * PlayerWeaponFeature * 2;
-            }
             return Totaldamage;
         }
 
