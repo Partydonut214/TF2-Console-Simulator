@@ -582,7 +582,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    //Set Game Color Here
+                    Console.ForegroundColor= Color_Game;
                     Console.WriteLine("Scout Selected");
                     PlayerHP = 125;
                     PlayerClass = Scout.ScoutName();
@@ -614,7 +614,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    //Set Game Color Here
+                    Console.ForegroundColor= Color_Game;
                     Console.WriteLine("Soldier Selected");
                     PlayerHP = 200;
                     PlayerClass = Soldier.SoldierName();
@@ -647,7 +647,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    //Set Game Color Here
+                    Console.ForegroundColor= Color_Game;
                     Console.WriteLine("Pyro Selected");
                     PlayerHP = 175;
                     PlayerClass = Pyro.PyroName();
@@ -678,7 +678,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    //Set Game Color Here                    
+                    Console.ForegroundColor= Color_Game;                    
                     Console.WriteLine("Demoman Selected");
                     PlayerHP = 175;
                     PlayerClass = Demoman.DemomanName();
@@ -712,7 +712,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    //Set Game Color Here
+                    Console.ForegroundColor= Color_Game;
                     Console.WriteLine("Heavy Selected");
                     PlayerHP = 300;
                     PlayerClass = Heavy.HeavyName();
@@ -743,7 +743,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    //Set Game Color Here
+                    Console.ForegroundColor= Color_Game;
                     Console.WriteLine("Engineer Selected");
                     PlayerHP = 125;
                     PlayerClass = Engineer.EngineerName();
@@ -776,7 +776,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    //Set Game Color Here
+                    Console.ForegroundColor= Color_Game;
                     Console.WriteLine("Medic Selected");
                     PlayerHP = 150;
                     PlayerClass = Medic.MedicName();
@@ -807,7 +807,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    //Set Game Color Here
+                    Console.ForegroundColor= Color_Game;
                     Console.WriteLine("Sniper Selected");
                     PlayerHP = 125;
                     PlayerClass = Sniper.SniperName();
@@ -1980,6 +1980,7 @@ namespace TF2_Simulator
                         {
                             Console.WriteLine($"  Charge Level: {PlayerWeaponFeature}");
                         }
+                        Console.ForegroundColor = Color_Game;
                         Console.WriteLine($"  Actions:");
                         #region PlayerClass - Actions
 
