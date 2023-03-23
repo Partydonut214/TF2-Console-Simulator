@@ -153,10 +153,8 @@ namespace TF2_Simulator
             #endregion
             #region Enemy Stats
             int EnemyHP = 0;
-
             string EnemyMaxHP = "Not Set";
             string EnemyClass = "Unselected";
-            string EnemyClassTag = "Unselected";
             int EnemyCooldown = 0;
             int EnemyPrimaryDamage = 0;
             int EnemySecondaryDamage = 0;
