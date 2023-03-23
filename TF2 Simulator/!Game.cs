@@ -2502,6 +2502,10 @@ namespace TF2_Simulator
                             }
                         }
                     }
+                    if (PlayerHP == 0 && EnemyHP == 0)
+                    {
+                        Console.WriteLine("You both lost this battle!");
+                    }
                     if (PlayerHP <= 0)
                     {
                         Console.WriteLine($"Your Health Reached 0! You have been defeated by {EnemyPrefix} {EnemyClass}.");
@@ -2509,7 +2513,14 @@ namespace TF2_Simulator
                         Console.WriteLine($"They had {EnemyHP} left when you fell.");
                         Thread.Sleep(3000);
                     }
+                    if (EnemyHP <= 0)
+                    {
+                        Console.WriteLine("You win!");
+                        Thread.Sleep(60000);
+                        Console.WriteLine("yippie");
+                    }
                 }
+
             }
         }
     }
