@@ -68,10 +68,10 @@ namespace TF2_Simulator
             int BaseDamage = randomdamage.Next(20, 36); // creates a number between 20 & 36
             int Special = randomdamage.Next(0, 101); // creates a number between 0 & 100, if the number is 2 or lower, Special Bonus will be activated.
             int SpecialBonus = 1;
-            if (Special <= 2) 
+            if (Special == 1) 
             {
-                SpecialBonus = 2;
-                Console.WriteLine("Special Activated!: Swing 2 Times [x2 Damage]");
+                SpecialBonus = 3;
+                Console.WriteLine("Special Activated!: Swing 3 Times [x3 Damage]");
             }
             int Totaldamage = BaseDamage * SpecialBonus;
             return Totaldamage;
