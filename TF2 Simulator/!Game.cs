@@ -156,6 +156,7 @@ namespace TF2_Simulator
 
             string EnemyMaxHP = "Not Set";
             string EnemyClass = "Unselected";
+            string EnemyClassTag = "Unselected";
             int EnemyCooldown = 0;
             int EnemyPrimaryDamage = 0;
             int EnemySecondaryDamage = 0;
@@ -440,6 +441,7 @@ namespace TF2_Simulator
                         Console.WriteLine($"Prefix Changed to: {EnemyPrefix}");
                     }
                 }
+
                 #endregion
                 #region Help Menu
                 if ((UserInput.ToLower() == "!help") || (UserInput.ToLower() == "help"))
@@ -1651,17 +1653,19 @@ namespace TF2_Simulator
                     Console.Clear();
                     Console.WriteLine("Pick The Enemy's class!");
                     Console.WriteLine();
-                    Console.WriteLine("====Available Classes====");
-                    Console.WriteLine("1. Scout");
-                    Console.WriteLine("2. Soldier");
-                    Console.WriteLine("3. Pyro");
-                    Console.WriteLine("4. Demoman");
-                    Console.WriteLine("5. Heavy");
-                    Console.WriteLine("6. Engineer");
-                    Console.WriteLine("7. Medic");
-                    Console.WriteLine("8. Sniper");
-                    Console.WriteLine("9. Spy");
-                    Console.WriteLine("=========================");
+                    Console.WriteLine(HeaderShort);
+                    //Console.WriteLine("====Available Classes====");
+                    Console.WriteLine("  1. Scout");
+                    Console.WriteLine("  2. Soldier");
+                    Console.WriteLine("  3. Pyro");
+                    Console.WriteLine("  4. Demoman");
+                    Console.WriteLine("  5. Heavy");
+                    Console.WriteLine("  6. Engineer");
+                    Console.WriteLine("  7. Medic");
+                    Console.WriteLine("  8. Sniper");
+                    Console.WriteLine("  9. Spy");
+                    Console.WriteLine(FooterShort);
+                  //Console.WriteLine("=========================");
                     Console.WriteLine();
                     Console.Write("Choose a Class: ");
                     string UserInputEnemy = Console.ReadLine();
@@ -1952,7 +1956,7 @@ namespace TF2_Simulator
                         Console.Clear();
                         if (PlayerCooldown < 0)
                         {
-                            PlayerCooldown = 0; //Checks if the Cooldown went into the negatives and reversed it to 0.
+                            PlayerCooldown = 0; //Checks if the Cooldown went into the negatives and reverses it to 0.
                         }
                         Console.ForegroundColor = Color_Game;
                         Console.WriteLine(Header);
@@ -1963,22 +1967,30 @@ namespace TF2_Simulator
                         Console.ForegroundColor = Color_Player;
                         if (PlayerClass == "Demoman")
                         {
+                            Console.WriteLine($"  ┌────────┬────────┐");
                             Console.WriteLine($"  Stickies Placed: {PlayerWeaponFeature}");
+                            Console.WriteLine($"  └────────┴────────┘");
                         }
                         if (PlayerClass == "Medic")
                         {
                             if (PlayerCooldown == 0)
                             {
-                                Console.WriteLine("====Medigun Ready!====");
+                                Console.WriteLine("  ┌───────┬───────┐  ");
+                                Console.WriteLine("  Medigun  Ready!    ");
+                                Console.WriteLine("  └───────┴───────┘  ");
                             }
                             if (PlayerCooldown >= 1)
                             {
+                                Console.WriteLine($"  ┌──────────────────┬──────────────────┐");
                                 Console.WriteLine($"  Medigun Cooldown: {PlayerCooldown} Turns Remaining");
+                                Console.WriteLine($"  └──────────────────┴──────────────────┘");
                             }
                         }
                         if (PlayerClass == "Sniper")
                         {
+                            Console.WriteLine($"  ┌────────┬────────┐");
                             Console.WriteLine($"  Charge Level: {PlayerWeaponFeature}");
+                            Console.WriteLine($"  └────────┴────────┘");
                         }
                         Console.ForegroundColor = Color_Game;
                         Console.WriteLine($"  Actions:");
@@ -2037,9 +2049,8 @@ namespace TF2_Simulator
                         }
                         if (PlayerClass == "Spy")
                         {
-                            Console.WriteLine($"  1. {PlayerPrimaryName}");
-                            Console.WriteLine($"  2. {PlayerSecondaryName}");
-                            Console.WriteLine($"  3. {PlayerMeleeName}");
+                            Console.WriteLine($"  1. {PlayerSecondaryName}");
+                            Console.WriteLine($"  2. {PlayerMeleeName}");
                         }
                         #endregion
                         Console.WriteLine(Footer);
@@ -2483,18 +2494,6 @@ namespace TF2_Simulator
                             {
                                 Console.Clear();
                                 Console.WriteLine(HeaderLong);
-                                Console.WriteLine($"{PlayerName} attacked with their {PlayerSecondaryName}!");
-                                PlayerSecondaryDamage = Spy.SpySecondaryDamage();
-                                Console.WriteLine($"It Dealt {PlayerSecondaryDamage} Damage to the Enemy {EnemyClass}!");
-                                EnemyHP = EnemyHP - PlayerSecondaryDamage;
-                                Console.WriteLine($"The Enemy {EnemyClass}'s Remaining HP: {EnemyHP}");
-                                Console.WriteLine(FooterLong);
-                                Thread.Sleep(2000);
-                            }
-                            if (PlayerAction == "3")
-                            {
-                                Console.Clear();
-                                Console.WriteLine(HeaderLong);
                                 Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
                                 PlayerMeleeDamage = Spy.SpyMeleeDamage();
                                 Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {EnemyClass}!");
@@ -2504,6 +2503,13 @@ namespace TF2_Simulator
                                 Thread.Sleep(2000);
                             }
                         }
+                    }
+                    if (PlayerHP <= 0)
+                    {
+                        Console.WriteLine($"Your Health Reached 0! You have been defeated by {EnemyPrefix} {EnemyClass}.");
+                        Thread.Sleep(2000);
+                        Console.WriteLine($"They had {EnemyHP} left when you fell.");
+                        Thread.Sleep(3000);
                     }
                 }
             }
