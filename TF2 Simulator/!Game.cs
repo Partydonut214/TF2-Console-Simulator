@@ -2516,8 +2516,6 @@ namespace TF2_Simulator
                     if (EnemyHP <= 0)
                     {
                         Console.WriteLine("You win!");
-                        Thread.Sleep(60000);
-                        Console.WriteLine("yippie");
                     }
                 }
 
