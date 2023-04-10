@@ -5,6 +5,8 @@ using System.ComponentModel.Design;
 using System.Data;
 using System.Diagnostics;
 using System.Xml.Schema;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TF2_Simulator
 {
@@ -12,6 +14,97 @@ namespace TF2_Simulator
     {
         static void Main(string[] args)
         {
+            Console.Write("This game uses Saves."); Thread.Sleep(1000); Console.WriteLine(" Checking for Saves... ");
+            bool SavesDiscovered = false;
+            for (int i = 1; i <= 100; i++)
+            {
+                string Savepath = $@"C:\Users\Public\Documents\TF2Sim\Save_{i}.txt";
+                string Template = "====Player Information====\r\nPlayer/Save Name: \r\nPlayer Color:\r\nGame Color:\r\nEnemy Color:\r\nInput Color:\r\n\r\n====Inventory====\r\nint ID;\r\nstring n; //Name\r\nint c; //Count\r\nint cID; //Currency\r\nstring cn; //Currency Name\r\nint cCount; //Currency Count\r\n\r\nID = 0; n = \"Error\"; c = 0;\r\nID = 1; n = \"Scattergun\"; c = 0;\r\nID = 2; n = \"Force-A-Nature\"; c = 0;\r\nID = 3; n = \"Shortstop\"; c = 0;\r\nID = 4; n = \"Soda Popper\"; c = 0;\r\nID = 5; n = \"Baby Face's Blaster\"; c = 0;\r\nID = 6; n = \"Back Scatter\"; c = 0;\r\nID = 7; n = \"Pistol\"; c = 0;\r\nID = 8; n = \"Lugermorph\"; c = 0;\r\nID = 9; n = \"C.A.P.P.E.R\"; c = 0;\r\nID = 10; n = \"Winger\"; c = 0;\r\nID = 11; n = \"Pretty Boy's Pocket Pistol\"; c = 0;\r\nID = 12; n = \"Flying Guillotine\"; c = 0;\r\nID = 13; n = \"Bonk! Atomic Punch\"; c = 0;\r\nID = 14; n = \"Crit-a-Cola\"; c = 0;\r\nID = 15; n = \"Mad Milk\"; c = 0;\r\nID = 16; n = \"Mutated Milk\"; c = 0;\r\nID = 17; n = \"Bat\"; c = 0;\r\nID = 18; n = \"Holy Mackerel\"; c = 0;\r\nID = 19; n = \"Unarmed Combat\"; c = 0;\r\nID = 20; n = \"Batsaber\"; c = 0;\r\nID = 21; n = \"Sandman\"; c = 0;\r\nID = 22; n = \"Candy Cane\"; c = 0;\r\nID = 23; n = \"Boston Basher\"; c = 0;\r\nID = 24; n = \"Three-Rune Blade\"; c = 0;\r\nID = 25; n = \"Sun-on-a-Stick\"; c = 0;\r\nID = 26; n = \"Fan O'War\"; c = 0;\r\nID = 27; n = \"Atomizer\"; c = 0;\r\nID = 28; n = \"Wrap Assassin\"; c = 0;\r\nID = 29; n = \"Rocket Launcher\"; c = 0;\r\nID = 30; n = \"Original\"; c = 0;\r\nID = 31; n = \"Direct Hit\"; c = 0;\r\nID = 32; n = \"Black Box\"; c = 0;\r\nID = 33; n = \"Rocket Jumper\"; c = 0;\r\nID = 34; n = \"Liberty Launcher\"; c = 0;\r\nID = 35; n = \"Cow Mangler 5000\"; c = 0;\r\nID = 36; n = \"Beggar's Bazooka\"; c = 0;\r\nID = 37; n = \"Air Strike\"; c = 0;\r\nID = 38; n = \"Shotgun\"; c = 0;\r\nID = 39; n = \"Reserve Shooter\"; c = 0;\r\nID = 40; n = \"Buff Banner\"; c = 0;\r\nID = 41; n = \"Gunboats\"; c = 0;\r\nID = 42; n = \"Battalion's Backup\"; c = 0;\r\nID = 43; n = \"Concheror\"; c = 0;\r\nID = 44; n = \"Mantreads\"; c = 0;\r\nID = 45; n = \"Righteous Bison\"; c = 0;\r\nID = 46; n = \"B.A.S.E. Jumper\"; c = 0;\r\nID = 47; n = \"Panic Attack\"; c = 0;\r\nID = 48; n = \"Shovel\"; c = 0;\r\nID = 49; n = \"Equalizer\"; c = 0;\r\nID = 50; n = \"Pain Train\"; c = 0;\r\nID = 51; n = \"Half-Zatoichi\"; c = 0;\r\nID = 52; n = \"Disciplinary Action\"; c = 0;\r\nID = 53; n = \"Market Gardener\"; c = 0;\r\nID = 54; n = \"Escape Plan\"; c = 0;\r\nID = 55; n = \"Flame Thrower\"; c = 0;\r\nID = 56; n = \"Rainblower\"; c = 0;\r\nID = 57; n = \"Nostromo Napalmer\"; c = 0;\r\nID = 58; n = \"Backburner\"; c = 0;\r\nID = 59; n = \"Degreaser\"; c = 0;\r\nID = 60; n = \"Phlogistinator\"; c = 0;\r\nID = 61; n = \"Dragon's Fury\"; c = 0;\r\nID = 62; n = \"Flare Gun\"; c = 0;\r\nID = 63; n = \"Detonator\"; c = 0;\r\nID = 64; n = \"Manmelter\"; c = 0;\r\nID = 65; n = \"Scorch Shot\"; c = 0;\r\nID = 66; n = \"Thermal Thruster\"; c = 0;\r\nID = 67; n = \"Gas Passer\"; c = 0;\r\nID = 68; n = \"Fire Axe\"; c = 0;\r\nID = 69; n = \"Lollichop\"; c = 0;\r\nID = 70; n = \"Axtinguisher\"; c = 0;\r\nID = 71; n = \"Postal Pummeler\"; c = 0;\r\nID = 72; n = \"Homewrecker\"; c = 0;\r\nID = 73; n = \"Maul\"; c = 0;\r\nID = 74; n = \"Powerjack\"; c = 0;\r\nID = 75; n = \"Back Scratcher\"; c = 0;\r\nID = 76; n = \"Sharpened Volcano Fragment\"; c = 0;\r\nID = 77; n = \"Third Degree\"; c = 0;\r\nID = 78; n = \"Neon Annihilator\"; c = 0;\r\nID = 79; n = \"Hot Hand\"; c = 0;\r\nID = 80; n = \"Grenade Launcher\"; c = 0;\r\nID = 81; n = \"Loch-n-Load\"; c = 0;\r\nID = 82; n = \"Ali Baba's Wee Booties\"; c = 0;\r\nID = 83; n = \"Bootlegger\"; c = 0;\r\nID = 84; n = \"Loose Cannon\"; c = 0;\r\nID = 85; n = \"Iron Bomber\"; c = 0;\r\nID = 86; n = \"Stickybomb Launcher\"; c = 0;\r\nID = 87; n = \"Scottish Resistance\"; c = 0;\r\nID = 88; n = \"Chargin' Targe\"; c = 0;\r\nID = 89; n = \"Sticky Jumper\"; c = 0;\r\nID = 90; n = \"Splendid Screen\"; c = 0;\r\nID = 91; n = \"Tide Turner\"; c = 0;\r\nID = 92; n = \"Quickiebomb Launcher\"; c = 0;\r\nID = 93; n = \"Bottle\"; c = 0;\r\nID = 94; n = \"Scottish Handshake\"; c = 0;\r\nID = 95; n = \"Eyelander\"; c = 0;\r\nID = 96; n = \"Horseless Headless Horsemann's Headtaker\"; c = 0;\r\nID = 97; n = \"Nessie's Nine Iron\"; c = 0;\r\nID = 98; n = \"Scotsman's Skullcutter\"; c = 0;\r\nID = 99; n = \"Pain Train\"; c = 0;\r\nID = 100; n = \"Ullapool Caber\"; c = 0;\r\nID = 101; n = \"Claidheamh Mòr\"; c = 0;\r\nID = 102; n = \"Half-Zatoichi\"; c = 0;\r\nID = 103; n = \"Persian Persuader\"; c = 0;\r\nID = 104; n = \"Minigun\"; c = 0;\r\nID = 105; n = \"Iron Curtain\"; c = 0;\r\nID = 106; n = \"Natascha\"; c = 0;\r\nID = 107; n = \"Brass Beast\"; c = 0;\r\nID = 108; n = \"Tomislav\"; c = 0;\r\nID = 109; n = \"Huo-Long Heater\"; c = 0;\r\nID = 110; n = \"Family Business\"; c = 0;\r\nID = 111; n = \"Sandvich\"; c = 0;\r\nID = 112; n = \"Robo-Sandvich\"; c = 0;\r\nID = 113; n = \"Dalokohs Bar\"; c = 0;\r\nID = 114; n = \"Fishcake\"; c = 0;\r\nID = 115; n = \"Buffalo Steak Sandvich\"; c = 0;\r\nID = 116; n = \"Panic Attack\"; c = 0;\r\nID = 117; n = \"Second Banana\"; c = 0;\r\nID = 118; n = \"Fists\"; c = 0;\r\nID = 119; n = \"Apoco-Fists\"; c = 0;\r\nID = 120; n = \"Killing Gloves of Boxing\"; c = 0;\r\nID = 121; n = \"Gloves of Running Urgently\"; c = 0;\r\nID = 122; n = \"Bread Bite\"; c = 0;\r\nID = 123; n = \"Warrior's Spirit\"; c = 0;\r\nID = 124; n = \"Fists of Steel\"; c = 0;\r\nID = 125; n = \"Eviction Notice\"; c = 0;\r\nID = 126; n = \"Holiday Punch\"; c = 0;\r\nID = 127; n = \"Frontier Justice\"; c = 0;\r\nID = 128; n = \"Widowmaker\"; c = 0;\r\nID = 129; n = \"Pomson 6000\"; c = 0;\r\nID = 130; n = \"Rescue Ranger\"; c = 0;\r\nID = 131; n = \"Wrangler\"; c = 0;\r\nID = 132; n = \"Giger Counter\"; c = 0;\r\nID = 133; n = \"Short Circuit\"; c = 0;\r\nID = 134; n = \"Wrench\"; c = 0;\r\nID = 135; n = \"Golden Wrench\"; c = 0;\r\nID = 136; n = \"Gunslinger\"; c = 0;\r\nID = 137; n = \"Southern Hospitality\"; c = 0;\r\nID = 138; n = \"Jag\"; c = 0;\r\nID = 139; n = \"Eureka Effect\"; c = 0;\r\nID = 140; n = \"Consturction PDA\"; c = 0;\r\nID = 141; n = \"Destruction PDA\"; c = 0;\r\nID = 142; n = \"Syringe Gun\"; c = 0;\r\nID = 143; n = \"Blutsauger\"; c = 0;\r\nID = 144; n = \"Crusader's Crossbow\"; c = 0;\r\nID = 145; n = \"Overdose\"; c = 0;\r\nID = 146; n = \"Medi Gun\"; c = 0;\r\nID = 147; n = \"Kritzkrieg\"; c = 0;\r\nID = 148; n = \"Quick-Fix\"; c = 0;\r\nID = 149; n = \"Vaccinator\"; c = 0;\r\nID = 150; n = \"Bonesaw\"; c = 0;\r\nID = 151; n = \"Übersaw\"; c = 0;\r\nID = 152; n = \"Vita-Saw\"; c = 0;\r\nID = 153; n = \"Amputator\"; c = 0;\r\nID = 154; n = \"Solemn Vow\"; c = 0;\r\nID = 155; n = \"Sniper Rifle\"; c = 0;\r\nID = 156; n = \"AWPer Hand\"; c = 0;\r\nID = 157; n = \"Huntsman\"; c = 0;\r\nID = 158; n = \"Fortified Compound\"; c = 0;\r\nID = 159; n = \"Sydney Sleeper\"; c = 0;\r\nID = 160; n = \"Bazaar Bargain\"; c = 0;\r\nID = 161; n = \"Machina\"; c = 0;\r\nID = 162; n = \"Shooting Star\"; c = 0;\r\nID = 163; n = \"Hitman's Heatmaker\"; c = 0;\r\nID = 164; n = \"Classic\"; c = 0;\r\nID = 165; n = \"SMG\"; c = 0;\r\nID = 166; n = \"Cleaner's Carbine\"; c = 0;\r\nID = 167; n = \"Jarate\"; c = 0;\r\nID = 168; n = \"Self-Aware Beauty Mark\"; c = 0;\r\nID = 169; n = \"Razorback\"; c = 0;\r\nID = 170; n = \"Darwin's Danger Shield\"; c = 0;\r\nID = 171; n = \"Cozy Camper\"; c = 0;\r\nID = 172; n = \"Kukri\"; c = 0;\r\nID = 173; n = \"Tribalman's Shiv\"; c = 0;\r\nID = 174; n = \"Bushwacka\"; c = 0;\r\nID = 175; n = \"Shahanshah\"; c = 0;\r\nID = 176; n = \"Revolver\"; c = 0;\r\nID = 177; n = \"Big Kill\"; c = 0;\r\nID = 178; n = \"Ambassador\"; c = 0;\r\nID = 179; n = \"L'Etranger\"; c = 0;\r\nID = 180; n = \"Enforcer\"; c = 0;\r\nID = 181; n = \"Diamondback\"; c = 0;\r\nID = 182; n = \"Knife\"; c = 0;\r\nID = 183; n = \"Sharp Dresser\"; c = 0;\r\nID = 184; n = \"Black Rose\"; c = 0;\r\nID = 185; n = \"Your Eternal Reward\"; c = 0;\r\nID = 186; n = \"Wanga Prick\"; c = 0;\r\nID = 187; n = \"Conniver's Kunai\"; c = 0;\r\nID = 188; n = \"Big Earner\"; c = 0;\r\nID = 189; n = \"Spy-cicle\"; c = 0;\r\nID = 190; n = \"Disguise Kit\"; c = 0;\r\nID = 191; n = \"Invis Watch\"; c = 0;\r\nID = 192; n = \"Enthusiast's Timepiece\"; c = 0;\r\nID = 193; n = \"Quäckenbirdt\"; c = 0;\r\nID = 194; n = \"Cloak and Dagger\"; c = 0;\r\nID = 195; n = \"Dead Ringer\"; c = 0;\r\nID = 196; n = \"Sapper\"; c = 0;\r\nID = 197; n = \"Ap-Sap\"; c = 0;\r\nID = 198; n = \"Snack Attack\"; c = 0;\r\nID = 199; n = \"Red-Tape Recorder\"; c = 0;\r\nID = 200; n = \"Saxxy\"; c = 0;\r\nID = 201; n = \"Frying Pan\"; c = 0;\r\nID = 202; n = \"Conscientious Objector\"; c = 0;\r\nID = 203; n = \"Freedom Staff\"; c = 0;\r\nID = 204; n = \"Bat Outta Hell\"; c = 0;\r\nID = 205; n = \"Memory Maker\"; c = 0;\r\nID = 206; n = \"Ham Shank\"; c = 0;\r\nID = 207; n = \"Necro Smasher\"; c = 0;\r\nID = 208; n = \"Crossing Guard\"; c = 0;\r\nID = 209; n = \"Prinny Machete\"; c = 0;\r\nID = 210; n = \"Golden Frying Pan\"; c = 0;\r\nID = 211; n = \"Legendary Ticket\"; c = 0;\r\nID = 212; n = \"Backpack Expander\"; c = 0;\r\n\r\ncID = 0; cn = \"Error\"; cCount = 0; \r\ncID = 1; cn = \"Half-Scrap\"; cCount = 0;\r\ncID = 2; cn = \"Scrap\"; cCount = 0;\r\ncID = 3; cn = \"Reclaimed\"; cCount = 0;\r\ncID = 4; cn = \"Refined\"; cCount = 0;\r\n\r\n====Special Items====\r\nint legendaryID;\r\nint legendslot1;\r\nint legendslot2;\r\nint legendslot3;\r\nSyntax: ID = #; n = Inventory.IDtoName(ID); c = ++; legendslot1 = legendaryID.Next(1,11);  legendslot2 = legendaryID.Next(1,11); legendslot3 = legendaryID.Next(1,11);\r\nList Begins on Line 243.";
+            
+            
+            try
+            {
+                    if (File.Exists(Savepath))
+                    {
+                        Console.WriteLine($"[{i}. (PlayerName) | Inventory [(InventoryCount)/(MaxInventory)]");
+                        
+                        SavesDiscovered = true;
+                        //writes to file
+                        //System.IO.File.WriteAllText(Savepath, "This File Exists.\n");
+                        //Inventory.InventoryLoader(); //SUPER BROKEN
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                if (SavesDiscovered == false)
+                {
+                    Console.WriteLine("There was no Save File Found, Would you like to create one? [Type 'Yes' to Confirm]");
+                    Console.WriteLine($"Current Directory: {Savepath}");
+                    string FileAuthorization = Console.ReadLine();
+                    if (FileAuthorization.ToLower() == "yes")
+                    {
+                        System.IO.File.WriteAllText(Savepath, Template);
+                    }
+                }
+            }
+            Console.WriteLine("Would you like to load a file or create a new one?");
+            Console.WriteLine("Type 'New save' to create a new save or type the save's number to load it.");
+            string SaveChoice = Console.ReadLine();
+            if (int.TryParse(SaveChoice, out int SaveInt)) 
+            {
+                //SaveFile.SaveLoad(SaveInt);
+            }
+            else if (SaveChoice.ToLower() == "new save")
+            {
+                //System.IO.File.WriteAllText(Savepath, Template);
+            }
+            else
+            {
+                Console.WriteLine("Something went wrong with the Selection, Starting without a save.");
+            }
+            //string Savepath = @"C:\Users\Public\Documents\TF2Sim\Save_01.txt";
+            /*
+            try
+            {
+                if (File.Exists(Savepath))
+                {
+                    Console.WriteLine("Save File Found!");
+                    //writes to file
+                    //System.IO.File.WriteAllText(Savepath, "This File Exists.\n");
+                    //Inventory.InventoryLoader(); //SUPER BROKEN
+                }
+                else
+                {
+                    // Create the file.
+                    Console.WriteLine("There was no Save File Found, Would you like to create one? [Type 'Yes' to Confirm]");
+                    Console.WriteLine($"Current Directory: {Savepath}");
+                    string FileAuthorization = Console.ReadLine();
+                    if (FileAuthorization.ToLower() == "yes")
+                    { 
+                        System.IO.File.WriteAllText(Savepath, "====Player Information====\r\nPlayer/Save Name: \r\nPlayer Color:\r\nGame Color:\r\nEnemy Color:\r\nInput Color:\r\n\r\n====Inventory====\r\nint ID;\r\nstring n; //Name\r\nint c; //Count\r\nint cID; //Currency\r\nstring cn; //Currency Name\r\nint cCount; //Currency Count\r\n\r\nID = 0; n = \"Error\"; c = 0;\r\nID = 1; n = \"Scattergun\"; c = 0;\r\nID = 2; n = \"Force-A-Nature\"; c = 0;\r\nID = 3; n = \"Shortstop\"; c = 0;\r\nID = 4; n = \"Soda Popper\"; c = 0;\r\nID = 5; n = \"Baby Face's Blaster\"; c = 0;\r\nID = 6; n = \"Back Scatter\"; c = 0;\r\nID = 7; n = \"Pistol\"; c = 0;\r\nID = 8; n = \"Lugermorph\"; c = 0;\r\nID = 9; n = \"C.A.P.P.E.R\"; c = 0;\r\nID = 10; n = \"Winger\"; c = 0;\r\nID = 11; n = \"Pretty Boy's Pocket Pistol\"; c = 0;\r\nID = 12; n = \"Flying Guillotine\"; c = 0;\r\nID = 13; n = \"Bonk! Atomic Punch\"; c = 0;\r\nID = 14; n = \"Crit-a-Cola\"; c = 0;\r\nID = 15; n = \"Mad Milk\"; c = 0;\r\nID = 16; n = \"Mutated Milk\"; c = 0;\r\nID = 17; n = \"Bat\"; c = 0;\r\nID = 18; n = \"Holy Mackerel\"; c = 0;\r\nID = 19; n = \"Unarmed Combat\"; c = 0;\r\nID = 20; n = \"Batsaber\"; c = 0;\r\nID = 21; n = \"Sandman\"; c = 0;\r\nID = 22; n = \"Candy Cane\"; c = 0;\r\nID = 23; n = \"Boston Basher\"; c = 0;\r\nID = 24; n = \"Three-Rune Blade\"; c = 0;\r\nID = 25; n = \"Sun-on-a-Stick\"; c = 0;\r\nID = 26; n = \"Fan O'War\"; c = 0;\r\nID = 27; n = \"Atomizer\"; c = 0;\r\nID = 28; n = \"Wrap Assassin\"; c = 0;\r\nID = 29; n = \"Rocket Launcher\"; c = 0;\r\nID = 30; n = \"Original\"; c = 0;\r\nID = 31; n = \"Direct Hit\"; c = 0;\r\nID = 32; n = \"Black Box\"; c = 0;\r\nID = 33; n = \"Rocket Jumper\"; c = 0;\r\nID = 34; n = \"Liberty Launcher\"; c = 0;\r\nID = 35; n = \"Cow Mangler 5000\"; c = 0;\r\nID = 36; n = \"Beggar's Bazooka\"; c = 0;\r\nID = 37; n = \"Air Strike\"; c = 0;\r\nID = 38; n = \"Shotgun\"; c = 0;\r\nID = 39; n = \"Reserve Shooter\"; c = 0;\r\nID = 40; n = \"Buff Banner\"; c = 0;\r\nID = 41; n = \"Gunboats\"; c = 0;\r\nID = 42; n = \"Battalion's Backup\"; c = 0;\r\nID = 43; n = \"Concheror\"; c = 0;\r\nID = 44; n = \"Mantreads\"; c = 0;\r\nID = 45; n = \"Righteous Bison\"; c = 0;\r\nID = 46; n = \"B.A.S.E. Jumper\"; c = 0;\r\nID = 47; n = \"Panic Attack\"; c = 0;\r\nID = 48; n = \"Shovel\"; c = 0;\r\nID = 49; n = \"Equalizer\"; c = 0;\r\nID = 50; n = \"Pain Train\"; c = 0;\r\nID = 51; n = \"Half-Zatoichi\"; c = 0;\r\nID = 52; n = \"Disciplinary Action\"; c = 0;\r\nID = 53; n = \"Market Gardener\"; c = 0;\r\nID = 54; n = \"Escape Plan\"; c = 0;\r\nID = 55; n = \"Flame Thrower\"; c = 0;\r\nID = 56; n = \"Rainblower\"; c = 0;\r\nID = 57; n = \"Nostromo Napalmer\"; c = 0;\r\nID = 58; n = \"Backburner\"; c = 0;\r\nID = 59; n = \"Degreaser\"; c = 0;\r\nID = 60; n = \"Phlogistinator\"; c = 0;\r\nID = 61; n = \"Dragon's Fury\"; c = 0;\r\nID = 62; n = \"Flare Gun\"; c = 0;\r\nID = 63; n = \"Detonator\"; c = 0;\r\nID = 64; n = \"Manmelter\"; c = 0;\r\nID = 65; n = \"Scorch Shot\"; c = 0;\r\nID = 66; n = \"Thermal Thruster\"; c = 0;\r\nID = 67; n = \"Gas Passer\"; c = 0;\r\nID = 68; n = \"Fire Axe\"; c = 0;\r\nID = 69; n = \"Lollichop\"; c = 0;\r\nID = 70; n = \"Axtinguisher\"; c = 0;\r\nID = 71; n = \"Postal Pummeler\"; c = 0;\r\nID = 72; n = \"Homewrecker\"; c = 0;\r\nID = 73; n = \"Maul\"; c = 0;\r\nID = 74; n = \"Powerjack\"; c = 0;\r\nID = 75; n = \"Back Scratcher\"; c = 0;\r\nID = 76; n = \"Sharpened Volcano Fragment\"; c = 0;\r\nID = 77; n = \"Third Degree\"; c = 0;\r\nID = 78; n = \"Neon Annihilator\"; c = 0;\r\nID = 79; n = \"Hot Hand\"; c = 0;\r\nID = 80; n = \"Grenade Launcher\"; c = 0;\r\nID = 81; n = \"Loch-n-Load\"; c = 0;\r\nID = 82; n = \"Ali Baba's Wee Booties\"; c = 0;\r\nID = 83; n = \"Bootlegger\"; c = 0;\r\nID = 84; n = \"Loose Cannon\"; c = 0;\r\nID = 85; n = \"Iron Bomber\"; c = 0;\r\nID = 86; n = \"Stickybomb Launcher\"; c = 0;\r\nID = 87; n = \"Scottish Resistance\"; c = 0;\r\nID = 88; n = \"Chargin' Targe\"; c = 0;\r\nID = 89; n = \"Sticky Jumper\"; c = 0;\r\nID = 90; n = \"Splendid Screen\"; c = 0;\r\nID = 91; n = \"Tide Turner\"; c = 0;\r\nID = 92; n = \"Quickiebomb Launcher\"; c = 0;\r\nID = 93; n = \"Bottle\"; c = 0;\r\nID = 94; n = \"Scottish Handshake\"; c = 0;\r\nID = 95; n = \"Eyelander\"; c = 0;\r\nID = 96; n = \"Horseless Headless Horsemann's Headtaker\"; c = 0;\r\nID = 97; n = \"Nessie's Nine Iron\"; c = 0;\r\nID = 98; n = \"Scotsman's Skullcutter\"; c = 0;\r\nID = 99; n = \"Pain Train\"; c = 0;\r\nID = 100; n = \"Ullapool Caber\"; c = 0;\r\nID = 101; n = \"Claidheamh Mòr\"; c = 0;\r\nID = 102; n = \"Half-Zatoichi\"; c = 0;\r\nID = 103; n = \"Persian Persuader\"; c = 0;\r\nID = 104; n = \"Minigun\"; c = 0;\r\nID = 105; n = \"Iron Curtain\"; c = 0;\r\nID = 106; n = \"Natascha\"; c = 0;\r\nID = 107; n = \"Brass Beast\"; c = 0;\r\nID = 108; n = \"Tomislav\"; c = 0;\r\nID = 109; n = \"Huo-Long Heater\"; c = 0;\r\nID = 110; n = \"Family Business\"; c = 0;\r\nID = 111; n = \"Sandvich\"; c = 0;\r\nID = 112; n = \"Robo-Sandvich\"; c = 0;\r\nID = 113; n = \"Dalokohs Bar\"; c = 0;\r\nID = 114; n = \"Fishcake\"; c = 0;\r\nID = 115; n = \"Buffalo Steak Sandvich\"; c = 0;\r\nID = 116; n = \"Panic Attack\"; c = 0;\r\nID = 117; n = \"Second Banana\"; c = 0;\r\nID = 118; n = \"Fists\"; c = 0;\r\nID = 119; n = \"Apoco-Fists\"; c = 0;\r\nID = 120; n = \"Killing Gloves of Boxing\"; c = 0;\r\nID = 121; n = \"Gloves of Running Urgently\"; c = 0;\r\nID = 122; n = \"Bread Bite\"; c = 0;\r\nID = 123; n = \"Warrior's Spirit\"; c = 0;\r\nID = 124; n = \"Fists of Steel\"; c = 0;\r\nID = 125; n = \"Eviction Notice\"; c = 0;\r\nID = 126; n = \"Holiday Punch\"; c = 0;\r\nID = 127; n = \"Frontier Justice\"; c = 0;\r\nID = 128; n = \"Widowmaker\"; c = 0;\r\nID = 129; n = \"Pomson 6000\"; c = 0;\r\nID = 130; n = \"Rescue Ranger\"; c = 0;\r\nID = 131; n = \"Wrangler\"; c = 0;\r\nID = 132; n = \"Giger Counter\"; c = 0;\r\nID = 133; n = \"Short Circuit\"; c = 0;\r\nID = 134; n = \"Wrench\"; c = 0;\r\nID = 135; n = \"Golden Wrench\"; c = 0;\r\nID = 136; n = \"Gunslinger\"; c = 0;\r\nID = 137; n = \"Southern Hospitality\"; c = 0;\r\nID = 138; n = \"Jag\"; c = 0;\r\nID = 139; n = \"Eureka Effect\"; c = 0;\r\nID = 140; n = \"Consturction PDA\"; c = 0;\r\nID = 141; n = \"Destruction PDA\"; c = 0;\r\nID = 142; n = \"Syringe Gun\"; c = 0;\r\nID = 143; n = \"Blutsauger\"; c = 0;\r\nID = 144; n = \"Crusader's Crossbow\"; c = 0;\r\nID = 145; n = \"Overdose\"; c = 0;\r\nID = 146; n = \"Medi Gun\"; c = 0;\r\nID = 147; n = \"Kritzkrieg\"; c = 0;\r\nID = 148; n = \"Quick-Fix\"; c = 0;\r\nID = 149; n = \"Vaccinator\"; c = 0;\r\nID = 150; n = \"Bonesaw\"; c = 0;\r\nID = 151; n = \"Übersaw\"; c = 0;\r\nID = 152; n = \"Vita-Saw\"; c = 0;\r\nID = 153; n = \"Amputator\"; c = 0;\r\nID = 154; n = \"Solemn Vow\"; c = 0;\r\nID = 155; n = \"Sniper Rifle\"; c = 0;\r\nID = 156; n = \"AWPer Hand\"; c = 0;\r\nID = 157; n = \"Huntsman\"; c = 0;\r\nID = 158; n = \"Fortified Compound\"; c = 0;\r\nID = 159; n = \"Sydney Sleeper\"; c = 0;\r\nID = 160; n = \"Bazaar Bargain\"; c = 0;\r\nID = 161; n = \"Machina\"; c = 0;\r\nID = 162; n = \"Shooting Star\"; c = 0;\r\nID = 163; n = \"Hitman's Heatmaker\"; c = 0;\r\nID = 164; n = \"Classic\"; c = 0;\r\nID = 165; n = \"SMG\"; c = 0;\r\nID = 166; n = \"Cleaner's Carbine\"; c = 0;\r\nID = 167; n = \"Jarate\"; c = 0;\r\nID = 168; n = \"Self-Aware Beauty Mark\"; c = 0;\r\nID = 169; n = \"Razorback\"; c = 0;\r\nID = 170; n = \"Darwin's Danger Shield\"; c = 0;\r\nID = 171; n = \"Cozy Camper\"; c = 0;\r\nID = 172; n = \"Kukri\"; c = 0;\r\nID = 173; n = \"Tribalman's Shiv\"; c = 0;\r\nID = 174; n = \"Bushwacka\"; c = 0;\r\nID = 175; n = \"Shahanshah\"; c = 0;\r\nID = 176; n = \"Revolver\"; c = 0;\r\nID = 177; n = \"Big Kill\"; c = 0;\r\nID = 178; n = \"Ambassador\"; c = 0;\r\nID = 179; n = \"L'Etranger\"; c = 0;\r\nID = 180; n = \"Enforcer\"; c = 0;\r\nID = 181; n = \"Diamondback\"; c = 0;\r\nID = 182; n = \"Knife\"; c = 0;\r\nID = 183; n = \"Sharp Dresser\"; c = 0;\r\nID = 184; n = \"Black Rose\"; c = 0;\r\nID = 185; n = \"Your Eternal Reward\"; c = 0;\r\nID = 186; n = \"Wanga Prick\"; c = 0;\r\nID = 187; n = \"Conniver's Kunai\"; c = 0;\r\nID = 188; n = \"Big Earner\"; c = 0;\r\nID = 189; n = \"Spy-cicle\"; c = 0;\r\nID = 190; n = \"Disguise Kit\"; c = 0;\r\nID = 191; n = \"Invis Watch\"; c = 0;\r\nID = 192; n = \"Enthusiast's Timepiece\"; c = 0;\r\nID = 193; n = \"Quäckenbirdt\"; c = 0;\r\nID = 194; n = \"Cloak and Dagger\"; c = 0;\r\nID = 195; n = \"Dead Ringer\"; c = 0;\r\nID = 196; n = \"Sapper\"; c = 0;\r\nID = 197; n = \"Ap-Sap\"; c = 0;\r\nID = 198; n = \"Snack Attack\"; c = 0;\r\nID = 199; n = \"Red-Tape Recorder\"; c = 0;\r\nID = 200; n = \"Saxxy\"; c = 0;\r\nID = 201; n = \"Frying Pan\"; c = 0;\r\nID = 202; n = \"Conscientious Objector\"; c = 0;\r\nID = 203; n = \"Freedom Staff\"; c = 0;\r\nID = 204; n = \"Bat Outta Hell\"; c = 0;\r\nID = 205; n = \"Memory Maker\"; c = 0;\r\nID = 206; n = \"Ham Shank\"; c = 0;\r\nID = 207; n = \"Necro Smasher\"; c = 0;\r\nID = 208; n = \"Crossing Guard\"; c = 0;\r\nID = 209; n = \"Prinny Machete\"; c = 0;\r\nID = 210; n = \"Golden Frying Pan\"; c = 0;\r\nID = 211; n = \"Legendary Ticket\"; c = 0;\r\nID = 212; n = \"Backpack Expander\"; c = 0;\r\n\r\ncID = 0; cn = \"Error\"; cCount = 0; \r\ncID = 1; cn = \"Half-Scrap\"; cCount = 0;\r\ncID = 2; cn = \"Scrap\"; cCount = 0;\r\ncID = 3; cn = \"Reclaimed\"; cCount = 0;\r\ncID = 4; cn = \"Refined\"; cCount = 0;\r\n\r\n====Special Items====\r\nint legendaryID;\r\nint legendslot1;\r\nint legendslot2;\r\nint legendslot3;\r\nSyntax: ID = #; n = Inventory.IDtoName(ID); c = ++; legendslot1 = legendaryID.Next(1,11);  legendslot2 = legendaryID.Next(1,11); legendslot3 = legendaryID.Next(1,11);\r\nList Begins on Line 243.");
+                    }
+
+                }
+                // Open the stream and read it back.
+                using (StreamReader sr = File.OpenText(Savepath))
+                {
+                    string s = "";
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(s);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            */
+            Console.WriteLine("Waiting.....");
+            Thread.Sleep(6000);
+            Console.Clear();
             Console.Write("What is your Name: ");
             string PlayerName = Console.ReadLine();
             string EnemyPrefix = "Enemy";
@@ -134,6 +227,26 @@ namespace TF2_Simulator
             string HeaderLong = "┌────────────────────────────────────────────────┬────────────────────────────────────────────────┐";
             string FooterLong = "└────────────────────────────────────────────────┴────────────────────────────────────────────────┘";
             #endregion
+            #region PlayerStats V2
+            //Information
+            int P1_Health = 0;
+            string P1_MaxHP = "Not Set";
+            int P1_ClassID = 0;
+            int P1_PrimaryWeaponID = 0;
+            int P1_SecondaryWeaponID = 0;
+            int P1_MeleeWeaponID = 0;
+            //Status
+            int P1_Cooldown = 0;
+            int P1_StatusEffect_1_ID;
+            int P1_StatusEffect_2_ID;
+            int P1_StatusEffect_3_ID;
+            //Value Holders
+            int P1_PrimaryDamage = 0;
+            int P1_SecondaryDamage = 0;
+            int P1_MeleeDamage = 0;
+
+
+            #endregion
             #region Player Stats
             int PlayerHP = 0;
             string PlayerMaxHP = "Not Set";
@@ -204,6 +317,7 @@ namespace TF2_Simulator
                 Console.WriteLine("  11. Clear Color(s)");
                 Console.WriteLine("  12. Set Game Colors");
                 Console.WriteLine("  13. Set Enemy Prefix");
+                Console.WriteLine("  14. Test Loadouts");
                 Console.WriteLine(FooterShort);
                 //Console.WriteLine("=========================");
                 Console.WriteLine();
@@ -218,6 +332,7 @@ namespace TF2_Simulator
                     Color_Player = ConsoleColor.White;
                     Color_Game = ConsoleColor.White;
                     Color_Enemy = ConsoleColor.White;
+                    Color_Input = ConsoleColor.White;
                     Console.WriteLine("Color Cleared.");
                     Thread.Sleep(1000);
                     InputOK = false;
@@ -439,6 +554,18 @@ namespace TF2_Simulator
                         Console.WriteLine($"Prefix Changed to: {EnemyPrefix}");
                     }
                 }
+                if (UserInput == "14")
+                {
+                    Console.WriteLine("Select a Class to Preview a Loadout");
+                    Console.Write("Class: ");
+                    string classchoice = Console.ReadLine();
+                    if (int.TryParse(classchoice, out int ClassID))
+                    {
+                        P1_ClassID = ClassID;
+                        Console.WriteLine(PrimaryWeapons.Name(ClassID));
+                        Thread.Sleep(5000);
+                    }
+                }
 
                 #endregion
                 #region Help Menu
@@ -582,7 +709,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Scout Selected");
                     PlayerHP = 125;
                     PlayerClass = Scout.ScoutName();
@@ -614,7 +741,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Soldier Selected");
                     PlayerHP = 200;
                     PlayerClass = Soldier.SoldierName();
@@ -647,7 +774,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Pyro Selected");
                     PlayerHP = 175;
                     PlayerClass = Pyro.PyroName();
@@ -678,7 +805,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;                    
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Demoman Selected");
                     PlayerHP = 175;
                     PlayerClass = Demoman.DemomanName();
@@ -712,7 +839,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Heavy Selected");
                     PlayerHP = 300;
                     PlayerClass = Heavy.HeavyName();
@@ -743,7 +870,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Engineer Selected");
                     PlayerHP = 125;
                     PlayerClass = Engineer.EngineerName();
@@ -776,7 +903,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Medic Selected");
                     PlayerHP = 150;
                     PlayerClass = Medic.MedicName();
@@ -807,7 +934,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Sniper Selected");
                     PlayerHP = 125;
                     PlayerClass = Sniper.SniperName();
@@ -1631,7 +1758,74 @@ namespace TF2_Simulator
                         }
                     }
                 }
-
+                else if (UserInput.ToLower() == "minicrit test")
+                {
+                    // Test Results: Mini-Crits [+35%] work. Mostly. It will Always round down to the Nearest Whole Number.
+                    // This test worked first try so I am not going to be picky.
+                    // Crits also work. [x3]
+                    // Code: DAMAGE = DAMAGE + (35 * DAMAGE / 100) || Damage[33] == Damage[33] + (35 * [33] / 100) = Damage[44.5] --> Damage[44]
+                    Console.Clear();
+                    string CritInput = Console.ReadLine();
+                    while (CritInput.ToLower() != "quit")
+                    {
+                        for (int g = 0; g < 5; g++)
+                        {
+                            Random damage = new Random();
+                            int Totaldamage = 0;
+                            int BulletsFired = damage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                            for (int i = 0; i < BulletsFired; i++)
+                            { Totaldamage = Totaldamage + damage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                            Console.WriteLine($"Normal Attack: {Totaldamage}");
+                        }
+                        Console.WriteLine("Type 'Mini-Crits' to add Mini-Crits, 'Crits' for Crits, or anything else to restart this loop.");
+                        CritInput = Console.ReadLine();
+                        if (CritInput.ToLower() == "crits")
+                        {
+                            for (int g = 0; g < 5; g++)
+                            {
+                                Random damage = new Random();
+                                int Totaldamage = 0;
+                                int BulletsFired = damage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                                for (int i = 0; i < BulletsFired; i++)
+                                { Totaldamage = Totaldamage + damage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                                Console.WriteLine($"Normal Attack: {Totaldamage}");
+                                Totaldamage = Totaldamage * 3;
+                                Console.WriteLine($"Crit Attack [x3]: {Totaldamage}");
+                            }
+                        }
+                        if (CritInput.ToLower() == "mini-crits")
+                        {
+                            for (int g = 0; g < 5; g++)
+                            {
+                                Random damage = new Random();
+                                int Totaldamage = 0;
+                                int BulletsFired = damage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                                for (int i = 0; i < BulletsFired; i++)
+                                { Totaldamage = Totaldamage + damage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                                Console.WriteLine($"Attack before Minicrits: {Totaldamage} ");
+                                Totaldamage = Totaldamage + (35 * Totaldamage / 100);
+                                Console.WriteLine($"Attack after adding Mini-Crits [+35%] {Totaldamage}");
+                            }
+                        }
+                    }
+                }
+                else if (UserInput.ToLower() == "airstrike")
+                {
+                    //This thing is stupidly overpowered. good thing this is a random drop.
+                    Random ran = new Random();
+                    int damage = 0;
+                    int Special = 0;
+                    string airstikeinput = Console.ReadLine();
+                    while (airstikeinput.ToLower() != "quit")
+                    {
+                        Special++;
+                        for (int i = 0; i < Special; i++)
+                        {
+                            damage = damage + ran.Next(12, 22);
+                        }
+                        Console.WriteLine(damage);
+                    }
+                }
                 #endregion
                 #region MainMenu Reset
                 else
