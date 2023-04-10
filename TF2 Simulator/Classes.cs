@@ -32,10 +32,10 @@ namespace TF2_Simulator
             if (ID == 3) Health = 175;
             if (ID == 4) Health = 175;
             if (ID == 5) Health = 300;
-            if (ID == 6) Health = 0;
-            if (ID == 7) Health = 0;
-            if (ID == 8) Health = 0;
-            if (ID == 9) Health = 0;
+            if (ID == 6) Health = 125;
+            if (ID == 7) Health = 150;
+            if (ID == 8) Health = 125;
+            if (ID == 9) Health = 125;
             if (ID >= 10) Health = 0;
             return Health;
         }

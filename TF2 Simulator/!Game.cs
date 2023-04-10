@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Xml.Schema;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TF2_Simulator
 {
@@ -57,7 +58,7 @@ namespace TF2_Simulator
             string SaveChoice = Console.ReadLine();
             if (int.TryParse(SaveChoice, out int SaveInt)) 
             {
-                SaveFile.SaveLoad(SaveInt);
+                //SaveFile.SaveLoad(SaveInt);
             }
             else
             {
@@ -310,6 +311,7 @@ namespace TF2_Simulator
                     Color_Player = ConsoleColor.White;
                     Color_Game = ConsoleColor.White;
                     Color_Enemy = ConsoleColor.White;
+                    Color_Input = ConsoleColor.White;
                     Console.WriteLine("Color Cleared.");
                     Thread.Sleep(1000);
                     InputOK = false;
@@ -674,7 +676,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Scout Selected");
                     PlayerHP = 125;
                     PlayerClass = Scout.ScoutName();
@@ -706,7 +708,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Soldier Selected");
                     PlayerHP = 200;
                     PlayerClass = Soldier.SoldierName();
@@ -739,7 +741,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Pyro Selected");
                     PlayerHP = 175;
                     PlayerClass = Pyro.PyroName();
@@ -770,7 +772,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;                    
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Demoman Selected");
                     PlayerHP = 175;
                     PlayerClass = Demoman.DemomanName();
@@ -804,7 +806,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Heavy Selected");
                     PlayerHP = 300;
                     PlayerClass = Heavy.HeavyName();
@@ -835,7 +837,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Engineer Selected");
                     PlayerHP = 125;
                     PlayerClass = Engineer.EngineerName();
@@ -868,7 +870,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Medic Selected");
                     PlayerHP = 150;
                     PlayerClass = Medic.MedicName();
@@ -899,7 +901,7 @@ namespace TF2_Simulator
                 {
                     Console.Clear();
                     Console.ResetColor();
-                    Console.ForegroundColor= Color_Game;
+                    Console.ForegroundColor = Color_Game;
                     Console.WriteLine("Sniper Selected");
                     PlayerHP = 125;
                     PlayerClass = Sniper.SniperName();
@@ -1723,7 +1725,74 @@ namespace TF2_Simulator
                         }
                     }
                 }
-
+                else if (UserInput.ToLower() == "minicrit test")
+                {
+                    // Test Results: Mini-Crits [+35%] work. Mostly. It will Always round down to the Nearest Whole Number.
+                    // This test worked first try so I am not going to be picky.
+                    // Crits also work. [x3]
+                    // Code: DAMAGE = DAMAGE + (35 * DAMAGE / 100) || Damage[33] == Damage[33] + (35 * [33] / 100) = Damage[44.5] --> Damage[44]
+                    Console.Clear();
+                    string CritInput = Console.ReadLine();
+                    while (CritInput.ToLower() != "quit")
+                    {
+                        for (int g = 0; g < 5; g++)
+                        {
+                            Random damage = new Random();
+                            int Totaldamage = 0;
+                            int BulletsFired = damage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                            for (int i = 0; i < BulletsFired; i++)
+                            { Totaldamage = Totaldamage + damage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                            Console.WriteLine($"Normal Attack: {Totaldamage}");
+                        }
+                        Console.WriteLine("Type 'Mini-Crits' to add Mini-Crits, 'Crits' for Crits, or anything else to restart this loop.");
+                        CritInput = Console.ReadLine();
+                        if (CritInput.ToLower() == "crits")
+                        {
+                            for (int g = 0; g < 5; g++)
+                            {
+                                Random damage = new Random();
+                                int Totaldamage = 0;
+                                int BulletsFired = damage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                                for (int i = 0; i < BulletsFired; i++)
+                                { Totaldamage = Totaldamage + damage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                                Console.WriteLine($"Normal Attack: {Totaldamage}");
+                                Totaldamage = Totaldamage * 3;
+                                Console.WriteLine($"Crit Attack [x3]: {Totaldamage}");
+                            }
+                        }
+                        if (CritInput.ToLower() == "mini-crits")
+                        {
+                            for (int g = 0; g < 5; g++)
+                            {
+                                Random damage = new Random();
+                                int Totaldamage = 0;
+                                int BulletsFired = damage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                                for (int i = 0; i < BulletsFired; i++)
+                                { Totaldamage = Totaldamage + damage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                                Console.WriteLine($"Attack before Minicrits: {Totaldamage} ");
+                                Totaldamage = Totaldamage + (35 * Totaldamage / 100);
+                                Console.WriteLine($"Attack after adding Mini-Crits [+35%] {Totaldamage}");
+                            }
+                        }
+                    }
+                }
+                else if (UserInput.ToLower() == "airstrike")
+                {
+                    //This thing is stupidly overpowered. good thing this is a random drop.
+                    Random ran = new Random();
+                    int damage = 0;
+                    int Special = 0;
+                    string airstikeinput = Console.ReadLine();
+                    while (airstikeinput.ToLower() != "quit")
+                    {
+                        Special++;
+                        for (int i = 0; i < Special; i++)
+                        {
+                            damage = damage + ran.Next(12, 22);
+                        }
+                        Console.WriteLine(damage);
+                    }
+                }
                 #endregion
                 #region MainMenu Reset
                 else
