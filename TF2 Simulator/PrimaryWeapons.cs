@@ -22,7 +22,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(0, 0); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(0, 0); } // creates a number between 6 & 12 [Damage]
+                { Totaldamage = Totaldamage + randomdamage.Next(0, 0); } // creates a number between   [Damage]
                 return Totaldamage;
             */
 
@@ -33,7 +33,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
                 return Totaldamage;
             }
 
@@ -43,7 +43,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(3, 8); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(4, 10); } // creates a number between 6 & 12 [Damage]
+                { Totaldamage = Totaldamage + randomdamage.Next(4, 10); } // creates a number between   [Damage]
                 return Totaldamage;
             }
 
@@ -53,7 +53,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(1, 5); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(12, 19); } // creates a number between 6 & 12 [Damage]
+                { Totaldamage = Totaldamage + randomdamage.Next(12, 19); } // creates a number between   [Damage]
                 return Totaldamage;
             }
 
@@ -63,7 +63,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(2, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(5, 11); } // creates a number between 6 & 12 [Damage]
+                { Totaldamage = Totaldamage + randomdamage.Next(5, 11); } // creates a number between   [Damage]
                 return Totaldamage;
             }
 
@@ -73,7 +73,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(1, BabyFaceBuildup); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(0, 0); } // creates a number between 6 & 12 [Damage]
+                { Totaldamage = Totaldamage + randomdamage.Next(0, 0); } // creates a number between   [Damage]
                 BabyFaceBuildup =+ randomdamage.Next(0, 5); //This is going to be very weird and can probably be abused by ALL Scouts holding this weapon at once.
                 //May add a Max cap for pellets later. Nerfing Damage for now.
                 return Totaldamage;
@@ -85,7 +85,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
                 Special = randomdamage.Next(1, 11); // 1-10, Trips weapon Special if RareUse == 1 or 2,
                 if (Special <= 2) { Totaldamage = Totaldamage + (35 * Totaldamage / 100); } // 20% Chance for Mini-Crits
                 return Totaldamage;
@@ -189,7 +189,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between 6 & 12 [Damage]
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
                 return Totaldamage;
             }
             #endregion
