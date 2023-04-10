@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace TF2_Simulator
 {
     internal class PrimaryWeapons
     {
-        public static int PrimaryWeapon(int ClassID, int WeaponID, int PlayerCooldown, bool SecondaryTrigger)
+        public static int Attack(int ClassID, int WeaponID, int PlayerCooldown, bool SecondaryTrigger)
         {
             var randomdamage = new Random();
             int Totaldamage = 0;
@@ -175,7 +176,14 @@ namespace TF2_Simulator
             #endregion
             return 0;
         }
-
+        public static string Name(int ClassID)
+        {
+            if (ClassID == 1)
+            {
+                return "Scattergun -- ID 1\r\nForce-A-Nature -- ID 2\r\nShortstop -- ID 3\r\nSoda Popper -- ID 4\r\nBaby Face's Blaster -- ID 5\r\nBack Scatter -- ID 5";
+            }
+            return "Error";
+        }
              
 
 
