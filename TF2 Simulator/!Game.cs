@@ -881,7 +881,7 @@ namespace TF2_Simulator
                     Console.WriteLine("-- Stickybomb Test");
                     Console.WriteLine("-- Sniper Test");
                     Console.WriteLine("-- Design //Sniper Test, *but cooler*");
-                    Console.WriteLine("-- Close //Easily the greatest cheat / secret of all");
+                    Console.WriteLine("-- Close //Easily the greatest cheat & secret of all");
                 }
                 else if (UserInput.ToLower() == "no")
                 {
