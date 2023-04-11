@@ -741,7 +741,7 @@ namespace TF2_Simulator
                             Console.WriteLine(Header);
                             Console.WriteLine($"Select your Loadout!");
                             Console.WriteLine($"1.  Primary Weapon: {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}");
-                            Console.WriteLine($"2.  Secondary Weapon: {P1_SecondaryWeaponID}"); //SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)
+                            Console.WriteLine($"2.  Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}");
                             Console.WriteLine($"3.  Melee Weapon: {P1_MeleeWeaponID}"); //MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)
                             Console.WriteLine(Footer);
                             Console.Write($"Choice: "); Console.ForegroundColor = Color_Input;
@@ -766,7 +766,24 @@ namespace TF2_Simulator
                                 Thread.Sleep(1500);
                                 Selecting_Loadout = true;
                             }
-
+                            if (LoadoutChoice == "2")
+                            {
+                                //Console.Clear();
+                                Console.ResetColor();
+                                Console.ForegroundColor = Color_Game;
+                                Console.WriteLine(Header);
+                                Console.WriteLine($"  === Class: {P1_ClassName}");
+                                Console.WriteLine($"  === Selecting Secondary Weapon");
+                                Console.WriteLine(SecondaryWeapons.Names(P1_ClassID));
+                                Console.WriteLine(Footer);
+                                Console.Write("Weapon ID: ");
+                                string SecondarySelecion = Console.ReadLine();
+                                if (int.TryParse(SecondarySelecion, out int SecondaryID)) { P1_SecondaryWeaponID = SecondaryID; }
+                                Console.WriteLine($"Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}");
+                                Console.WriteLine($"Attack: {SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTrigger)}");
+                                Thread.Sleep(1500);
+                                Selecting_Loadout = true;
+                            }
 
                             else
                             {

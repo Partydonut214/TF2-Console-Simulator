@@ -17,27 +17,44 @@ namespace TF2_Simulator
 
             //Continue Here ↓
             #region Scout
-            
+            //|| ClassID == 6 // Shared Weapons will have to be copy and pasted. or the player can access all classe's weapons and weapons from other slots.
+            if (ClassID == 1 && WeaponID == 7)
+            {
+                // Pistol - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Soldier
-            
+
             #endregion
-           
+
             #region Pyro
-            
+
             #endregion
 
             #region Demoman
-            
+
             #endregion
 
             #region Heavy
-            
-            #endregion
-            
-            #region Engineer
 
+            #endregion
+
+            #region Engineer
+            if (ClassID == 1 && WeaponID == 7)
+            {
+                // Pistol - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Medic
@@ -58,7 +75,7 @@ namespace TF2_Simulator
         {
             if (ClassID == 1)
             {
-                return "  ID 1 == Scattergun\r\n  ID 2 == Force-A-Nature\r\n  ID 3 == Shortstop\r\n  ID 4 == Soda Popper\r\n  ID 5 == Baby Face's Blaster\r\n  ID 6 == Back Scatter";
+                return "  ID 7 == Pistol\r\n  ID 8 == Lugermorph\r\n  ID 9 == C.A.P.P.E.R\r\n  ID 10 == Winger\r\n  ID 11 == Pretty Boy's Pocket Pistol\r\n  ID 12 == Flying Guillotine\r\n  ID 13 == Bonk! Atomic Punch\r\n  ID 14 == Crit-a-Cola\r\n  ID 15 == Mad Milk\r\n  ID 16 == Mutated Milk";
             }
             if (ClassID == 2)
             {
@@ -78,7 +95,7 @@ namespace TF2_Simulator
             }
             if (ClassID == 6)
             {
-                return "  ID 127 == Frontier Justice\r\n  ID 128 == Widowmaker\r\n  ID 129 == Pomson 6000\r\n  ID 130 == Rescue Ranger";
+                return "  ID 7 == Pistol\r\n";
             }
             if (ClassID == 7)
             {
