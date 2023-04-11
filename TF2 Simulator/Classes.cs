@@ -23,6 +23,20 @@ namespace TF2_Simulator
             if (ID >= 10) return "None";
             return "None";
         }
+        public static string ConditionsfromID(int ID)
+        {
+            if (ID <= 0) return "None";
+            if (ID == 1) return "Burning";
+            if (ID == 2) return "Jarate-ed";
+            if (ID == 3) return "Mad-Milked";
+            if (ID == 4) return "+20 DMG Resist";
+            if (ID == 5) return "+20 DMG Taken";
+            if (ID == 6) return "Mini-Crit Boost";
+            if (ID == 7) return "Crit Boost";
+            if (ID == 8) return "GasCan";
+            if (ID == 9) return "Wet";
+            return "None";
+        }
         public static int ClassHealthfromID(int ID)
         {
             int Health = 0;
@@ -39,6 +53,5 @@ namespace TF2_Simulator
             if (ID >= 10) Health = 0;
             return Health;
         }
-        //public static string ClassWeaponCompatible(int ID);
     }
 }
