@@ -27,14 +27,84 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
                 return Totaldamage;
             }
+            if (ClassID == 1 && WeaponID == 8)
+            {
+                // Lugermorph - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 9)
+            {
+                // C.A.P.P.E.R - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Soldier
-
+            if (ClassID == 2 && WeaponID == 38)
+            {
+                // Shotgun - 4-6 x 1-11 [4-66]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 12); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(4, 7); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 2 && WeaponID == 47)
+            {
+                // Panic Attack - 3-5 x 2-17 [6-85]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 18); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(3, 6); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 2 && WeaponID == 39)
+            {
+                // Reserve Shooter - 7-10 x 2-6 [14-60] //More min Base Damage, but less Max Damage.
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(7, 11); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Pyro
-
+            if (ClassID == 3 && WeaponID == 38)
+            {
+                // Shotgun - 4-6 x 1-11 [4-66]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 12); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(4, 7); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 47)
+            {
+                // Panic Attack - 3-5 x 2-17 [6-85]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 18); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(3, 6); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 39)
+            {
+                // Reserve Shooter - 7-10 x 2-6 [14-60] //More min Base Damage, but less Max Damage.
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(7, 11); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Demoman
@@ -42,13 +112,48 @@ namespace TF2_Simulator
             #endregion
 
             #region Heavy
-
+            if (ClassID == 5 && WeaponID == 38)
+            {
+                // Shotgun - 4-6 x 1-11 [4-66]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 12); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(4, 7); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 47)
+            {
+                // Panic Attack - 3-5 x 2-17 [6-85]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 18); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(3, 6); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Engineer
-            if (ClassID == 1 && WeaponID == 7)
+            if (ClassID == 6 && WeaponID == 7)
             {
                 // Pistol - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 8)
+            {
+                // Lugermorph - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 9)
+            {
+                // C.A.P.P.E.R - 6-9 x 1-6 [6-54]
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
@@ -79,11 +184,11 @@ namespace TF2_Simulator
             }
             if (ClassID == 2)
             {
-                return "  ID 29 == Rocket Launcher\r\n  ID 30 == Original\r\n  ID 31 == Direct Hit\r\n  ID 32 == Black Box\r\n  ID 33 == Rocket Jumper\r\n  ID 34 == Liberty Launcher\r\n  ID 35 == Cow Mangler 5000\r\n  ID 36 == Beggar's Bazooka\r\n  ID 37 == Air Strike";
+                return "  ID 38 == Shotgun\r\n  ID 39 == Reserve Shooter\r\n  ID 47 == Panic Attack";
             }
             if (ClassID == 3)
             {
-                return "  ID 55 == Flame Thrower\r\n  ID 56 == Rainblower\r\n  ID 57 == Nostromo Napalmer\r\n  ID 58 == Backburner\r\n  ID 59 == Degreaser\r\n  ID 60 == Phlogistinator\r\n  ID 61 == Dragon's Fury";
+                return "  ID 38 == Shotgun\r\n  ID 39 == Reserve Shooter\r\n  ID 47 == Panic Attack";
             }
             if (ClassID == 4)
             {
@@ -91,11 +196,11 @@ namespace TF2_Simulator
             }
             if (ClassID == 5)
             {
-                return "  ID 104 == Minigun\r\n  ID 105 == Iron Curtain\r\n  ID 106 == Natascha\r\n  ID 107 == Brass Beast\r\n  ID 108 == Tomislav\r\n  ID 109 == Huo-Long Heater";
+                return "  ID 38 == Shotgun\r\n  ID 47 == Panic Attack";
             }
             if (ClassID == 6)
             {
-                return "  ID 7 == Pistol\r\n";
+                return "  ID 7 == Pistol\r\n  ID 8 == Lugermorph\r\n  ID 9 == C.A.P.P.E.R\r\n";
             }
             if (ClassID == 7)
             {

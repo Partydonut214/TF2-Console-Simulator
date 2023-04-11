@@ -58,7 +58,7 @@ namespace TF2_Simulator
         {
             if (ClassID == 1)
             {
-                return "  ID 1 == Scattergun\r\n  ID 2 == Force-A-Nature\r\n  ID 3 == Shortstop\r\n  ID 4 == Soda Popper\r\n  ID 5 == Baby Face's Blaster\r\n  ID 6 == Back Scatter";
+                return "";
             }
             if (ClassID == 2)
             {
