@@ -14,7 +14,8 @@ namespace TF2_Simulator
     {
         static void Main(string[] args)
         {
-            
+            //Froze the Save Feature.
+            /*
             Console.Write("This game uses Saves."); Thread.Sleep(1000); Console.WriteLine(" Checking for Saves... ");
             bool SavesDiscovered = false;
             int SaveSelected = 0;
@@ -85,7 +86,6 @@ namespace TF2_Simulator
                     }
 
                 }
-                /*
                 // Open the stream and read it back.
                 using (StreamReader sr = File.OpenText(Savepath))
                 {
@@ -95,7 +95,6 @@ namespace TF2_Simulator
                         Console.WriteLine(s);
                     }
                 }
-                */
             }
             catch (Exception ex)
             {
@@ -104,7 +103,7 @@ namespace TF2_Simulator
            
             Console.WriteLine("Waiting.....");
             Thread.Sleep(1000);
-           
+            */
             Console.Clear();
             Console.Write("What is your Name: ");
             string PlayerName = Console.ReadLine();
@@ -741,9 +740,11 @@ namespace TF2_Simulator
                             Console.WriteLine(Footer);
                             Console.Write($"Choice: "); Console.ForegroundColor = Color_Input;
                             string LoadoutChoice = Console.ReadLine();
+                            Console.SetCursorPosition(0, Console.CursorTop - 1);
+                            Console.Write(new String(' ', Console.BufferWidth));
                             if (LoadoutChoice == "1")
                             {
-                                Console.Clear();
+                                //Console.Clear();
                                 Console.ResetColor();
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(Header);
