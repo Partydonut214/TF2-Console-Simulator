@@ -316,11 +316,65 @@ namespace TF2_Simulator
                 return Totaldamage;
             }
             #endregion
-            //Continue Here ↓
+
             #region Heavy
-
+            if (ClassID == 5 && WeaponID == 104)
+            {
+                // Minigun - 6-12 x 1-8 [6-96] //Buffed from 6-60. [5 max bullets --> 8]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 9); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 105)
+            {
+                // Iron Curtain - 14-20 x 1-4 [14-80] // A More Reliable Damage Dealer, at the cost of Fire Rate.
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 5); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(14, 21); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 106)
+            {
+                // Natascha - 6-12 x 1-5 [6-60] //Less damage, but adds a 20% damage resistance when under 50% HP [SpecialCheck]
+                // Still a Direct upgrade compared to the Minigun's older Stats
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 107)
+            {
+                // Brass Beast - 8-24 x 1-5 [8-120] //Much more powerful, but the -20% damage resistance is reversed. [+20% damage taken while equipped -- SpecialCheck]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 9); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 108)
+            {
+                // Tomislav - 9-14 x 1-6 [9-84] 
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(9, 15); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 109)
+            {
+                // Huo-Long Heater - 6-12 x 1-6 [6-72] Less Damage than Base, but deals [+25% damage to Burning players.] [Doesn't light players on fire.] [SpecialCheck]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
-
+            //Continue Here ↓
             #region Engineer
 
             #endregion
