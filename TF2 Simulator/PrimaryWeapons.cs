@@ -16,6 +16,8 @@ namespace TF2_Simulator
             int BabyFaceBuildup = 5;
             int Special = 0;
             int RocketsLoaded = 0;
+            int PhlogRage = 0;
+            int PhlogCrits = 0;
 
             /*
                 // WEAPONNAME - DMG-DMG x MinAtk-MaxAtk [MinDMG-MaxDMG]
@@ -181,7 +183,7 @@ namespace TF2_Simulator
                 return Totaldamage;
             }
             #endregion
-            //Continue Here ↓
+           
             #region Pyro
             if (ClassID == 3 && WeaponID == 55)
             {
@@ -192,8 +194,81 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
                 return Totaldamage;
             }
-            #endregion
+            
+            if (ClassID == 3 && WeaponID == 56)
+            {
+                // Rainblower - 6-12 x 1-5 [6-60] //Flame Thrower Pyroland Reskin, no changes possible.
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
 
+            if (ClassID == 3 && WeaponID == 57)
+            {
+                // Nostromo Napalmer - 6-12 x 1-5 [6-60]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+
+            if (ClassID == 3 && WeaponID == 58)
+            {
+                // Backburner - 6-12 x 1-5 [6-60] +20% chance for Mini-Crits
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                Special = randomdamage.Next(1, 11); // 1-10, Trips weapon Special if RareUse == 1 or 2,
+                if (Special <= 2) { Totaldamage = Totaldamage + (35 * Totaldamage / 100); } // 20% Chance for Mini-Crits
+                return Totaldamage;
+            }
+
+            if (ClassID == 3 && WeaponID == 59)
+            {
+                // Degreaser - 6-12 x 1-7 [6-84] //Increased Max Flames by 2,
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 8); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+
+            if (ClassID == 3 && WeaponID == 60)
+            {
+                // Phlogistinator - 6-12 x 1-5 [6-60] //Auto-Special: Phlog-Rage  --  If PhlogRage reaches 200 total damage, next 3 uses will be 100% crits.
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
+                PhlogRage = +Totaldamage;
+                if (PhlogRage >= 200 && PhlogCrits == 0)
+                {
+                    PhlogRage = 0;
+                    PhlogCrits = 3;
+                }
+                if (PhlogCrits > 0)
+                {
+                    Totaldamage = Totaldamage * 3;
+                    PhlogCrits--;
+                }
+                return Totaldamage;
+            }
+
+            if (ClassID == 3 && WeaponID == 61)
+            {
+                // Dragon's Fury - 8-18 x 1-5 [8-90]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(8, 19); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            #endregion
+            //Continue Here ↓
             #region Demoman
 
             #endregion
