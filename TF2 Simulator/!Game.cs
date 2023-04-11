@@ -733,6 +733,12 @@ namespace TF2_Simulator
                             Selecting_Loadout = false;
                             Console.Clear();
                             Console.WriteLine(Header);
+                            Console.WriteLine($"  ClassID: {P1_ClassID}");
+                            Console.WriteLine($"  Player Class: {P1_ClassName}");
+                            Console.WriteLine($"  Health: {P1_Health}/{P1_MaxHP}");
+                            Console.WriteLine(Footer);
+                            Console.WriteLine();
+                            Console.WriteLine(Header);
                             Console.WriteLine($"Select your Loadout!");
                             Console.WriteLine($"1.  Primary Weapon: {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}");
                             Console.WriteLine($"2.  Secondary Weapon: {P1_SecondaryWeaponID}"); //SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)
