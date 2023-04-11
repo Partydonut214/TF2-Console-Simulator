@@ -39,7 +39,7 @@ namespace TF2_Simulator
         }
         public static int DemomanPrimaryDamage()
         {
-            // Weapon Name: Grenade Launcher
+            // Weapon Name: Grenade Launcher //Acciedentally left it as the Early Scattergun
             // Damage 22-44
             var randomdamage = new Random();
 

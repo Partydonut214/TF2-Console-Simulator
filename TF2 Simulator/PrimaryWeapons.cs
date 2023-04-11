@@ -19,15 +19,6 @@ namespace TF2_Simulator
             int PhlogRage = 0;
             int PhlogCrits = 0;
 
-            /*
-                // WEAPONNAME - DMG-DMG x MinAtk-MaxAtk [MinDMG-MaxDMG]
-                Totaldamage = 0;
-                int BulletsFired = randomdamage.Next(0, 0); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
-                for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(0, 0); } // creates a number between   [Damage]
-                return Totaldamage;
-            */
-
             #region Scout
             if (ClassID == 1 && WeaponID == 1)
             {
@@ -268,11 +259,64 @@ namespace TF2_Simulator
                 return Totaldamage;
             }
             #endregion
-            //Continue Here ↓
+
             #region Demoman
+            if (ClassID == 4 && WeaponID == 80)
+            {
+                // Grenade Launcher - 18-81 x 1-3 [6-60]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 4); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(18, 27); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 81)
+            {
+                // Loch-n-Load - 24-104 [6-60] 40% chance to hit
+                Totaldamage = 0;
+                Special = randomdamage.Next(1, 11); //Rolls a 1-10, if the number is 4 or lower, the shot lands.
+                if (Special <= 4) { Totaldamage = randomdamage.Next(24, 104); } //Damage is rolled only if the Special rolls a 4 or lower.
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 82)
+            {
+                // Ali Baba's Wee Booties - 0
 
+                // First Non-Weapon! this will be "fun" to deal with...
+                // Add Specialcheck in-game for this combo [Class + Weapon], if its true, add +25 HP to Player HP
+               
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 83)
+            {
+                // Bootlegger - 0
+
+                // Second Non-Weapon! this will also be "fun" to deal with... luckily this functions exactly like the above weapon.
+                // Add Specialcheck in-game for this combo [Class + Weapon], if its true, add +25 HP to Player HP
+
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 84)
+            {
+                // Loose Cannon - 26-46
+                Totaldamage = randomdamage.Next(26, 47);
+                Special = randomdamage.Next(1, 101);
+                if (Special <= 10) { Totaldamage = Totaldamage + (35 * Totaldamage / 100); Console.WriteLine("  !!! -- DOUBLE DONK"); }
+                // 10% chance of a Mini-Crit [Double-Donk]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 85)
+            {
+                // Iron Bomber - 20-89 80% chance to hit
+                Totaldamage = 0;
+                Special = randomdamage.Next(1, 11); //Rolls a 1-10, if the number is 8 or lower, the shot lands.
+                if (Special <= 8) { Totaldamage = randomdamage.Next(20, 90); } //Damage is rolled only if the Special rolls a 8 or lower.
+                return Totaldamage;
+            }
             #endregion
-
+            //Continue Here ↓
             #region Heavy
 
             #endregion
