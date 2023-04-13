@@ -1,0 +1,15 @@
+====!Game.cs
+            
+ [Line 268] int P1_SecondaryTrigger = 0;
+            string P1_SecondaryTriggerName = "";
+            bool P1_SecondaryTriggerExists = false;
+
+ LoadingCheck:] if (P1_ClassID == 4 || P1_ClassID == 8)
+			{
+				P1_SecondaryTriggerExists = true;
+				string P1_SecondaryTriggerName = SecondaryWeapon.SecondaryNameFromID(P1_ClassID)
+			}
+
+
+
+            PlayerDamage = SecondaryWeapon.Attack(P1_SecondaryTriggerExists)		
