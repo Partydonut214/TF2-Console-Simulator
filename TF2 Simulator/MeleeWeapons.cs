@@ -67,39 +67,39 @@ namespace TF2_Simulator
         {
             if (ClassID == 1)
             {
-                return "";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             if (ClassID == 2)
             {
-                return "  ID 29 == Rocket Launcher\r\n  ID 30 == Original\r\n  ID 31 == Direct Hit\r\n  ID 32 == Black Box\r\n  ID 33 == Rocket Jumper\r\n  ID 34 == Liberty Launcher\r\n  ID 35 == Cow Mangler 5000\r\n  ID 36 == Beggar's Bazooka\r\n  ID 37 == Air Strike";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             if (ClassID == 3)
             {
-                return "  ID 55 == Flame Thrower\r\n  ID 56 == Rainblower\r\n  ID 57 == Nostromo Napalmer\r\n  ID 58 == Backburner\r\n  ID 59 == Degreaser\r\n  ID 60 == Phlogistinator\r\n  ID 61 == Dragon's Fury";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             if (ClassID == 4)
             {
-                return "  ID 80 == Grenade Launcher\r\n  ID 81 == Loch-n-Load\r\n  ID 82 == Ali Baba's Wee Booties\r\n  ID 83 == Bootlegger\r\n  ID 84 == Loose Cannon\r\n  ID 85 == Iron Bomber";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             if (ClassID == 5)
             {
-                return "  ID 104 == Minigun\r\n  ID 105 == Iron Curtain\r\n  ID 106 == Natascha\r\n  ID 107 == Brass Beast\r\n  ID 108 == Tomislav\r\n  ID 109 == Huo-Long Heater";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             if (ClassID == 6)
             {
-                return "  ID 127 == Frontier Justice\r\n  ID 128 == Widowmaker\r\n  ID 129 == Pomson 6000\r\n  ID 130 == Rescue Ranger";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             if (ClassID == 7)
             {
-                return "  ID 142 == Syringe Gun\r\n  ID 143 == Blutsauger\r\n  ID 144 == Crusader's Crossbow\r\n  ID 145 == Overdose";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             if (ClassID == 8)
             {
-                return "  ID 155 == Sniper Rifle\r\n  ID 156 == AWPer Hand\r\n  ID 157 == Huntsman\r\n  ID 158 == Fortified Compound\r\n  ID 159 == Sydney Sleeper\r\n  ID 160 == Bazaar Bargain\r\n  ID 161 == Machina\r\n  ID 162 == Shooting Star\r\n  ID 163 == Hitman's Heatmaker\r\n  ID 164 == Classic";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             if (ClassID == 9)
             {
-                return "Spy doesn't have Primary Weapons";
+                return "  ID 999 == Attacky Thingy\r\n";
             }
             return "Error";
         }

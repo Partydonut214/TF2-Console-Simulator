@@ -145,13 +145,28 @@ namespace TF2_Simulator
                 EnemyPrefix = "RED";
                 Color_Player = ConsoleColor.DarkCyan;
                 Color_Enemy = ConsoleColor.DarkRed;
-
+                Color_Game = ConsoleColor.DarkCyan;
             }
             if (PlayerName.StartsWith("RED "))
             {
                 EnemyPrefix = "BLU";
                 Color_Player = ConsoleColor.DarkRed;
                 Color_Enemy = ConsoleColor.DarkCyan;
+                Color_Game = ConsoleColor.DarkRed;
+            }
+            if (PlayerName.StartsWith("GRN "))
+            {
+                EnemyPrefix = "YLW";
+                Color_Player = ConsoleColor.DarkGreen;
+                Color_Enemy = ConsoleColor.DarkYellow;
+                Color_Game = ConsoleColor.DarkGreen;
+            }
+            if (PlayerName.StartsWith("YLW "))
+            {
+                EnemyPrefix = "GRN";
+                Color_Player = ConsoleColor.DarkYellow;
+                Color_Enemy = ConsoleColor.DarkGreen;
+                Color_Game = ConsoleColor.DarkYellow;
             }
             if (PlayerName == "bucket" || (PlayerName == "Bucket"))
             {
@@ -273,7 +288,9 @@ namespace TF2_Simulator
             int E1_StatusEffect_1_ID = 0;
             int E1_StatusEffect_2_ID = 0;
             int E1_StatusEffect_3_ID = 0;
-            bool E1_SecondaryTrigger = false;
+            int E1_SecondaryTrigger = 0;
+            string E1_SecondaryTriggerName = "";
+            bool E1_SecondaryTriggerExists = false;
             //Value Holders
             int E1_PrimaryDamage = 0;
             int E1_SecondaryDamage = 0;
@@ -1782,7 +1799,7 @@ namespace TF2_Simulator
                                     string PrimarySelecion = Console.ReadLine();
                                     if (int.TryParse(PrimarySelecion, out int PrimaryID)) { E1_PrimaryWeaponID = PrimaryID; }
                                     Console.WriteLine($"Primary Weapon: {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}");
-                                    Console.WriteLine($"Attack: {PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTrigger)}");
+                                    Console.WriteLine($"Attack: {PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
                                     Thread.Sleep(1500);
                                     Selecting_Loadout = true;
                                 }
@@ -1800,7 +1817,7 @@ namespace TF2_Simulator
                                     string SecondarySelecion = Console.ReadLine();
                                     if (int.TryParse(SecondarySelecion, out int SecondaryID)) { E1_SecondaryWeaponID = SecondaryID; }
                                     Console.WriteLine($"Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}");
-                                    Console.WriteLine($"Attack: {SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTrigger)}");
+                                    Console.WriteLine($"Attack: {SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
                                     Thread.Sleep(1500);
                                     Selecting_Loadout = true;
                                 }
@@ -1818,7 +1835,7 @@ namespace TF2_Simulator
                                     string MeleeSelecion = Console.ReadLine();
                                     if (int.TryParse(MeleeSelecion, out int MeleeID)) { E1_MeleeWeaponID = MeleeID; }
                                     Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}");
-                                    Console.WriteLine($"Attack: {MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTrigger)}");
+                                    Console.WriteLine($"Attack: {MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
                                     Thread.Sleep(1500);
                                     Selecting_Loadout = true;
                                 }
@@ -1936,7 +1953,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = Color_Player;
                                 Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
-                                P1_SecondaryDamage = SecondaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
+                                P1_SecondaryDamage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.WriteLine($"It Dealt {P1_SecondaryDamage} Damage to the Enemy {E1_ClassName}!");
                                 E1_Health = E1_Health - P1_SecondaryDamage;
                                 Console.ForegroundColor = Color_Enemy;
@@ -1954,7 +1971,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = Color_Player;
                                 Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                                P1_MeleeDamage = MeleeWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
+                                P1_MeleeDamage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.ForegroundColor = Color_Enemy;
                                 Console.WriteLine($"It Dealt {P1_MeleeDamage} Damage to the Enemy {E1_ClassName}!");
                                 E1_Health = E1_Health - P1_MeleeDamage;
@@ -1970,30 +1987,105 @@ namespace TF2_Simulator
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = Color_Player;
-                                Console.WriteLine($"{PlayerName} attacked with their {PlayerMeleeName}!");
-                                PlayerMeleeDamage = Scout.ScoutMeleeDamage();
+                                Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
+                                P1_MeleeDamage = Scout.ScoutMeleeDamage();
                                 Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"It Dealt {PlayerMeleeDamage} Damage to the Enemy {E1_ClassName}!");
+                                Console.WriteLine($"It Dealt {P1_MeleeDamage} Damage to the Enemy {E1_ClassName}!");
                                 E1_Health = E1_Health - PlayerMeleeDamage;
                                 Console.WriteLine($"The Enemy {E1_ClassName}'s Remaining HP: {E1_Health}");
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
                             }
+                            if (E1_Health > 0)
+                            {
+                                int EnemyAction = EnemyTurn.EnemyChoice(E1_Cooldown);
+
+                                if (EnemyAction == 1)
+                                {
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Enemy;
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}!");
+                                    E1_PrimaryDamage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                    Console.WriteLine($"It Dealt {E1_PrimaryDamage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_PrimaryDamage;
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(8000);
+                                }
+                                if (EnemyAction == 2)
+                                {
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Enemy;
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}!");
+                                    E1_SecondaryDamage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
+                                    Console.WriteLine($"It Dealt {E1_SecondaryDamage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_SecondaryDamage;
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(8000);
+                                }
+                                if (EnemyAction == 3)
+                                {
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Enemy;
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
+                                    E1_MeleeDamage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"It Dealt {E1_MeleeDamage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_MeleeDamage;
+                                    Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(8000);
+                                }
+                                if (EnemyAction == 4)
+                                {
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Enemy;
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
+                                    E1_MeleeDamage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"It Dealt {E1_MeleeDamage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_MeleeDamage;
+                                    Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(8000);
+                                }
+                            }
                         }
-                        if (P1_Health == 0 && E1_Health == 0)
+                        if (P1_Health <= 0 && E1_Health <= 0)
                         {
                             Console.WriteLine("You both lost this battle!");
                         }
                         if (P1_Health <= 0)
                         {
-                            Console.WriteLine($"Your Health Reached 0! You have been defeated by {EnemyPrefix} {EnemyClass}.");
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"Your Health Reached 0! You have been defeated by {EnemyPrefix} {E1_ClassName}.");
                             Thread.Sleep(2000);
-                            Console.WriteLine($"They had {E1_Health} left when you fell.");
+                            Console.WriteLine($"They had {E1_Health} Health left when you were defeated.");
+                            Console.WriteLine(Footer);
                             Thread.Sleep(3000);
                         }
                         if (E1_Health <= 0)
                         {
-                            Console.WriteLine("You win!");
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"You defeated the {EnemyPrefix} {E1_ClassName}!");
+                            Console.WriteLine();
+                            Console.WriteLine($"You had {P1_Health} Health Left!");
+                            Console.WriteLine(Footer);
                         }
                         #endregion
                     }
