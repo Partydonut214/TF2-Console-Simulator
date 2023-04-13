@@ -1,0 +1,292 @@
+else if (UserInput == "1")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = Color_Game;
+                    P1_ClassID = 1;
+                    P1_Health = Classes.ClassHealthfromID(P1_ClassID);
+                    P1_MaxHP = Classes.ClassHealthfromID(P1_ClassID).ToString();
+                    /*
+                    Console.WriteLine("Scout Selected");
+                    PlayerHP = 125;
+                    PlayerClass = Scout.ScoutName();
+                    PlayerMaxHP = Scout.ScoutMaxHP();
+                    PlayerPrimaryDamage = Scout.ScoutPrimaryDamage();
+                    PlayerSecondaryDamage = Scout.ScoutSecondaryDamage();
+                    PlayerMeleeDamage = Scout.ScoutMeleeDamage();
+                    PlayerSpecial = Scout.ScoutPrimaryDamage();
+                    PlayerPrimaryName = Scout.ScoutPrimaryName();
+                    PlayerSecondaryName = Scout.ScoutSecondaryName();
+                    PlayerMeleeName = Scout.ScoutMeleeName();
+                    PlayerSpecialName = "No Special";
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine($"Name - Special Move: {PlayerSpecialName}");
+                    Console.WriteLine(FooterShort);
+                    PlayerSetClass = true;
+                    */
+                    Thread.Sleep(2000);
+                    break;
+                }
+                else if (UserInput == "2")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = Color_Game;
+                    Console.WriteLine("Soldier Selected");
+                    PlayerHP = 200;
+                    PlayerClass = Soldier.SoldierName();
+                    PlayerMaxHP = Soldier.SoldierMaxHP();
+                    PlayerPrimaryDamage = Soldier.SoldierPrimaryDamage();
+                    PlayerSecondaryDamage = Soldier.SoldierSecondaryDamage();
+                    PlayerMeleeDamage = Soldier.SoldierMeleeDamage();
+                    PlayerSpecial = Soldier.SoldierSpecial();
+                    PlayerPrimaryName = Soldier.SoldierPrimaryName();
+                    PlayerSecondaryName = Soldier.SoldierSecondaryName();
+                    PlayerMeleeName = Soldier.SoldierMeleeName();
+                    PlayerSpecialName = Soldier.SoldierSpecialName();
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Attack - Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine($"  Name - Special: {PlayerSpecialName}");
+                    Console.WriteLine(FooterShort);
+                    Thread.Sleep(2000);
+                    PlayerSetClass = true;
+                    break;
+                }
+                else if (UserInput == "3")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = Color_Game;
+                    Console.WriteLine("Pyro Selected");
+                    PlayerHP = 175;
+                    PlayerClass = Pyro.PyroName();
+                    PlayerMaxHP = Pyro.PyroMaxHP();
+                    PlayerPrimaryDamage = Pyro.PyroPrimaryDamage();
+                    PlayerSecondaryDamage = Pyro.PyroSecondaryDamage();
+                    PlayerMeleeDamage = Pyro.PyroMeleeDamage();
+                    PlayerSpecial = Pyro.PyroPrimaryDamage();
+                    PlayerPrimaryName = Pyro.PyroPrimaryName();
+                    PlayerSecondaryName = Pyro.PyroSecondaryName();
+                    PlayerMeleeName = Pyro.PyroMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
+                    Thread.Sleep(2000);
+                    PlayerSetClass = true;
+                    break;
+                }
+                else if (UserInput == "4")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = Color_Game;
+                    Console.WriteLine("Demoman Selected");
+                    PlayerHP = 175;
+                    PlayerClass = Demoman.DemomanName();
+                    PlayerMaxHP = Demoman.DemomanMaxHP();
+                    PlayerPrimaryDamage = Demoman.DemomanPrimaryDamage();
+                    PlayerSecondaryDamage = Demoman.DemomanSecondaryDamage(PlayerWeaponFeature++); //PlayerWeaponFeature is reserved for Sticky Placement for this class. [++ = +1 Sticky Placed [Damage Multiplier]
+                    PlayerWeaponFeature--;
+                    PlayerMeleeDamage = Demoman.DemomanMeleeDamage();
+                    PlayerSpecial = Demoman.DemomanSpecial(PlayerWeaponFeature); //Detonate Stickies. Uses PlayerWeaponFeature as a Damage Multiplier.
+                    PlayerPrimaryName = Demoman.DemomanPrimaryName();
+                    PlayerSecondaryName = Demoman.DemomanSecondaryName();
+                    PlayerMeleeName = Demoman.DemomanMeleeName();
+                    PlayerSpecialName = Demoman.DemomanSpecialName();
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Information - Stickies Placed - Secondary: {PlayerWeaponFeature}");
+                    Console.WriteLine($"  Attack - Sticky Detonate Damage - {PlayerSpecial}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Secondary Alt Use: {PlayerSpecialName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
+                    PlayerSetClass = true;
+                    Thread.Sleep(2000);
+                    break;
+                }
+                else if (UserInput == "5")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = Color_Game;
+                    Console.WriteLine("Heavy Selected");
+                    PlayerHP = 300;
+                    PlayerClass = Heavy.HeavyName();
+                    PlayerMaxHP = Heavy.HeavyMaxHP();
+                    PlayerPrimaryDamage = Heavy.HeavyPrimaryDamage();
+                    PlayerSecondaryDamage = Heavy.HeavySecondaryDamage();
+                    PlayerMeleeDamage = Heavy.HeavyMeleeDamage();
+                    PlayerSpecial = Heavy.HeavyPrimaryDamage();
+                    PlayerPrimaryName = Heavy.HeavyPrimaryName();
+                    PlayerSecondaryName = Heavy.HeavySecondaryName();
+                    PlayerMeleeName = Heavy.HeavyMeleeName();
+                    PlayerSpecialName = "No Special";
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Primary Weapon Name: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
+                    PlayerSetClass = true;
+                    Thread.Sleep(2000);
+                    break;
+                }
+                else if (UserInput == "6")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = Color_Game;
+                    Console.WriteLine("Engineer Selected");
+                    PlayerHP = 125;
+                    PlayerClass = Engineer.EngineerName();
+                    PlayerMaxHP = Engineer.EngineerMaxHP();
+                    PlayerPrimaryDamage = Engineer.EngineerPrimaryDamage();
+                    PlayerSecondaryDamage = Engineer.EngineerSecondaryDamage();
+                    PlayerMeleeDamage = Engineer.EngineerMeleeDamage();
+                    PlayerSpecial = Engineer.EngineerPrimaryDamage();
+                    PlayerPrimaryName = Engineer.EngineerPrimaryName();
+                    PlayerSecondaryName = Engineer.EngineerSecondaryName();
+                    PlayerMeleeName = Engineer.EngineerMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Attack - Special Roll - {PlayerSpecial}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine($"  Name - Special Move: {PlayerSpecialName}");
+                    Console.WriteLine(FooterShort);
+                    PlayerSetClass = true;
+                    Thread.Sleep(2000);
+                    break;
+                }
+                else if (UserInput == "7")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = Color_Game;
+                    Console.WriteLine("Medic Selected");
+                    PlayerHP = 150;
+                    PlayerClass = Medic.MedicName();
+                    PlayerMaxHP = Medic.MedicMaxHP();
+                    PlayerPrimaryDamage = Medic.MedicPrimaryDamage(PlayerCooldown);
+                    PlayerSecondaryDamage = Medic.MedicSecondaryDamage(PlayerCooldown);
+                    PlayerMeleeDamage = Medic.MedicMeleeDamage(PlayerCooldown);
+                    PlayerSpecial = Medic.MedicPrimaryDamage(PlayerCooldown);
+                    PlayerPrimaryName = Medic.MedicPrimaryName();
+                    PlayerSecondaryName = Medic.MedicSecondaryName();
+                    PlayerMeleeName = Medic.MedicMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Primary";
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerPrimaryDamage}");
+                    Console.WriteLine($"  Heal - Secondary: {PlayerHP + PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
+                    PlayerSetClass = true;
+                    Thread.Sleep(2000);
+                    break;
+                }
+                else if (UserInput == "8")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    Console.ForegroundColor = Color_Game;
+                    Console.WriteLine("Sniper Selected");
+                    PlayerHP = 125;
+                    PlayerClass = Sniper.SniperName();
+                    PlayerMaxHP = Sniper.SniperMaxHP();
+                    PlayerPrimaryDamage = Sniper.SniperPrimaryDamage(PlayerWeaponFeature++); //PlayerWeaponFeature is reserved for Weapon Charge for this class. [++ = +1 Charge Level [Damage Multiplier]
+                    PlayerSecondaryDamage = Sniper.SniperSecondaryDamage();
+                    PlayerMeleeDamage = Sniper.SniperMeleeDamage();
+                    PlayerSpecial = Sniper.SniperSecondaryDamage();
+                    PlayerPrimaryName = Sniper.SniperPrimaryName();
+                    PlayerSecondaryName = Sniper.SniperSecondaryName();
+                    PlayerMeleeName = Sniper.SniperMeleeName();
+                    PlayerSpecialName = Sniper.SniperSpecialName();
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Primary: {PlayerSpecial}");
+                    Console.WriteLine($"  Charge - Primary: {PlayerWeaponFeature}");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Name - Primary: {PlayerPrimaryName}");
+                    Console.WriteLine($"  Name - Primary Alt Use: {PlayerSpecialName}");
+                    Console.WriteLine($"  Name - Secondary: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Name - Melee: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
+                    PlayerSetClass = true;
+                    Thread.Sleep(2000);
+                    break;
+                }
+                else if (UserInput == "9")
+                {
+                    Console.Clear();
+                    Console.ResetColor();
+                    //Set Game Color Here
+                    Console.WriteLine("Spy Selected");
+                    PlayerHP = 125;
+                    PlayerClass = Spy.SpyName();
+                    PlayerMaxHP = Spy.SpyMaxHP();
+                    PlayerPrimaryDamage = Spy.SpySecondaryDamage();
+                    PlayerSecondaryDamage = Spy.SpySecondaryDamage();
+                    PlayerMeleeDamage = Spy.SpyMeleeDamage();
+                    PlayerSpecial = Spy.SpySecondaryDamage();
+                    PlayerPrimaryName = "No Primary - Replaced by Secondary";
+                    PlayerSecondaryName = Spy.SpySecondaryName();
+                    PlayerMeleeName = Spy.SpyMeleeName();
+                    PlayerSpecialName = "No Special - Replaced By Secondary";
+                    Thread.Sleep(1000);
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Debug:");
+                    Console.WriteLine($"  Attack - Secondary: {PlayerSecondaryDamage}");
+                    Console.WriteLine($"  Attack - Melee: {PlayerMeleeDamage}");
+                    Console.WriteLine($"  Secondary Weapon Name: {PlayerSecondaryName}");
+                    Console.WriteLine($"  Melee Weapon Name: {PlayerMeleeName}");
+                    Console.WriteLine(FooterShort);
+                    PlayerSetClass = true;
+                    Thread.Sleep(2000);
+                    break;
+                }
