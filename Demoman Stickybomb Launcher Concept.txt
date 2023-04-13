@@ -10,6 +10,10 @@
 				string P1_SecondaryTriggerName = SecondaryWeapon.SecondaryNameFromID(P1_ClassID)
 			}
 
-
+ GameCheck:] if (PlayerInput == 4 && P1_SecondaryTriggerExists == true;)
+		{
+			int P1_SecondaryTrigger++;
+			//Add Game Design and Console.WriteLine Lines Before and after.
+		}
 
             PlayerDamage = SecondaryWeapon.Attack(P1_SecondaryTriggerExists)		
