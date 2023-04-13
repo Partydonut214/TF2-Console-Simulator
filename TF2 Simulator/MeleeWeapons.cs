@@ -14,28 +14,37 @@ namespace TF2_Simulator
             var randomdamage = new Random();
             int Totaldamage = 0;
             int Special = 0;
-
+            
+            #region AllClass
+            if (WeaponID == 999)
+            {
+                // Attacky Thingy - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-65 [Damage]
+                return Totaldamage;
+            }
+            #endregion
             //Continue Here ↓
             #region Scout
-            
+
             #endregion
 
             #region Soldier
-            
+
             #endregion
-           
+
             #region Pyro
-            
+
             #endregion
 
             #region Demoman
-            
+
             #endregion
 
             #region Heavy
-            
+
             #endregion
-            
+
             #region Engineer
 
             #endregion
@@ -309,6 +318,7 @@ namespace TF2_Simulator
             if (WeaponID == 210) { return "Golden Frying Pan"; }
             if (WeaponID == 211) { return "Legendary Ticket"; }
             if (WeaponID == 212) { return "Backpack Expander"; }
+            if (WeaponID == 999) { return "Attacky Thingy";  }
             return "error";
         }
     }
