@@ -6,7 +6,13 @@ using System.Data;
 using System.Diagnostics;
 using System.Xml.Schema;
 using System.IO;
+using System.Media;
 using static System.Net.Mime.MediaTypeNames;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TF2_Simulator
 {
@@ -131,7 +137,7 @@ namespace TF2_Simulator
             }
             if (PlayerName == "")
             {
-                PlayerName = "someone who apparently doesn't have a name";
+                PlayerName = "Recharging: ████▒▒▒▒▒▒"; //"someone who apparently doesn't have a name";
             }
             #region Secret Names
             if (PlayerName.StartsWith("BLU "))
@@ -226,6 +232,8 @@ namespace TF2_Simulator
             string FooterShort = "└───────────────┴───────────────┘";
             string HeaderLong = "┌────────────────────────────────────────────────┬────────────────────────────────────────────────┐";
             string FooterLong = "└────────────────────────────────────────────────┴────────────────────────────────────────────────┘";
+            string BarLoaded = "█";
+            string BarUnloaded = "▒";
             #endregion
             #region PlayerStats V2
             //Information
@@ -742,7 +750,8 @@ namespace TF2_Simulator
                             Console.WriteLine($"Select your Loadout!");
                             Console.WriteLine($"1.  Primary Weapon: {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}");
                             Console.WriteLine($"2.  Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}");
-                            Console.WriteLine($"3.  Melee Weapon: {P1_MeleeWeaponID}"); //MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)
+                            Console.WriteLine($"3.  Melee Weapon: {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
+                            Console.WriteLine($"4.  Finish Setting up Loadout");
                             Console.WriteLine(Footer);
                             Console.Write($"Choice: "); Console.ForegroundColor = Color_Input;
                             string LoadoutChoice = Console.ReadLine();
@@ -784,7 +793,29 @@ namespace TF2_Simulator
                                 Thread.Sleep(1500);
                                 Selecting_Loadout = true;
                             }
-
+                            if (LoadoutChoice == "3")
+                            {
+                                //Console.Clear();
+                                Console.ResetColor();
+                                Console.ForegroundColor = Color_Game;
+                                Console.WriteLine(Header);
+                                Console.WriteLine($"  === Class: {P1_ClassName}");
+                                Console.WriteLine($"  === Selecting Melee Weapon");
+                                Console.WriteLine(MeleeWeapons.Names(P1_ClassID));
+                                Console.WriteLine(Footer);
+                                Console.Write("Weapon ID: ");
+                                string MeleeSelecion = Console.ReadLine();
+                                if (int.TryParse(MeleeSelecion, out int MeleeID)) { P1_MeleeWeaponID = MeleeID; }
+                                Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
+                                Console.WriteLine($"Attack: {MeleeWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTrigger)}");
+                                Thread.Sleep(1500);
+                                Selecting_Loadout = true;
+                            }
+                            if (LoadoutChoice == "4")
+                            {
+                                PlayerSetClass = true;
+                                break;
+                            }
                             else
                             {
                                 Selecting_Loadout = true;

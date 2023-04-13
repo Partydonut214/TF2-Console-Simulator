@@ -376,7 +376,24 @@ namespace TF2_Simulator
             #endregion
             //Continue Here ↓
             #region Engineer
-
+            if (ClassID == 6 && WeaponID == 38)
+            {
+                // Shotgun - 4-6 x 1-11 [4-66]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 12); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(4, 7); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 47)
+            {
+                // Panic Attack - 3-5 x 2-17 [6-85]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 18); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(3, 6); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Medic
@@ -417,7 +434,7 @@ namespace TF2_Simulator
             }
             if (ClassID == 6)
             {
-                return "  ID 127 == Frontier Justice\r\n  ID 128 == Widowmaker\r\n  ID 129 == Pomson 6000\r\n  ID 130 == Rescue Ranger";
+                return "  ID 38 == Shotgun\r\n  ID 47 == Panic Attack\r\n  ID 127 == Frontier Justice\r\n  ID 128 == Widowmaker\r\n  ID 129 == Pomson 6000\r\n  ID 130 == Rescue Ranger";
             }
             if (ClassID == 7)
             {
