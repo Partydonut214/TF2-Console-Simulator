@@ -807,7 +807,7 @@ namespace TF2_Simulator
                                 string MeleeSelecion = Console.ReadLine();
                                 if (int.TryParse(MeleeSelecion, out int MeleeID)) { P1_MeleeWeaponID = MeleeID; }
                                 Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
-                                Console.WriteLine($"Attack: {MeleeWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTrigger)}");
+                                Console.WriteLine($"Attack: {MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTrigger)}");
                                 Thread.Sleep(1500);
                                 Selecting_Loadout = true;
                             }
