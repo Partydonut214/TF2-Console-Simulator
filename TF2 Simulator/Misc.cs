@@ -57,7 +57,7 @@ namespace TF2_Simulator
                 int Bleeding = (Health * 10 / 100);
                 return Bleeding;
             }
-            return Health;
+            return 0;
         }
 
         public static int SelfHelp(int EffectID, int TotalDamage) //Returns Value to User

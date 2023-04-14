@@ -273,9 +273,7 @@ namespace TF2_Simulator
             string P1_SecondaryTriggerName = "";
             bool P1_SecondaryTriggerExists = false;
             //Value Holders
-            int P1_PrimaryDamage = 0;
-            int P1_SecondaryDamage = 0;
-            int P1_MeleeDamage = 0;
+            int P1_Damage = 0;
             #endregion
             #region Enemystats V2
             //Information
@@ -292,6 +290,10 @@ namespace TF2_Simulator
             int E1_StatusEffect_1_ID = 0;
             int E1_StatusEffect_2_ID = 0;
             int E1_StatusEffect_3_ID = 0;
+            int E1_StatusOnFireCooldown = 0;
+            int E1_StatusJaratedCooldown = 0;
+            int E1_StatusMadMilkedCooldown = 0;
+            int E1_StatusBleedingCooldown = 0;
             int E1_SecondaryTrigger = 0;
             string E1_SecondaryTriggerName = "";
             bool E1_SecondaryTriggerExists = false;
@@ -2004,14 +2006,11 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = Color_Player;
                                 Console.WriteLine($"{PlayerName} attacked with their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
-                                P1_PrimaryDamage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
-                                Console.WriteLine($"It Dealt {P1_PrimaryDamage} Damage to the {EnemyPrefix} {E1_ClassName}!");
-                                E1_Health = E1_Health - P1_PrimaryDamage;
-                                Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"The {EnemyPrefix} {E1_ClassName}'s Remaining HP: {E1_Health}");
+                                P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
+                                
                             }
                             if (PlayerAction == "2")
                             {
@@ -2022,11 +2021,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = Color_Player;
                                 Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
-                                P1_SecondaryDamage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
-                                Console.WriteLine($"It Dealt {P1_SecondaryDamage} Damage to the Enemy {E1_ClassName}!");
-                                E1_Health = E1_Health - P1_SecondaryDamage;
-                                Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"The Enemy {E1_ClassName}'s Remaining HP: {E1_Health}");
+                                P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
@@ -2040,11 +2035,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = Color_Player;
                                 Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                                P1_MeleeDamage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
-                                Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"It Dealt {P1_MeleeDamage} Damage to the Enemy {E1_ClassName}!");
-                                E1_Health = E1_Health - P1_MeleeDamage;
-                                Console.WriteLine($"The Enemy {E1_ClassName}'s Remaining HP: {E1_Health}");
+                                P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
                             }
@@ -2057,18 +2048,122 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = Color_Player;
                                 Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                                P1_MeleeDamage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
-                                Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"It Dealt {P1_MeleeDamage} Damage to the Enemy {E1_ClassName}!");
-                                E1_Health = E1_Health - PlayerMeleeDamage;
-                                Console.WriteLine($"The Enemy {E1_ClassName}'s Remaining HP: {E1_Health}");
+                                P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
                             }
+                            #region StatusEffect_BulletEnhancer
+                            int StatusEffect_BulletEnhancer = 0;
+                            if (E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
+                            {
+                                if (E1_StatusEffect_1_ID == 3 || E1_StatusEffect_2_ID == 3 || E1_StatusEffect_3_ID == 3)
+                                {
+                                    StatusEffect_BulletEnhancer = 3;
+                                }
+                                if (E1_StatusEffect_1_ID == 5 || E1_StatusEffect_2_ID == 5 || E1_StatusEffect_3_ID == 5)
+                                {
+                                    StatusEffect_BulletEnhancer = 5;
+                                }
+                                if (E1_StatusEffect_1_ID == 6 || E1_StatusEffect_2_ID == 6 || E1_StatusEffect_3_ID == 6)
+                                {
+                                    StatusEffect_BulletEnhancer = 3;
+                                }
+                                int E1_HealthPlaceHolder = E1_Health;
+                                E1_Health = E1_Health - Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                if (E1_Health < E1_HealthPlaceHolder) 
+                                {
+                                    if (StatusEffect_BulletEnhancer == 3)
+                                    {
+                                        //Console.WriteLine - Took Jarate Damage!
+                                    }
+                                    if (StatusEffect_BulletEnhancer == 5)
+                                    {
+                                        //Console.WriteLine - Took Mini-Crit Damage!
+                                    }
+                                    if (StatusEffect_BulletEnhancer == 6)
+                                    {
+                                        //Console.WriteLine - Took Crit Damage!
+                                    }
+                                }
+                            }
+                            #endregion
+                            #region StatusEffect_PoisonEffects
+                            int StatusEffect_PoisonEffects_Player = 0;
+                            int StatusEffect_PoisonEffects_Enemy = 0;
+                            if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0 || E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
+                            {
+                                if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1) //Check Player
+                                {
+                                    StatusEffect_PoisonEffects_Player = 1;
+                                }
+                                if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1) //Check Enemy
+                                {
+                                    StatusEffect_PoisonEffects_Enemy = 1;
+                                }
+                                if (P1_StatusEffect_1_ID == 4 || P1_StatusEffect_2_ID == 4 || P1_StatusEffect_3_ID == 4) //Check Player
+                                {
+                                    StatusEffect_PoisonEffects_Player = 5;
+                                }
+                                if (E1_StatusEffect_1_ID == 4 || E1_StatusEffect_2_ID == 4 || E1_StatusEffect_3_ID == 4) //Check Enemy
+                                {
+                                    StatusEffect_PoisonEffects_Enemy = 5;
+                                }
+                                int E1_HealthPlaceHolder = E1_Health;
+                                E1_Health = E1_Health - Misc.PoisonEffects(StatusEffect_PoisonEffects_Enemy, E1_Health);
+                                if (E1_Health < E1_HealthPlaceHolder)
+                                {
+                                    if (StatusEffect_PoisonEffects_Enemy == 1)
+                                    {
+                                        //Console.WriteLine - Took Fire Damage!
+                                    }
+                                    if (StatusEffect_PoisonEffects_Enemy == 5)
+                                    {
+                                        //Console.WriteLine - Took Bleeding Damage!
+                                    }
+                                }
+                                P1_Health = P1_Health - Misc.PoisonEffects(StatusEffect_PoisonEffects_Player, P1_Health);
+                                if (E1_Health < E1_HealthPlaceHolder)
+                                {
+                                    if (StatusEffect_PoisonEffects_Player == 1)
+                                    {
+                                        //Console.WriteLine - Took Fire Damage!
+                                    }
+                                    if (StatusEffect_PoisonEffects_Player == 4)
+                                    {
+                                        //Console.WriteLine - Took Bleeding Damage!
+                                    }
+                                }
+                            }
+                            #endregion
+                            Console.WriteLine(HeaderLong);
+                            Console.WriteLine($"Your Attack Dealt {P1_Damage} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                            E1_Health = E1_Health - P1_Damage;
+                            Console.ForegroundColor = Color_Enemy;
+                            Console.WriteLine($"The {EnemyPrefix} {E1_ClassName}'s Remaining HP: {E1_Health}");
+                            Console.ForegroundColor = Color_Game;
+                            Console.WriteLine(FooterLong);
+                            Thread.Sleep(5000);
                             // For Status Effects to Work, Move Attack Diolouge Out of the PlayerAction if Statements and integrate Effects.
                             #region In-Game Tests / Cheats
+                            if (PlayerAction.ToLower() == "heal player")
+                            {
+                                P1_Damage = 0;
+                                P1_Health = +50;
+                                Console.WriteLine($"  ┌──Health Healed:───────┐");
+                                Console.WriteLine($"  |         +50           |      ");
+                                Console.WriteLine($"  └───────────────────────┘");
+                            }
+                            if (PlayerAction.ToLower() == "heal enemy")
+                            {
+                                P1_Damage = 0;
+                                E1_Health = +50;
+                                Console.WriteLine($"  ┌──Enemy Health Healed:───────┐");
+                                Console.WriteLine($"  |           +50               |      ");
+                                Console.WriteLine($"  └─────────────────────────────┘");
+                            }
                             if (PlayerAction.ToLower() == "set fire")
                             {
+                                P1_Damage = 0;
                                 if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 1)
                                 {
                                     P1_StatusEffect_1_ID = 1; P1_StatusOnFireCooldown = 3;
@@ -2094,6 +2189,7 @@ namespace TF2_Simulator
                             }
                             if (PlayerAction.ToLower() == "set jarate")
                             {
+                                P1_Damage = 0;
                                 if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 3)
                                 {
                                     P1_StatusEffect_1_ID = 3; P1_StatusJaratedCooldown = 3;
@@ -2119,6 +2215,7 @@ namespace TF2_Simulator
                             }
                             if (PlayerAction.ToLower() == "set mad-milk")
                             {
+                                P1_Damage = 0;
                                 if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 2)
                                 {
                                     P1_StatusEffect_1_ID = 2; P1_StatusMadMilkedCooldown = 3;
@@ -2144,6 +2241,7 @@ namespace TF2_Simulator
                             }
                             if (PlayerAction.ToLower() == "see effects")
                             {
+                                P1_Damage = 0;
                                 Console.WriteLine($"Effects:");
                                 Console.WriteLine($"Slot 1: {Misc.EffectNamefromID(P1_StatusEffect_1_ID)} ");
                                 Console.WriteLine($"Slot 2: {Misc.EffectNamefromID(P1_StatusEffect_2_ID)} ");
@@ -2221,6 +2319,22 @@ namespace TF2_Simulator
                                 }
                             }
                         }
+                        P1_StatusOnFireCooldown--;
+                        P1_StatusJaratedCooldown--;
+                        P1_StatusMadMilkedCooldown--;
+                        P1_StatusBleedingCooldown--;
+                        if (P1_StatusOnFireCooldown < 0) { P1_StatusOnFireCooldown = 0; }
+                        if (P1_StatusJaratedCooldown < 0) { P1_StatusJaratedCooldown = 0; }
+                        if (P1_StatusMadMilkedCooldown < 0) { P1_StatusMadMilkedCooldown = 0; }
+                        if (P1_StatusBleedingCooldown < 0) { P1_StatusBleedingCooldown = 0; }
+                        E1_StatusOnFireCooldown--;
+                        E1_StatusJaratedCooldown--;
+                        E1_StatusMadMilkedCooldown--;
+                        E1_StatusBleedingCooldown--;
+                        if (E1_StatusOnFireCooldown < 0) { E1_StatusOnFireCooldown = 0; }
+                        if (E1_StatusJaratedCooldown < 0) { E1_StatusJaratedCooldown = 0; }
+                        if (E1_StatusMadMilkedCooldown < 0) { E1_StatusMadMilkedCooldown = 0; }
+                        if (E1_StatusBleedingCooldown < 0) { E1_StatusBleedingCooldown = 0; }
                         if (P1_Health <= 0 && E1_Health <= 0)
                         {
                             Console.WriteLine("You both lost this battle!");
