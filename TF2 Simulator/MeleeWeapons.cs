@@ -23,6 +23,13 @@ namespace TF2_Simulator
                 Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-65 [Damage]
                 return Totaldamage;
             }
+            if (WeaponID == 210)
+            {
+                // Golden Frying Pan - a "little" bit of damage
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(999, 99999999);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
             //Continue Here ↓
             #region Scout

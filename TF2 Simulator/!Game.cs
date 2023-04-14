@@ -253,7 +253,7 @@ namespace TF2_Simulator
             #region PlayerStats V2
             //Information
             int P1_Health = 0;
-            string P1_MaxHP = "Not Set";
+            int P1_MaxHP = 0;
             int P1_ClassID = 0;
             string P1_ClassName = "Not Set";
             int P1_PrimaryWeaponID = 0;
@@ -298,9 +298,7 @@ namespace TF2_Simulator
             string E1_SecondaryTriggerName = "";
             bool E1_SecondaryTriggerExists = false;
             //Value Holders
-            int E1_PrimaryDamage = 0;
-            int E1_SecondaryDamage = 0;
-            int E1_MeleeDamage = 0;
+            int E1_Damage = 0;
             #endregion
             #region Player Stats
             int PlayerHP = 0;
@@ -770,7 +768,7 @@ namespace TF2_Simulator
                         P1_ClassID = ClassChoice;
                         P1_ClassName = Classes.ClassNamefromID(P1_ClassID);
                         P1_Health = Classes.ClassHealthfromID(P1_ClassID);
-                        P1_MaxHP = Classes.ClassHealthfromID(P1_ClassID).ToString();
+                        P1_MaxHP = P1_Health;
                         Console.WriteLine(Header);
                         Console.WriteLine($"  ClassID: {P1_ClassID}");
                         Console.WriteLine($"  Player Class: {P1_ClassName}");
@@ -1889,6 +1887,12 @@ namespace TF2_Simulator
                             Console.ForegroundColor = Color_Enemy;
                             Console.WriteLine($"  The {EnemyPrefix} {E1_ClassName} has {E1_Health}/{E1_MaxHP} Health");
                             Console.ForegroundColor = Color_Game;
+                            int HalfOfE1_HP = E1_Health / 2;
+                            if (E1_Health < HalfOfE1_HP)
+                            {
+                                Console.WriteLine($"  The {EnemyPrefix} {E1_ClassName} has less than Half Health!");
+                                Console.WriteLine($"  Type 'Taunt' to taunt them and finish them off!");
+                            }
                             Console.WriteLine(Footer);
                             Console.ForegroundColor = Color_Player;
                             if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1)
@@ -2074,15 +2078,21 @@ namespace TF2_Simulator
                                 {
                                     if (StatusEffect_BulletEnhancer == 3)
                                     {
-                                        //Console.WriteLine - Took Jarate Damage!
+                                        Console.WriteLine($"┌──THE ENEMY HAS TAKEN JARATE DAMAGE!!!────┐");
+                                        Console.WriteLine($"| Extra Damage Taken: {E1_HealthPlaceHolder - E1_Health} ");
+                                        Console.WriteLine($"└──────────────────────────────────────────┘");
                                     }
                                     if (StatusEffect_BulletEnhancer == 5)
                                     {
-                                        //Console.WriteLine - Took Mini-Crit Damage!
+                                        Console.WriteLine($"┌──THE ENEMY HAS TAKEN MINI-CRIT DAMAGE!!!────┐");
+                                        Console.WriteLine($"| Extra Damage Taken: {E1_HealthPlaceHolder - E1_Health} ");
+                                        Console.WriteLine($"└─────────────────────────────────────────────┘");
                                     }
                                     if (StatusEffect_BulletEnhancer == 6)
                                     {
-                                        //Console.WriteLine - Took Crit Damage!
+                                        Console.WriteLine($"┌──THE ENEMY HAS TAKEN CRIT DAMAGE!!!─────────┐");
+                                        Console.WriteLine($"| Extra Damage Taken: {E1_HealthPlaceHolder - E1_Health} ");
+                                        Console.WriteLine($"└─────────────────────────────────────────────┘");
                                     }
                                 }
                             }
@@ -2148,18 +2158,33 @@ namespace TF2_Simulator
                             if (PlayerAction.ToLower() == "heal player")
                             {
                                 P1_Damage = 0;
-                                P1_Health = +50;
+                                P1_Health = P1_Health + 500;
                                 Console.WriteLine($"  ┌──Health Healed:───────┐");
-                                Console.WriteLine($"  |         +50           |      ");
+                                Console.WriteLine($"  |         +500          |      ");
                                 Console.WriteLine($"  └───────────────────────┘");
                             }
                             if (PlayerAction.ToLower() == "heal enemy")
                             {
                                 P1_Damage = 0;
-                                E1_Health = +50;
+                                E1_Health = E1_Health + 500;
                                 Console.WriteLine($"  ┌──Enemy Health Healed:───────┐");
-                                Console.WriteLine($"  |           +50               |      ");
+                                Console.WriteLine($"  |           +500              |      ");
                                 Console.WriteLine($"  └─────────────────────────────┘");
+                            }
+                            if (PlayerAction.ToLower() == "ded")
+                            {
+                                P1_Health = 0; E1_Health = 0;
+                            }
+                            if (PlayerAction.ToLower() == "taunt")
+                            {
+                                Console.WriteLine($"  ┌──YOU HAVE FALLEN FOR {EnemyPrefix} {E1_ClassName}'s TRAP!!!───"); int e = Console.BufferWidth;
+                                Console.WriteLine($"  |  Given +1500 HP to {EnemyPrefix} {E1_ClassName}");
+                                Console.WriteLine($"  |  Given Golden Frying Pan"         );
+                                Console.Write(new String('─', e));
+                                E1_Health = E1_Health + 1500;
+                                E1_PrimaryWeaponID = 210;
+                                E1_SecondaryWeaponID = 210;
+                                E1_MeleeWeaponID = 210;
                             }
                             if (PlayerAction.ToLower() == "set fire")
                             {
@@ -2187,6 +2212,34 @@ namespace TF2_Simulator
                                     }
                                 }
                             }
+
+                            if (PlayerAction.ToLower() == "set fire enemy")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 1)
+                                {
+                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                    {
+                                        E1_StatusEffect_2_ID = 1; E1_StatusOnFireCooldown = 3;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                        {
+                                            E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 3;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
                             if (PlayerAction.ToLower() == "set jarate")
                             {
                                 P1_Damage = 0;
@@ -2213,6 +2266,34 @@ namespace TF2_Simulator
                                     }
                                 }
                             }
+
+                            if (PlayerAction.ToLower() == "set jarate")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 3)
+                                {
+                                    E1_StatusEffect_1_ID = 3; E1_StatusJaratedCooldown = 3;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 3)
+                                    {
+                                        E1_StatusEffect_2_ID = 3; E1_StatusJaratedCooldown = 3;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 3)
+                                        {
+                                            E1_StatusEffect_3_ID = 3; E1_StatusJaratedCooldown = 3;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
                             if (PlayerAction.ToLower() == "set mad-milk")
                             {
                                 P1_Damage = 0;
@@ -2239,6 +2320,34 @@ namespace TF2_Simulator
                                     }
                                 }
                             }
+
+                            if (PlayerAction.ToLower() == "set mad-milk")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 2)
+                                {
+                                    E1_StatusEffect_1_ID = 2; E1_StatusMadMilkedCooldown = 3;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 2)
+                                    {
+                                        E1_StatusEffect_2_ID = 2; E1_StatusMadMilkedCooldown = 3;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 2)
+                                        {
+                                            E1_StatusEffect_3_ID = 2; E1_StatusMadMilkedCooldown = 3;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
                             if (PlayerAction.ToLower() == "see effects")
                             {
                                 P1_Damage = 0;
@@ -2260,9 +2369,9 @@ namespace TF2_Simulator
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Enemy;
                                     Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}!");
-                                    E1_PrimaryDamage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
-                                    Console.WriteLine($"It Dealt {E1_PrimaryDamage} Damage to {PlayerName}!");
-                                    P1_Health = P1_Health - E1_PrimaryDamage;
+                                    E1_Damage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                    Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_Damage;
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                     Console.ForegroundColor = Color_Game;
@@ -2276,9 +2385,9 @@ namespace TF2_Simulator
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Enemy;
                                     Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}!");
-                                    E1_SecondaryDamage = SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
-                                    Console.WriteLine($"It Dealt {E1_SecondaryDamage} Damage to {PlayerName}!");
-                                    P1_Health = P1_Health - E1_SecondaryDamage;
+                                    E1_Damage = SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                    Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_Damage;
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                     Console.ForegroundColor = Color_Game;
@@ -2292,10 +2401,10 @@ namespace TF2_Simulator
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Enemy;
                                     Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                                    E1_MeleeDamage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                    E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
                                     Console.ForegroundColor = Color_Player;
-                                    Console.WriteLine($"It Dealt {E1_MeleeDamage} Damage to {PlayerName}!");
-                                    P1_Health = P1_Health - E1_MeleeDamage;
+                                    Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_Damage;
                                     Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
@@ -2308,10 +2417,10 @@ namespace TF2_Simulator
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Enemy;
                                     Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
-                                    E1_MeleeDamage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                    E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
                                     Console.ForegroundColor = Color_Player;
-                                    Console.WriteLine($"It Dealt {E1_MeleeDamage} Damage to {PlayerName}!");
-                                    P1_Health = P1_Health - E1_MeleeDamage;
+                                    Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_Damage;
                                     Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);

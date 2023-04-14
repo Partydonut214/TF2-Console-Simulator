@@ -14,7 +14,14 @@ namespace TF2_Simulator
             var randomdamage = new Random();
             int Totaldamage = 0;
             int Special = 0;
-
+            
+            if (WeaponID == 210)
+            {
+                // Golden Frying Pan - a "little" bit of damage
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(999, 99999999);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             //Continue Here ↓
             #region Scout
             //|| ClassID == 6 // Shared Weapons will have to be copy and pasted. or the player can access all classe's weapons and weapons from other slots.

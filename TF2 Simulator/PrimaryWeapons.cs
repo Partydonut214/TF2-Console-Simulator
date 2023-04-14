@@ -19,6 +19,14 @@ namespace TF2_Simulator
             int PhlogRage = 0;
             int PhlogCrits = 0;
 
+            if (WeaponID == 210)
+            {
+                // Golden Frying Pan - a "little" bit of damage
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(999, 99999999);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+
             #region Scout
             if (ClassID == 1 && WeaponID == 1)
             {
