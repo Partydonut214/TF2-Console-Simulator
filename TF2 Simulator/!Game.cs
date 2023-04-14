@@ -2065,6 +2065,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
                             }
+                            // For Status Effects to Work, Move Attack Diolouge Out of the PlayerAction if Statements and integrate Effects.
                             #region In-Game Tests / Cheats
                             if (PlayerAction.ToLower() == "set fire")
                             {
