@@ -9,6 +9,7 @@ namespace TF2_Simulator
     internal class Misc
     {
 
+
         public static string EffectNamefromID(int EffectID)
         {
             if (EffectID == 0) { return "No Effect Applied"; }

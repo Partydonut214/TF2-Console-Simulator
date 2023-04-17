@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.Metrics;
+using System.Runtime.InteropServices;
 
 namespace TF2_Simulator
 {
@@ -20,96 +22,6 @@ namespace TF2_Simulator
     {
         static void Main(string[] args)
         {
-            //Froze the Save Feature.
-            /*
-            Console.Write("This game uses Saves."); Thread.Sleep(1000); Console.WriteLine(" Checking for Saves... ");
-            bool SavesDiscovered = false;
-            int SaveSelected = 0;
-            string Savepath = "";
-            string Template = "====Player Information====\r\nPlayer/Save Name: \r\nPlayer Color:\r\nGame Color:\r\nEnemy Color:\r\nInput Color:\r\n\r\n====Inventory====\r\nint ID;\r\nstring n; //Name\r\nint c; //Count\r\nint cID; //Currency\r\nstring cn; //Currency Name\r\nint cCount; //Currency Count\r\n\r\nID = 0; n = \"Error\"; c = 0;\r\nID = 1; n = \"Scattergun\"; c = 0;\r\nID = 2; n = \"Force-A-Nature\"; c = 0;\r\nID = 3; n = \"Shortstop\"; c = 0;\r\nID = 4; n = \"Soda Popper\"; c = 0;\r\nID = 5; n = \"Baby Face's Blaster\"; c = 0;\r\nID = 6; n = \"Back Scatter\"; c = 0;\r\nID = 7; n = \"Pistol\"; c = 0;\r\nID = 8; n = \"Lugermorph\"; c = 0;\r\nID = 9; n = \"C.A.P.P.E.R\"; c = 0;\r\nID = 10; n = \"Winger\"; c = 0;\r\nID = 11; n = \"Pretty Boy's Pocket Pistol\"; c = 0;\r\nID = 12; n = \"Flying Guillotine\"; c = 0;\r\nID = 13; n = \"Bonk! Atomic Punch\"; c = 0;\r\nID = 14; n = \"Crit-a-Cola\"; c = 0;\r\nID = 15; n = \"Mad Milk\"; c = 0;\r\nID = 16; n = \"Mutated Milk\"; c = 0;\r\nID = 17; n = \"Bat\"; c = 0;\r\nID = 18; n = \"Holy Mackerel\"; c = 0;\r\nID = 19; n = \"Unarmed Combat\"; c = 0;\r\nID = 20; n = \"Batsaber\"; c = 0;\r\nID = 21; n = \"Sandman\"; c = 0;\r\nID = 22; n = \"Candy Cane\"; c = 0;\r\nID = 23; n = \"Boston Basher\"; c = 0;\r\nID = 24; n = \"Three-Rune Blade\"; c = 0;\r\nID = 25; n = \"Sun-on-a-Stick\"; c = 0;\r\nID = 26; n = \"Fan O'War\"; c = 0;\r\nID = 27; n = \"Atomizer\"; c = 0;\r\nID = 28; n = \"Wrap Assassin\"; c = 0;\r\nID = 29; n = \"Rocket Launcher\"; c = 0;\r\nID = 30; n = \"Original\"; c = 0;\r\nID = 31; n = \"Direct Hit\"; c = 0;\r\nID = 32; n = \"Black Box\"; c = 0;\r\nID = 33; n = \"Rocket Jumper\"; c = 0;\r\nID = 34; n = \"Liberty Launcher\"; c = 0;\r\nID = 35; n = \"Cow Mangler 5000\"; c = 0;\r\nID = 36; n = \"Beggar's Bazooka\"; c = 0;\r\nID = 37; n = \"Air Strike\"; c = 0;\r\nID = 38; n = \"Shotgun\"; c = 0;\r\nID = 39; n = \"Reserve Shooter\"; c = 0;\r\nID = 40; n = \"Buff Banner\"; c = 0;\r\nID = 41; n = \"Gunboats\"; c = 0;\r\nID = 42; n = \"Battalion's Backup\"; c = 0;\r\nID = 43; n = \"Concheror\"; c = 0;\r\nID = 44; n = \"Mantreads\"; c = 0;\r\nID = 45; n = \"Righteous Bison\"; c = 0;\r\nID = 46; n = \"B.A.S.E. Jumper\"; c = 0;\r\nID = 47; n = \"Panic Attack\"; c = 0;\r\nID = 48; n = \"Shovel\"; c = 0;\r\nID = 49; n = \"Equalizer\"; c = 0;\r\nID = 50; n = \"Pain Train\"; c = 0;\r\nID = 51; n = \"Half-Zatoichi\"; c = 0;\r\nID = 52; n = \"Disciplinary Action\"; c = 0;\r\nID = 53; n = \"Market Gardener\"; c = 0;\r\nID = 54; n = \"Escape Plan\"; c = 0;\r\nID = 55; n = \"Flame Thrower\"; c = 0;\r\nID = 56; n = \"Rainblower\"; c = 0;\r\nID = 57; n = \"Nostromo Napalmer\"; c = 0;\r\nID = 58; n = \"Backburner\"; c = 0;\r\nID = 59; n = \"Degreaser\"; c = 0;\r\nID = 60; n = \"Phlogistinator\"; c = 0;\r\nID = 61; n = \"Dragon's Fury\"; c = 0;\r\nID = 62; n = \"Flare Gun\"; c = 0;\r\nID = 63; n = \"Detonator\"; c = 0;\r\nID = 64; n = \"Manmelter\"; c = 0;\r\nID = 65; n = \"Scorch Shot\"; c = 0;\r\nID = 66; n = \"Thermal Thruster\"; c = 0;\r\nID = 67; n = \"Gas Passer\"; c = 0;\r\nID = 68; n = \"Fire Axe\"; c = 0;\r\nID = 69; n = \"Lollichop\"; c = 0;\r\nID = 70; n = \"Axtinguisher\"; c = 0;\r\nID = 71; n = \"Postal Pummeler\"; c = 0;\r\nID = 72; n = \"Homewrecker\"; c = 0;\r\nID = 73; n = \"Maul\"; c = 0;\r\nID = 74; n = \"Powerjack\"; c = 0;\r\nID = 75; n = \"Back Scratcher\"; c = 0;\r\nID = 76; n = \"Sharpened Volcano Fragment\"; c = 0;\r\nID = 77; n = \"Third Degree\"; c = 0;\r\nID = 78; n = \"Neon Annihilator\"; c = 0;\r\nID = 79; n = \"Hot Hand\"; c = 0;\r\nID = 80; n = \"Grenade Launcher\"; c = 0;\r\nID = 81; n = \"Loch-n-Load\"; c = 0;\r\nID = 82; n = \"Ali Baba's Wee Booties\"; c = 0;\r\nID = 83; n = \"Bootlegger\"; c = 0;\r\nID = 84; n = \"Loose Cannon\"; c = 0;\r\nID = 85; n = \"Iron Bomber\"; c = 0;\r\nID = 86; n = \"Stickybomb Launcher\"; c = 0;\r\nID = 87; n = \"Scottish Resistance\"; c = 0;\r\nID = 88; n = \"Chargin' Targe\"; c = 0;\r\nID = 89; n = \"Sticky Jumper\"; c = 0;\r\nID = 90; n = \"Splendid Screen\"; c = 0;\r\nID = 91; n = \"Tide Turner\"; c = 0;\r\nID = 92; n = \"Quickiebomb Launcher\"; c = 0;\r\nID = 93; n = \"Bottle\"; c = 0;\r\nID = 94; n = \"Scottish Handshake\"; c = 0;\r\nID = 95; n = \"Eyelander\"; c = 0;\r\nID = 96; n = \"Horseless Headless Horsemann's Headtaker\"; c = 0;\r\nID = 97; n = \"Nessie's Nine Iron\"; c = 0;\r\nID = 98; n = \"Scotsman's Skullcutter\"; c = 0;\r\nID = 99; n = \"Pain Train\"; c = 0;\r\nID = 100; n = \"Ullapool Caber\"; c = 0;\r\nID = 101; n = \"Claidheamh Mòr\"; c = 0;\r\nID = 102; n = \"Half-Zatoichi\"; c = 0;\r\nID = 103; n = \"Persian Persuader\"; c = 0;\r\nID = 104; n = \"Minigun\"; c = 0;\r\nID = 105; n = \"Iron Curtain\"; c = 0;\r\nID = 106; n = \"Natascha\"; c = 0;\r\nID = 107; n = \"Brass Beast\"; c = 0;\r\nID = 108; n = \"Tomislav\"; c = 0;\r\nID = 109; n = \"Huo-Long Heater\"; c = 0;\r\nID = 110; n = \"Family Business\"; c = 0;\r\nID = 111; n = \"Sandvich\"; c = 0;\r\nID = 112; n = \"Robo-Sandvich\"; c = 0;\r\nID = 113; n = \"Dalokohs Bar\"; c = 0;\r\nID = 114; n = \"Fishcake\"; c = 0;\r\nID = 115; n = \"Buffalo Steak Sandvich\"; c = 0;\r\nID = 116; n = \"Panic Attack\"; c = 0;\r\nID = 117; n = \"Second Banana\"; c = 0;\r\nID = 118; n = \"Fists\"; c = 0;\r\nID = 119; n = \"Apoco-Fists\"; c = 0;\r\nID = 120; n = \"Killing Gloves of Boxing\"; c = 0;\r\nID = 121; n = \"Gloves of Running Urgently\"; c = 0;\r\nID = 122; n = \"Bread Bite\"; c = 0;\r\nID = 123; n = \"Warrior's Spirit\"; c = 0;\r\nID = 124; n = \"Fists of Steel\"; c = 0;\r\nID = 125; n = \"Eviction Notice\"; c = 0;\r\nID = 126; n = \"Holiday Punch\"; c = 0;\r\nID = 127; n = \"Frontier Justice\"; c = 0;\r\nID = 128; n = \"Widowmaker\"; c = 0;\r\nID = 129; n = \"Pomson 6000\"; c = 0;\r\nID = 130; n = \"Rescue Ranger\"; c = 0;\r\nID = 131; n = \"Wrangler\"; c = 0;\r\nID = 132; n = \"Giger Counter\"; c = 0;\r\nID = 133; n = \"Short Circuit\"; c = 0;\r\nID = 134; n = \"Wrench\"; c = 0;\r\nID = 135; n = \"Golden Wrench\"; c = 0;\r\nID = 136; n = \"Gunslinger\"; c = 0;\r\nID = 137; n = \"Southern Hospitality\"; c = 0;\r\nID = 138; n = \"Jag\"; c = 0;\r\nID = 139; n = \"Eureka Effect\"; c = 0;\r\nID = 140; n = \"Consturction PDA\"; c = 0;\r\nID = 141; n = \"Destruction PDA\"; c = 0;\r\nID = 142; n = \"Syringe Gun\"; c = 0;\r\nID = 143; n = \"Blutsauger\"; c = 0;\r\nID = 144; n = \"Crusader's Crossbow\"; c = 0;\r\nID = 145; n = \"Overdose\"; c = 0;\r\nID = 146; n = \"Medi Gun\"; c = 0;\r\nID = 147; n = \"Kritzkrieg\"; c = 0;\r\nID = 148; n = \"Quick-Fix\"; c = 0;\r\nID = 149; n = \"Vaccinator\"; c = 0;\r\nID = 150; n = \"Bonesaw\"; c = 0;\r\nID = 151; n = \"Übersaw\"; c = 0;\r\nID = 152; n = \"Vita-Saw\"; c = 0;\r\nID = 153; n = \"Amputator\"; c = 0;\r\nID = 154; n = \"Solemn Vow\"; c = 0;\r\nID = 155; n = \"Sniper Rifle\"; c = 0;\r\nID = 156; n = \"AWPer Hand\"; c = 0;\r\nID = 157; n = \"Huntsman\"; c = 0;\r\nID = 158; n = \"Fortified Compound\"; c = 0;\r\nID = 159; n = \"Sydney Sleeper\"; c = 0;\r\nID = 160; n = \"Bazaar Bargain\"; c = 0;\r\nID = 161; n = \"Machina\"; c = 0;\r\nID = 162; n = \"Shooting Star\"; c = 0;\r\nID = 163; n = \"Hitman's Heatmaker\"; c = 0;\r\nID = 164; n = \"Classic\"; c = 0;\r\nID = 165; n = \"SMG\"; c = 0;\r\nID = 166; n = \"Cleaner's Carbine\"; c = 0;\r\nID = 167; n = \"Jarate\"; c = 0;\r\nID = 168; n = \"Self-Aware Beauty Mark\"; c = 0;\r\nID = 169; n = \"Razorback\"; c = 0;\r\nID = 170; n = \"Darwin's Danger Shield\"; c = 0;\r\nID = 171; n = \"Cozy Camper\"; c = 0;\r\nID = 172; n = \"Kukri\"; c = 0;\r\nID = 173; n = \"Tribalman's Shiv\"; c = 0;\r\nID = 174; n = \"Bushwacka\"; c = 0;\r\nID = 175; n = \"Shahanshah\"; c = 0;\r\nID = 176; n = \"Revolver\"; c = 0;\r\nID = 177; n = \"Big Kill\"; c = 0;\r\nID = 178; n = \"Ambassador\"; c = 0;\r\nID = 179; n = \"L'Etranger\"; c = 0;\r\nID = 180; n = \"Enforcer\"; c = 0;\r\nID = 181; n = \"Diamondback\"; c = 0;\r\nID = 182; n = \"Knife\"; c = 0;\r\nID = 183; n = \"Sharp Dresser\"; c = 0;\r\nID = 184; n = \"Black Rose\"; c = 0;\r\nID = 185; n = \"Your Eternal Reward\"; c = 0;\r\nID = 186; n = \"Wanga Prick\"; c = 0;\r\nID = 187; n = \"Conniver's Kunai\"; c = 0;\r\nID = 188; n = \"Big Earner\"; c = 0;\r\nID = 189; n = \"Spy-cicle\"; c = 0;\r\nID = 190; n = \"Disguise Kit\"; c = 0;\r\nID = 191; n = \"Invis Watch\"; c = 0;\r\nID = 192; n = \"Enthusiast's Timepiece\"; c = 0;\r\nID = 193; n = \"Quäckenbirdt\"; c = 0;\r\nID = 194; n = \"Cloak and Dagger\"; c = 0;\r\nID = 195; n = \"Dead Ringer\"; c = 0;\r\nID = 196; n = \"Sapper\"; c = 0;\r\nID = 197; n = \"Ap-Sap\"; c = 0;\r\nID = 198; n = \"Snack Attack\"; c = 0;\r\nID = 199; n = \"Red-Tape Recorder\"; c = 0;\r\nID = 200; n = \"Saxxy\"; c = 0;\r\nID = 201; n = \"Frying Pan\"; c = 0;\r\nID = 202; n = \"Conscientious Objector\"; c = 0;\r\nID = 203; n = \"Freedom Staff\"; c = 0;\r\nID = 204; n = \"Bat Outta Hell\"; c = 0;\r\nID = 205; n = \"Memory Maker\"; c = 0;\r\nID = 206; n = \"Ham Shank\"; c = 0;\r\nID = 207; n = \"Necro Smasher\"; c = 0;\r\nID = 208; n = \"Crossing Guard\"; c = 0;\r\nID = 209; n = \"Prinny Machete\"; c = 0;\r\nID = 210; n = \"Golden Frying Pan\"; c = 0;\r\nID = 211; n = \"Legendary Ticket\"; c = 0;\r\nID = 212; n = \"Backpack Expander\"; c = 0;\r\n\r\ncID = 0; cn = \"Error\"; cCount = 0; \r\ncID = 1; cn = \"Half-Scrap\"; cCount = 0;\r\ncID = 2; cn = \"Scrap\"; cCount = 0;\r\ncID = 3; cn = \"Reclaimed\"; cCount = 0;\r\ncID = 4; cn = \"Refined\"; cCount = 0;\r\n\r\n====Special Items====\r\nint legendaryID;\r\nint legendslot1;\r\nint legendslot2;\r\nint legendslot3;\r\nSyntax: ID = #; n = Inventory.IDtoName(ID); c = ++; legendslot1 = legendaryID.Next(1,11);  legendslot2 = legendaryID.Next(1,11); legendslot3 = legendaryID.Next(1,11);\r\nList Begins on Line 243.";
-
-
-            for (int i = 1; i <= 100; i++)
-            {
-                Savepath = $@"C:\Users\Public\Documents\TF2Sim\Save_{i}.txt";
-            try
-            {
-                    if (File.Exists(Savepath))
-                    {
-                        Console.WriteLine($"[{i}. (PlayerName) | Inventory [(InventoryCount)/(MaxInventory)]");
-                        
-                        SavesDiscovered = true;
-                        //writes to file
-                        //System.IO.File.WriteAllText(Savepath, "This File Exists.\n");
-                        //Inventory.InventoryLoader(); //SUPER BROKEN
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                }
-                if (SavesDiscovered == false)
-                {
-                    Console.WriteLine("There was no Save File Found, Would you like to create one? [Type 'Yes' to Confirm]");
-                    Console.WriteLine($"Current Directory: {Savepath}");
-                    string FileAuthorization = Console.ReadLine();
-                    if (FileAuthorization.ToLower() == "yes")
-                    {
-                        System.IO.File.WriteAllText(Savepath, Template);
-                    }
-                }
-            }
-            Console.WriteLine("Would you like to load a file or create a new one?");
-            Console.WriteLine("Type 'New save' to create a new save or type the save's number to load it.");
-            string SaveChoice = Console.ReadLine();
-            if (int.TryParse(SaveChoice, out int SaveInt)) 
-            {
-                //SaveFile.SaveLoad(SaveInt);
-            }
-            else if (SaveChoice.ToLower() == "new save")
-            {
-                System.IO.File.WriteAllText(Savepath, Template);
-            }
-            else
-            {
-                Console.WriteLine("Something went wrong with the Selection, Starting without a save.");
-            }
-            try
-            {
-                if (File.Exists(Savepath))
-                {
-                    Console.WriteLine("Save File Found!");
-                }
-                else
-                {
-                    // Create the file.
-                    Console.WriteLine("There was no Save File Found, Would you like to create one? [Type 'Yes' to Confirm]");
-                    Console.WriteLine($"Current Directory: {Savepath}");
-                    string FileAuthorization = Console.ReadLine();
-                    if (FileAuthorization.ToLower() == "yes")
-                    { 
-                        System.IO.File.WriteAllText(Savepath, "====Player Information====\r\nPlayer/Save Name: \r\nPlayer Color:\r\nGame Color:\r\nEnemy Color:\r\nInput Color:\r\n\r\n====Inventory====\r\nint ID;\r\nstring n; //Name\r\nint c; //Count\r\nint cID; //Currency\r\nstring cn; //Currency Name\r\nint cCount; //Currency Count\r\n\r\nID = 0; n = \"Error\"; c = 0;\r\nID = 1; n = \"Scattergun\"; c = 0;\r\nID = 2; n = \"Force-A-Nature\"; c = 0;\r\nID = 3; n = \"Shortstop\"; c = 0;\r\nID = 4; n = \"Soda Popper\"; c = 0;\r\nID = 5; n = \"Baby Face's Blaster\"; c = 0;\r\nID = 6; n = \"Back Scatter\"; c = 0;\r\nID = 7; n = \"Pistol\"; c = 0;\r\nID = 8; n = \"Lugermorph\"; c = 0;\r\nID = 9; n = \"C.A.P.P.E.R\"; c = 0;\r\nID = 10; n = \"Winger\"; c = 0;\r\nID = 11; n = \"Pretty Boy's Pocket Pistol\"; c = 0;\r\nID = 12; n = \"Flying Guillotine\"; c = 0;\r\nID = 13; n = \"Bonk! Atomic Punch\"; c = 0;\r\nID = 14; n = \"Crit-a-Cola\"; c = 0;\r\nID = 15; n = \"Mad Milk\"; c = 0;\r\nID = 16; n = \"Mutated Milk\"; c = 0;\r\nID = 17; n = \"Bat\"; c = 0;\r\nID = 18; n = \"Holy Mackerel\"; c = 0;\r\nID = 19; n = \"Unarmed Combat\"; c = 0;\r\nID = 20; n = \"Batsaber\"; c = 0;\r\nID = 21; n = \"Sandman\"; c = 0;\r\nID = 22; n = \"Candy Cane\"; c = 0;\r\nID = 23; n = \"Boston Basher\"; c = 0;\r\nID = 24; n = \"Three-Rune Blade\"; c = 0;\r\nID = 25; n = \"Sun-on-a-Stick\"; c = 0;\r\nID = 26; n = \"Fan O'War\"; c = 0;\r\nID = 27; n = \"Atomizer\"; c = 0;\r\nID = 28; n = \"Wrap Assassin\"; c = 0;\r\nID = 29; n = \"Rocket Launcher\"; c = 0;\r\nID = 30; n = \"Original\"; c = 0;\r\nID = 31; n = \"Direct Hit\"; c = 0;\r\nID = 32; n = \"Black Box\"; c = 0;\r\nID = 33; n = \"Rocket Jumper\"; c = 0;\r\nID = 34; n = \"Liberty Launcher\"; c = 0;\r\nID = 35; n = \"Cow Mangler 5000\"; c = 0;\r\nID = 36; n = \"Beggar's Bazooka\"; c = 0;\r\nID = 37; n = \"Air Strike\"; c = 0;\r\nID = 38; n = \"Shotgun\"; c = 0;\r\nID = 39; n = \"Reserve Shooter\"; c = 0;\r\nID = 40; n = \"Buff Banner\"; c = 0;\r\nID = 41; n = \"Gunboats\"; c = 0;\r\nID = 42; n = \"Battalion's Backup\"; c = 0;\r\nID = 43; n = \"Concheror\"; c = 0;\r\nID = 44; n = \"Mantreads\"; c = 0;\r\nID = 45; n = \"Righteous Bison\"; c = 0;\r\nID = 46; n = \"B.A.S.E. Jumper\"; c = 0;\r\nID = 47; n = \"Panic Attack\"; c = 0;\r\nID = 48; n = \"Shovel\"; c = 0;\r\nID = 49; n = \"Equalizer\"; c = 0;\r\nID = 50; n = \"Pain Train\"; c = 0;\r\nID = 51; n = \"Half-Zatoichi\"; c = 0;\r\nID = 52; n = \"Disciplinary Action\"; c = 0;\r\nID = 53; n = \"Market Gardener\"; c = 0;\r\nID = 54; n = \"Escape Plan\"; c = 0;\r\nID = 55; n = \"Flame Thrower\"; c = 0;\r\nID = 56; n = \"Rainblower\"; c = 0;\r\nID = 57; n = \"Nostromo Napalmer\"; c = 0;\r\nID = 58; n = \"Backburner\"; c = 0;\r\nID = 59; n = \"Degreaser\"; c = 0;\r\nID = 60; n = \"Phlogistinator\"; c = 0;\r\nID = 61; n = \"Dragon's Fury\"; c = 0;\r\nID = 62; n = \"Flare Gun\"; c = 0;\r\nID = 63; n = \"Detonator\"; c = 0;\r\nID = 64; n = \"Manmelter\"; c = 0;\r\nID = 65; n = \"Scorch Shot\"; c = 0;\r\nID = 66; n = \"Thermal Thruster\"; c = 0;\r\nID = 67; n = \"Gas Passer\"; c = 0;\r\nID = 68; n = \"Fire Axe\"; c = 0;\r\nID = 69; n = \"Lollichop\"; c = 0;\r\nID = 70; n = \"Axtinguisher\"; c = 0;\r\nID = 71; n = \"Postal Pummeler\"; c = 0;\r\nID = 72; n = \"Homewrecker\"; c = 0;\r\nID = 73; n = \"Maul\"; c = 0;\r\nID = 74; n = \"Powerjack\"; c = 0;\r\nID = 75; n = \"Back Scratcher\"; c = 0;\r\nID = 76; n = \"Sharpened Volcano Fragment\"; c = 0;\r\nID = 77; n = \"Third Degree\"; c = 0;\r\nID = 78; n = \"Neon Annihilator\"; c = 0;\r\nID = 79; n = \"Hot Hand\"; c = 0;\r\nID = 80; n = \"Grenade Launcher\"; c = 0;\r\nID = 81; n = \"Loch-n-Load\"; c = 0;\r\nID = 82; n = \"Ali Baba's Wee Booties\"; c = 0;\r\nID = 83; n = \"Bootlegger\"; c = 0;\r\nID = 84; n = \"Loose Cannon\"; c = 0;\r\nID = 85; n = \"Iron Bomber\"; c = 0;\r\nID = 86; n = \"Stickybomb Launcher\"; c = 0;\r\nID = 87; n = \"Scottish Resistance\"; c = 0;\r\nID = 88; n = \"Chargin' Targe\"; c = 0;\r\nID = 89; n = \"Sticky Jumper\"; c = 0;\r\nID = 90; n = \"Splendid Screen\"; c = 0;\r\nID = 91; n = \"Tide Turner\"; c = 0;\r\nID = 92; n = \"Quickiebomb Launcher\"; c = 0;\r\nID = 93; n = \"Bottle\"; c = 0;\r\nID = 94; n = \"Scottish Handshake\"; c = 0;\r\nID = 95; n = \"Eyelander\"; c = 0;\r\nID = 96; n = \"Horseless Headless Horsemann's Headtaker\"; c = 0;\r\nID = 97; n = \"Nessie's Nine Iron\"; c = 0;\r\nID = 98; n = \"Scotsman's Skullcutter\"; c = 0;\r\nID = 99; n = \"Pain Train\"; c = 0;\r\nID = 100; n = \"Ullapool Caber\"; c = 0;\r\nID = 101; n = \"Claidheamh Mòr\"; c = 0;\r\nID = 102; n = \"Half-Zatoichi\"; c = 0;\r\nID = 103; n = \"Persian Persuader\"; c = 0;\r\nID = 104; n = \"Minigun\"; c = 0;\r\nID = 105; n = \"Iron Curtain\"; c = 0;\r\nID = 106; n = \"Natascha\"; c = 0;\r\nID = 107; n = \"Brass Beast\"; c = 0;\r\nID = 108; n = \"Tomislav\"; c = 0;\r\nID = 109; n = \"Huo-Long Heater\"; c = 0;\r\nID = 110; n = \"Family Business\"; c = 0;\r\nID = 111; n = \"Sandvich\"; c = 0;\r\nID = 112; n = \"Robo-Sandvich\"; c = 0;\r\nID = 113; n = \"Dalokohs Bar\"; c = 0;\r\nID = 114; n = \"Fishcake\"; c = 0;\r\nID = 115; n = \"Buffalo Steak Sandvich\"; c = 0;\r\nID = 116; n = \"Panic Attack\"; c = 0;\r\nID = 117; n = \"Second Banana\"; c = 0;\r\nID = 118; n = \"Fists\"; c = 0;\r\nID = 119; n = \"Apoco-Fists\"; c = 0;\r\nID = 120; n = \"Killing Gloves of Boxing\"; c = 0;\r\nID = 121; n = \"Gloves of Running Urgently\"; c = 0;\r\nID = 122; n = \"Bread Bite\"; c = 0;\r\nID = 123; n = \"Warrior's Spirit\"; c = 0;\r\nID = 124; n = \"Fists of Steel\"; c = 0;\r\nID = 125; n = \"Eviction Notice\"; c = 0;\r\nID = 126; n = \"Holiday Punch\"; c = 0;\r\nID = 127; n = \"Frontier Justice\"; c = 0;\r\nID = 128; n = \"Widowmaker\"; c = 0;\r\nID = 129; n = \"Pomson 6000\"; c = 0;\r\nID = 130; n = \"Rescue Ranger\"; c = 0;\r\nID = 131; n = \"Wrangler\"; c = 0;\r\nID = 132; n = \"Giger Counter\"; c = 0;\r\nID = 133; n = \"Short Circuit\"; c = 0;\r\nID = 134; n = \"Wrench\"; c = 0;\r\nID = 135; n = \"Golden Wrench\"; c = 0;\r\nID = 136; n = \"Gunslinger\"; c = 0;\r\nID = 137; n = \"Southern Hospitality\"; c = 0;\r\nID = 138; n = \"Jag\"; c = 0;\r\nID = 139; n = \"Eureka Effect\"; c = 0;\r\nID = 140; n = \"Consturction PDA\"; c = 0;\r\nID = 141; n = \"Destruction PDA\"; c = 0;\r\nID = 142; n = \"Syringe Gun\"; c = 0;\r\nID = 143; n = \"Blutsauger\"; c = 0;\r\nID = 144; n = \"Crusader's Crossbow\"; c = 0;\r\nID = 145; n = \"Overdose\"; c = 0;\r\nID = 146; n = \"Medi Gun\"; c = 0;\r\nID = 147; n = \"Kritzkrieg\"; c = 0;\r\nID = 148; n = \"Quick-Fix\"; c = 0;\r\nID = 149; n = \"Vaccinator\"; c = 0;\r\nID = 150; n = \"Bonesaw\"; c = 0;\r\nID = 151; n = \"Übersaw\"; c = 0;\r\nID = 152; n = \"Vita-Saw\"; c = 0;\r\nID = 153; n = \"Amputator\"; c = 0;\r\nID = 154; n = \"Solemn Vow\"; c = 0;\r\nID = 155; n = \"Sniper Rifle\"; c = 0;\r\nID = 156; n = \"AWPer Hand\"; c = 0;\r\nID = 157; n = \"Huntsman\"; c = 0;\r\nID = 158; n = \"Fortified Compound\"; c = 0;\r\nID = 159; n = \"Sydney Sleeper\"; c = 0;\r\nID = 160; n = \"Bazaar Bargain\"; c = 0;\r\nID = 161; n = \"Machina\"; c = 0;\r\nID = 162; n = \"Shooting Star\"; c = 0;\r\nID = 163; n = \"Hitman's Heatmaker\"; c = 0;\r\nID = 164; n = \"Classic\"; c = 0;\r\nID = 165; n = \"SMG\"; c = 0;\r\nID = 166; n = \"Cleaner's Carbine\"; c = 0;\r\nID = 167; n = \"Jarate\"; c = 0;\r\nID = 168; n = \"Self-Aware Beauty Mark\"; c = 0;\r\nID = 169; n = \"Razorback\"; c = 0;\r\nID = 170; n = \"Darwin's Danger Shield\"; c = 0;\r\nID = 171; n = \"Cozy Camper\"; c = 0;\r\nID = 172; n = \"Kukri\"; c = 0;\r\nID = 173; n = \"Tribalman's Shiv\"; c = 0;\r\nID = 174; n = \"Bushwacka\"; c = 0;\r\nID = 175; n = \"Shahanshah\"; c = 0;\r\nID = 176; n = \"Revolver\"; c = 0;\r\nID = 177; n = \"Big Kill\"; c = 0;\r\nID = 178; n = \"Ambassador\"; c = 0;\r\nID = 179; n = \"L'Etranger\"; c = 0;\r\nID = 180; n = \"Enforcer\"; c = 0;\r\nID = 181; n = \"Diamondback\"; c = 0;\r\nID = 182; n = \"Knife\"; c = 0;\r\nID = 183; n = \"Sharp Dresser\"; c = 0;\r\nID = 184; n = \"Black Rose\"; c = 0;\r\nID = 185; n = \"Your Eternal Reward\"; c = 0;\r\nID = 186; n = \"Wanga Prick\"; c = 0;\r\nID = 187; n = \"Conniver's Kunai\"; c = 0;\r\nID = 188; n = \"Big Earner\"; c = 0;\r\nID = 189; n = \"Spy-cicle\"; c = 0;\r\nID = 190; n = \"Disguise Kit\"; c = 0;\r\nID = 191; n = \"Invis Watch\"; c = 0;\r\nID = 192; n = \"Enthusiast's Timepiece\"; c = 0;\r\nID = 193; n = \"Quäckenbirdt\"; c = 0;\r\nID = 194; n = \"Cloak and Dagger\"; c = 0;\r\nID = 195; n = \"Dead Ringer\"; c = 0;\r\nID = 196; n = \"Sapper\"; c = 0;\r\nID = 197; n = \"Ap-Sap\"; c = 0;\r\nID = 198; n = \"Snack Attack\"; c = 0;\r\nID = 199; n = \"Red-Tape Recorder\"; c = 0;\r\nID = 200; n = \"Saxxy\"; c = 0;\r\nID = 201; n = \"Frying Pan\"; c = 0;\r\nID = 202; n = \"Conscientious Objector\"; c = 0;\r\nID = 203; n = \"Freedom Staff\"; c = 0;\r\nID = 204; n = \"Bat Outta Hell\"; c = 0;\r\nID = 205; n = \"Memory Maker\"; c = 0;\r\nID = 206; n = \"Ham Shank\"; c = 0;\r\nID = 207; n = \"Necro Smasher\"; c = 0;\r\nID = 208; n = \"Crossing Guard\"; c = 0;\r\nID = 209; n = \"Prinny Machete\"; c = 0;\r\nID = 210; n = \"Golden Frying Pan\"; c = 0;\r\nID = 211; n = \"Legendary Ticket\"; c = 0;\r\nID = 212; n = \"Backpack Expander\"; c = 0;\r\n\r\ncID = 0; cn = \"Error\"; cCount = 0; \r\ncID = 1; cn = \"Half-Scrap\"; cCount = 0;\r\ncID = 2; cn = \"Scrap\"; cCount = 0;\r\ncID = 3; cn = \"Reclaimed\"; cCount = 0;\r\ncID = 4; cn = \"Refined\"; cCount = 0;\r\n\r\n====Special Items====\r\nint legendaryID;\r\nint legendslot1;\r\nint legendslot2;\r\nint legendslot3;\r\nSyntax: ID = #; n = Inventory.IDtoName(ID); c = ++; legendslot1 = legendaryID.Next(1,11);  legendslot2 = legendaryID.Next(1,11); legendslot3 = legendaryID.Next(1,11);\r\nList Begins on Line 243.");
-                    }
-
-                }
-                // Open the stream and read it back.
-                using (StreamReader sr = File.OpenText(Savepath))
-                {
-                    string s = "";
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        Console.WriteLine(s);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-           
-            Console.WriteLine("Waiting.....");
-            Thread.Sleep(1000);
-            */
             Console.Clear();
             Console.Write("What is your Name: ");
             string PlayerName = Console.ReadLine();
@@ -299,6 +211,22 @@ namespace TF2_Simulator
             bool E1_SecondaryTriggerExists = false;
             //Value Holders
             int E1_Damage = 0;
+
+
+            // Weapon Lists
+
+            List<int> PrimaryWeapons_CanInflictFire = new List<int>
+            {
+                35, // Cow Mangler 5000
+                55, // Flame Thrower
+                56, // Rainblower
+                57, // Nostromo Napalmer
+                58, // Backburner
+                59, // Degreaser
+                60, // Phlogistinator
+                61, // Dragon's Fury
+                109, // Huo-Long Heater
+            };
             #endregion
             #region Player Stats
             int PlayerHP = 0;
@@ -1895,6 +1823,7 @@ namespace TF2_Simulator
                             }
                             Console.WriteLine(Footer);
                             Console.ForegroundColor = Color_Player;
+                            //Player Status
                             if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1)
                             {
                                 Console.WriteLine($"┌──YOU ARE BURNING!!!─────────┐");
@@ -1931,6 +1860,46 @@ namespace TF2_Simulator
                                 Console.WriteLine($"| Time Left: {P1_StatusBleedingCooldown} ");
                                 Console.WriteLine($"└─────────────────────────────────┘");
                             }
+                            Console.ForegroundColor = Color_Enemy;
+                            // Enemy Status
+                            if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1)
+                            {
+                                Console.WriteLine($"┌──THE ENEMY IS ON FIRE!!!─────────┐");
+                                Console.WriteLine($"| Time Until Enemy Extinguishes: {E1_StatusOnFireCooldown} ");
+                                Console.WriteLine($"└──────────────────────────────────┘");
+                            }
+                            if (E1_StatusEffect_1_ID == 2 || E1_StatusEffect_2_ID == 2 || E1_StatusEffect_3_ID == 2)
+                            {
+                                Console.WriteLine($"┌──THE ENEMY IS UNDER THE EFFECTS OF MAD-MILK!!!────┐");
+                                Console.WriteLine($"| Time Until Enemy Dries: {E1_StatusMadMilkedCooldown} ");
+                                Console.WriteLine($"└───────────────────────────────────────────────────┘");
+                            }
+                            if (E1_StatusEffect_1_ID == 3 || E1_StatusEffect_2_ID == 3 || E1_StatusEffect_3_ID == 3)
+                            {
+                                Console.WriteLine($"┌──THE ENEMY IS UNDER THE EFFECTS OF JARATE!!!────┐");
+                                Console.WriteLine($"| Time Until Enemy Dries: {E1_StatusJaratedCooldown} ");
+                                Console.WriteLine($"└─────────────────────────────────────────────────┘");
+                            }
+                            if (E1_StatusEffect_1_ID == 4 || E1_StatusEffect_2_ID == 4 || E1_StatusEffect_3_ID == 4)
+                            {
+                                Console.WriteLine($"┌──THE ENEMY IS TAKING BLEED DAMAGE!!!────┐");
+                                Console.WriteLine($"| Time Until Enemy Heals: {E1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└─────────────────────────────────────────┘");
+                            }
+                            if (E1_StatusEffect_1_ID == 5 || E1_StatusEffect_2_ID == 5 || E1_StatusEffect_3_ID == 5)
+                            {
+                                Console.WriteLine($"┌──YOU HAVE CRITS!!!──────┐");
+                                Console.WriteLine($"| Time Left: {E1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└─────────────────────────┘");
+                            }
+                            if (E1_StatusEffect_1_ID == 6 || E1_StatusEffect_2_ID == 6 || E1_StatusEffect_3_ID == 6)
+                            {
+                                Console.WriteLine($"┌──YOU HAVE MINI-CRITS!!!────┐");
+                                Console.WriteLine($"| Time Left: {E1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└────────────────────────────┘");
+                            }
+
+                            Console.ForegroundColor = Color_Player;
                             if (P1_ClassID == 4)
                             {
                                 Console.WriteLine($"  ┌──Stickies Placed:───────┐");
@@ -2003,6 +1972,10 @@ namespace TF2_Simulator
                             string PlayerAction = Console.ReadLine();
                             if (PlayerAction == "1")
                             {
+                                if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
+                                {
+                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
+                                }
                                 Console.SetCursorPosition(0, Console.CursorTop - 1);
                                 Console.Write(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
@@ -2014,7 +1987,7 @@ namespace TF2_Simulator
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
-                                
+
                             }
                             if (PlayerAction == "2")
                             {
@@ -2056,6 +2029,210 @@ namespace TF2_Simulator
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
                             }
+                            #region In-Game Tests / Cheats
+                            if (PlayerAction.ToLower() == "heal player")
+                            {
+                                P1_Damage = 0;
+                                P1_Health = P1_Health + 500;
+                                Console.WriteLine($"  ┌──Health Healed:───────┐");
+                                Console.WriteLine($"  |         +500          |      ");
+                                Console.WriteLine($"  └───────────────────────┘");
+                            }
+                            if (PlayerAction.ToLower() == "heal enemy")
+                            {
+                                P1_Damage = 0;
+                                E1_Health = E1_Health + 500;
+                                Console.WriteLine($"  ┌──Enemy Health Healed:───────┐");
+                                Console.WriteLine($"  |           +500              |      ");
+                                Console.WriteLine($"  └─────────────────────────────┘");
+                            }
+                            if (PlayerAction.ToLower() == "ded")
+                            {
+                                P1_Health = 0; E1_Health = 0;
+                            }
+                            if (PlayerAction.ToLower() == "taunt")
+                            {
+                                Console.WriteLine($"  ┌──YOU HAVE FALLEN FOR {EnemyPrefix} {E1_ClassName}'s TRAP!!!───"); int e = Console.BufferWidth;
+                                Console.WriteLine($"  |  Given +1500 HP to {EnemyPrefix} {E1_ClassName}");
+                                Console.WriteLine($"  |  Given Golden Frying Pan");
+                                Console.Write(new String('─', e - 1));
+                                E1_Health = E1_Health + 1500;
+                                E1_PrimaryWeaponID = 210;
+                                E1_SecondaryWeaponID = 210;
+                                E1_MeleeWeaponID = 210;
+                            }
+                            if (PlayerAction.ToLower() == "set fire")
+                            {
+                                P1_Damage = 0;
+                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 1)
+                                {
+                                    P1_StatusEffect_1_ID = 1; P1_StatusOnFireCooldown = 4;
+                                }
+                                else if (P1_StatusEffect_1_ID > 0)
+                                {
+                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 1)
+                                    {
+                                        P1_StatusEffect_2_ID = 1; P1_StatusOnFireCooldown = 4;
+                                    }
+                                    else if (P1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_2_ID == 1)
+                                        {
+                                            P1_StatusEffect_3_ID = 1; P1_StatusOnFireCooldown = 4;
+                                        }
+                                        else if (P1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set fire enemy")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 1)
+                                {
+                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 4;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                    {
+                                        E1_StatusEffect_2_ID = 1; E1_StatusOnFireCooldown = 4;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                        {
+                                            E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 3;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set jarate")
+                            {
+                                P1_Damage = 0;
+                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 3)
+                                {
+                                    P1_StatusEffect_1_ID = 3; P1_StatusJaratedCooldown = 4;
+                                }
+                                else if (P1_StatusEffect_1_ID > 0)
+                                {
+                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 3)
+                                    {
+                                        P1_StatusEffect_2_ID = 3; P1_StatusJaratedCooldown = 4;
+                                    }
+                                    else if (P1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_3_ID == 3)
+                                        {
+                                            P1_StatusEffect_3_ID = 3; P1_StatusJaratedCooldown = 4;
+                                        }
+                                        else if (P1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set jarate enemy")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 3)
+                                {
+                                    E1_StatusEffect_1_ID = 3; E1_StatusJaratedCooldown = 4;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 3)
+                                    {
+                                        E1_StatusEffect_2_ID = 3; E1_StatusJaratedCooldown = 4;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 3)
+                                        {
+                                            E1_StatusEffect_3_ID = 3; E1_StatusJaratedCooldown = 4;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set mad-milk")
+                            {
+                                P1_Damage = 0;
+                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 2)
+                                {
+                                    P1_StatusEffect_1_ID = 2; P1_StatusMadMilkedCooldown = 4;
+                                }
+                                else if (P1_StatusEffect_1_ID > 0)
+                                {
+                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 2)
+                                    {
+                                        P1_StatusEffect_2_ID = 2; P1_StatusMadMilkedCooldown = 4;
+                                    }
+                                    else if (P1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_3_ID == 2)
+                                        {
+                                            P1_StatusEffect_3_ID = 2; P1_StatusMadMilkedCooldown = 4;
+                                        }
+                                        else if (P1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set mad-milk enemy")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 2)
+                                {
+                                    E1_StatusEffect_1_ID = 2; E1_StatusMadMilkedCooldown = 4;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 2)
+                                    {
+                                        E1_StatusEffect_2_ID = 2; E1_StatusMadMilkedCooldown = 4;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 2)
+                                        {
+                                            E1_StatusEffect_3_ID = 2; E1_StatusMadMilkedCooldown = 3;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "see effects")
+                            {
+                                P1_Damage = 0;
+                                Console.WriteLine($"Effects:");
+                                Console.WriteLine($"Slot 1: {Misc.EffectNamefromID(P1_StatusEffect_1_ID)} ");
+                                Console.WriteLine($"Slot 2: {Misc.EffectNamefromID(P1_StatusEffect_2_ID)} ");
+                                Console.WriteLine($"Slot 3: {Misc.EffectNamefromID(P1_StatusEffect_3_ID)} ");
+                                Console.WriteLine();
+                            }
+                            #endregion
                             #region StatusEffect_BulletEnhancer
                             int StatusEffect_BulletEnhancer = 0;
                             if (E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
@@ -2073,26 +2250,29 @@ namespace TF2_Simulator
                                     StatusEffect_BulletEnhancer = 3;
                                 }
                                 int E1_HealthPlaceHolder = E1_Health;
-                                E1_Health = E1_Health - Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
-                                if (E1_Health < E1_HealthPlaceHolder) 
+                                int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                E1_Health = E1_Health - Damage;
+                                if (Damage < 0)
+                                    { P1_Damage = 0; }
+                                if (E1_Health < E1_HealthPlaceHolder)
                                 {
                                     if (StatusEffect_BulletEnhancer == 3)
                                     {
-                                        Console.WriteLine($"┌──THE ENEMY HAS TAKEN JARATE DAMAGE!!!────┐");
-                                        Console.WriteLine($"| Extra Damage Taken: {E1_HealthPlaceHolder - E1_Health} ");
-                                        Console.WriteLine($"└──────────────────────────────────────────┘");
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN JARATE DAMAGE!!!────┐");
+                                        Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └──────────────────────────────────────────┘");
                                     }
                                     if (StatusEffect_BulletEnhancer == 5)
                                     {
-                                        Console.WriteLine($"┌──THE ENEMY HAS TAKEN MINI-CRIT DAMAGE!!!────┐");
-                                        Console.WriteLine($"| Extra Damage Taken: {E1_HealthPlaceHolder - E1_Health} ");
-                                        Console.WriteLine($"└─────────────────────────────────────────────┘");
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN MINI-CRIT DAMAGE!!!────┐");
+                                        Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └─────────────────────────────────────────────┘");
                                     }
                                     if (StatusEffect_BulletEnhancer == 6)
                                     {
-                                        Console.WriteLine($"┌──THE ENEMY HAS TAKEN CRIT DAMAGE!!!─────────┐");
-                                        Console.WriteLine($"| Extra Damage Taken: {E1_HealthPlaceHolder - E1_Health} ");
-                                        Console.WriteLine($"└─────────────────────────────────────────────┘");
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN CRIT DAMAGE!!!─────────┐");
+                                        Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └─────────────────────────────────────────────┘");
                                     }
                                 }
                             }
@@ -2119,34 +2299,48 @@ namespace TF2_Simulator
                                     StatusEffect_PoisonEffects_Enemy = 5;
                                 }
                                 int E1_HealthPlaceHolder = E1_Health;
-                                E1_Health = E1_Health - Misc.PoisonEffects(StatusEffect_PoisonEffects_Enemy, E1_Health);
+                                int Damage = Misc.PoisonEffects(StatusEffect_PoisonEffects_Enemy, E1_Health);
+                                E1_Health = E1_Health - Damage;
                                 if (E1_Health < E1_HealthPlaceHolder)
                                 {
                                     if (StatusEffect_PoisonEffects_Enemy == 1)
                                     {
-                                        //Console.WriteLine - Took Fire Damage!
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN FIRE DAMAGE!!!────────────────────────────────────────┐");
+                                        Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Burn Damage!");
+                                        Console.WriteLine($"   └────────────────────────────────────────────────────────────────────────────┘");
                                     }
                                     if (StatusEffect_PoisonEffects_Enemy == 5)
                                     {
-                                        //Console.WriteLine - Took Bleeding Damage!
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN BLEEDING DAMAGE!!!────────────────────────────────────────┐");
+                                        Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Bleeding Damage!");
+                                        Console.WriteLine($"   └────────────────────────────────────────────────────────────────────────────────┘");
                                     }
                                 }
-                                P1_Health = P1_Health - Misc.PoisonEffects(StatusEffect_PoisonEffects_Player, P1_Health);
+                                int P1_HealthPlaceHolder = P1_Health;
+                                int DamagePlayer = Misc.PoisonEffects(StatusEffect_PoisonEffects_Player, P1_Health);
+                                P1_Health = P1_Health - DamagePlayer;
                                 if (E1_Health < E1_HealthPlaceHolder)
                                 {
                                     if (StatusEffect_PoisonEffects_Player == 1)
                                     {
-                                        //Console.WriteLine - Took Fire Damage!
+                                        Console.WriteLine($"   ┌──YOU ARE TAKING FIRE DAMAGE!!!────────────────────────────┐");
+                                        Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Burn Damage!      ");
+                                        Console.WriteLine($"   └───────────────────────────────────────────────────────────┘");
                                     }
                                     if (StatusEffect_PoisonEffects_Player == 4)
                                     {
-                                        //Console.WriteLine - Took Bleeding Damage!
+                                        Console.WriteLine($"   ┌──YOU ARE TAKING FIRE DAMAGE!!!────────────────────────────┐");
+                                        Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Bleeding Damage!  ");
+                                        Console.WriteLine($"   └───────────────────────────────────────────────────────────┘");
                                     }
                                 }
                             }
                             #endregion
                             Console.WriteLine(HeaderLong);
-                            Console.WriteLine($"Your Attack Dealt {P1_Damage} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                            if (P1_Damage > 0)
+                            {
+                                Console.WriteLine($"Your Attack Dealt {P1_Damage} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                            }
                             E1_Health = E1_Health - P1_Damage;
                             Console.ForegroundColor = Color_Enemy;
                             Console.WriteLine($"The {EnemyPrefix} {E1_ClassName}'s Remaining HP: {E1_Health}");
@@ -2154,210 +2348,7 @@ namespace TF2_Simulator
                             Console.WriteLine(FooterLong);
                             Thread.Sleep(5000);
                             // For Status Effects to Work, Move Attack Diolouge Out of the PlayerAction if Statements and integrate Effects.
-                            #region In-Game Tests / Cheats
-                            if (PlayerAction.ToLower() == "heal player")
-                            {
-                                P1_Damage = 0;
-                                P1_Health = P1_Health + 500;
-                                Console.WriteLine($"  ┌──Health Healed:───────┐");
-                                Console.WriteLine($"  |         +500          |      ");
-                                Console.WriteLine($"  └───────────────────────┘");
-                            }
-                            if (PlayerAction.ToLower() == "heal enemy")
-                            {
-                                P1_Damage = 0;
-                                E1_Health = E1_Health + 500;
-                                Console.WriteLine($"  ┌──Enemy Health Healed:───────┐");
-                                Console.WriteLine($"  |           +500              |      ");
-                                Console.WriteLine($"  └─────────────────────────────┘");
-                            }
-                            if (PlayerAction.ToLower() == "ded")
-                            {
-                                P1_Health = 0; E1_Health = 0;
-                            }
-                            if (PlayerAction.ToLower() == "taunt")
-                            {
-                                Console.WriteLine($"  ┌──YOU HAVE FALLEN FOR {EnemyPrefix} {E1_ClassName}'s TRAP!!!───"); int e = Console.BufferWidth;
-                                Console.WriteLine($"  |  Given +1500 HP to {EnemyPrefix} {E1_ClassName}");
-                                Console.WriteLine($"  |  Given Golden Frying Pan"         );
-                                Console.Write(new String('─', e));
-                                E1_Health = E1_Health + 1500;
-                                E1_PrimaryWeaponID = 210;
-                                E1_SecondaryWeaponID = 210;
-                                E1_MeleeWeaponID = 210;
-                            }
-                            if (PlayerAction.ToLower() == "set fire")
-                            {
-                                P1_Damage = 0;
-                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 1)
-                                {
-                                    P1_StatusEffect_1_ID = 1; P1_StatusOnFireCooldown = 3;
-                                }
-                                else if (P1_StatusEffect_1_ID > 0)
-                                {
-                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 1)
-                                    {
-                                        P1_StatusEffect_2_ID = 1; P1_StatusOnFireCooldown = 3;
-                                    }
-                                    else if (P1_StatusEffect_2_ID > 0)
-                                    {
-                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_2_ID == 1)
-                                        {
-                                            P1_StatusEffect_3_ID = 1; P1_StatusOnFireCooldown = 3;
-                                        }
-                                        else if (P1_StatusEffect_3_ID > 0)
-                                        {
-                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (PlayerAction.ToLower() == "set fire enemy")
-                            {
-                                P1_Damage = 0;
-                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 1)
-                                {
-                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
-                                }
-                                else if (E1_StatusEffect_1_ID > 0)
-                                {
-                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 1)
-                                    {
-                                        E1_StatusEffect_2_ID = 1; E1_StatusOnFireCooldown = 3;
-                                    }
-                                    else if (E1_StatusEffect_2_ID > 0)
-                                    {
-                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
-                                        {
-                                            E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 3;
-                                        }
-                                        else if (E1_StatusEffect_3_ID > 0)
-                                        {
-                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (PlayerAction.ToLower() == "set jarate")
-                            {
-                                P1_Damage = 0;
-                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 3)
-                                {
-                                    P1_StatusEffect_1_ID = 3; P1_StatusJaratedCooldown = 3;
-                                }
-                                else if (P1_StatusEffect_1_ID > 0)
-                                {
-                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 3)
-                                    {
-                                        P1_StatusEffect_2_ID = 3; P1_StatusJaratedCooldown = 3;
-                                    }
-                                    else if (P1_StatusEffect_2_ID > 0)
-                                    {
-                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_3_ID == 3)
-                                        {
-                                            P1_StatusEffect_3_ID = 3; P1_StatusJaratedCooldown = 3;
-                                        }
-                                        else if (P1_StatusEffect_3_ID > 0)
-                                        {
-                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (PlayerAction.ToLower() == "set jarate")
-                            {
-                                P1_Damage = 0;
-                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 3)
-                                {
-                                    E1_StatusEffect_1_ID = 3; E1_StatusJaratedCooldown = 3;
-                                }
-                                else if (E1_StatusEffect_1_ID > 0)
-                                {
-                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 3)
-                                    {
-                                        E1_StatusEffect_2_ID = 3; E1_StatusJaratedCooldown = 3;
-                                    }
-                                    else if (E1_StatusEffect_2_ID > 0)
-                                    {
-                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 3)
-                                        {
-                                            E1_StatusEffect_3_ID = 3; E1_StatusJaratedCooldown = 3;
-                                        }
-                                        else if (E1_StatusEffect_3_ID > 0)
-                                        {
-                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (PlayerAction.ToLower() == "set mad-milk")
-                            {
-                                P1_Damage = 0;
-                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 2)
-                                {
-                                    P1_StatusEffect_1_ID = 2; P1_StatusMadMilkedCooldown = 3;
-                                }
-                                else if (P1_StatusEffect_1_ID > 0)
-                                {
-                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 2)
-                                    {
-                                        P1_StatusEffect_2_ID = 2; P1_StatusMadMilkedCooldown = 3;
-                                    }
-                                    else if (P1_StatusEffect_2_ID > 0)
-                                    {
-                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_3_ID == 2)
-                                        {
-                                            P1_StatusEffect_3_ID = 2; P1_StatusMadMilkedCooldown = 3;
-                                        }
-                                        else if (P1_StatusEffect_3_ID > 0)
-                                        {
-                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (PlayerAction.ToLower() == "set mad-milk")
-                            {
-                                P1_Damage = 0;
-                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 2)
-                                {
-                                    E1_StatusEffect_1_ID = 2; E1_StatusMadMilkedCooldown = 3;
-                                }
-                                else if (E1_StatusEffect_1_ID > 0)
-                                {
-                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 2)
-                                    {
-                                        E1_StatusEffect_2_ID = 2; E1_StatusMadMilkedCooldown = 3;
-                                    }
-                                    else if (E1_StatusEffect_2_ID > 0)
-                                    {
-                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 2)
-                                        {
-                                            E1_StatusEffect_3_ID = 2; E1_StatusMadMilkedCooldown = 3;
-                                        }
-                                        else if (E1_StatusEffect_3_ID > 0)
-                                        {
-                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (PlayerAction.ToLower() == "see effects")
-                            {
-                                P1_Damage = 0;
-                                Console.WriteLine($"Effects:");
-                                Console.WriteLine($"Slot 1: {Misc.EffectNamefromID(P1_StatusEffect_1_ID)} ");
-                                Console.WriteLine($"Slot 2: {Misc.EffectNamefromID(P1_StatusEffect_2_ID)} ");
-                                Console.WriteLine($"Slot 3: {Misc.EffectNamefromID(P1_StatusEffect_3_ID)} ");
-                                Console.WriteLine();
-                            }
-                            #endregion
+                            
                             if (E1_Health > 0)
                             {
                                 int EnemyAction = EnemyTurn.EnemyChoice(E1_Cooldown);
@@ -2427,23 +2418,24 @@ namespace TF2_Simulator
                                     Thread.Sleep(8000);
                                 }
                             }
+                            P1_StatusOnFireCooldown--;
+                            P1_StatusJaratedCooldown--;
+                            P1_StatusMadMilkedCooldown--;
+                            P1_StatusBleedingCooldown--;
+                            if (P1_StatusOnFireCooldown < 0) { P1_StatusOnFireCooldown = 0; }
+                            if (P1_StatusJaratedCooldown < 0) { P1_StatusJaratedCooldown = 0; }
+                            if (P1_StatusMadMilkedCooldown < 0) { P1_StatusMadMilkedCooldown = 0; }
+                            if (P1_StatusBleedingCooldown < 0) { P1_StatusBleedingCooldown = 0; }
+                            E1_StatusOnFireCooldown--;
+                            E1_StatusJaratedCooldown--;
+                            E1_StatusMadMilkedCooldown--;
+                            E1_StatusBleedingCooldown--;
+                            if (E1_StatusOnFireCooldown < 0) { E1_StatusOnFireCooldown = 0; }
+                            if (E1_StatusJaratedCooldown < 0) { E1_StatusJaratedCooldown = 0; }
+                            if (E1_StatusMadMilkedCooldown < 0) { E1_StatusMadMilkedCooldown = 0; }
+                            if (E1_StatusBleedingCooldown < 0) { E1_StatusBleedingCooldown = 0; }
                         }
-                        P1_StatusOnFireCooldown--;
-                        P1_StatusJaratedCooldown--;
-                        P1_StatusMadMilkedCooldown--;
-                        P1_StatusBleedingCooldown--;
-                        if (P1_StatusOnFireCooldown < 0) { P1_StatusOnFireCooldown = 0; }
-                        if (P1_StatusJaratedCooldown < 0) { P1_StatusJaratedCooldown = 0; }
-                        if (P1_StatusMadMilkedCooldown < 0) { P1_StatusMadMilkedCooldown = 0; }
-                        if (P1_StatusBleedingCooldown < 0) { P1_StatusBleedingCooldown = 0; }
-                        E1_StatusOnFireCooldown--;
-                        E1_StatusJaratedCooldown--;
-                        E1_StatusMadMilkedCooldown--;
-                        E1_StatusBleedingCooldown--;
-                        if (E1_StatusOnFireCooldown < 0) { E1_StatusOnFireCooldown = 0; }
-                        if (E1_StatusJaratedCooldown < 0) { E1_StatusJaratedCooldown = 0; }
-                        if (E1_StatusMadMilkedCooldown < 0) { E1_StatusMadMilkedCooldown = 0; }
-                        if (E1_StatusBleedingCooldown < 0) { E1_StatusBleedingCooldown = 0; }
+                        
                         if (P1_Health <= 0 && E1_Health <= 0)
                         {
                             Console.WriteLine("You both lost this battle!");

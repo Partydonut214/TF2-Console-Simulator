@@ -145,13 +145,12 @@ namespace TF2_Simulator
 
             if (ClassID == 2 && WeaponID == 35)
             {
-                // Cow Mangler 5000 - 36-52 -- Functions as Rocket Launcher, add Mini-Crit + Cooldown Later.
-                Totaldamage = randomdamage.Next(36, 53);
-                if (PlayerCooldown == 0 & SecondaryTrigger == true)
+                // Cow Mangler 5000 - 24-50 -- Deals Less Damage, but inflicts Afterburn Effect Damage + 5% Chance for Mini-Crit
+                Totaldamage = randomdamage.Next(24, 41);
+                Special = randomdamage.Next(1, 100);
+                if (Special <= 5)
                 {
-                    SecondaryTrigger = false;
                     Totaldamage = Totaldamage + (35 * Totaldamage / 100);
-                    //PlayerCooldown = 4;
                 }
                 return Totaldamage; //return PlayerCooldown;
             }
