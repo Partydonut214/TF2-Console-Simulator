@@ -227,6 +227,23 @@ namespace TF2_Simulator
                 61, // Dragon's Fury
                 109, // Huo-Long Heater
             };
+            List<int> SecondaryWeapons_CanInflictFire = new List<int>
+            {
+                //Flare Guns
+            };
+            List<int> MeleeWeapons_CanInflictFire = new List<int>
+            {
+                //Melee Weapons
+            };
+
+            List<int> PrimaryWeapons_CanInflictJarate = new List<int>
+            {
+                // Sydney Sleeper
+            };
+            List<int> SecondaryWeapons_CanInflictJarate = new List<int>
+            { 
+                // Jarate
+            };
             #endregion
             #region Player Stats
             int PlayerHP = 0;
