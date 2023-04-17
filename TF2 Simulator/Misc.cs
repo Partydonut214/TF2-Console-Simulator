@@ -19,10 +19,7 @@ namespace TF2_Simulator
             if (EffectID == 4) { return "Bleeding"; }
             if (EffectID == 5) { return "Mini-Crit"; }
             if (EffectID == 6) { return "Crits"; }
-            if (EffectID == 7) { return ""; }
-            if (EffectID == 8) { return ""; }
-            if (EffectID == 9) { return ""; }
-            if (EffectID == 10) { return ""; }
+            if (EffectID == 7) { return "Marked for Death"; }
 
             return "error";
         }
