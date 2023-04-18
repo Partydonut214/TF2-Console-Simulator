@@ -33,7 +33,7 @@ namespace TF2_Simulator
             }
             if (PlayerName == "")
             {
-                PlayerName = "Recharging: ████▒▒▒▒▒▒"; //"someone who apparently doesn't have a name";
+                PlayerName = "someone who apparently doesn't have a name";
             }
             #region Secret Names
             if (PlayerName.StartsWith("BLU "))
@@ -156,6 +156,7 @@ namespace TF2_Simulator
             int P1_SecondaryWeaponID = 0;
             int P1_MeleeWeaponID = 0;
             int P1_WeaponSpecialStat = 0;
+            int P1_Commitment = 0;
             //Status
             int P1_Cooldown = 0;
             int P1_StatusEffect_1_ID = 0;
@@ -195,36 +196,39 @@ namespace TF2_Simulator
             bool E1_SecondaryTriggerExists = false;
             //Value Holders
             int E1_Damage = 0;
-
+            #endregion
 
             // Weapon Lists
             #region Weapons with Special Mechanics
             List<int> PrimaryWeapons_SlotStealers = new List<int>
             {
-                46,
-                82,
-                83,
+                46, // B.A.S.E. Jumper
+                82, // Ali Baba's Wee Booties
+                83, // Bootlegger
 
             };
             List<int> SecondaryWeapons_SlotStealers = new List<int>
             {
-                40,
-                41,
-                42,
-                43,
-                44,
-                46,
-                88,
-                90,
-                91,
+                40, // Buff Banner
+                41, // Gunboats
+                42, // Battalion's Backup
+                43, // Concheror
+                44, // Mantreads
+                46, // B.A.S.E. Jumper
+                88, // Chargin' Targe
+                90, // Splendid Screen
+                91, // Tide Turner
 
             };
             List<int> Demoman_SecondaryWeapons_StickyBombLaunchers = new List<int>
             {
-                //StickyBomb Launchers.
+                86, // Stickybomb Launcher
+                87, // Scottish Resistance
+                89, // Sticky Jumper
+                92, // Quickiebomb Launcher
             };
             
-            List<int> Sniper_PrimaryWeapons = new List<int>
+            List<int> Sniper_PrimaryWeapons_Charging = new List<int>
             {
                 155, // Sniper Rifle
                 156, // AWPer Hand
@@ -235,11 +239,21 @@ namespace TF2_Simulator
                 163, // Hitman's Heatmaker
                 164, // Classic
             };
+            List<int> Sniper_PrimaryWeapons_Bows = new List<int>
+            {
+                157, // Huntsman
+                158, // Fortified Compound
+            };
             
             List<int> Medic_SecondaryWeapons = new List<int>
             {
-                //Mediguns
+                146, // Medigun
+                147, // Kritzkrieg
+                148, // Quick-Fix
+                149, // Vaccinator
             };
+            #endregion
+
             #region "Elemental" Weapons
             List<int> PrimaryWeapons_CanInflictFire = new List<int>
             {
@@ -271,7 +285,7 @@ namespace TF2_Simulator
                 // Jarate
             };
             #endregion
-            #endregion
+            
             #region Player Stats
             int PlayerHP = 0;
             string PlayerMaxHP = "Not Set";
@@ -786,7 +800,7 @@ namespace TF2_Simulator
                                 string PrimarySelecion = Console.ReadLine();
                                 if (int.TryParse(PrimarySelecion, out int PrimaryID)) { P1_PrimaryWeaponID = PrimaryID; }
                                 Console.WriteLine($"Primary Weapon: {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID )}");
-                                Console.WriteLine($"Attack: {PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists, )}");
+                                Console.WriteLine($"Attack: {PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists, P1_WeaponSpecialStat)}");
                                 Thread.Sleep(1500);
                                 Selecting_Loadout = true;
                             }
@@ -1909,645 +1923,697 @@ namespace TF2_Simulator
                                 if (E1_StatusEffect_3_ID == 4) { E1_StatusEffect_3_ID = 0; }
                             }
                             #endregion
-                        }
-                        if (PlayerCooldown < 0)
-                        {
-                            PlayerCooldown = 0; //Checks if the Cooldown went into the negatives and reverses it to 0.
-                        }
-                        Console.ForegroundColor = Color_Game;
-                        Console.WriteLine(Header);
-                        Console.ForegroundColor = Color_Player;
-                        Console.WriteLine($"  {PlayerName}'s Class is {P1_ClassName} with {P1_Health}/{P1_MaxHP} Health");
-                        Console.ForegroundColor = Color_Enemy;
-                        Console.WriteLine($"  The {EnemyPrefix} {E1_ClassName} has {E1_Health}/{E1_MaxHP} Health");
-                        Console.ForegroundColor = Color_Game;
-                        int HalfOfE1_HP = E1_Health / 2;
-                        if (E1_Health < HalfOfE1_HP)
-                        {
-                            Console.WriteLine($"  The {EnemyPrefix} {E1_ClassName} has less than Half Health!");
-                            Console.WriteLine($"  Type 'Taunt' to taunt them and finish them off!");
-                        }
-                        Console.WriteLine(Footer);
-                        Console.ForegroundColor = Color_Player;
-                        //Player Status
-                        if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1)
-                        {
-                            Console.WriteLine($"┌──YOU ARE BURNING!!!─────────┐");
-                            Console.WriteLine($"| Time To Extinguish: {P1_StatusOnFireCooldown} ");
-                            Console.WriteLine($"└─────────────────────────────┘");
-                        }
-                        if (P1_StatusEffect_1_ID == 2 || P1_StatusEffect_2_ID == 2 || P1_StatusEffect_3_ID == 2)
-                        {
-                            Console.WriteLine($"┌──YOU HAVE BEEN HIT WITH A JAR OF MAD-MILK!!!────┐");
-                            Console.WriteLine($"| Time To Dry: {P1_StatusMadMilkedCooldown} ");
-                            Console.WriteLine($"└─────────────────────────────────────────────────┘");
-                        }
-                        if (P1_StatusEffect_1_ID == 3 || P1_StatusEffect_2_ID == 3 || P1_StatusEffect_3_ID == 3)
-                        {
-                            Console.WriteLine($"┌──YOU HAVE BEEN JARATED!!!────┐");
-                            Console.WriteLine($"| Time To Dry: {P1_StatusJaratedCooldown} ");
-                            Console.WriteLine($"└──────────────────────────────┘");
-                        }
-                        if (P1_StatusEffect_1_ID == 4 || P1_StatusEffect_2_ID == 4 || P1_StatusEffect_3_ID == 4)
-                        {
-                            Console.WriteLine($"┌──YOU HAVE AN OPEN WOUND!!!────┐");
-                            Console.WriteLine($"| Time To Heal: {P1_StatusBleedingCooldown} ");
-                            Console.WriteLine($"└───────────────────────────────┘");
-                        }
-                        if (P1_StatusEffect_1_ID == 5 || P1_StatusEffect_2_ID == 5 || P1_StatusEffect_3_ID == 5)
-                        {
-                            Console.WriteLine($"┌──THE ENEMY HAS CRITS!!!──────┐");
-                            Console.WriteLine($"| Time Left: {P1_StatusBleedingCooldown} ");
-                            Console.WriteLine($"└──────────────────────────────┘");
-                        }
-                        if (P1_StatusEffect_1_ID == 6 || P1_StatusEffect_2_ID == 6 || P1_StatusEffect_3_ID == 6)
-                        {
-                            Console.WriteLine($"┌──THE ENEMY HAS MINI-CRITS!!!────┐");
-                            Console.WriteLine($"| Time Left: {P1_StatusBleedingCooldown} ");
-                            Console.WriteLine($"└─────────────────────────────────┘");
-                        }
-                        Console.ForegroundColor = Color_Enemy;
-                        // Enemy Status
-                        if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1)
-                        {
-                            Console.WriteLine($"┌──THE ENEMY IS ON FIRE!!!─────────┐");
-                            Console.WriteLine($"| Time Until Enemy Extinguishes: {E1_StatusOnFireCooldown} ");
-                            Console.WriteLine($"└──────────────────────────────────┘");
-                        }
-                        if (E1_StatusEffect_1_ID == 2 || E1_StatusEffect_2_ID == 2 || E1_StatusEffect_3_ID == 2)
-                        {
-                            Console.WriteLine($"┌──THE ENEMY IS UNDER THE EFFECTS OF MAD-MILK!!!────┐");
-                            Console.WriteLine($"| Time Until Enemy Dries: {E1_StatusMadMilkedCooldown} ");
-                            Console.WriteLine($"└───────────────────────────────────────────────────┘");
-                        }
-                        if (E1_StatusEffect_1_ID == 3 || E1_StatusEffect_2_ID == 3 || E1_StatusEffect_3_ID == 3)
-                        {
-                            Console.WriteLine($"┌──THE ENEMY IS UNDER THE EFFECTS OF JARATE!!!────┐");
-                            Console.WriteLine($"| Time Until Enemy Dries: {E1_StatusJaratedCooldown} ");
-                            Console.WriteLine($"└─────────────────────────────────────────────────┘");
-                        }
-                        if (E1_StatusEffect_1_ID == 4 || E1_StatusEffect_2_ID == 4 || E1_StatusEffect_3_ID == 4)
-                        {
-                            Console.WriteLine($"┌──THE ENEMY IS TAKING BLEED DAMAGE!!!────┐");
-                            Console.WriteLine($"| Time Until Enemy Heals: {E1_StatusBleedingCooldown} ");
-                            Console.WriteLine($"└─────────────────────────────────────────┘");
-                        }
-                        if (E1_StatusEffect_1_ID == 5 || E1_StatusEffect_2_ID == 5 || E1_StatusEffect_3_ID == 5)
-                        {
-                            Console.WriteLine($"┌──YOU HAVE CRITS!!!──────┐");
-                            Console.WriteLine($"| Time Left: {E1_StatusBleedingCooldown} ");
-                            Console.WriteLine($"└─────────────────────────┘");
-                        }
-                        if (E1_StatusEffect_1_ID == 6 || E1_StatusEffect_2_ID == 6 || E1_StatusEffect_3_ID == 6)
-                        {
-                            Console.WriteLine($"┌──YOU HAVE MINI-CRITS!!!────┐");
-                            Console.WriteLine($"| Time Left: {E1_StatusBleedingCooldown} ");
-                            Console.WriteLine($"└────────────────────────────┘");
-                        }
 
-                        Console.ForegroundColor = Color_Player;
-                        if (P1_ClassID == 4)
-                        {
-                            Console.WriteLine($"  ┌──Stickies Placed:───────┐");
-                            Console.WriteLine($"  |            {PlayerWeaponFeature}            |      ");
-                            Console.WriteLine($"  └─────────────────────────┘");
-                        }
-                        if (P1_ClassID == 7)
-                        {
-
-                            // New Design Concept
-                            //Console.WriteLine($"  ┌──Medigun Cooldown:──┐");
-                            //Console.WriteLine($"  | Turns Remaining: {PlayerCooldown}  |");
-                            //Console.WriteLine($"  └─────────────────────┘");
-
-                            if (PlayerCooldown == 4)
+                            if (PlayerCooldown < 0)
                             {
-                                Console.WriteLine($"  ┌──Medigun Charge:────┐");
-                                Console.WriteLine($"  |▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 0%|");
-                                Console.WriteLine($"  └─────────────────────┘");
-                                // ▒ █
+                                PlayerCooldown = 0; //Checks if the Cooldown went into the negatives and reverses it to 0.
                             }
-                            if (PlayerCooldown == 3)
-                            {
-                                Console.WriteLine($"  ┌──Medigun Charge:─────┐");
-                                Console.WriteLine($"  |████▒▒▒▒▒▒▒▒▒▒▒▒ - 25%|");
-                                Console.WriteLine($"  └──────────────────────┘");
-                                // ▒ █
-                            }
-                            if (PlayerCooldown == 2)
-                            {
-                                Console.WriteLine($"  ┌──Medigun Charge:─────┐");
-                                Console.WriteLine($"  |████████▒▒▒▒▒▒▒▒ - 50%|");
-                                Console.WriteLine($"  └──────────────────────┘");
-                                // ▒ █
-                            }
-                            if (PlayerCooldown == 1)
-                            {
-                                Console.WriteLine($"  ┌──Medigun Charge:─────┐");
-                                Console.WriteLine($"  |████████████▒▒▒▒ - 75%|");
-                                Console.WriteLine($"  └──────────────────────┘");
-                                // ▒ █
-                            }
-                            if (PlayerCooldown == 0)
-                            {
-                                Console.WriteLine("  ┌──Medigun Charge:──────┐    ");
-                                Console.WriteLine("  |████████████████ - 100%|  ");
-                                Console.WriteLine("  └───────────────────────┘  ");
-                            }
-
-                        }
-                        if (P1_ClassID == 8)
-                        {
-                            Console.WriteLine($"  ┌──Charge Level:──┐");
-                            Console.WriteLine($"  |        {PlayerWeaponFeature}        | ");
-                            Console.WriteLine($"  └─────────────────┘");
-                        }
-                        Console.ForegroundColor = Color_Game;
-                        Console.WriteLine();
-                        Console.WriteLine(Header);
-                        Console.WriteLine($"  Actions [Select using Numbers]:");
-                        Console.WriteLine($"  1. {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}");
-                        Console.WriteLine($"  2. {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}");
-                        Console.WriteLine($"  3. {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
-                        if (P1_SecondaryTriggerExists)
-                        {
-                            Console.WriteLine($"  4. {P1_SecondaryTriggerName}");
-                        }
-                        Console.WriteLine(Footer);
-                        Console.Write("Action: ");
-                        string PlayerAction = Console.ReadLine();
-                        if (PlayerAction == "1")
-                        {
-                            if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
-                            {
-                                E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
-                            }
-                            Console.SetCursorPosition(0, Console.CursorTop - 1);
-                            Console.Write(new String(' ', Console.BufferWidth));
-                            Console.ResetColor();
                             Console.ForegroundColor = Color_Game;
-                            Console.WriteLine(HeaderLong);
+                            Console.WriteLine(Header);
                             Console.ForegroundColor = Color_Player;
-                            Console.WriteLine($"{PlayerName} attacked with their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
-                            P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
+                            Console.WriteLine($"  {PlayerName}'s Class is {P1_ClassName} with {P1_Health}/{P1_MaxHP} Health");
+                            Console.ForegroundColor = Color_Enemy;
+                            Console.WriteLine($"  The {EnemyPrefix} {E1_ClassName} has {E1_Health}/{E1_MaxHP} Health");
                             Console.ForegroundColor = Color_Game;
-                            Console.WriteLine(FooterLong);
-                            Thread.Sleep(5000);
-
-                        }
-                        if (PlayerAction == "2")
-                        {
-                            Console.SetCursorPosition(0, Console.CursorTop - 1);
-                            Console.WriteLine(new String(' ', Console.BufferWidth));
-                            Console.ResetColor();
-                            Console.ForegroundColor = Color_Game;
-                            Console.WriteLine(HeaderLong);
+                            int HalfOfE1_HP = E1_Health / 2;
+                            if (E1_Health < HalfOfE1_HP)
+                            {
+                                Console.WriteLine($"  The {EnemyPrefix} {E1_ClassName} has less than Half Health!");
+                                Console.WriteLine($"  Type 'Taunt' to taunt them and finish them off!");
+                            }
+                            Console.WriteLine(Footer);
                             Console.ForegroundColor = Color_Player;
-                            Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
-                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
-                            Console.ForegroundColor = Color_Game;
-                            Console.WriteLine(FooterLong);
-                            Thread.Sleep(5000);
-                        }
-                        if (PlayerAction == "3")
-                        {
-                            Console.SetCursorPosition(0, Console.CursorTop - 1);
-                            Console.WriteLine(new String(' ', Console.BufferWidth));
-                            Console.ResetColor();
-                            Console.ForegroundColor = Color_Game;
-                            Console.WriteLine(HeaderLong);
-                            Console.ForegroundColor = Color_Player;
-                            Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                            P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
-                            Console.WriteLine(FooterLong);
-                            Thread.Sleep(5000);
-                        }
-                        if (PlayerAction == "4")
-                        {
-                            Console.SetCursorPosition(0, Console.CursorTop - 1);
-                            Console.WriteLine(new String(' ', Console.BufferWidth));
-                            Console.ResetColor();
-                            Console.ForegroundColor = Color_Game;
-                            Console.WriteLine(HeaderLong);
-                            Console.ForegroundColor = Color_Player;
-                            Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                            P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
-                            Console.WriteLine(FooterLong);
-                            Thread.Sleep(5000);
-                        }
-                        #region In-Game Tests / Cheats
-                        if (PlayerAction.ToLower() == "heal player")
-                        {
-                            P1_Damage = 0;
-                            P1_Health = P1_Health + 500;
-                            Console.WriteLine($"  ┌──Health Healed:───────┐");
-                            Console.WriteLine($"  |         +500          |      ");
-                            Console.WriteLine($"  └───────────────────────┘");
-                        }
-                        if (PlayerAction.ToLower() == "heal enemy")
-                        {
-                            P1_Damage = 0;
-                            E1_Health = E1_Health + 500;
-                            Console.WriteLine($"  ┌──Enemy Health Healed:───────┐");
-                            Console.WriteLine($"  |           +500              |      ");
-                            Console.WriteLine($"  └─────────────────────────────┘");
-                        }
-                        if (PlayerAction.ToLower() == "ded")
-                        {
-                            P1_Health = 0; E1_Health = 0;
-                        }
-                        if (PlayerAction.ToLower() == "taunt")
-                        {
-                            Console.WriteLine($"  ┌──YOU HAVE FALLEN FOR {EnemyPrefix} {E1_ClassName}'s TRAP!!!───"); int e = Console.BufferWidth;
-                            Console.WriteLine($"  |  Given +1500 HP to {EnemyPrefix} {E1_ClassName}");
-                            Console.WriteLine($"  |  Given Golden Frying Pan");
-                            Console.Write(new String('─', e - 1));
-                            E1_Health = E1_Health + 1500;
-                            E1_PrimaryWeaponID = 210;
-                            E1_SecondaryWeaponID = 210;
-                            E1_MeleeWeaponID = 210;
-                        }
-                        if (PlayerAction.ToLower() == "set fire")
-                        {
-                            P1_Damage = 0;
-                            if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 1)
+                            //Player Status
+                            if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1)
                             {
-                                P1_StatusEffect_1_ID = 1; P1_StatusOnFireCooldown = 4;
+                                Console.WriteLine($"┌──YOU ARE BURNING!!!─────────┐");
+                                Console.WriteLine($"| Time To Extinguish: {P1_StatusOnFireCooldown} ");
+                                Console.WriteLine($"└─────────────────────────────┘");
                             }
-                            else if (P1_StatusEffect_1_ID > 0)
+                            if (P1_StatusEffect_1_ID == 2 || P1_StatusEffect_2_ID == 2 || P1_StatusEffect_3_ID == 2)
                             {
-                                if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 1)
-                                {
-                                    P1_StatusEffect_2_ID = 1; P1_StatusOnFireCooldown = 4;
-                                }
-                                else if (P1_StatusEffect_2_ID > 0)
-                                {
-                                    if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_2_ID == 1)
-                                    {
-                                        P1_StatusEffect_3_ID = 1; P1_StatusOnFireCooldown = 4;
-                                    }
-                                    else if (P1_StatusEffect_3_ID > 0)
-                                    {
-                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                    }
-                                }
+                                Console.WriteLine($"┌──YOU HAVE BEEN HIT WITH A JAR OF MAD-MILK!!!────┐");
+                                Console.WriteLine($"| Time To Dry: {P1_StatusMadMilkedCooldown} ");
+                                Console.WriteLine($"└─────────────────────────────────────────────────┘");
                             }
-                        }
-
-                        if (PlayerAction.ToLower() == "set fire enemy")
-                        {
-                            P1_Damage = 0;
-                            if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 1)
+                            if (P1_StatusEffect_1_ID == 3 || P1_StatusEffect_2_ID == 3 || P1_StatusEffect_3_ID == 3)
                             {
-                                E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 4;
+                                Console.WriteLine($"┌──YOU HAVE BEEN JARATED!!!────┐");
+                                Console.WriteLine($"| Time To Dry: {P1_StatusJaratedCooldown} ");
+                                Console.WriteLine($"└──────────────────────────────┘");
                             }
-                            else if (E1_StatusEffect_1_ID > 0)
+                            if (P1_StatusEffect_1_ID == 4 || P1_StatusEffect_2_ID == 4 || P1_StatusEffect_3_ID == 4)
                             {
-                                if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 1)
-                                {
-                                    E1_StatusEffect_2_ID = 1; E1_StatusOnFireCooldown = 4;
-                                }
-                                else if (E1_StatusEffect_2_ID > 0)
-                                {
-                                    if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
-                                    {
-                                        E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 3;
-                                    }
-                                    else if (E1_StatusEffect_3_ID > 0)
-                                    {
-                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                    }
-                                }
+                                Console.WriteLine($"┌──YOU HAVE AN OPEN WOUND!!!────┐");
+                                Console.WriteLine($"| Time To Heal: {P1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└───────────────────────────────┘");
                             }
-                        }
-
-                        if (PlayerAction.ToLower() == "set jarate")
-                        {
-                            P1_Damage = 0;
-                            if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 3)
+                            if (P1_StatusEffect_1_ID == 5 || P1_StatusEffect_2_ID == 5 || P1_StatusEffect_3_ID == 5)
                             {
-                                P1_StatusEffect_1_ID = 3; P1_StatusJaratedCooldown = 4;
+                                Console.WriteLine($"┌──THE ENEMY HAS CRITS!!!──────┐");
+                                Console.WriteLine($"| Time Left: {P1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└──────────────────────────────┘");
                             }
-                            else if (P1_StatusEffect_1_ID > 0)
+                            if (P1_StatusEffect_1_ID == 6 || P1_StatusEffect_2_ID == 6 || P1_StatusEffect_3_ID == 6)
                             {
-                                if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 3)
-                                {
-                                    P1_StatusEffect_2_ID = 3; P1_StatusJaratedCooldown = 4;
-                                }
-                                else if (P1_StatusEffect_2_ID > 0)
-                                {
-                                    if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_3_ID == 3)
-                                    {
-                                        P1_StatusEffect_3_ID = 3; P1_StatusJaratedCooldown = 4;
-                                    }
-                                    else if (P1_StatusEffect_3_ID > 0)
-                                    {
-                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                    }
-                                }
+                                Console.WriteLine($"┌──THE ENEMY HAS MINI-CRITS!!!────┐");
+                                Console.WriteLine($"| Time Left: {P1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└─────────────────────────────────┘");
                             }
-                        }
-
-                        if (PlayerAction.ToLower() == "set jarate enemy")
-                        {
-                            P1_Damage = 0;
-                            if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 3)
+                            Console.ForegroundColor = Color_Enemy;
+                            // Enemy Status
+                            if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1)
                             {
-                                E1_StatusEffect_1_ID = 3; E1_StatusJaratedCooldown = 4;
+                                Console.WriteLine($"┌──THE ENEMY IS ON FIRE!!!─────────┐");
+                                Console.WriteLine($"| Time Until Enemy Extinguishes: {E1_StatusOnFireCooldown} ");
+                                Console.WriteLine($"└──────────────────────────────────┘");
                             }
-                            else if (E1_StatusEffect_1_ID > 0)
+                            if (E1_StatusEffect_1_ID == 2 || E1_StatusEffect_2_ID == 2 || E1_StatusEffect_3_ID == 2)
                             {
-                                if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 3)
-                                {
-                                    E1_StatusEffect_2_ID = 3; E1_StatusJaratedCooldown = 4;
-                                }
-                                else if (E1_StatusEffect_2_ID > 0)
-                                {
-                                    if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 3)
-                                    {
-                                        E1_StatusEffect_3_ID = 3; E1_StatusJaratedCooldown = 4;
-                                    }
-                                    else if (E1_StatusEffect_3_ID > 0)
-                                    {
-                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                    }
-                                }
+                                Console.WriteLine($"┌──THE ENEMY IS UNDER THE EFFECTS OF MAD-MILK!!!────┐");
+                                Console.WriteLine($"| Time Until Enemy Dries: {E1_StatusMadMilkedCooldown} ");
+                                Console.WriteLine($"└───────────────────────────────────────────────────┘");
                             }
-                        }
-
-                        if (PlayerAction.ToLower() == "set mad-milk")
-                        {
-                            P1_Damage = 0;
-                            if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 2)
-                            {
-                                P1_StatusEffect_1_ID = 2; P1_StatusMadMilkedCooldown = 4;
-                            }
-                            else if (P1_StatusEffect_1_ID > 0)
-                            {
-                                if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 2)
-                                {
-                                    P1_StatusEffect_2_ID = 2; P1_StatusMadMilkedCooldown = 4;
-                                }
-                                else if (P1_StatusEffect_2_ID > 0)
-                                {
-                                    if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_3_ID == 2)
-                                    {
-                                        P1_StatusEffect_3_ID = 2; P1_StatusMadMilkedCooldown = 4;
-                                    }
-                                    else if (P1_StatusEffect_3_ID > 0)
-                                    {
-                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                    }
-                                }
-                            }
-                        }
-
-                        if (PlayerAction.ToLower() == "set mad-milk enemy")
-                        {
-                            P1_Damage = 0;
-                            if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 2)
-                            {
-                                E1_StatusEffect_1_ID = 2; E1_StatusMadMilkedCooldown = 4;
-                            }
-                            else if (E1_StatusEffect_1_ID > 0)
-                            {
-                                if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 2)
-                                {
-                                    E1_StatusEffect_2_ID = 2; E1_StatusMadMilkedCooldown = 4;
-                                }
-                                else if (E1_StatusEffect_2_ID > 0)
-                                {
-                                    if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 2)
-                                    {
-                                        E1_StatusEffect_3_ID = 2; E1_StatusMadMilkedCooldown = 3;
-                                    }
-                                    else if (E1_StatusEffect_3_ID > 0)
-                                    {
-                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
-                                    }
-                                }
-                            }
-                        }
-
-                        if (PlayerAction.ToLower() == "see effects")
-                        {
-                            P1_Damage = 0;
-                            Console.WriteLine($"Effects:");
-                            Console.WriteLine($"Slot 1: {Misc.EffectNamefromID(P1_StatusEffect_1_ID)} ");
-                            Console.WriteLine($"Slot 2: {Misc.EffectNamefromID(P1_StatusEffect_2_ID)} ");
-                            Console.WriteLine($"Slot 3: {Misc.EffectNamefromID(P1_StatusEffect_3_ID)} ");
-                            Console.WriteLine();
-                        }
-                        #endregion
-                        #region StatusEffect_BulletEnhancer
-                        int StatusEffect_BulletEnhancer = 0;
-                        if (E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
-                        {
                             if (E1_StatusEffect_1_ID == 3 || E1_StatusEffect_2_ID == 3 || E1_StatusEffect_3_ID == 3)
                             {
-                                StatusEffect_BulletEnhancer = 3;
+                                Console.WriteLine($"┌──THE ENEMY IS UNDER THE EFFECTS OF JARATE!!!────┐");
+                                Console.WriteLine($"| Time Until Enemy Dries: {E1_StatusJaratedCooldown} ");
+                                Console.WriteLine($"└─────────────────────────────────────────────────┘");
+                            }
+                            if (E1_StatusEffect_1_ID == 4 || E1_StatusEffect_2_ID == 4 || E1_StatusEffect_3_ID == 4)
+                            {
+                                Console.WriteLine($"┌──THE ENEMY IS TAKING BLEED DAMAGE!!!────┐");
+                                Console.WriteLine($"| Time Until Enemy Heals: {E1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└─────────────────────────────────────────┘");
                             }
                             if (E1_StatusEffect_1_ID == 5 || E1_StatusEffect_2_ID == 5 || E1_StatusEffect_3_ID == 5)
                             {
-                                StatusEffect_BulletEnhancer = 5;
+                                Console.WriteLine($"┌──YOU HAVE CRITS!!!──────┐");
+                                Console.WriteLine($"| Time Left: {E1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└─────────────────────────┘");
                             }
                             if (E1_StatusEffect_1_ID == 6 || E1_StatusEffect_2_ID == 6 || E1_StatusEffect_3_ID == 6)
                             {
-                                StatusEffect_BulletEnhancer = 3;
+                                Console.WriteLine($"┌──YOU HAVE MINI-CRITS!!!────┐");
+                                Console.WriteLine($"| Time Left: {E1_StatusBleedingCooldown} ");
+                                Console.WriteLine($"└────────────────────────────┘");
                             }
-                            int E1_HealthPlaceHolder = E1_Health;
-                            int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
-                            E1_Health = E1_Health - Damage;
-                            if (Damage < 0)
-                            { P1_Damage = 0; }
-                            if (E1_Health < E1_HealthPlaceHolder)
-                            {
-                                if (StatusEffect_BulletEnhancer == 3)
-                                {
-                                    Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN JARATE DAMAGE!!!────┐");
-                                    Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
-                                    Console.WriteLine($"   └──────────────────────────────────────────┘");
-                                }
-                                if (StatusEffect_BulletEnhancer == 5)
-                                {
-                                    Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN MINI-CRIT DAMAGE!!!────┐");
-                                    Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
-                                    Console.WriteLine($"   └─────────────────────────────────────────────┘");
-                                }
-                                if (StatusEffect_BulletEnhancer == 6)
-                                {
-                                    Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN CRIT DAMAGE!!!─────────┐");
-                                    Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
-                                    Console.WriteLine($"   └─────────────────────────────────────────────┘");
-                                }
-                            }
-                        }
-                        #endregion
-                        #region StatusEffect_PoisonEffects
-                        int StatusEffect_PoisonEffects_Player = 0;
-                        int StatusEffect_PoisonEffects_Enemy = 0;
-                        if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0 || E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
-                        {
-                            if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1) //Check Player
-                            {
-                                StatusEffect_PoisonEffects_Player = 1;
-                            }
-                            if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1) //Check Enemy
-                            {
-                                StatusEffect_PoisonEffects_Enemy = 1;
-                            }
-                            if (P1_StatusEffect_1_ID == 4 || P1_StatusEffect_2_ID == 4 || P1_StatusEffect_3_ID == 4) //Check Player
-                            {
-                                StatusEffect_PoisonEffects_Player = 5;
-                            }
-                            if (E1_StatusEffect_1_ID == 4 || E1_StatusEffect_2_ID == 4 || E1_StatusEffect_3_ID == 4) //Check Enemy
-                            {
-                                StatusEffect_PoisonEffects_Enemy = 5;
-                            }
-                            int E1_HealthPlaceHolder = E1_Health;
-                            int Damage = Misc.PoisonEffects(StatusEffect_PoisonEffects_Enemy, E1_Health);
-                            E1_Health = E1_Health - Damage;
-                            if (E1_Health < E1_HealthPlaceHolder)
-                            {
-                                if (StatusEffect_PoisonEffects_Enemy == 1)
-                                {
-                                    Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN FIRE DAMAGE!!!────────────────────────────────────────┐");
-                                    Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Burn Damage!");
-                                    Console.WriteLine($"   └────────────────────────────────────────────────────────────────────────────┘");
-                                }
-                                if (StatusEffect_PoisonEffects_Enemy == 5)
-                                {
-                                    Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN BLEEDING DAMAGE!!!────────────────────────────────────────┐");
-                                    Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Bleeding Damage!");
-                                    Console.WriteLine($"   └────────────────────────────────────────────────────────────────────────────────┘");
-                                }
-                            }
-                            int P1_HealthPlaceHolder = P1_Health;
-                            int DamagePlayer = Misc.PoisonEffects(StatusEffect_PoisonEffects_Player, P1_Health);
-                            P1_Health = P1_Health - DamagePlayer;
-                            if (E1_Health < E1_HealthPlaceHolder)
-                            {
-                                if (StatusEffect_PoisonEffects_Player == 1)
-                                {
-                                    Console.WriteLine($"   ┌──YOU ARE TAKING FIRE DAMAGE!!!────────────────────────────┐");
-                                    Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Burn Damage!      ");
-                                    Console.WriteLine($"   └───────────────────────────────────────────────────────────┘");
-                                }
-                                if (StatusEffect_PoisonEffects_Player == 4)
-                                {
-                                    Console.WriteLine($"   ┌──YOU ARE TAKING FIRE DAMAGE!!!────────────────────────────┐");
-                                    Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Bleeding Damage!  ");
-                                    Console.WriteLine($"   └───────────────────────────────────────────────────────────┘");
-                                }
-                            }
-                        }
-                        #endregion
-                        Console.WriteLine(HeaderLong);
-                        if (P1_Damage > 0)
-                        {
-                            Console.WriteLine($"Your Attack Dealt {P1_Damage} Damage to the {EnemyPrefix} {E1_ClassName}!");
-                        }
-                        E1_Health = E1_Health - P1_Damage;
-                        Console.ForegroundColor = Color_Enemy;
-                        Console.WriteLine($"The {EnemyPrefix} {E1_ClassName}'s Remaining HP: {E1_Health}");
-                        Console.ForegroundColor = Color_Game;
-                        Console.WriteLine(FooterLong);
-                        Thread.Sleep(1000);
-                        Console.WriteLine(HeaderLong);
-                        Console.ForegroundColor = Color_Player;
-                        Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
-                        Console.ForegroundColor = Color_Game;
-                        Console.WriteLine(FooterLong);
-                        Thread.Sleep(5000);
-                        // For Status Effects to Work, Move Attack Diolouge Out of the PlayerAction if Statements and integrate Effects.
 
-                        if (E1_Health > 0)
-                        {
-                            int EnemyAction = EnemyTurn.EnemyChoice(E1_Cooldown);
+                            Console.ForegroundColor = Color_Player;
+                            if (P1_ClassID == 4)
+                            {
+                                Console.WriteLine($"  ┌──Stickies Placed:───────┐");
+                                Console.WriteLine($"  |            {PlayerWeaponFeature}            |      ");
+                                Console.WriteLine($"  └─────────────────────────┘");
+                            }
+                            if (P1_ClassID == 7)
+                            {
 
-                            if (EnemyAction == 1)
+                                // New Design Concept
+                                //Console.WriteLine($"  ┌──Medigun Cooldown:──┐");
+                                //Console.WriteLine($"  | Turns Remaining: {PlayerCooldown}  |");
+                                //Console.WriteLine($"  └─────────────────────┘");
+
+                                if (PlayerCooldown == 4)
+                                {
+                                    Console.WriteLine($"  ┌──Medigun Charge:────┐");
+                                    Console.WriteLine($"  |▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 0%|");
+                                    Console.WriteLine($"  └─────────────────────┘");
+                                    // ▒ █
+                                }
+                                if (PlayerCooldown == 3)
+                                {
+                                    Console.WriteLine($"  ┌──Medigun Charge:─────┐");
+                                    Console.WriteLine($"  |████▒▒▒▒▒▒▒▒▒▒▒▒ - 25%|");
+                                    Console.WriteLine($"  └──────────────────────┘");
+                                    // ▒ █
+                                }
+                                if (PlayerCooldown == 2)
+                                {
+                                    Console.WriteLine($"  ┌──Medigun Charge:─────┐");
+                                    Console.WriteLine($"  |████████▒▒▒▒▒▒▒▒ - 50%|");
+                                    Console.WriteLine($"  └──────────────────────┘");
+                                    // ▒ █
+                                }
+                                if (PlayerCooldown == 1)
+                                {
+                                    Console.WriteLine($"  ┌──Medigun Charge:─────┐");
+                                    Console.WriteLine($"  |████████████▒▒▒▒ - 75%|");
+                                    Console.WriteLine($"  └──────────────────────┘");
+                                    // ▒ █
+                                }
+                                if (PlayerCooldown == 0)
+                                {
+                                    Console.WriteLine("  ┌──Medigun Charge:──────┐    ");
+                                    Console.WriteLine("  |████████████████ - 100%|  ");
+                                    Console.WriteLine("  └───────────────────────┘  ");
+                                }
+
+                            }
+                            if (P1_ClassID == 8)
                             {
+                                Console.WriteLine($"  ┌──Charge Level:──┐");
+                                Console.WriteLine($"  |        {PlayerWeaponFeature}        | ");
+                                Console.WriteLine($"  └─────────────────┘");
+                            }
+                            Console.ForegroundColor = Color_Game;
+                            Console.WriteLine();
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"  Actions [Select using Numbers]:");
+                            if (P1_Commitment == 0 || P1_Commitment == 1 && P1_Commitment !>= 2) if (PrimaryWeapons_SlotStealers.Contains(P1_PrimaryWeaponID) == false) { Console.WriteLine($"  1. {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}"); }
+                            if (P1_Commitment == 0 || P1_Commitment == 2 && P1_Commitment != 1 && P1_Commitment! >= 3) if (SecondaryWeapons_SlotStealers.Contains(P1_SecondaryWeaponID) == false) { Console.WriteLine($"  2. {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}"); }
+                            if (P1_Commitment == 0 || P1_Commitment == 3 && P1_Commitment! <= 2 && P1_Commitment! >= 4) Console.WriteLine($"  3. {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
+                            if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists) { Console.WriteLine($"  4. {P1_SecondaryTriggerName}"); }
+
+                            Console.WriteLine(Footer);
+                            Console.Write("Action: ");
+                            string PlayerAction = Console.ReadLine();
+                            if (PlayerAction == "1" && P1_Commitment < 2)
+                            {
+                                if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
+                                {
+                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
+                                }
+                                if (PrimaryWeapons_SlotStealers.Contains(P1_PrimaryWeaponID))
+                                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                Console.Write(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(HeaderLong);
-                                Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}!");
-                                E1_Damage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, P1_WeaponSpecialStat);
-                                Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
-                                P1_Health = P1_Health - E1_Damage;
                                 Console.ForegroundColor = Color_Player;
-                                Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                Console.WriteLine($"{PlayerName} attacked with their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
+                                P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(FooterLong);
-                                Thread.Sleep(8000);
+                                Thread.Sleep(5000);
+
                             }
-                            if (EnemyAction == 2)
+                            if (PlayerAction == "2")
                             {
+                                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                Console.WriteLine(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(HeaderLong);
-                                Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}!");
-                                E1_Damage = SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
-                                Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
-                                P1_Health = P1_Health - E1_Damage;
                                 Console.ForegroundColor = Color_Player;
-                                Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
+                                P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(FooterLong);
-                                Thread.Sleep(8000);
+                                Thread.Sleep(5000);
                             }
-                            if (EnemyAction == 3)
+                            if (PlayerAction == "3")
                             {
+                                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                Console.WriteLine(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(HeaderLong);
-                                Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                                E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
                                 Console.ForegroundColor = Color_Player;
-                                Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
-                                P1_Health = P1_Health - E1_Damage;
-                                Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
-                                Console.ForegroundColor = Color_Game;
+                                Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
+                                P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.WriteLine(FooterLong);
-                                Thread.Sleep(8000);
+                                Thread.Sleep(5000);
                             }
-                            if (EnemyAction == 4)
+                            if (PlayerAction == "4")
                             {
+                                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                Console.WriteLine(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(HeaderLong);
-                                Console.ForegroundColor = Color_Enemy;
-                                Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
-                                E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
                                 Console.ForegroundColor = Color_Player;
-                                Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
-                                P1_Health = P1_Health - E1_Damage;
-                                Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
-                                Console.ForegroundColor = Color_Game;
+                                Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
+                                P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
                                 Console.WriteLine(FooterLong);
-                                Thread.Sleep(8000);
+                                Thread.Sleep(5000);
                             }
+                            #region In-Game Tests / Cheats
+                            if (PlayerAction.ToLower() == "set commitment")
+                            {
+                                Console.WriteLine("Set Commitment Slot:");
+                                Console.Write("slot: ");
+                                string e = Console.ReadLine();
+                                if (int.TryParse(e, out int commitmentid))
+                                {
+                                    P1_Commitment = commitmentid;
+                                }
+                                else { Console.WriteLine("error"); }
+                            }
+                            if (PlayerAction.ToLower() == "heal player")
+                            {
+                                P1_Damage = 0;
+                                P1_Health = P1_Health + 500;
+                                Console.WriteLine($"  ┌──Health Healed:───────┐");
+                                Console.WriteLine($"  |         +500          |      ");
+                                Console.WriteLine($"  └───────────────────────┘");
+                            }
+                            if (PlayerAction.ToLower() == "heal enemy")
+                            {
+                                P1_Damage = 0;
+                                E1_Health = E1_Health + 500;
+                                Console.WriteLine($"  ┌──Enemy Health Healed:───────┐");
+                                Console.WriteLine($"  |           +500              |      ");
+                                Console.WriteLine($"  └─────────────────────────────┘");
+                            }
+                            if (PlayerAction.ToLower() == "ded")
+                            {
+                                P1_Health = 0; E1_Health = 0;
+                            }
+                            if (PlayerAction.ToLower() == "taunt")
+                            {
+                                Console.WriteLine($"  ┌──YOU HAVE FALLEN FOR {EnemyPrefix} {E1_ClassName}'s TRAP!!!───"); int e = Console.BufferWidth;
+                                Console.WriteLine($"  |  Given +1500 HP to {EnemyPrefix} {E1_ClassName}");
+                                Console.WriteLine($"  |  Given Golden Frying Pan to {EnemyPrefix} {E1_ClassName}");
+                                Console.Write(new String('─', e - 1));
+                                E1_Health = E1_Health + 1500;
+                                E1_PrimaryWeaponID = 210;
+                                E1_SecondaryWeaponID = 210;
+                                E1_MeleeWeaponID = 210;
+                            }
+                            if (PlayerAction.ToLower() == "set fire")
+                            {
+                                P1_Damage = 0;
+                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 1)
+                                {
+                                    P1_StatusEffect_1_ID = 1; P1_StatusOnFireCooldown = 4;
+                                }
+                                else if (P1_StatusEffect_1_ID > 0)
+                                {
+                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 1)
+                                    {
+                                        P1_StatusEffect_2_ID = 1; P1_StatusOnFireCooldown = 4;
+                                    }
+                                    else if (P1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_2_ID == 1)
+                                        {
+                                            P1_StatusEffect_3_ID = 1; P1_StatusOnFireCooldown = 4;
+                                        }
+                                        else if (P1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set fire enemy")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 1)
+                                {
+                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 4;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                    {
+                                        E1_StatusEffect_2_ID = 1; E1_StatusOnFireCooldown = 4;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                        {
+                                            E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 3;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set jarate")
+                            {
+                                P1_Damage = 0;
+                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 3)
+                                {
+                                    P1_StatusEffect_1_ID = 3; P1_StatusJaratedCooldown = 4;
+                                }
+                                else if (P1_StatusEffect_1_ID > 0)
+                                {
+                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 3)
+                                    {
+                                        P1_StatusEffect_2_ID = 3; P1_StatusJaratedCooldown = 4;
+                                    }
+                                    else if (P1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_3_ID == 3)
+                                        {
+                                            P1_StatusEffect_3_ID = 3; P1_StatusJaratedCooldown = 4;
+                                        }
+                                        else if (P1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set jarate enemy")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 3)
+                                {
+                                    E1_StatusEffect_1_ID = 3; E1_StatusJaratedCooldown = 4;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 3)
+                                    {
+                                        E1_StatusEffect_2_ID = 3; E1_StatusJaratedCooldown = 4;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 3)
+                                        {
+                                            E1_StatusEffect_3_ID = 3; E1_StatusJaratedCooldown = 4;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set mad-milk")
+                            {
+                                P1_Damage = 0;
+                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 2)
+                                {
+                                    P1_StatusEffect_1_ID = 2; P1_StatusMadMilkedCooldown = 4;
+                                }
+                                else if (P1_StatusEffect_1_ID > 0)
+                                {
+                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 2)
+                                    {
+                                        P1_StatusEffect_2_ID = 2; P1_StatusMadMilkedCooldown = 4;
+                                    }
+                                    else if (P1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_3_ID == 2)
+                                        {
+                                            P1_StatusEffect_3_ID = 2; P1_StatusMadMilkedCooldown = 4;
+                                        }
+                                        else if (P1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "set mad-milk enemy")
+                            {
+                                P1_Damage = 0;
+                                if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 2)
+                                {
+                                    E1_StatusEffect_1_ID = 2; E1_StatusMadMilkedCooldown = 4;
+                                }
+                                else if (E1_StatusEffect_1_ID > 0)
+                                {
+                                    if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 2)
+                                    {
+                                        E1_StatusEffect_2_ID = 2; E1_StatusMadMilkedCooldown = 4;
+                                    }
+                                    else if (E1_StatusEffect_2_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 2)
+                                        {
+                                            E1_StatusEffect_3_ID = 2; E1_StatusMadMilkedCooldown = 3;
+                                        }
+                                        else if (E1_StatusEffect_3_ID > 0)
+                                        {
+                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (PlayerAction.ToLower() == "see effects")
+                            {
+                                P1_Damage = 0;
+                                Console.WriteLine($"Effects:");
+                                Console.WriteLine($"Slot 1: {Misc.EffectNamefromID(P1_StatusEffect_1_ID)} ");
+                                Console.WriteLine($"Slot 2: {Misc.EffectNamefromID(P1_StatusEffect_2_ID)} ");
+                                Console.WriteLine($"Slot 3: {Misc.EffectNamefromID(P1_StatusEffect_3_ID)} ");
+                                Console.WriteLine();
+                            }
+                            #endregion
+                            #region StatusEffect_BulletEnhancer
+                            int StatusEffect_BulletEnhancer = 0;
+                            if (E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
+                            {
+                                if (E1_StatusEffect_1_ID == 3 || E1_StatusEffect_2_ID == 3 || E1_StatusEffect_3_ID == 3)
+                                {
+                                    StatusEffect_BulletEnhancer = 3;
+                                }
+                                if (E1_StatusEffect_1_ID == 5 || E1_StatusEffect_2_ID == 5 || E1_StatusEffect_3_ID == 5)
+                                {
+                                    StatusEffect_BulletEnhancer = 5;
+                                }
+                                if (E1_StatusEffect_1_ID == 6 || E1_StatusEffect_2_ID == 6 || E1_StatusEffect_3_ID == 6)
+                                {
+                                    StatusEffect_BulletEnhancer = 3;
+                                }
+                                int E1_HealthPlaceHolder = E1_Health;
+                                int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                E1_Health = E1_Health - Damage;
+                                if (Damage > 0)
+                                { P1_Damage = 0; }
+                                if (E1_Health < E1_HealthPlaceHolder)
+                                {
+                                    if (StatusEffect_BulletEnhancer == 3)
+                                    {
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN JARATE DAMAGE!!!────┐");
+                                        Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └──────────────────────────────────────────┘");
+                                    }
+                                    if (StatusEffect_BulletEnhancer == 5)
+                                    {
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN MINI-CRIT DAMAGE!!!────┐");
+                                        Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                    }
+                                    if (StatusEffect_BulletEnhancer == 6)
+                                    {
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN CRIT DAMAGE!!!─────────┐");
+                                        Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                    }
+                                }
+                            }
+
+                            if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0)
+                            {
+                                if (P1_StatusEffect_1_ID == 3 || P1_StatusEffect_2_ID == 3 || P1_StatusEffect_3_ID == 3)
+                                {
+                                    StatusEffect_BulletEnhancer = 3;
+                                }
+                                if (P1_StatusEffect_1_ID == 5 || P1_StatusEffect_2_ID == 5 || P1_StatusEffect_3_ID == 5)
+                                {
+                                    StatusEffect_BulletEnhancer = 5;
+                                }
+                                if (P1_StatusEffect_1_ID == 6 || P1_StatusEffect_2_ID == 6 || P1_StatusEffect_3_ID == 6)
+                                {
+                                    StatusEffect_BulletEnhancer = 3;
+                                }
+                                int P1_HealthPlaceHolder = P1_Health;
+                                int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                P1_Health = P1_Health - Damage;
+                                if (Damage > 0)
+                                { P1_Damage = 0; }
+                                if (P1_Health < P1_HealthPlaceHolder)
+                                {
+                                    if (StatusEffect_BulletEnhancer == 3)
+                                    {
+                                        Console.WriteLine($"   ┌──YOU TOOK JARATE DAMAGE!!!───────────────┐");
+                                        Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └──────────────────────────────────────────┘");
+                                    }
+                                    if (StatusEffect_BulletEnhancer == 5)
+                                    {
+                                        Console.WriteLine($"   ┌──YOU TOOK MINI-CRIT DAMAGE!!!───────────────┐");
+                                        Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                    }
+                                    if (StatusEffect_BulletEnhancer == 6)
+                                    {
+                                        Console.WriteLine($"   ┌──YOU TOOK CRIT DAMAGE!!!────────────────────┐");
+                                        Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
+                                        Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                    }
+                                }
+                            }
+                            #endregion
+                            #region StatusEffect_PoisonEffects
+                            int StatusEffect_PoisonEffects_Player = 0;
+                            int StatusEffect_PoisonEffects_Enemy = 0;
+                            if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0 || E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
+                            {
+                                if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1) //Check Player
+                                {
+                                    StatusEffect_PoisonEffects_Player = 1;
+                                }
+                                if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1) //Check Enemy
+                                {
+                                    StatusEffect_PoisonEffects_Enemy = 1;
+                                }
+                                if (P1_StatusEffect_1_ID == 4 || P1_StatusEffect_2_ID == 4 || P1_StatusEffect_3_ID == 4) //Check Player
+                                {
+                                    StatusEffect_PoisonEffects_Player = 5;
+                                }
+                                if (E1_StatusEffect_1_ID == 4 || E1_StatusEffect_2_ID == 4 || E1_StatusEffect_3_ID == 4) //Check Enemy
+                                {
+                                    StatusEffect_PoisonEffects_Enemy = 5;
+                                }
+                                int E1_HealthPlaceHolder = E1_Health;
+                                int Damage = Misc.PoisonEffects(StatusEffect_PoisonEffects_Enemy, E1_Health);
+                                E1_Health = E1_Health - Damage;
+                                if (E1_Health < E1_HealthPlaceHolder)
+                                {
+                                    if (StatusEffect_PoisonEffects_Enemy == 1)
+                                    {
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN FIRE DAMAGE!!!──────────────────────┐");
+                                        Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Burn Damage!");
+                                        Console.WriteLine($"   └──────────────────────────────────────────────────────────┘");
+                                    }
+                                    if (StatusEffect_PoisonEffects_Enemy == 5)
+                                    {
+                                        Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN BLEEDING DAMAGE!!!──────────────────────┐");
+                                        Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Bleeding Damage!");
+                                        Console.WriteLine($"   └──────────────────────────────────────────────────────────────┘");
+                                    }
+                                }
+                                int P1_HealthPlaceHolder = P1_Health;
+                                int DamagePlayer = Misc.PoisonEffects(StatusEffect_PoisonEffects_Player, P1_Health);
+                                P1_Health = P1_Health - DamagePlayer;
+                                if (P1_Health < P1_HealthPlaceHolder)
+                                {
+                                    if (StatusEffect_PoisonEffects_Player == 1)
+                                    {
+                                        Console.WriteLine($"   ┌──YOU ARE TAKING FIRE DAMAGE!!!─────────────┐");
+                                        Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Burn Damage!      ");
+                                        Console.WriteLine($"   └────────────────────────────────────────────┘");
+                                    }
+                                    if (StatusEffect_PoisonEffects_Player == 4)
+                                    {
+                                        Console.WriteLine($"   ┌──YOU ARE TAKING BLEEDING DAMAGE!!!─────────────┐");
+                                        Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Bleeding Damage!  ");
+                                        Console.WriteLine($"   └────────────────────────────────────────────────┘");
+                                    }
+                                }
+                            }
+                            #endregion
+                            Console.WriteLine(HeaderLong);
+                            if (P1_Damage > 0)
+                            {
+                                Console.WriteLine($"Your Attack Dealt {P1_Damage} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                            }
+                            E1_Health = E1_Health - P1_Damage;
+                            Console.ForegroundColor = Color_Enemy;
+                            Console.WriteLine($"The {EnemyPrefix} {E1_ClassName}'s Remaining HP: {E1_Health}");
+                            Console.ForegroundColor = Color_Game;
+                            Console.WriteLine(FooterLong);
+                            Thread.Sleep(1000);
+                            Console.WriteLine(HeaderLong);
+                            Console.ForegroundColor = Color_Player;
+                            Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                            Console.ForegroundColor = Color_Game;
+                            Console.WriteLine(FooterLong);
+                            Thread.Sleep(5000);
+                            // For Status Effects to Work, Move Attack Diolouge Out of the PlayerAction if Statements and integrate Effects.
+
+                            if (E1_Health > 0)
+                            {
+                                int EnemyAction = EnemyTurn.EnemyChoice(E1_Cooldown);
+
+                                if (EnemyAction == 1)
+                                {
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Enemy;
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}!");
+                                    E1_Damage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, E1_WeaponSpecialStat);
+                                    Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_Damage;
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(8000);
+                                }
+                                if (EnemyAction == 2)
+                                {
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Enemy;
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}!");
+                                    E1_Damage = SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                    Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_Damage;
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(8000);
+                                }
+                                if (EnemyAction == 3)
+                                {
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Enemy;
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
+                                    E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_Damage;
+                                    Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(8000);
+                                }
+                                if (EnemyAction == 4)
+                                {
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Enemy;
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
+                                    E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
+                                    P1_Health = P1_Health - E1_Damage;
+                                    Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(8000);
+                                }
+                            }
+                            P1_StatusOnFireCooldown--;
+                            P1_StatusJaratedCooldown--;
+                            P1_StatusMadMilkedCooldown--;
+                            P1_StatusBleedingCooldown--;
+                            if (P1_StatusOnFireCooldown < 0) { P1_StatusOnFireCooldown = 0; }
+                            if (P1_StatusJaratedCooldown < 0) { P1_StatusJaratedCooldown = 0; }
+                            if (P1_StatusMadMilkedCooldown < 0) { P1_StatusMadMilkedCooldown = 0; }
+                            if (P1_StatusBleedingCooldown < 0) { P1_StatusBleedingCooldown = 0; }
+                            E1_StatusOnFireCooldown--;
+                            E1_StatusJaratedCooldown--;
+                            E1_StatusMadMilkedCooldown--;
+                            E1_StatusBleedingCooldown--;
+                            if (E1_StatusOnFireCooldown < 0) { E1_StatusOnFireCooldown = 0; }
+                            if (E1_StatusJaratedCooldown < 0) { E1_StatusJaratedCooldown = 0; }
+                            if (E1_StatusMadMilkedCooldown < 0) { E1_StatusMadMilkedCooldown = 0; }
+                            if (E1_StatusBleedingCooldown < 0) { E1_StatusBleedingCooldown = 0; }
                         }
-                        P1_StatusOnFireCooldown--;
-                        P1_StatusJaratedCooldown--;
-                        P1_StatusMadMilkedCooldown--;
-                        P1_StatusBleedingCooldown--;
-                        if (P1_StatusOnFireCooldown < 0) { P1_StatusOnFireCooldown = 0; }
-                        if (P1_StatusJaratedCooldown < 0) { P1_StatusJaratedCooldown = 0; }
-                        if (P1_StatusMadMilkedCooldown < 0) { P1_StatusMadMilkedCooldown = 0; }
-                        if (P1_StatusBleedingCooldown < 0) { P1_StatusBleedingCooldown = 0; }
-                        E1_StatusOnFireCooldown--;
-                        E1_StatusJaratedCooldown--;
-                        E1_StatusMadMilkedCooldown--;
-                        E1_StatusBleedingCooldown--;
-                        if (E1_StatusOnFireCooldown < 0) { E1_StatusOnFireCooldown = 0; }
-                        if (E1_StatusJaratedCooldown < 0) { E1_StatusJaratedCooldown = 0; }
-                        if (E1_StatusMadMilkedCooldown < 0) { E1_StatusMadMilkedCooldown = 0; }
-                        if (E1_StatusBleedingCooldown < 0) { E1_StatusBleedingCooldown = 0; }
                     }
-
                     if (P1_Health <= 0 && E1_Health <= 0)
                     {
                         Console.WriteLine("You both lost this battle!");
