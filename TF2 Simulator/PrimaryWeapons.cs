@@ -9,7 +9,7 @@ namespace TF2_Simulator
 {
     internal class PrimaryWeapons
     {
-        public static int Attack(int ClassID, int WeaponID, int PlayerCooldown, bool SecondaryTrigger)
+        public static int Attack(int ClassID, int WeaponID, int PlayerCooldown, bool SecondaryTrigger, int WeaponSpecialStat)
         {
             var randomdamage = new Random();
             int Totaldamage = 0;
@@ -381,7 +381,7 @@ namespace TF2_Simulator
                 return Totaldamage;
             }
             #endregion
-            //Continue Here ↓
+            //Finish Engineer Primaries
             #region Engineer
             if (ClassID == 6 && WeaponID == 38)
             {
@@ -402,13 +402,16 @@ namespace TF2_Simulator
                 return Totaldamage;
             }
             #endregion
-
+            //Start Medic Primaries
             #region Medic
 
             #endregion
-
+            //Finish Sniper Primaries
             #region Sniper
-
+            int Damage = 50;
+            if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+            Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+            return Totaldamage;
             #endregion
 
             #region Spy
@@ -525,8 +528,8 @@ namespace TF2_Simulator
             if (WeaponID == 63) { return "Detonator"; }
             if (WeaponID == 64) { return "Manmelter"; }
             if (WeaponID == 65) { return "Scorch Shot"; }
-            if (WeaponID == 66) { return "Thermal Thruster"; }
-            if (WeaponID == 67) { return "Gas Passer"; }
+            if (WeaponID == 66) { return "Thermal Thruster"; } // Unused Weapon
+            if (WeaponID == 67) { return "Gas Passer"; } // Charging Throwable
             if (WeaponID == 68) { return "Fire Axe"; }
             if (WeaponID == 69) { return "Lollichop"; }
             if (WeaponID == 70) { return "Axtinguisher"; }

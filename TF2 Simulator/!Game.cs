@@ -198,7 +198,49 @@ namespace TF2_Simulator
 
 
             // Weapon Lists
+            #region Weapons with Special Mechanics
+            List<int> PrimaryWeapons_SlotStealers = new List<int>
+            {
+                46,
+                82,
+                83,
 
+            };
+            List<int> SecondaryWeapons_SlotStealers = new List<int>
+            {
+                40,
+                41,
+                42,
+                43,
+                44,
+                46,
+                88,
+                90,
+                91,
+
+            };
+            List<int> Demoman_SecondaryWeapons_StickyBombLaunchers = new List<int>
+            {
+                //StickyBomb Launchers.
+            };
+            
+            List<int> Sniper_PrimaryWeapons = new List<int>
+            {
+                155, // Sniper Rifle
+                156, // AWPer Hand
+                159, // Sydney Sleeper
+                160, // Bazzar Bargain
+                161, // Machina
+                162, // Shooting Star
+                163, // Hitman's Heatmaker
+                164, // Classic
+            };
+            
+            List<int> Medic_SecondaryWeapons = new List<int>
+            {
+                //Mediguns
+            };
+            #region "Elemental" Weapons
             List<int> PrimaryWeapons_CanInflictFire = new List<int>
             {
                 35, // Cow Mangler 5000
@@ -228,6 +270,7 @@ namespace TF2_Simulator
             {
                 // Jarate
             };
+            #endregion
             #endregion
             #region Player Stats
             int PlayerHP = 0;
@@ -742,8 +785,8 @@ namespace TF2_Simulator
                                 Console.Write("Weapon ID: ");
                                 string PrimarySelecion = Console.ReadLine();
                                 if (int.TryParse(PrimarySelecion, out int PrimaryID)) { P1_PrimaryWeaponID = PrimaryID; }
-                                Console.WriteLine($"Primary Weapon: {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}");
-                                Console.WriteLine($"Attack: {PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists)}");
+                                Console.WriteLine($"Primary Weapon: {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID )}");
+                                Console.WriteLine($"Attack: {PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists, )}");
                                 Thread.Sleep(1500);
                                 Selecting_Loadout = true;
                             }
@@ -1732,7 +1775,7 @@ namespace TF2_Simulator
                                     string PrimarySelecion = Console.ReadLine();
                                     if (int.TryParse(PrimarySelecion, out int PrimaryID)) { E1_PrimaryWeaponID = PrimaryID; }
                                     Console.WriteLine($"Primary Weapon: {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}");
-                                    Console.WriteLine($"Attack: {PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
+                                    Console.WriteLine($"Attack: {PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, P1_WeaponSpecialStat)}");
                                     Thread.Sleep(1500);
                                     Selecting_Loadout = true;
                                 }
@@ -2046,7 +2089,7 @@ namespace TF2_Simulator
                             Console.WriteLine(HeaderLong);
                             Console.ForegroundColor = Color_Player;
                             Console.WriteLine($"{PlayerName} attacked with their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
-                            P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists);
+                            P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
                             Console.ForegroundColor = Color_Game;
                             Console.WriteLine(FooterLong);
                             Thread.Sleep(5000);
@@ -2429,7 +2472,7 @@ namespace TF2_Simulator
                                 Console.WriteLine(HeaderLong);
                                 Console.ForegroundColor = Color_Enemy;
                                 Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}!");
-                                E1_Damage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                E1_Damage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, P1_WeaponSpecialStat);
                                 Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
                                 P1_Health = P1_Health - E1_Damage;
                                 Console.ForegroundColor = Color_Player;
