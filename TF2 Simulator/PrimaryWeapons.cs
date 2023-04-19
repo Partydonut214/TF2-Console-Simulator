@@ -401,6 +401,42 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(3, 6); } // creates a number between   [Damage]
                 return Totaldamage;
             }
+            if (ClassID == 6 && WeaponID == 127)
+            {
+                // Frontier Justice - [60] 1% to crit
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 12); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                {
+                    Totaldamage = Totaldamage + randomdamage.Next(4, 7);
+                }
+                Special = randomdamage.Next(1, 101); //Rolls a 1-10, if the number is 4 or lower, the shot lands.
+                if (Special <= 1) { Totaldamage = Totaldamage * 3; } //crit is given if the number rolled is 1.
+
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 128)
+            {
+                // Widowmaker - [160] 10% to hit [Massive Risk, and Massive Reward]
+                Totaldamage = 0;
+                Special = randomdamage.Next(1, 11); //Rolls a 1-10, if the number is 4 or lower, the shot lands.
+                if (Special == 1) { Totaldamage = 160; } //Damage is given only if the Special rolls a 1.
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 129)
+            {
+                // Pomson 6000 - [60] 80% to hit
+                Totaldamage = 0;
+                Special = randomdamage.Next(1, 11); //Rolls a 1-10, if the number is 4 or lower, the shot lands.
+                if (Special <= 8) { Totaldamage = 60; } //Damage is given only if the Special rolls a 4 or lower.
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 130)
+            {
+                // Rescue Ranger - [32] [+16 HP]
+                Totaldamage = 32;
+                return Totaldamage;
+            }
             #endregion
             //Start Medic Primaries
             #region Medic
@@ -456,7 +492,7 @@ namespace TF2_Simulator
             }
             if (ClassID == 9)
             {
-                return "Spy doesn't have Primary Weapons";
+                return "  Spy doesn't have Primary Weapons";
             }
             return "Error";
         }

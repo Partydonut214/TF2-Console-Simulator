@@ -136,6 +136,7 @@ namespace TF2_Simulator
             }
             #endregion
             #endregion
+
             #region Dividers & Borders
             string Header = "┌────────────────────────┬────────────────────────┐";
             string Footer = "└────────────────────────┴────────────────────────┘";
@@ -146,6 +147,7 @@ namespace TF2_Simulator
             string BarLoaded = "█";
             string BarUnloaded = "▒";
             #endregion
+
             #region PlayerStats V2
             //Information
             int P1_Health = 0;
@@ -172,6 +174,7 @@ namespace TF2_Simulator
             //Value Holders
             int P1_Damage = 0;
             #endregion
+
             #region Enemystats V2
             //Information
             int E1_Health = 0;
@@ -198,7 +201,7 @@ namespace TF2_Simulator
             int E1_Damage = 0;
             #endregion
 
-            // Weapon Lists
+            #region Weapon Lists
             #region Weapons with Special Mechanics
             List<int> PrimaryWeapons_SlotStealers = new List<int>
             {
@@ -267,6 +270,13 @@ namespace TF2_Simulator
                 61, // Dragon's Fury
                 109, // Huo-Long Heater
             };
+
+            List<int> Attack_HealWeapons = new List<int>
+            {
+                130,
+                32,
+            };
+
             List<int> SecondaryWeapons_CanInflictFire = new List<int>
             {
                 //Flare Guns
@@ -285,7 +295,7 @@ namespace TF2_Simulator
                 // Jarate
             };
             #endregion
-            
+            #endregion
             #region Player Stats
             int PlayerHP = 0;
             string PlayerMaxHP = "Not Set";
@@ -2020,7 +2030,7 @@ namespace TF2_Simulator
                             }
 
                             Console.ForegroundColor = Color_Player;
-                            if (P1_ClassID == 4)
+                            if (P1_ClassID == 4 && Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID))
                             {
                                 Console.WriteLine($"  ┌──Stickies Placed:───────┐");
                                 Console.WriteLine($"  |            {PlayerWeaponFeature}            |      ");
