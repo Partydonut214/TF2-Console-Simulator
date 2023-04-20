@@ -381,7 +381,7 @@ namespace TF2_Simulator
                 return Totaldamage;
             }
             #endregion
-            //Finish Engineer Primaries
+           
             #region Engineer
             if (ClassID == 6 && WeaponID == 38)
             {
@@ -440,7 +440,7 @@ namespace TF2_Simulator
             #endregion
             //Start Medic Primaries
             #region Medic
-            if (ClassID == 7 && WeaponID == 000)
+            if (ClassID == 7 && WeaponID == 142)
             {
                 // Syringe Gun - 1 x 5-40 [5-40]
                 Totaldamage = 1;
@@ -448,7 +448,7 @@ namespace TF2_Simulator
                 Totaldamage = Totaldamage * BulletsFired;
                 return Totaldamage;
             }
-            if (ClassID == 7 && WeaponID == 000)
+            if (ClassID == 7 && WeaponID == 143)
             {
                 // Blutsauger - 1 x 1-40 [1-40] [+DMG/2 HP]
                 Totaldamage = 1;
@@ -456,13 +456,13 @@ namespace TF2_Simulator
                 Totaldamage = Totaldamage * BulletsFired;
                 return Totaldamage;
             }
-            if (ClassID == 7 && WeaponID == 000) // && Cooldown <= 0
+            if (ClassID == 7 && WeaponID == 144) // && Cooldown <= 0
             {
                 // Crusader's Crossbow - 38-75 x 1 [38-75] [1 Turn Cooldown] // First Instance of a Non-Special Reload
                 Totaldamage = randomdamage.Next(38, 75);
                 return Totaldamage;
             }
-            if (ClassID == 7 && WeaponID == 000)
+            if (ClassID == 7 && WeaponID == 145)
             {
                 // Overdose - 1 x 1-35 [1-35] // Genuinely don't know what to do with this one. Make it better when the game adds Magazines and Reloading.
                 Totaldamage = 1;
@@ -474,10 +474,18 @@ namespace TF2_Simulator
             #endregion
             //Finish Sniper Primaries
             #region Sniper
-            int Damage = 50;
-            if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
-            Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
-            return Totaldamage;
+            if (ClassID == 8 && WeaponID == 000)
+            {
+                // Sniper Rifle - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage;  }
+                return Totaldamage;
+            }
             #endregion
 
             #region Spy
