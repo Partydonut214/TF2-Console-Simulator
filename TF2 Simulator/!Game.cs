@@ -772,6 +772,7 @@ namespace TF2_Simulator
                         P1_ClassName = Classes.ClassNamefromID(P1_ClassID);
                         P1_Health = Classes.ClassHealthfromID(P1_ClassID);
                         P1_MaxHP = P1_Health;
+                        P1_PrimaryWeaponID = Classes.StockPrimaryWeapon(P1_ClassID);
                         Console.WriteLine(Header);
                         Console.WriteLine($"  ClassID: {P1_ClassID}");
                         Console.WriteLine($"  Player Class: {P1_ClassName}");
@@ -2111,7 +2112,15 @@ namespace TF2_Simulator
                                 {
                                     E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
                                 }
-
+                                if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                                {
+                                    P1_Commitment = 1;
+                                    P1_WeaponSpecialStat++;
+                                    if (P1_WeaponSpecialStat > 3)
+                                    {
+                                        //Add Option to Fire
+                                    }
+                                }
                                 
                                 Console.SetCursorPosition(0, Console.CursorTop - 1);
                                 Console.Write(new String(' ', Console.BufferWidth));
@@ -2121,6 +2130,13 @@ namespace TF2_Simulator
                                 Console.ForegroundColor = Color_Player;
                                 Console.WriteLine($"{PlayerName} attacked with their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
                                 P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
+                                if (Attack_HealWeapons.Contains(P1_PrimaryWeaponID))
+                                {
+                                    P1_Health = P1_Health + P1_Damage / 2;
+                                    Console.WriteLine(Header);
+                                    Console.WriteLine($"   Healed {P1_Damage / 2} Health!");
+                                    Console.WriteLine(Footer);
+                                }
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);

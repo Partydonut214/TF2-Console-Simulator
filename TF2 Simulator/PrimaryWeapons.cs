@@ -183,6 +183,7 @@ namespace TF2_Simulator
             #endregion
 
             #region Pyro
+            #region Pyro
             if (ClassID == 3 && WeaponID == 55)
             {
                 // Flame Thrower - 6-12 x 1-5 [6-60]
