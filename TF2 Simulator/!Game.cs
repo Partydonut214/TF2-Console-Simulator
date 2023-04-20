@@ -2099,8 +2099,8 @@ namespace TF2_Simulator
                             Console.WriteLine($"  Actions [Select using Numbers]:");
                             if (P1_Commitment == 0 || P1_Commitment == 1 && P1_Commitment !>= 2) if (PrimaryWeapons_SlotStealers.Contains(P1_PrimaryWeaponID) == false) { Console.WriteLine($"  1. {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}"); }
                             if (P1_Commitment == 0 || P1_Commitment == 2 && P1_Commitment != 1 && P1_Commitment! >= 3) if (SecondaryWeapons_SlotStealers.Contains(P1_SecondaryWeaponID) == false) { Console.WriteLine($"  2. {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}"); }
-                            if (P1_Commitment == 0 || P1_Commitment == 3 && P1_Commitment! <= 2 && P1_Commitment! >= 4) Console.WriteLine($"  3. {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
-                            if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists) { Console.WriteLine($"  4. {P1_SecondaryTriggerName}"); }
+                            if (P1_Commitment == 0 || P1_Commitment == 3 && P1_Commitment !<= 2 && P1_Commitment! >= 4) Console.WriteLine($"  3. {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
+                            if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment !<= 3) if (P1_SecondaryTriggerExists) { Console.WriteLine($"  4. {P1_SecondaryTriggerName}"); }
 
                             Console.WriteLine(Footer);
                             Console.Write("Action: ");
@@ -2111,8 +2111,9 @@ namespace TF2_Simulator
                                 {
                                     E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
                                 }
-                                if (PrimaryWeapons_SlotStealers.Contains(P1_PrimaryWeaponID))
-                                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+
+                                
+                                Console.SetCursorPosition(0, Console.CursorTop - 1);
                                 Console.Write(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
                                 Console.ForegroundColor = Color_Game;
