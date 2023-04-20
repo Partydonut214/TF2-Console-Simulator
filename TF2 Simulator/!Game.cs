@@ -10,6 +10,8 @@ namespace TF2_Simulator
             Console.Write("What is your Name: ");
             string PlayerName = Console.ReadLine();
             string EnemyPrefix = "Enemy";
+
+            #region Color Set and Check
             ConsoleColor Color_Game = ConsoleColor.Gray;
             ConsoleColor Color_Player = ConsoleColor.Gray;
             ConsoleColor Color_Enemy = ConsoleColor.Gray;
@@ -31,10 +33,13 @@ namespace TF2_Simulator
                 if (ColorResult == "SetDarkCyan") { Console.WriteLine("'darkcyan' found in your name, setting Game Color to DarkCyan...."); Color_Game = Color_Player = ConsoleColor.DarkCyan; }
                 if (ColorResult == "SetDarkPurple") { Console.WriteLine("'purple' found in your name, setting Game Color to Purple...."); Color_Game = Color_Player = ConsoleColor.DarkMagenta; }
             }
+            #endregion
+
             if (PlayerName == "")
             {
                 PlayerName = "someone who apparently doesn't have a name";
             }
+
             #region Secret Names
             if (PlayerName.StartsWith("BLU "))
             {

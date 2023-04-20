@@ -438,7 +438,7 @@ namespace TF2_Simulator
                 return Totaldamage;
             }
             #endregion
-            //Start Medic Primaries
+
             #region Medic
             if (ClassID == 7 && WeaponID == 142)
             {
@@ -474,7 +474,7 @@ namespace TF2_Simulator
             #endregion
             //Finish Sniper Primaries
             #region Sniper
-            if (ClassID == 8 && WeaponID == 000)
+            if (ClassID == 8 && WeaponID == 155)
             {
                 // Sniper Rifle - 50 [50+]
                 int Damage = 50;
@@ -484,6 +484,119 @@ namespace TF2_Simulator
                     Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
                 }
                 else { Totaldamage = Damage;  }
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 156)
+            {
+                // AWPer Hand - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage; }
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 157)
+            {
+                // Huntsman - 50 x 1-4 Charges [50-300]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat < 4)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                if (WeaponSpecialStat == 4)
+                {
+                    Totaldamage = 300;
+                }
+                else { Totaldamage = Damage; }
+                return Totaldamage;
+            }
+
+            if (ClassID == 8 && WeaponID == 158)
+            {
+                // Fortified Compound - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage; }
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 159)
+            {
+                // Sydney Sleeper - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage; }
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 160)
+            {
+                // Bazaar Bargain - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage; }
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 161)
+            {
+                // Machina - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage; }
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 162)
+            {
+                // Shooting Star - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage; }
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 163)
+            {
+                // Hitman's Heatmaker - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage; }
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 164)
+            {
+                // Classic - 50 [50+]
+                int Damage = 50;
+                if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
+                if (WeaponSpecialStat > 1)
+                {
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                }
+                else { Totaldamage = Damage; }
                 return Totaldamage;
             }
             #endregion
