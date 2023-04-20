@@ -301,6 +301,7 @@ namespace TF2_Simulator
             };
             #endregion
             #endregion
+
             #region Player Stats
             int PlayerHP = 0;
             string PlayerMaxHP = "Not Set";
@@ -335,6 +336,7 @@ namespace TF2_Simulator
             bool EnemySetClass = false; //Implement
             int EnemyChoice = 0; // Implement
             #endregion
+
             #region Page Reset
             bool InputOK = false;
             bool GameInputOK = false;
