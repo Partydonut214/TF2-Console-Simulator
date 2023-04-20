@@ -183,7 +183,7 @@ namespace TF2_Simulator
             #region Enemystats V2
             //Information
             int E1_Health = 0;
-            string E1_MaxHP = "Not Set";
+            int E1_MaxHP = 0;
             int E1_ClassID = 0;
             string E1_ClassName = "Not Set";
             int E1_PrimaryWeaponID = 0;
@@ -1763,7 +1763,10 @@ namespace TF2_Simulator
                             E1_ClassID = ClassChoice;
                             E1_ClassName = Classes.ClassNamefromID(E1_ClassID);
                             E1_Health = Classes.ClassHealthfromID(E1_ClassID);
-                            E1_MaxHP = Classes.ClassHealthfromID(E1_ClassID).ToString();
+                            E1_MaxHP = E1_Health;
+                            E1_PrimaryWeaponID = Classes.StockPrimaryWeapon(E1_ClassID);
+                            E1_SecondaryWeaponID = Classes.StockSecondaryWeapon(E1_ClassID);
+                            E1_MeleeWeaponID = Classes.StockMeleeWeapon(E1_ClassID);
                             Console.WriteLine(Header);
                             Console.WriteLine($"  ClassID: {E1_ClassID}");
                             Console.WriteLine($"  Player Class: {E1_ClassName}");
