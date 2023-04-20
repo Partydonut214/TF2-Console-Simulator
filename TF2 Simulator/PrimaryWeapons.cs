@@ -75,7 +75,7 @@ namespace TF2_Simulator
                 int BulletsFired = randomdamage.Next(1, BabyFaceBuildup); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
                 { Totaldamage = Totaldamage + randomdamage.Next(0, 0); } // creates a number between   [Damage]
-                BabyFaceBuildup =+ randomdamage.Next(0, 5); //This is going to be very weird and can probably be abused by ALL Scouts holding this weapon at once.
+                BabyFaceBuildup = +randomdamage.Next(0, 5); //This is going to be very weird and can probably be abused by ALL Scouts holding this weapon at once.
                 //May add a Max cap for pellets later. Nerfing Damage for now.
                 return Totaldamage;
             }
@@ -135,7 +135,7 @@ namespace TF2_Simulator
             {
                 // Liberty Launcher - 30-46 -- 40-62 [Mini] -- 90-138 [Crit]
                 Totaldamage = randomdamage.Next(30, 47);
-                Special = randomdamage.Next(1, 101); 
+                Special = randomdamage.Next(1, 101);
                 if (Special <= 10) { Totaldamage = Totaldamage + (35 * Totaldamage / 100); }
                 if (Special == 1) { Totaldamage = Totaldamage * 3; }
                 // 10% chance of a Mini-Crit
@@ -181,7 +181,7 @@ namespace TF2_Simulator
                 return Totaldamage;
             }
             #endregion
-           
+
             #region Pyro
             if (ClassID == 3 && WeaponID == 55)
             {
@@ -192,7 +192,7 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(6, 13); } // creates a number between   [Damage]
                 return Totaldamage;
             }
-            
+
             if (ClassID == 3 && WeaponID == 56)
             {
                 // Rainblower - 6-12 x 1-5 [6-60] //Flame Thrower Pyroland Reskin, no changes possible.
@@ -291,7 +291,7 @@ namespace TF2_Simulator
 
                 // First Non-Weapon! this will be "fun" to deal with...
                 // Add Specialcheck in-game for this combo [Class + Weapon], if its true, add +25 HP to Player HP
-               
+
                 Totaldamage = 0;
                 return Totaldamage;
             }
@@ -440,6 +440,36 @@ namespace TF2_Simulator
             #endregion
             //Start Medic Primaries
             #region Medic
+            if (ClassID == 7 && WeaponID == 000)
+            {
+                // Syringe Gun - 1 x 5-40 [5-40]
+                Totaldamage = 1;
+                int BulletsFired = randomdamage.Next(5, 40);
+                Totaldamage = Totaldamage * BulletsFired;
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 000)
+            {
+                // Blutsauger - 1 x 1-40 [1-40] [+DMG/2 HP]
+                Totaldamage = 1;
+                int BulletsFired = randomdamage.Next(1, 40);
+                Totaldamage = Totaldamage * BulletsFired;
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 000) // && Cooldown <= 0
+            {
+                // Crusader's Crossbow - 38-75 x 1 [38-75] [1 Turn Cooldown] // First Instance of a Non-Special Reload
+                Totaldamage = randomdamage.Next(38, 75);
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 000)
+            {
+                // Overdose - 1 x 1-35 [1-35] // Genuinely don't know what to do with this one. Make it better when the game adds Magazines and Reloading.
+                Totaldamage = 1;
+                int BulletsFired = randomdamage.Next(1, 40);
+                Totaldamage = Totaldamage * BulletsFired;
+                return Totaldamage;
+            }
 
             #endregion
             //Finish Sniper Primaries
