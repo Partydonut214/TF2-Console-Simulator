@@ -773,6 +773,8 @@ namespace TF2_Simulator
                         P1_Health = Classes.ClassHealthfromID(P1_ClassID);
                         P1_MaxHP = P1_Health;
                         P1_PrimaryWeaponID = Classes.StockPrimaryWeapon(P1_ClassID);
+                        P1_SecondaryWeaponID = Classes.StockSecondaryWeapon(P1_ClassID);
+                        P1_MeleeWeaponID = Classes.StockMeleeWeapon(P1_ClassID);
                         Console.WriteLine(Header);
                         Console.WriteLine($"  ClassID: {P1_ClassID}");
                         Console.WriteLine($"  Player Class: {P1_ClassName}");
