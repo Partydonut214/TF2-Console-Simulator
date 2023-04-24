@@ -20,7 +20,77 @@ namespace TF2_Simulator
             {
                 // Attacky Thingy - 32-64
                 Totaldamage = 0;
-                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-65 [Damage]
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 200)
+            {
+                // Saxxy - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 201)
+            {
+                // Frying Pan - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 202)
+            {
+                // Conscientious Objector - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 203)
+            {
+                // Freedom Staff - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 204)
+            {
+                // Bat Outta Hell - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 205)
+            {
+                // Memory Maker - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 206)
+            {
+                // Ham Shank - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 207)
+            {
+                // Necro Smasher - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 208)
+            {
+                // Crossing Guard - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (WeaponID == 209)
+            {
+                // Prinny Machete - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
                 return Totaldamage;
             }
             if (WeaponID == 210)
@@ -30,6 +100,7 @@ namespace TF2_Simulator
                 Totaldamage = Totaldamage + randomdamage.Next(999, 99999999);  // creates a number between  [Damage]
                 return Totaldamage;
             }
+
             #endregion
             //Continue Here ↓
             #region Scout
@@ -74,39 +145,39 @@ namespace TF2_Simulator
         {
             if (ClassID == 1)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             if (ClassID == 2)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             if (ClassID == 3)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             if (ClassID == 4)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             if (ClassID == 5)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             if (ClassID == 6)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             if (ClassID == 7)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             if (ClassID == 8)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             if (ClassID == 9)
             {
-                return "  ID 999 == Attacky Thingy\r\n";
+                return "  ID 200 == Saxxy\\r\\n\r\n  ID 201 == Frying Pan\\r\\n\r\n  ID 202 == Conscientious Objector\\r\\n\r\n  ID 203 == Freedom Staff\\r\\n\r\n  ID 204 == Bat Outta Hell\\r\\n\r\n  ID 205 == Memory Maker\\r\\n\r\n  ID 206 == Ham Shank\\r\\n\r\n  ID 207 == Necro Smasher\\r\\n\r\n  ID 208 == Crossing Guard\\r\\n\r\n  ID 209 == Prinny Machete\\r\\n\r\n  ID 210 == Golden Frying Pan\\r\\n\r\n  ID 999 == Attacky Thingy\\r\\n";
             }
             return "Error";
         }
