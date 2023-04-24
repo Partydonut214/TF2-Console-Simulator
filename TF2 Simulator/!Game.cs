@@ -775,6 +775,10 @@ namespace TF2_Simulator
                         P1_PrimaryWeaponID = Classes.StockPrimaryWeapon(P1_ClassID);
                         P1_SecondaryWeaponID = Classes.StockSecondaryWeapon(P1_ClassID);
                         P1_MeleeWeaponID = Classes.StockMeleeWeapon(P1_ClassID);
+                        if (P1_ClassID == 8)
+                        {
+                            P1_WeaponSpecialStat = 1;
+                        }
                         Console.WriteLine(Header);
                         Console.WriteLine($"  ClassID: {P1_ClassID}");
                         Console.WriteLine($"  Player Class: {P1_ClassName}");
@@ -1885,7 +1889,7 @@ namespace TF2_Simulator
                         while (P1_Health > 0 && E1_Health > 0)
                         {
                             Console.Clear();
-                            // Status Effect Resets
+                            #region Status Effect Resets
                             #region Fire Status Reset
                             if (P1_StatusOnFireCooldown == 0)
                             {
@@ -1946,11 +1950,12 @@ namespace TF2_Simulator
                                 if (E1_StatusEffect_3_ID == 4) { E1_StatusEffect_3_ID = 0; }
                             }
                             #endregion
-
+                            
                             if (PlayerCooldown < 0)
                             {
                                 PlayerCooldown = 0; //Checks if the Cooldown went into the negatives and reverses it to 0.
                             }
+                            #endregion
                             Console.ForegroundColor = Color_Game;
                             Console.WriteLine(Header);
                             Console.ForegroundColor = Color_Player;
@@ -1958,7 +1963,7 @@ namespace TF2_Simulator
                             Console.ForegroundColor = Color_Enemy;
                             Console.WriteLine($"  The {EnemyPrefix} {E1_ClassName} has {E1_Health}/{E1_MaxHP} Health");
                             Console.ForegroundColor = Color_Game;
-                            int HalfOfE1_HP = E1_Health / 2;
+                            int HalfOfE1_HP = E1_MaxHP / 2;
                             if (E1_Health < HalfOfE1_HP)
                             {
                                 Console.WriteLine($"  The {EnemyPrefix} {E1_ClassName} has less than Half Health!");
@@ -1966,7 +1971,7 @@ namespace TF2_Simulator
                             }
                             Console.WriteLine(Footer);
                             Console.ForegroundColor = Color_Player;
-                            //Player Status
+                            #region Status / Information
                             if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1)
                             {
                                 Console.WriteLine($"┌──YOU ARE BURNING!!!─────────┐");
@@ -2099,6 +2104,7 @@ namespace TF2_Simulator
                                 Console.WriteLine($"  |        {PlayerWeaponFeature}        | ");
                                 Console.WriteLine($"  └─────────────────┘");
                             }
+                            #endregion
                             Console.ForegroundColor = Color_Game;
                             Console.WriteLine();
                             Console.WriteLine(Header);
@@ -2112,21 +2118,7 @@ namespace TF2_Simulator
                             Console.Write("Action: ");
                             string PlayerAction = Console.ReadLine();
                             if (PlayerAction == "1" && P1_Commitment < 2)
-                            {
-                                if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
-                                {
-                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
-                                }
-                                if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
-                                {
-                                    P1_Commitment = 1;
-                                    P1_WeaponSpecialStat++;
-                                    if (P1_WeaponSpecialStat > 3)
-                                    {
-                                        //Add Option to Fire
-                                    }
-                                }
-                                
+                            {                              
                                 Console.SetCursorPosition(0, Console.CursorTop - 1);
                                 Console.Write(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
@@ -2176,6 +2168,18 @@ namespace TF2_Simulator
                             }
                             if (PlayerAction == "4")
                             {
+                                if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
+                                {
+                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
+                                }
+                                if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                                {
+                                    P1_WeaponSpecialStat++;
+                                    if (P1_WeaponSpecialStat > 3)
+                                    {
+                                        //Add Option to Fire
+                                    }
+                                }
                                 Console.SetCursorPosition(0, Console.CursorTop - 1);
                                 Console.WriteLine(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
