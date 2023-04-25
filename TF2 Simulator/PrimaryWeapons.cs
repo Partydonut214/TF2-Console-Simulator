@@ -780,8 +780,8 @@ namespace TF2_Simulator
             if (WeaponID == 128) { return "Widowmaker"; }
             if (WeaponID == 129) { return "Pomson 6000"; }
             if (WeaponID == 130) { return "Rescue Ranger"; }
-            if (WeaponID == 131) { return "Wrangler"; }
-            if (WeaponID == 132) { return "Giger Counter"; }
+            if (WeaponID == 131) { return "Wrangler"; } // Scrapped
+            if (WeaponID == 132) { return "Giger Counter"; } // Scrapped
             if (WeaponID == 133) { return "Short Circuit"; }
             if (WeaponID == 134) { return "Wrench"; }
             if (WeaponID == 135) { return "Golden Wrench"; }
@@ -789,9 +789,9 @@ namespace TF2_Simulator
             if (WeaponID == 137) { return "Southern Hospitality"; }
             if (WeaponID == 138) { return "Jag"; }
             if (WeaponID == 139) { return "Eureka Effect"; }
-            if (WeaponID == 140) { return "Consturction PDA"; }
-            if (WeaponID == 141) { return "Destruction PDA"; }
-            if (WeaponID == 142) { return "Syringe Gun"; }
+            if (WeaponID == 140) { return "Consturction PDA"; } //Scrapped
+            if (WeaponID == 141) { return "Destruction PDA"; } //Scrapped
+            if (WeaponID == 142) { return "Syringe Gun"; } 
             if (WeaponID == 143) { return "Blutsauger"; }
             if (WeaponID == 144) { return "Crusader's Crossbow"; }
             if (WeaponID == 145) { return "Overdose"; }
@@ -860,7 +860,7 @@ namespace TF2_Simulator
             if (WeaponID == 208) { return "Crossing Guard"; }
             if (WeaponID == 209) { return "Prinny Machete"; }
             if (WeaponID == 210) { return "Golden Frying Pan"; }
-            if (WeaponID == 211) { return "Legendary Ticket"; }
+            if (WeaponID == 211) { return "Legendary Ticket"; } 
             if (WeaponID == 212) { return "Backpack Expander"; }
             return "error";
         }

@@ -341,7 +341,7 @@ namespace TF2_Simulator
             if (WeaponID == 113) { return "Dalokohs Bar"; }
             if (WeaponID == 114) { return "Fishcake"; }
             if (WeaponID == 115) { return "Buffalo Steak Sandvich"; }
-            if (WeaponID == 116) { return "Error: Duplicated Weapon [Panic Attack]"; }
+            if (WeaponID == 116) { return "Error: Duplicated Weapon [Panic Attack]"; } //Scrapped Weapon due to Duplication
             if (WeaponID == 117) { return "Second Banana"; }
             if (WeaponID == 118) { return "Fists"; }
             if (WeaponID == 119) { return "Apoco-Fists"; }
