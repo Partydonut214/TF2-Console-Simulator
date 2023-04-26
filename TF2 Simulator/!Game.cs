@@ -1,14 +1,29 @@
 ﻿// TF2 Text Based Fighting Sim
 
+using System.ComponentModel;
+
 namespace TF2_Simulator
 {
     internal class Game
     {
         static void Main(string[] args)
         {
+
             Console.Clear();
-            Console.Write("What is your Name: ");
+            Console.WriteLine("┌───────────┬────────────┐");
+            Console.WriteLine("   What is your Name? ");
+            Console.WriteLine("└───────────┴────────────┘");
+            Console.Write("Name: ");
             string PlayerName = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine($"Would you like to have {PlayerName} as your name? [Y/N]");
+            string Name_Answer = Console.ReadLine();
+            if (Name_Answer.ToLower() == "n")
+            {
+                Console.Clear();
+                Console.Write("Name: ");
+                PlayerName = Console.ReadLine();
+            }
             string EnemyPrefix = "Enemy";
 
             #region Color Set and Check
@@ -41,6 +56,18 @@ namespace TF2_Simulator
             }
 
             #region Secret Names
+            if (PlayerName == "Caden")
+            {
+                Console.Clear();
+                Console.WriteLine("Sandy");
+                Console.WriteLine("**************,.,*///*,..............,,,*///////////////....                    \r\n*,,,,**,.,**********/////,........*//*,,************/**,...                     \r\n,,. .,,,.,,,,,,,,,,,,,**/,,///(/*,*/****//**/*///***///***,..                   \r\n,,.............,,,,,..,,,,***////////////**,****,,,,,,,,*****,,.                \r\n............ ...,,,,,,,,,,*////////////**,.       . .......,,,**,,,.            \r\n.................,....,.....,///////**,..        ..........,,.....,,,,..        \r\n,,,,,..................,....,*********,.        ......,,,,,,........,,,,...     \r\n,,********,,..........,,,,,,*********,.        .,,,,,,,,....  .....,,,,,***,.   \r\n.,,*****//////**,,....,,,,**********,.        ..,,,,,.....,,,,,..,,,,****///**,.\r\n,,,***********//////*,,,,,,***,,****,.       ..,,,,,,,,,,,,,,,....,,*//***///*,,\r\n,,,,,,,,*****/////*******,,,,*,,,,,,,         .....,,,,,**,*,,,...,,*/##////////\r\n,,,,,,,,,**//*///*********,..,,,,,,..   .,,,,.,......,,****/,,*,,,.,*/###(//////\r\n,**********/*******,,..,,,,..,,,,,,.    .,,,,,,.  ....,,**/////*,**,*(#%###((((/\r\n.....,*//**,,,,,......,,,,,,,,,,,,.       .,,...   .....,*///((((/((((########(/\r\n((,.,*/(/***,,,,,,,*****,,,,,,,,...                 .......,*((((((((((*,,,,*//(\r\n//((((((/***,,,********,**,..,,... .    .             ....,,,,,,,****/,,,,.,.,,*\r\n((((((//****,,,,,,,,**********,....,.. ..              ...,,,,,,**,,.......,,,,,\r\n((((///*****,,,*******,*//*,//**..*(,......             ...................,,,,,\r\n//((//**********///*/**///(//((##(###(*,.....   .          ...................,,\r\n.*//***********//*//////((((((((########(,...   ...        .. ......,.....,,.,,,\r\n.*//*************////////////((/((((/((##(/,,  .,.......... . .......,,,,,,,,,,,\r\n,****,,,*,,*******///////*,,**////((/(((((/,,...,,..,,,,,...............,,.,,***\r\n.*///*,...,,,,********,,,,..     ,*/*////*..           ..........,,,,..,,*******\r\n,/((/*. ..,,,,,,,,,,***,,,,,,......,,,**,,,              ......,,,,,,,,******///\r\n((((/, ..,,,,,,,,,,,,*****,,,,,,,,...,,**//, .          ......,,,,,,,***///(((((\r\n////.  .,...,,,,,,,,,,,,,,,,,,,,,,,,,*/(###(##/,.. .....,,,,**********//(((#####\r\n(((/.     ...,,,,,,,,,,,,,,,,,,,,,,*(((####((%%##(/***,*/******/////(((#########\r\n///,,    ....,,,.,,******,,,,*****,,/((############(((/////(((((################\r\n//* .**///*,/***,,*****,,,,,,,,,,,,*,*///(/(((((/(((((/((((####%##%%%#%%%#######\r\n///**((((/./(,//,/********,,,,,,,,,,,,,,,,,********///(#####%%%%%%%%%%%%%%%%%%##\r\n///**(((#(.((,(/,/***************************/////((######%%%%%%%%%%%%%%%%%%%%%%\r\n///*/((((/,((,//*/*,*******////*******/////(#########%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                Thread.Sleep(5000);
+                Color_Player = ConsoleColor.DarkMagenta;
+                Color_Enemy = ConsoleColor.DarkMagenta;
+                Color_Game = ConsoleColor.DarkMagenta;
+                Color_Input = ConsoleColor.DarkMagenta;
+            }
+
             if (PlayerName.StartsWith("BLU "))
             {
                 EnemyPrefix = "RED";
@@ -155,6 +182,9 @@ namespace TF2_Simulator
 
             #region PlayerStats V2
             //Information
+            int P1_ThreadSleep = 5000;
+            int E1_ThreadSleep = 8000;
+            bool SkipDebug = false; 
             int P1_Health = 0;
             int P1_MaxHP = 0;
             int P1_ClassID = 0;
@@ -196,6 +226,11 @@ namespace TF2_Simulator
             int E1_MeleeWeaponID = 0;
             int E1_WeaponSpecialStat = 0;
             //Status
+            int E1_Cooldown_P = 0; //Primary
+            int E1_Cooldown_S = 0; //Secondary
+            int E1_Cooldown_M = 0; //Melee
+            int E1_Cooldown_E = 0; //Extra
+            int E1_Cooldown_Damage = 0; //Damage Based
             int E1_Cooldown = 0;
             int E1_StatusEffect_1_ID = 0;
             int E1_StatusEffect_2_ID = 0;
@@ -257,7 +292,15 @@ namespace TF2_Simulator
                 157, // Huntsman
                 158, // Fortified Compound
             };
-            
+
+            List<int> Medic_PrimaryWeapons = new List<int>
+            {
+                142,
+                143,
+                144,
+                145,
+            };
+
             List<int> Medic_SecondaryWeapons = new List<int>
             {
                 146, // Medigun
@@ -348,6 +391,7 @@ namespace TF2_Simulator
             bool InputEnemy = false;
             #endregion
             #region MainMenu
+            Console.Clear();
             while (InputOK == false)
             {
                 InputOK = true;
@@ -379,6 +423,10 @@ namespace TF2_Simulator
                 Console.WriteLine("  12. Set Game Colors");
                 Console.WriteLine("  13. Set Enemy Prefix");
                 Console.WriteLine("  14. Test Loadouts");
+                Console.WriteLine("  15. Change Turn Timers");
+                Console.WriteLine($"  16. Skip Extra Info when Selecting a Class: {SkipDebug}");
+                Console.WriteLine($"  17. Change Name");
+
                 Console.WriteLine(FooterShort);
                 //Console.WriteLine("=========================");
                 Console.WriteLine();
@@ -627,7 +675,76 @@ namespace TF2_Simulator
                         Thread.Sleep(5000);
                     }
                 }
+                if (UserInput == "15")
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = Color_Game;
+                    Console.WriteLine(Header);
+                    Console.WriteLine($"  Changing Information Display Times");
+                    Console.WriteLine($"  1. Player Time: {P1_ThreadSleep}");
+                    Console.WriteLine($"  2. Enemy Time: {E1_ThreadSleep}");
+                    Console.WriteLine(Footer);
+                    Console.Write("Action: "); Console.ForegroundColor = Color_Input;
+                    string Choice_Timers = Console.ReadLine();
+                    if (Choice_Timers == "1")
+                    {
+                        Console.WriteLine(HeaderShort);
+                        Console.WriteLine($"  Player Timer: {P1_ThreadSleep}");
+                        Console.WriteLine($"  Set the Timer [1000 = 1 Second]");
+                        Console.WriteLine(FooterShort);
+                        Console.Write("Time: ");
+                        string DisplayInput = Console.ReadLine();
+                        if (int.TryParse(DisplayInput, out int PlayerTimer))
+                        {
+                            P1_ThreadSleep = PlayerTimer;
+                            Console.WriteLine($"  Set Timer to {P1_ThreadSleep} Milliseconds");
+                        }
+                    }
+                    if (Choice_Timers == "2")
+                    {
+                        Console.WriteLine(HeaderShort);
+                        Console.WriteLine($"  Enemy Timer: {E1_ThreadSleep}");
+                        Console.WriteLine($"  Set the Timer [1000 = 1 Second]");
+                        Console.WriteLine(FooterShort);
+                        Console.Write("Time: ");
+                        string DisplayInput = Console.ReadLine();
+                        if (int.TryParse(DisplayInput, out int EnemyTimer))
+                        {
+                            E1_ThreadSleep = EnemyTimer;
+                            Console.WriteLine($"  Set Timer to {E1_ThreadSleep} Milliseconds");
+                        }
+                    }
+                }
+                if (UserInput == "16")
+                {
+                    Console.WriteLine($"  {HeaderShort}");
+                    if (SkipDebug == false) 
+                    { 
+                        SkipDebug = true; 
+                    }
+                    else
+                    { 
+                        SkipDebug = false; 
+                    }
+                    Console.WriteLine($"    SkipDebug = {SkipDebug}");
+                    Console.WriteLine($"  {FooterShort}");
+                    Thread.Sleep(1200);
+                }
+                if (UserInput == "17")
+                {
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"  Set Player Name:");
+                    Console.WriteLine(FooterShort);
+                    Console.Write("Name: ");
+                    PlayerName = Console.ReadLine();
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    Console.Write(new String(' ', Console.BufferWidth));
+                    Console.WriteLine(HeaderShort);
+                    Console.WriteLine($"Setting Player's Name to {PlayerName}");
+                    Console.WriteLine(FooterShort);
+                    Thread.Sleep(2500);
 
+                }
                 #endregion
                 #region Help Menu
                 if ((UserInput.ToLower() == "!help") || (UserInput.ToLower() == "help") || UserInput == "10")
@@ -784,13 +901,15 @@ namespace TF2_Simulator
                         {
                             P1_WeaponSpecialStat = 1;
                         }
-                        Console.WriteLine(Header);
-                        Console.WriteLine($"  ClassID: {P1_ClassID}");
-                        Console.WriteLine($"  Player Class: {P1_ClassName}");
-                        Console.WriteLine($"  Health: {P1_Health}/{P1_MaxHP}");
-                        Console.WriteLine(Footer);
-                        Thread.Sleep(2000);
-                        //Console.Clear();
+                        if (SkipDebug == false)
+                        {
+                            Console.WriteLine(Header);
+                            Console.WriteLine($"  ClassID: {P1_ClassID}");
+                            Console.WriteLine($"  Player Class: {P1_ClassName}");
+                            Console.WriteLine($"  Health: {P1_Health}/{P1_MaxHP}");
+                            Console.WriteLine(Footer);
+                            Thread.Sleep(2000);
+                        }
                         Console.WriteLine();
                         Console.WriteLine(Header);
                         bool Selecting_Loadout = true;
@@ -828,9 +947,12 @@ namespace TF2_Simulator
                                 Console.Write("Weapon ID: ");
                                 string PrimarySelecion = Console.ReadLine();
                                 if (int.TryParse(PrimarySelecion, out int PrimaryID)) { P1_PrimaryWeaponID = PrimaryID; }
+                                if (SkipDebug == false)
+                                {
                                 Console.WriteLine($"Primary Weapon: {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}");
                                 Console.WriteLine($"Attack: {PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown_P, P1_SecondaryTriggerExists, P1_WeaponSpecialStat)}");
                                 Thread.Sleep(1500);
+                                }
                                 Selecting_Loadout = true;
                             }
                             if (LoadoutChoice == "2")
@@ -846,9 +968,12 @@ namespace TF2_Simulator
                                 Console.Write("Weapon ID: ");
                                 string SecondarySelecion = Console.ReadLine();
                                 if (int.TryParse(SecondarySelecion, out int SecondaryID)) { P1_SecondaryWeaponID = SecondaryID; }
-                                Console.WriteLine($"Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}");
-                                Console.WriteLine($"Attack: {SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists)}");
-                                Thread.Sleep(1500);
+                                if (SkipDebug == false)
+                                {
+                                    Console.WriteLine($"Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}");
+                                    Console.WriteLine($"Attack: {SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists)}");
+                                    Thread.Sleep(1500);
+                                }
                                 Selecting_Loadout = true;
                             }
                             if (LoadoutChoice == "3")
@@ -864,9 +989,12 @@ namespace TF2_Simulator
                                 Console.Write("Weapon ID: ");
                                 string MeleeSelecion = Console.ReadLine();
                                 if (int.TryParse(MeleeSelecion, out int MeleeID)) { P1_MeleeWeaponID = MeleeID; }
-                                Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
-                                Console.WriteLine($"Attack: {MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists)}");
-                                Thread.Sleep(1500);
+                                if (SkipDebug == false)
+                                {
+                                    Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
+                                    Console.WriteLine($"Attack: {MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists)}");
+                                    Thread.Sleep(1500);
+                                }
                                 Selecting_Loadout = true;
                             }
                             if (LoadoutChoice == "4")
@@ -1787,13 +1915,15 @@ namespace TF2_Simulator
                             E1_PrimaryWeaponID = Classes.StockPrimaryWeapon(E1_ClassID);
                             E1_SecondaryWeaponID = Classes.StockSecondaryWeapon(E1_ClassID);
                             E1_MeleeWeaponID = Classes.StockMeleeWeapon(E1_ClassID);
-                            Console.WriteLine(Header);
-                            Console.WriteLine($"  ClassID: {E1_ClassID}");
-                            Console.WriteLine($"  Player Class: {E1_ClassName}");
-                            Console.WriteLine($"  Health: {E1_Health}/{E1_MaxHP}");
-                            Console.WriteLine(Footer);
-                            Thread.Sleep(2000);
-                            //Console.Clear();
+                            if (SkipDebug == false)
+                            {
+                                Console.WriteLine(Header);
+                                Console.WriteLine($"  ClassID: {E1_ClassID}");
+                                Console.WriteLine($"  Player Class: {E1_ClassName}");
+                                Console.WriteLine($"  Health: {E1_Health}/{E1_MaxHP}");
+                                Console.WriteLine(Footer);
+                                Thread.Sleep(2000);
+                            }
                             Console.WriteLine();
                             Console.WriteLine(Header);
                             bool Selecting_Loadout = true;
@@ -1831,9 +1961,12 @@ namespace TF2_Simulator
                                     Console.Write("Weapon ID: ");
                                     string PrimarySelecion = Console.ReadLine();
                                     if (int.TryParse(PrimarySelecion, out int PrimaryID)) { E1_PrimaryWeaponID = PrimaryID; }
-                                    Console.WriteLine($"Primary Weapon: {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}");
-                                    Console.WriteLine($"Attack: {PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, P1_WeaponSpecialStat)}");
-                                    Thread.Sleep(1500);
+                                    if (SkipDebug == false)
+                                    {
+                                        Console.WriteLine($"Primary Weapon: {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}");
+                                        Console.WriteLine($"Attack: {PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, P1_WeaponSpecialStat)}");
+                                        Thread.Sleep(1500);
+                                    }
                                     Selecting_Loadout = true;
                                 }
                                 if (LoadoutChoice == "2")
@@ -1849,9 +1982,12 @@ namespace TF2_Simulator
                                     Console.Write("Weapon ID: ");
                                     string SecondarySelecion = Console.ReadLine();
                                     if (int.TryParse(SecondarySelecion, out int SecondaryID)) { E1_SecondaryWeaponID = SecondaryID; }
-                                    Console.WriteLine($"Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}");
-                                    Console.WriteLine($"Attack: {SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
-                                    Thread.Sleep(1500);
+                                    if (SkipDebug == false)
+                                    {
+                                        Console.WriteLine($"Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}");
+                                        Console.WriteLine($"Attack: {SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
+                                        Thread.Sleep(1500);
+                                    }
                                     Selecting_Loadout = true;
                                 }
                                 if (LoadoutChoice == "3")
@@ -1867,9 +2003,12 @@ namespace TF2_Simulator
                                     Console.Write("Weapon ID: ");
                                     string MeleeSelecion = Console.ReadLine();
                                     if (int.TryParse(MeleeSelecion, out int MeleeID)) { E1_MeleeWeaponID = MeleeID; }
-                                    Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}");
-                                    Console.WriteLine($"Attack: {MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
-                                    Thread.Sleep(1500);
+                                    if (SkipDebug == false)
+                                    {
+                                        Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}");
+                                        Console.WriteLine($"Attack: {MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
+                                        Thread.Sleep(1500);
+                                    }
                                     Selecting_Loadout = true;
                                 }
                                 if (LoadoutChoice == "4")
@@ -1899,6 +2038,16 @@ namespace TF2_Simulator
                 #region Game
                 if (EnemySetClass == true) //Game Start
                 {
+                    if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                    {
+                        P1_SecondaryTriggerExists = true;
+                        P1_SecondaryTriggerName = $"Charge {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}";
+                        P1_WeaponSpecialStat++;
+                        if (P1_WeaponSpecialStat > 3)
+                        {
+                            //Add Option to Fire
+                        }
+                    }
                     while (GameInputOK == false)
                     {
                         GameInputOK = true;
@@ -1966,6 +2115,9 @@ namespace TF2_Simulator
                                 if (E1_StatusEffect_3_ID == 4) { E1_StatusEffect_3_ID = 0; }
                             }
                             #endregion
+
+                            P1_Damage = 0;
+                            E1_Damage = 0;
                             
                             if (PlayerCooldown < 0)
                             {
@@ -2120,7 +2272,7 @@ namespace TF2_Simulator
                             if (P1_ClassID == 8)
                             {
                                 Console.WriteLine($"  ┌──Charge Level:──┐");
-                                Console.WriteLine($"  |        {PlayerWeaponFeature}        | ");
+                                Console.WriteLine($"  |        {P1_SecondaryTrigger}        | ");
                                 Console.WriteLine($"  └─────────────────┘");
                             }
                             #endregion
@@ -2146,6 +2298,16 @@ namespace TF2_Simulator
                                 Console.ForegroundColor = Color_Player;
                                 Console.WriteLine($"{PlayerName} attacked with their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
                                 P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown_P, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
+                                if (Medic_PrimaryWeapons.Contains(P1_PrimaryWeaponID))
+                                {
+                                    if (P1_Cooldown_P > 0)
+                                    {
+                                        P1_Damage = 0;
+                                        Console.WriteLine("Your Weapon was cooling Down!!");
+                                        Console.WriteLine("You Dealt no damage");
+                                    }
+                                    P1_Cooldown_P = 1;
+                                }
                                 if (Attack_HealWeapons.Contains(P1_PrimaryWeaponID))
                                 {
                                     P1_Health = P1_Health + P1_Damage / 2;
@@ -2153,9 +2315,13 @@ namespace TF2_Simulator
                                     Console.WriteLine($"   Healed {P1_Damage / 2} Health!");
                                     Console.WriteLine(Footer);
                                 }
+                                if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                                {
+                                    P1_SecondaryTrigger = 1;
+                                }
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(FooterLong);
-                                Thread.Sleep(5000);
+                                Thread.Sleep(P1_ThreadSleep);
 
                             }
                             if (PlayerAction == "2")
@@ -2170,7 +2336,7 @@ namespace TF2_Simulator
                                 P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
                                 Console.ForegroundColor = Color_Game;
                                 Console.WriteLine(FooterLong);
-                                Thread.Sleep(5000);
+                                Thread.Sleep(P1_ThreadSleep);
                             }
                             if (PlayerAction == "3")
                             {
@@ -2183,22 +2349,11 @@ namespace TF2_Simulator
                                 Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
                                 P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists);
                                 Console.WriteLine(FooterLong);
-                                Thread.Sleep(5000);
+                                Thread.Sleep(P1_ThreadSleep);
                             }
-                            if (PlayerAction == "4")
+                            if (PlayerAction == "4" && P1_SecondaryTriggerExists == false)
                             {
-                                if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
-                                {
-                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
-                                }
-                                if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
-                                {
-                                    P1_WeaponSpecialStat++;
-                                    if (P1_WeaponSpecialStat > 3)
-                                    {
-                                        //Add Option to Fire
-                                    }
-                                }
+
                                 Console.SetCursorPosition(0, Console.CursorTop - 1);
                                 Console.WriteLine(new String(' ', Console.BufferWidth));
                                 Console.ResetColor();
@@ -2209,6 +2364,31 @@ namespace TF2_Simulator
                                 P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists);
                                 Console.WriteLine(FooterLong);
                                 Thread.Sleep(5000);
+                            }
+                            if (PlayerAction == "4" && P1_SecondaryTriggerExists == true && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                            {
+                                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                Console.WriteLine(new String(' ', Console.BufferWidth));
+                                Console.ResetColor();
+                                Console.ForegroundColor = Color_Game;
+                                Console.WriteLine(HeaderLong);
+                                Console.ForegroundColor = Color_Player;
+                                Console.WriteLine($"{PlayerName} charged their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
+                                P1_SecondaryTrigger++;
+                                Console.WriteLine(FooterLong);
+                                Thread.Sleep(P1_ThreadSleep);
+                            }
+                            if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
+                            {
+                                E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
+                            }
+                            if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                            {
+                                P1_WeaponSpecialStat++;
+                                if (P1_WeaponSpecialStat > 3)
+                                {
+                                    //Add Option to Fire
+                                }
                             }
                             #region In-Game Tests / Cheats
                             if (PlayerAction.ToLower() == "set commitment")
@@ -2244,10 +2424,10 @@ namespace TF2_Simulator
                             }
                             if (PlayerAction.ToLower() == "taunt")
                             {
-                                Console.WriteLine($"  ┌──YOU HAVE FALLEN FOR {EnemyPrefix} {E1_ClassName}'s TRAP!!!───"); int e = Console.BufferWidth;
+                                Console.WriteLine($"  ┌──YOU HAVE FALLEN FOR {EnemyPrefix} {E1_ClassName}'s TRAP!!!───");
                                 Console.WriteLine($"  |  Given +1500 HP to {EnemyPrefix} {E1_ClassName}");
                                 Console.WriteLine($"  |  Given Golden Frying Pan to {EnemyPrefix} {E1_ClassName}");
-                                Console.Write(new String('─', e - 1));
+                                Console.WriteLine($"  └────────────────────────────────────────────────────────────────");
                                 E1_Health = E1_Health + 1500;
                                 E1_PrimaryWeaponID = 210;
                                 E1_SecondaryWeaponID = 210;
@@ -2581,13 +2761,16 @@ namespace TF2_Simulator
                             Console.WriteLine($"The {EnemyPrefix} {E1_ClassName}'s Remaining HP: {E1_Health}");
                             Console.ForegroundColor = Color_Game;
                             Console.WriteLine(FooterLong);
-                            Thread.Sleep(1000);
-                            Console.WriteLine(HeaderLong);
-                            Console.ForegroundColor = Color_Player;
-                            Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
-                            Console.ForegroundColor = Color_Game;
-                            Console.WriteLine(FooterLong);
-                            Thread.Sleep(5000);
+                            Thread.Sleep(E1_ThreadSleep);
+                            if (SkipDebug == false)
+                            {
+                                Console.WriteLine(HeaderLong);
+                                Console.ForegroundColor = Color_Player;
+                                Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
+                                Console.ForegroundColor = Color_Game;
+                                Console.WriteLine(FooterLong);
+                                Thread.Sleep(P1_ThreadSleep);
+                            }
                             // For Status Effects to Work, Move Attack Diolouge Out of the PlayerAction if Statements and integrate Effects.
 
                             if (E1_Health > 0)
@@ -2609,7 +2792,7 @@ namespace TF2_Simulator
                                     Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
-                                    Thread.Sleep(8000);
+                                    Thread.Sleep(E1_ThreadSleep);
                                 }
                                 if (EnemyAction == 2)
                                 {
@@ -2626,7 +2809,7 @@ namespace TF2_Simulator
                                     Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
-                                    Thread.Sleep(8000);
+                                    Thread.Sleep(E1_ThreadSleep);
                                 }
                                 if (EnemyAction == 3)
                                 {
@@ -2634,7 +2817,7 @@ namespace TF2_Simulator
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Enemy;
-                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
+                                    Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
                                     E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
@@ -2643,7 +2826,7 @@ namespace TF2_Simulator
                                     Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
-                                    Thread.Sleep(8000);
+                                    Thread.Sleep(E1_ThreadSleep);
                                 }
                                 if (EnemyAction == 4)
                                 {
@@ -2660,7 +2843,7 @@ namespace TF2_Simulator
                                     Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
-                                    Thread.Sleep(8000);
+                                    Thread.Sleep(E1_ThreadSleep);
                                 }
                             }
                             P1_StatusOnFireCooldown--;
@@ -2679,6 +2862,22 @@ namespace TF2_Simulator
                             if (E1_StatusJaratedCooldown < 0) { E1_StatusJaratedCooldown = 0; }
                             if (E1_StatusMadMilkedCooldown < 0) { E1_StatusMadMilkedCooldown = 0; }
                             if (E1_StatusBleedingCooldown < 0) { E1_StatusBleedingCooldown = 0; }
+                            P1_Cooldown_P--;
+                            P1_Cooldown_S--;
+                            P1_Cooldown_M--;
+                            P1_Cooldown_E--;
+                            if (P1_Cooldown_P < 0) { P1_Cooldown_P = 0; }
+                            if (P1_Cooldown_S < 0) { P1_Cooldown_S = 0; }
+                            if (P1_Cooldown_M < 0) { P1_Cooldown_M = 0; }
+                            if (P1_Cooldown_E < 0) { P1_Cooldown_E = 0; }                            
+                            E1_Cooldown_P--;
+                            E1_Cooldown_S--;
+                            E1_Cooldown_M--;
+                            E1_Cooldown_E--;
+                            if (E1_Cooldown_P < 0) { E1_Cooldown_P = 0; }
+                            if (E1_Cooldown_S < 0) { E1_Cooldown_S = 0; }
+                            if (E1_Cooldown_M < 0) { E1_Cooldown_M = 0; }
+                            if (E1_Cooldown_E < 0) { E1_Cooldown_E = 0; }
                         }
                     }
                     bool EndingTriggered = false;
