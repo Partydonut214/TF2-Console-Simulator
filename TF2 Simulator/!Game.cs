@@ -174,16 +174,16 @@ namespace TF2_Simulator
             bool SkipDebug = false;
 
 
-                #region Dividers & Borders
-                string Header = "┌────────────────────────┬────────────────────────┐";
-                string Footer = "└────────────────────────┴────────────────────────┘";
-                string HeaderShort = "┌───────────────┬───────────────┐";
-                string FooterShort = "└───────────────┴───────────────┘";
-                string HeaderLong = "┌────────────────────────────────────────────────┬────────────────────────────────────────────────┐";
-                string FooterLong = "└────────────────────────────────────────────────┴────────────────────────────────────────────────┘";
-                string BarLoaded = "█";
-                string BarUnloaded = "▒";
-                #endregion
+            #region Dividers & Borders
+            string Header = "┌────────────────────────┬────────────────────────┐";
+            string Footer = "└────────────────────────┴────────────────────────┘";
+            string HeaderShort = "┌───────────────┬───────────────┐";
+            string FooterShort = "└───────────────┴───────────────┘";
+            string HeaderLong = "┌────────────────────────────────────────────────┬────────────────────────────────────────────────┐";
+            string FooterLong = "└────────────────────────────────────────────────┴────────────────────────────────────────────────┘";
+            string BarLoaded = "█";
+            string BarUnloaded = "▒";
+            #endregion
 
             bool GAMERESET = true;
             bool QuittingGame = false;
@@ -1372,7 +1372,7 @@ namespace TF2_Simulator
                         }
 
                     }
-                    else if (UserInput.ToLower() == "close")
+                    else if (UserInput.ToLower() == "quit")
                     {
                         Console.WriteLine(Header);
                         Console.WriteLine("Player Requested to Close the Game.");
@@ -2355,6 +2355,7 @@ namespace TF2_Simulator
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
                                     P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists);
+                                    Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
@@ -2398,10 +2399,10 @@ namespace TF2_Simulator
                                     }
                                 }
                                 #region In-Game Tests / Cheats
-                                if (PlayerAction.ToLower() == "quit" || PlayerAction.ToLower() == "close")
+                                if (PlayerAction.ToLower() == "quit")
                                 {
                                     QuittingGame = true;
-                                    PlayerHP = 0;
+                                    P1_Health = 0;
                                     Console.WriteLine(HeaderShort);
                                     Console.WriteLine($"  Quiting Game...");
                                     Console.WriteLine(FooterShort);
@@ -2620,153 +2621,153 @@ namespace TF2_Simulator
                                     Console.WriteLine();
                                 }
                                 #endregion
-                                #region StatusEffect_BulletEnhancer
-                                int StatusEffect_BulletEnhancer = 0;
-                                if (E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
+                                if (QuittingGame == false)
                                 {
-                                    if (E1_StatusEffect_1_ID == 3 || E1_StatusEffect_2_ID == 3 || E1_StatusEffect_3_ID == 3)
+                                    #region StatusEffect_BulletEnhancer
+                                    int StatusEffect_BulletEnhancer = 0;
+                                    if (E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
                                     {
-                                        StatusEffect_BulletEnhancer = 3;
-                                    }
-                                    if (E1_StatusEffect_1_ID == 5 || E1_StatusEffect_2_ID == 5 || E1_StatusEffect_3_ID == 5)
-                                    {
-                                        StatusEffect_BulletEnhancer = 5;
-                                    }
-                                    if (E1_StatusEffect_1_ID == 6 || E1_StatusEffect_2_ID == 6 || E1_StatusEffect_3_ID == 6)
-                                    {
-                                        StatusEffect_BulletEnhancer = 3;
-                                    }
-                                    int E1_HealthPlaceHolder = E1_Health;
-                                    int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
-                                    E1_Health = E1_Health - Damage;
-                                    if (Damage > 0)
-                                    { P1_Damage = 0; }
-                                    if (E1_Health < E1_HealthPlaceHolder)
-                                    {
-                                        if (StatusEffect_BulletEnhancer == 3)
+                                        if (E1_StatusEffect_1_ID == 3 || E1_StatusEffect_2_ID == 3 || E1_StatusEffect_3_ID == 3)
                                         {
-                                            Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN JARATE DAMAGE!!!────┐");
-                                            Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
-                                            Console.WriteLine($"   └──────────────────────────────────────────┘");
+                                            StatusEffect_BulletEnhancer = 3;
                                         }
-                                        if (StatusEffect_BulletEnhancer == 5)
+                                        if (E1_StatusEffect_1_ID == 5 || E1_StatusEffect_2_ID == 5 || E1_StatusEffect_3_ID == 5)
                                         {
-                                            Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN MINI-CRIT DAMAGE!!!────┐");
-                                            Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
-                                            Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                            StatusEffect_BulletEnhancer = 5;
                                         }
-                                        if (StatusEffect_BulletEnhancer == 6)
+                                        if (E1_StatusEffect_1_ID == 6 || E1_StatusEffect_2_ID == 6 || E1_StatusEffect_3_ID == 6)
                                         {
-                                            Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN CRIT DAMAGE!!!─────────┐");
-                                            Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
-                                            Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                            StatusEffect_BulletEnhancer = 3;
+                                        }
+                                        int E1_HealthPlaceHolder = E1_Health;
+                                        int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                        E1_Health = E1_Health - Damage;
+                                        if (Damage > 0)
+                                        { P1_Damage = 0; }
+                                        if (E1_Health < E1_HealthPlaceHolder)
+                                        {
+                                            if (StatusEffect_BulletEnhancer == 3)
+                                            {
+                                                Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN JARATE DAMAGE!!!────┐");
+                                                Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                                Console.WriteLine($"   └──────────────────────────────────────────┘");
+                                            }
+                                            if (StatusEffect_BulletEnhancer == 5)
+                                            {
+                                                Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN MINI-CRIT DAMAGE!!!────┐");
+                                                Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                                Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                            }
+                                            if (StatusEffect_BulletEnhancer == 6)
+                                            {
+                                                Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN CRIT DAMAGE!!!─────────┐");
+                                                Console.WriteLine($"   | Dealt {E1_HealthPlaceHolder - E1_Health} Damage to the {EnemyPrefix} {E1_ClassName}!");
+                                                Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                            }
                                         }
                                     }
-                                }
 
-                                if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0)
-                                {
-                                    if (P1_StatusEffect_1_ID == 3 || P1_StatusEffect_2_ID == 3 || P1_StatusEffect_3_ID == 3)
+                                    if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0)
                                     {
-                                        StatusEffect_BulletEnhancer = 3;
-                                    }
-                                    if (P1_StatusEffect_1_ID == 5 || P1_StatusEffect_2_ID == 5 || P1_StatusEffect_3_ID == 5)
-                                    {
-                                        StatusEffect_BulletEnhancer = 5;
-                                    }
-                                    if (P1_StatusEffect_1_ID == 6 || P1_StatusEffect_2_ID == 6 || P1_StatusEffect_3_ID == 6)
-                                    {
-                                        StatusEffect_BulletEnhancer = 3;
-                                    }
-                                    int P1_HealthPlaceHolder = P1_Health;
-                                    int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
-                                    P1_Health = P1_Health - Damage;
-                                    if (Damage > 0)
-                                    { P1_Damage = 0; }
-                                    if (P1_Health < P1_HealthPlaceHolder)
-                                    {
-                                        if (StatusEffect_BulletEnhancer == 3)
+                                        if (P1_StatusEffect_1_ID == 3 || P1_StatusEffect_2_ID == 3 || P1_StatusEffect_3_ID == 3)
                                         {
-                                            Console.WriteLine($"   ┌──YOU TOOK JARATE DAMAGE!!!───────────────┐");
-                                            Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
-                                            Console.WriteLine($"   └──────────────────────────────────────────┘");
+                                            StatusEffect_BulletEnhancer = 3;
                                         }
-                                        if (StatusEffect_BulletEnhancer == 5)
+                                        if (P1_StatusEffect_1_ID == 5 || P1_StatusEffect_2_ID == 5 || P1_StatusEffect_3_ID == 5)
                                         {
-                                            Console.WriteLine($"   ┌──YOU TOOK MINI-CRIT DAMAGE!!!───────────────┐");
-                                            Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
-                                            Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                            StatusEffect_BulletEnhancer = 5;
                                         }
-                                        if (StatusEffect_BulletEnhancer == 6)
+                                        if (P1_StatusEffect_1_ID == 6 || P1_StatusEffect_2_ID == 6 || P1_StatusEffect_3_ID == 6)
                                         {
-                                            Console.WriteLine($"   ┌──YOU TOOK CRIT DAMAGE!!!────────────────────┐");
-                                            Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
-                                            Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                            StatusEffect_BulletEnhancer = 3;
                                         }
-                                    }
-                                }
-                                #endregion
-                                #region StatusEffect_PoisonEffects
-                                int StatusEffect_PoisonEffects_Player = 0;
-                                int StatusEffect_PoisonEffects_Enemy = 0;
-                                if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0 || E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
-                                {
-                                    if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1) //Check Player
-                                    {
-                                        StatusEffect_PoisonEffects_Player = 1;
-                                    }
-                                    if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1) //Check Enemy
-                                    {
-                                        StatusEffect_PoisonEffects_Enemy = 1;
-                                    }
-                                    if (P1_StatusEffect_1_ID == 4 || P1_StatusEffect_2_ID == 4 || P1_StatusEffect_3_ID == 4) //Check Player
-                                    {
-                                        StatusEffect_PoisonEffects_Player = 5;
-                                    }
-                                    if (E1_StatusEffect_1_ID == 4 || E1_StatusEffect_2_ID == 4 || E1_StatusEffect_3_ID == 4) //Check Enemy
-                                    {
-                                        StatusEffect_PoisonEffects_Enemy = 5;
-                                    }
-                                    int E1_HealthPlaceHolder = E1_Health;
-                                    int Damage = Misc.PoisonEffects(StatusEffect_PoisonEffects_Enemy, E1_Health);
-                                    E1_Health = E1_Health - Damage;
-                                    if (E1_Health < E1_HealthPlaceHolder)
-                                    {
-                                        if (StatusEffect_PoisonEffects_Enemy == 1)
+                                        int P1_HealthPlaceHolder = P1_Health;
+                                        int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                        P1_Health = P1_Health - Damage;
+                                        if (Damage > 0)
+                                        { P1_Damage = 0; }
+                                        if (P1_Health < P1_HealthPlaceHolder)
                                         {
-                                            Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN FIRE DAMAGE!!!──────────────────────┐");
-                                            Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Burn Damage!");
-                                            Console.WriteLine($"   └──────────────────────────────────────────────────────────┘");
-                                        }
-                                        if (StatusEffect_PoisonEffects_Enemy == 5)
-                                        {
-                                            Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN BLEEDING DAMAGE!!!──────────────────────┐");
-                                            Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Bleeding Damage!");
-                                            Console.WriteLine($"   └──────────────────────────────────────────────────────────────┘");
+                                            if (StatusEffect_BulletEnhancer == 3)
+                                            {
+                                                Console.WriteLine($"   ┌──YOU TOOK JARATE DAMAGE!!!───────────────┐");
+                                                Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
+                                                Console.WriteLine($"   └──────────────────────────────────────────┘");
+                                            }
+                                            if (StatusEffect_BulletEnhancer == 5)
+                                            {
+                                                Console.WriteLine($"   ┌──YOU TOOK MINI-CRIT DAMAGE!!!───────────────┐");
+                                                Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
+                                                Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                            }
+                                            if (StatusEffect_BulletEnhancer == 6)
+                                            {
+                                                Console.WriteLine($"   ┌──YOU TOOK CRIT DAMAGE!!!────────────────────┐");
+                                                Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
+                                                Console.WriteLine($"   └─────────────────────────────────────────────┘");
+                                            }
                                         }
                                     }
-                                    int P1_HealthPlaceHolder = P1_Health;
-                                    int DamagePlayer = Misc.PoisonEffects(StatusEffect_PoisonEffects_Player, P1_Health);
-                                    P1_Health = P1_Health - DamagePlayer;
-                                    if (P1_Health < P1_HealthPlaceHolder)
+                                    #endregion
+                                    #region StatusEffect_PoisonEffects
+                                    int StatusEffect_PoisonEffects_Player = 0;
+                                    int StatusEffect_PoisonEffects_Enemy = 0;
+                                    if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0 || E1_StatusEffect_1_ID > 0 || E1_StatusEffect_2_ID > 0 || E1_StatusEffect_3_ID > 0)
                                     {
-                                        if (StatusEffect_PoisonEffects_Player == 1)
+                                        if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1) //Check Player
                                         {
-                                            Console.WriteLine($"   ┌──YOU ARE TAKING FIRE DAMAGE!!!─────────────┐");
-                                            Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Burn Damage!      ");
-                                            Console.WriteLine($"   └────────────────────────────────────────────┘");
+                                            StatusEffect_PoisonEffects_Player = 1;
                                         }
-                                        if (StatusEffect_PoisonEffects_Player == 4)
+                                        if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1) //Check Enemy
                                         {
-                                            Console.WriteLine($"   ┌──YOU ARE TAKING BLEEDING DAMAGE!!!─────────────┐");
-                                            Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Bleeding Damage!  ");
-                                            Console.WriteLine($"   └────────────────────────────────────────────────┘");
+                                            StatusEffect_PoisonEffects_Enemy = 1;
+                                        }
+                                        if (P1_StatusEffect_1_ID == 4 || P1_StatusEffect_2_ID == 4 || P1_StatusEffect_3_ID == 4) //Check Player
+                                        {
+                                            StatusEffect_PoisonEffects_Player = 5;
+                                        }
+                                        if (E1_StatusEffect_1_ID == 4 || E1_StatusEffect_2_ID == 4 || E1_StatusEffect_3_ID == 4) //Check Enemy
+                                        {
+                                            StatusEffect_PoisonEffects_Enemy = 5;
+                                        }
+                                        int E1_HealthPlaceHolder = E1_Health;
+                                        int Damage = Misc.PoisonEffects(StatusEffect_PoisonEffects_Enemy, E1_Health);
+                                        E1_Health = E1_Health - Damage;
+                                        if (E1_Health < E1_HealthPlaceHolder)
+                                        {
+                                            if (StatusEffect_PoisonEffects_Enemy == 1)
+                                            {
+                                                Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN FIRE DAMAGE!!!──────────────────────┐");
+                                                Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Burn Damage!");
+                                                Console.WriteLine($"   └──────────────────────────────────────────────────────────┘");
+                                            }
+                                            if (StatusEffect_PoisonEffects_Enemy == 5)
+                                            {
+                                                Console.WriteLine($"   ┌──THE ENEMY HAS TAKEN BLEEDING DAMAGE!!!──────────────────────┐");
+                                                Console.WriteLine($"   | The {EnemyPrefix} {E1_ClassName} Has Taken {E1_HealthPlaceHolder - E1_Health} Bleeding Damage!");
+                                                Console.WriteLine($"   └──────────────────────────────────────────────────────────────┘");
+                                            }
+                                        }
+                                        int P1_HealthPlaceHolder = P1_Health;
+                                        int DamagePlayer = Misc.PoisonEffects(StatusEffect_PoisonEffects_Player, P1_Health);
+                                        P1_Health = P1_Health - DamagePlayer;
+                                        if (P1_Health < P1_HealthPlaceHolder)
+                                        {
+                                            if (StatusEffect_PoisonEffects_Player == 1)
+                                            {
+                                                Console.WriteLine($"   ┌──YOU ARE TAKING FIRE DAMAGE!!!─────────────┐");
+                                                Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Burn Damage!      ");
+                                                Console.WriteLine($"   └────────────────────────────────────────────┘");
+                                            }
+                                            if (StatusEffect_PoisonEffects_Player == 4)
+                                            {
+                                                Console.WriteLine($"   ┌──YOU ARE TAKING BLEEDING DAMAGE!!!─────────────┐");
+                                                Console.WriteLine($"   | Taken {P1_HealthPlaceHolder - P1_Health} Bleeding Damage!  ");
+                                                Console.WriteLine($"   └────────────────────────────────────────────────┘");
+                                            }
                                         }
                                     }
-                                }
-                                #endregion
-                                //if (QuittingGame == false)
-                                //{
+                                    #endregion
                                     Console.WriteLine(HeaderLong);
                                     if (P1_Damage > 0)
                                     {
@@ -2895,7 +2896,7 @@ namespace TF2_Simulator
                                     if (E1_Cooldown_S < 0) { E1_Cooldown_S = 0; }
                                     if (E1_Cooldown_M < 0) { E1_Cooldown_M = 0; }
                                     if (E1_Cooldown_E < 0) { E1_Cooldown_E = 0; }
-                                }
+                                } //QuittingGame's Closer is placed here although the PlayerHP is set to 0, the game doesn't seem to quit.
                             }
                             bool EndingTriggered = false;
                             if (P1_Health <= 0 && E1_Health <= 0 && EndingTriggered != true)
@@ -2907,7 +2908,7 @@ namespace TF2_Simulator
                                 EndingTriggered = true;
 
                             }
-                            if (P1_Health <= 0 && EndingTriggered != true)
+                            if (P1_Health <= 0 && EndingTriggered != true && QuittingGame != true)
                             {
                                 Console.WriteLine(Header);
                                 Console.WriteLine($"Your Health Reached 0! You have been defeated by {EnemyPrefix} {E1_ClassName}.");
@@ -2955,3 +2956,4 @@ namespace TF2_Simulator
             }
         }
     }
+}
