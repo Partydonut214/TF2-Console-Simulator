@@ -2450,7 +2450,7 @@ namespace TF2_Simulator
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{P1_SecondaryFunctionAttackString}");
-                                    P1_Damage = Misc.SecondaryFunction(P1_ClassID, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID, P1_Cooldown_P, P1_Cooldown_S, P1_Cooldown_M P1_Cooldown_E);
+                                    P1_Damage = Misc.SecondaryFunction(P1_ClassID, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID, P1_Cooldown_P, P1_Cooldown_S, P1_Cooldown_M, P1_Cooldown_E);
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(5000);
                                 }
