@@ -201,6 +201,7 @@ namespace TF2_Simulator
                 int P1_MeleeWeaponID = 0;
                 string P1_SecondaryFunctionName = "None";
                 string P1_SecondaryFunctionAttackString = "None";
+                string P1_SecondaryFunctionShort = "None";
                 int P1_WeaponSpecialStat = 0;
                 int P1_Commitment = 0;
                 //Status
@@ -2060,8 +2061,9 @@ namespace TF2_Simulator
                         if (Weapons_SpecialFunction.Contains(P1_PrimaryWeaponID) || Weapons_SpecialFunction.Contains(P1_SecondaryWeaponID) || Weapons_SpecialFunction.Contains(P1_MeleeWeaponID))
                         {
                             P1_SecondaryFunctionName = Misc.SecondaryFunctionName(P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
+                            P1_SecondaryFunctionShort = Misc.SecondaryFunctionNameShort(P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
                             P1_SecondaryTriggerExists = true;
-                            P1_SecondaryFunctionAttackString = Misc.SecondaryFunctionAttackPrompt_Player(PlayerName, EnemyPrefix, EnemyClass, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
+                            P1_SecondaryFunctionAttackString = Misc.SecondaryFunctionAttackPrompt_Player(PlayerName, EnemyPrefix, E1_ClassName, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
                         }
                         if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                         {
@@ -2188,7 +2190,7 @@ namespace TF2_Simulator
                                 }
                                 if (P1_Cooldown_E > 0)
                                 {
-                                    Console.WriteLine($"┌──Weapon Cooldown─────────┐");
+                                    Console.WriteLine($"┌──{P1_SecondaryFunctionShort} Cooldown─────────┐");
                                     Console.WriteLine($"| Cooldown: {P1_Cooldown_E} ");
                                     Console.WriteLine($"└──────────────────────────┘");
                                 }
@@ -2332,7 +2334,7 @@ namespace TF2_Simulator
                                 if (P1_PrimaryWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 1 && P1_Commitment! >= 2) if (PrimaryWeapons_SlotStealers.Contains(P1_PrimaryWeaponID) == false) { Console.WriteLine($"  1. {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}"); }
                                 if (P1_SecondaryWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 2 && P1_Commitment != 1 && P1_Commitment! >= 3) if (SecondaryWeapons_SlotStealers.Contains(P1_SecondaryWeaponID) == false) { Console.WriteLine($"  2. {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}"); }
                                 if (P1_MeleeWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 3 && P1_Commitment! <= 2 && P1_Commitment! >= 4) Console.WriteLine($"  3. {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
-                                if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists) { Console.WriteLine($"  4. {P1_SecondaryTriggerName}"); }
+                                if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists) { Console.WriteLine($"  4. {P1_SecondaryFunctionName}"); }
 
                                 Console.WriteLine(Footer);
                                 Console.Write("Action: ");
@@ -2428,7 +2430,6 @@ namespace TF2_Simulator
                                 }
                                 if (PlayerAction == "4" && P1_SecondaryTriggerExists == false)
                                 {
-
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                                     Console.WriteLine(new String(' ', Console.BufferWidth));
                                     Console.ResetColor();
@@ -2438,7 +2439,7 @@ namespace TF2_Simulator
                                     Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
                                     P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists);
                                     Console.WriteLine(FooterLong);
-                                    Thread.Sleep(5000);
+                                    Thread.Sleep(P1_ThreadSleep);
                                 }                                
                                 if (PlayerAction == "4" && P1_SecondaryTriggerExists == true)
                                 {
@@ -2449,10 +2450,19 @@ namespace TF2_Simulator
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Player;
-                                    Console.WriteLine($"{P1_SecondaryFunctionAttackString}");
-                                    P1_Damage = Misc.SecondaryFunction(P1_ClassID, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID, P1_Cooldown_P, P1_Cooldown_S, P1_Cooldown_M, P1_Cooldown_E);
+                                    if (P1_Cooldown_E == 0)
+                                    {
+                                        Console.WriteLine($"{P1_SecondaryFunctionAttackString}");
+                                        P1_Damage = Misc.SecondaryFunction(P1_ClassID, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID, P1_Cooldown_P, P1_Cooldown_S, P1_Cooldown_M, P1_Cooldown_E);
+                                        P1_Cooldown_E = 5;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"{P1_SecondaryFunctionShort} is Still recharging!");
+                                        Console.WriteLine($"You Dealt 0 Damage!");
+                                    }
                                     Console.WriteLine(FooterLong);
-                                    Thread.Sleep(5000);
+                                    Thread.Sleep(P1_ThreadSleep);
                                 }
                                 if (PlayerAction == "4" && P1_SecondaryTriggerExists == true && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                                 {

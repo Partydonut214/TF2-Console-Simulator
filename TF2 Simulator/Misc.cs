@@ -76,11 +76,13 @@ namespace TF2_Simulator
             #region Scout_Melee
             if (Melee == 21 && ClassID == 1 && EC == 0) //Sandman Baseball
             {
-                Damage = randomdamage.Next(15, 51);
+                Damage = randomdamage.Next(15, 81);
+                return Damage;
             }
             if (Melee == 28 && ClassID == 1 && EC == 0) //WrapAssassin Ornament
             {
-                Damage = randomdamage.Next(15, 46);
+                Damage = randomdamage.Next(15, 61);
+                return Damage;
             }
             #endregion
 
@@ -90,6 +92,12 @@ namespace TF2_Simulator
         {
             if (M == 21) { return "Throw a Baseball"; } //Sandman
             if (M == 28) { return "Throw an Ornament"; } //Wrapped Assassin
+            return "error";
+        }
+        public static string SecondaryFunctionNameShort(int P, int S, int M)
+        {
+            if (M == 21) { return "Baseball"; } //Sandman
+            if (M == 28) { return "Ornament"; } //Wrapped Assassin
             return "error";
         }
         public static string SecondaryFunctionAttackPrompt_Player(string Playername, string EnemyPrefix, string EnemyClass, int P, int S, int M)
