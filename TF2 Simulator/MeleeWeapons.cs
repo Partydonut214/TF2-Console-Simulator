@@ -104,7 +104,89 @@ namespace TF2_Simulator
             #endregion
             //Continue Here ↓
             #region Scout
-
+            if (ClassID == 1 && WeaponID == 17)
+            {
+                // Bat - 12-35
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(12, 36);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 18)
+            {
+                // Holy Mackeral - 12-35
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(12, 36);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 19)
+            {
+                // Unarmed Combat - 12-35
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(12, 36);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 20)
+            {
+                // Batsaber - 30-60
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(30, 60);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 21) //Special Weapon!!! [4. Hit a Baseball]
+            {
+                // Sandman - 12-35
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(12, 36);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 22)
+            {
+                // Candy Cane - 12-35 // 50% of damage returned as HP.
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(12, 36);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 23)
+            {
+                // Boston Basher - 60 50% to hit enemy / 50% chance to hit self.
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(1, 3);  // creates a number between 1-2 [Damage]
+                return Totaldamage; //If 1, deal 60 damage to enemy, if 2, deal 60 damage to player [Same Regardless of holder]
+            }
+            if (ClassID == 1 && WeaponID == 24)
+            {
+                // Three Rune Blade - 150 [Boston Basher but so much more risky.]
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(1, 3);  // creates a number between 1-2 [Damage]
+                return Totaldamage; //If 1, deal 60 damage to enemy, if 2, deal 60 damage to player [Same Regardless of holder]
+            }
+            if (ClassID == 1 && WeaponID == 25)
+            {
+                // Sun on a Stick - 8-26 //Inflicts Fire, Holder is Immune to Fire Damage
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(8, 27);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 26)
+            {
+                // Fan O'War - 9 //Marks Enemy for Death [Minicrits = Crits] [27]
+                Totaldamage = 9;
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 27)
+            {
+                // Atomizer - 12-35
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(12, 36);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 28)
+            {
+                // Wrap Assassin - 12-35 [4. Throw Ornament] [15-45]
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(12, 36);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Soldier

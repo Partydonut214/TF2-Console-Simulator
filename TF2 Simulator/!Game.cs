@@ -199,6 +199,8 @@ namespace TF2_Simulator
                 int P1_PrimaryWeaponID = 0;
                 int P1_SecondaryWeaponID = 0;
                 int P1_MeleeWeaponID = 0;
+                string P1_SecondaryFunctionName = "None";
+                string P1_SecondaryFunctionAttackString = "None";
                 int P1_WeaponSpecialStat = 0;
                 int P1_Commitment = 0;
                 //Status
@@ -255,6 +257,12 @@ namespace TF2_Simulator
 
                 #region Weapon Lists
                 #region Weapons with Special Mechanics
+                List<int> Weapons_SpecialFunction = new List<int>
+                {
+                    21,
+                    28
+                };
+
                 List<int> PrimaryWeapons_SlotStealers = new List<int>
             {
                 46, // B.A.S.E. Jumper
@@ -907,6 +915,10 @@ namespace TF2_Simulator
                             if (P1_ClassID == 8)
                             {
                                 P1_WeaponSpecialStat = 1;
+                            }
+                            if (P1_ClassID == 7)
+                            {
+                                P1_Cooldown_S = 4;
                             }
                             if (SkipDebug == false)
                             {
@@ -2045,6 +2057,12 @@ namespace TF2_Simulator
                     #region Game
                     if (EnemySetClass == true) //Game Start
                     {
+                        if (Weapons_SpecialFunction.Contains(P1_PrimaryWeaponID) || Weapons_SpecialFunction.Contains(P1_SecondaryWeaponID) || Weapons_SpecialFunction.Contains(P1_MeleeWeaponID))
+                        {
+                            P1_SecondaryFunctionName = Misc.SecondaryFunctionName(P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
+                            P1_SecondaryTriggerExists = true;
+                            P1_SecondaryFunctionAttackString = Misc.SecondaryFunctionAttackPrompt_Player(PlayerName, EnemyPrefix, EnemyClass, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
+                        }
                         if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                         {
                             P1_SecondaryTriggerExists = true;
@@ -2150,6 +2168,30 @@ namespace TF2_Simulator
                                 Console.WriteLine(Footer);
                                 Console.ForegroundColor = Color_Player;
                                 #region Status / Information
+                                if (P1_Cooldown_P > 0)
+                                {
+                                    Console.WriteLine($"┌──Primary Weapon Cooldown─────────┐");
+                                    Console.WriteLine($"| Cooldown: {P1_Cooldown_P} ");
+                                    Console.WriteLine($"└──────────────────────────────────┘");
+                                }
+                                if (P1_Cooldown_S > 0 && Medic_SecondaryWeapons.Contains(P1_SecondaryWeaponID) == false)
+                                {
+                                    Console.WriteLine($"┌──Secondary Weapon Cooldown─────────┐");
+                                    Console.WriteLine($"| Cooldown: {P1_Cooldown_S} ");
+                                    Console.WriteLine($"└────────────────────────────────────┘");
+                                }
+                                if (P1_Cooldown_M > 0)
+                                {
+                                    Console.WriteLine($"┌──Melee Weapon Cooldown─────────┐");
+                                    Console.WriteLine($"| Cooldown: {P1_Cooldown_M} ");
+                                    Console.WriteLine($"└────────────────────────────────┘");
+                                }
+                                if (P1_Cooldown_E > 0)
+                                {
+                                    Console.WriteLine($"┌──Weapon Cooldown─────────┐");
+                                    Console.WriteLine($"| Cooldown: {P1_Cooldown_E} ");
+                                    Console.WriteLine($"└──────────────────────────┘");
+                                }
                                 if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1)
                                 {
                                     Console.WriteLine($"┌──YOU ARE BURNING!!!─────────┐");
@@ -2240,35 +2282,35 @@ namespace TF2_Simulator
                                     //Console.WriteLine($"  | Turns Remaining: {PlayerCooldown}  |");
                                     //Console.WriteLine($"  └─────────────────────┘");
 
-                                    if (PlayerCooldown == 4)
+                                    if (P1_Cooldown_S == 4)
                                     {
                                         Console.WriteLine($"  ┌──Medigun Charge:────┐");
                                         Console.WriteLine($"  |▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ - 0%|");
                                         Console.WriteLine($"  └─────────────────────┘");
                                         // ▒ █
                                     }
-                                    if (PlayerCooldown == 3)
+                                    if (P1_Cooldown_S == 3)
                                     {
                                         Console.WriteLine($"  ┌──Medigun Charge:─────┐");
                                         Console.WriteLine($"  |████▒▒▒▒▒▒▒▒▒▒▒▒ - 25%|");
                                         Console.WriteLine($"  └──────────────────────┘");
                                         // ▒ █
                                     }
-                                    if (PlayerCooldown == 2)
+                                    if (P1_Cooldown_S == 2)
                                     {
                                         Console.WriteLine($"  ┌──Medigun Charge:─────┐");
                                         Console.WriteLine($"  |████████▒▒▒▒▒▒▒▒ - 50%|");
                                         Console.WriteLine($"  └──────────────────────┘");
                                         // ▒ █
                                     }
-                                    if (PlayerCooldown == 1)
+                                    if (P1_Cooldown_S == 1)
                                     {
                                         Console.WriteLine($"  ┌──Medigun Charge:─────┐");
                                         Console.WriteLine($"  |████████████▒▒▒▒ - 75%|");
                                         Console.WriteLine($"  └──────────────────────┘");
                                         // ▒ █
                                     }
-                                    if (PlayerCooldown == 0)
+                                    if (P1_Cooldown_S == 0)
                                     {
                                         Console.WriteLine("  ┌──Medigun Charge:──────┐    ");
                                         Console.WriteLine("  |████████████████ - 100%|  ");
@@ -2313,7 +2355,7 @@ namespace TF2_Simulator
                                             Console.WriteLine("Your Weapon was cooling Down!!");
                                             Console.WriteLine("You Dealt no damage");
                                         }
-                                        P1_Cooldown_P = 1;
+                                        P1_Cooldown_P = 2;
                                     }
                                     if (Attack_HealWeapons.Contains(P1_PrimaryWeaponID))
                                     {
@@ -2339,11 +2381,36 @@ namespace TF2_Simulator
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Player;
-                                    Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
-                                    P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                    if (Medic_SecondaryWeapons.Contains(P1_SecondaryWeaponID))
+                                    {
+                                        if (P1_Cooldown_S == 0)
+                                        {
+                                            Console.WriteLine($"{PlayerName} Used their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
+                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                            P1_Health = P1_Health + P1_Damage;
+                                            Console.WriteLine($"It healed {P1_Damage} Health!");
+                                            P1_Damage = 0;
+                                            P1_Cooldown_S = 5;
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine($"{PlayerName} Used their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
+                                            Console.WriteLine($"It Backfired!!! The {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)} was still Cooling down!!");
+                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                            P1_Health = P1_Health - P1_Damage;
+                                            Console.WriteLine($"It Dealt {P1_Damage} Self-Damage!");
+                                            P1_Damage = 0;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
+                                        P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                    }
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
+
                                 }
                                 if (PlayerAction == "3")
                                 {
@@ -2370,6 +2437,20 @@ namespace TF2_Simulator
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
                                     P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists);
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(5000);
+                                }                                
+                                if (PlayerAction == "4" && P1_SecondaryTriggerExists == true)
+                                {
+
+                                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                    Console.WriteLine(new String(' ', Console.BufferWidth));
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"{P1_SecondaryFunctionAttackString}");
+                                    P1_Damage = Misc.SecondaryFunction(P1_ClassID, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID, P1_Cooldown_P, P1_Cooldown_S, P1_Cooldown_M P1_Cooldown_E);
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(5000);
                                 }

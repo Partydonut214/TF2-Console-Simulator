@@ -67,5 +67,42 @@ namespace TF2_Simulator
             }
             return 0;
         }
+
+        public static int SecondaryFunction(int ClassID, int Primary, int Secondary, int Melee, int PC, int SC, int MC, int EC)
+        {
+            var randomdamage = new Random();
+            int Damage;
+
+            #region Scout_Melee
+            if (Melee == 21 && ClassID == 1 && EC == 0) //Sandman Baseball
+            {
+                Damage = randomdamage.Next(15, 51);
+            }
+            if (Melee == 28 && ClassID == 1 && EC == 0) //WrapAssassin Ornament
+            {
+                Damage = randomdamage.Next(15, 46);
+            }
+            #endregion
+
+            return 0;
+        }
+        public static string SecondaryFunctionName(int P, int S, int M)
+        {
+            if (M == 21) { return "Throw a Baseball"; } //Sandman
+            if (M == 28) { return "Throw an Ornament"; } //Wrapped Assassin
+            return "error";
+        }
+        public static string SecondaryFunctionAttackPrompt_Player(string Playername, string EnemyPrefix, string EnemyClass, int P, int S, int M)
+        {
+            if (M == 21) { return $"{Playername} Hit a Baseball at {EnemyPrefix} {EnemyClass}!"; } //Sandman
+            if (M == 28) { return $"{Playername} Swung and hit an Ornament at {EnemyPrefix} {EnemyClass}!"; } //Wrapped Assassin
+            return "error";
+        }
+        public static string SecondaryFunctionAttackPrompt_Enemy(string Playername, string EnemyPrefix, string EnemyClass, int P, int S, int M)
+        {
+            if (M == 21) { return $"{EnemyPrefix} {EnemyClass} Hit a Baseball at {Playername}!"; } //Sandman
+            if (M == 28) { return $"{EnemyPrefix} {EnemyClass} Swung and hit an Ornament at {Playername}!"; } //Wrapped Assassin
+            return "error";
+        }
     }
 }

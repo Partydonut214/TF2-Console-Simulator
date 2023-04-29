@@ -170,7 +170,35 @@ namespace TF2_Simulator
             #endregion
 
             #region Medic
-
+            if (ClassID == 7 && WeaponID == 146)
+            {
+                // Medi Gun - +12-60HP
+                Totaldamage = 0;
+                Totaldamage = randomdamage.Next(12, 61); 
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 147)
+            {
+                // Kritzkrieg - +12-60HP
+                Totaldamage = 0;
+                Totaldamage = randomdamage.Next(12, 61);
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 148)
+            {
+                // Quick-Fix - +12-60HP
+                Totaldamage = 0;
+                Totaldamage = randomdamage.Next(12, 61);
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 149) //Right now all the Medi Guns are Identical. I will add their different uses later.
+            {
+                // Vaccinator - +12-60HP
+                Totaldamage = 0;
+                Totaldamage = randomdamage.Next(12, 61);
+                return Totaldamage;
+            }
+           
             #endregion
 
             #region Sniper

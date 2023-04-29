@@ -32,7 +32,7 @@ namespace TF2_Simulator
             if (ID == 4) return 80;
             if (ID == 5) return 104;
             if (ID == 6) return 38;
-            if (ID == 7) return 146;
+            if (ID == 7) return 142;
             if (ID == 8) return 155;
             if (ID == 9) return 0;
             if (ID >= 10) return 0;
@@ -47,7 +47,7 @@ namespace TF2_Simulator
             if (ID == 4) return 86;
             if (ID == 5) return 38;
             if (ID == 6) return 38;
-            if (ID == 7) return 142;
+            if (ID == 7) return 146;
             if (ID == 8) return 165;
             if (ID == 9) return 176;
             if (ID >= 10) return 0;
