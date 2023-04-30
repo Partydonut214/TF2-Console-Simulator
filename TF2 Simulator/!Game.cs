@@ -211,6 +211,8 @@ namespace TF2_Simulator
                 int P1_Cooldown_E = 0; //Extra
                 int P1_Cooldown_Damage = 0; //Damage Based
 
+                //Switches
+
                 int P1_StatusEffect_1_ID = 0;
                 int P1_StatusEffect_2_ID = 0;
                 int P1_StatusEffect_3_ID = 0;
@@ -263,7 +265,7 @@ namespace TF2_Simulator
                     21,
                     28
                 };
-
+ 
                 List<int> PrimaryWeapons_SlotStealers = new List<int>
             {
                 46, // B.A.S.E. Jumper
@@ -2370,6 +2372,7 @@ namespace TF2_Simulator
                                     {
                                         P1_SecondaryTrigger = 1;
                                     }
+                                    
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
