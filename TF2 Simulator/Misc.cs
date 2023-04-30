@@ -85,6 +85,18 @@ namespace TF2_Simulator
                 return Damage;
             }
             #endregion
+            #region Soldier_Melee
+            if (Melee == 53 && ClassID == 2)
+            {
+                Damage = randomdamage.Next(1, 11);
+                if (Damage == 1)
+                {
+                    Damage = 195;
+                }
+                Damage = 0;
+                return Damage;
+            }
+            #endregion
 
             return 0;
         }

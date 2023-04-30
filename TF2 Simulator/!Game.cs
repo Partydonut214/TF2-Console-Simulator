@@ -363,7 +363,7 @@ namespace TF2_Simulator
                 };
                 List<int> SecondaryWeapons_CanInflictJarate = new List<int>
                 {
-                    // Jarate
+                    167,
                 };
                 #endregion
                 #endregion
@@ -1014,7 +1014,7 @@ namespace TF2_Simulator
                                     if (SkipDebug == false)
                                     {
                                         Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
-                                        Console.WriteLine($"Attack: {MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists)}");
+                                        Console.WriteLine($"Attack: {MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists, P1_Health, P1_MaxHP)}");
                                         Thread.Sleep(1500);
                                     }
                                     Selecting_Loadout = true;
@@ -2028,7 +2028,7 @@ namespace TF2_Simulator
                                         if (SkipDebug == false)
                                         {
                                             Console.WriteLine($"Melee Weapon: {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}");
-                                            Console.WriteLine($"Attack: {MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
+                                            Console.WriteLine($"Attack: {MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, P1_Health, P1_MaxHP)}");
                                             Thread.Sleep(1500);
                                         }
                                         Selecting_Loadout = true;
@@ -2426,7 +2426,12 @@ namespace TF2_Simulator
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                                    P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists);
+                                    P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists, P1_Health, P1_MaxHP);
+                                    if (P1_MeleeWeaponID == 51)
+                                    {
+                                        Console.WriteLine("Half-Zatochi Duel Won!");
+                                                P1_Damage = E1_Health;
+                                    }
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
@@ -2440,7 +2445,12 @@ namespace TF2_Simulator
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName} attacked with their {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}!");
-                                    P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists);
+                                    P1_Damage = MeleeWeapons.Attack(P1_ClassID, P1_MeleeWeaponID, P1_Cooldown_M, P1_SecondaryTriggerExists, P1_Health, P1_MaxHP);
+                                    if (P1_MeleeWeaponID == 51)
+                                    {
+                                        Console.WriteLine("Half-Zatochi Duel Won!");
+                                                P1_Damage = E1_Health;
+                                    }
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }                                
@@ -2467,7 +2477,7 @@ namespace TF2_Simulator
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
-                                if (PlayerAction == "4" && P1_SecondaryTriggerExists == true && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                                if (PlayerAction == "4" && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                                 {
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                                     Console.WriteLine(new String(' ', Console.BufferWidth));
@@ -2930,10 +2940,16 @@ namespace TF2_Simulator
                                             Console.WriteLine(HeaderLong);
                                             Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
-                                            E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                            E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, E1_Health, E1_MaxHP);
+                                            if (P1_MeleeWeaponID == 51)
+                                            {
+                                                Console.WriteLine("Half-Zatochi Duel Won! By the Enemy.");
+                                                E1_Damage = P1_Health;
+                                            }
                                             Console.ForegroundColor = Color_Player;
                                             Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
                                             P1_Health = P1_Health - E1_Damage;
+
                                             if (P1_Health < 0) { P1_Health = 0; }
                                             Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                             Console.ForegroundColor = Color_Game;
@@ -2947,7 +2963,12 @@ namespace TF2_Simulator
                                             Console.WriteLine(HeaderLong);
                                             Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
-                                            E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                            E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, E1_Health, E1_MaxHP);
+                                            if (P1_MeleeWeaponID == 51)
+                                            {
+                                                Console.WriteLine("Half-Zatochi Duel Won! By the Enemy.");
+                                                E1_Damage = P1_Health;
+                                            }
                                             Console.ForegroundColor = Color_Player;
                                             Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
                                             P1_Health = P1_Health - E1_Damage;

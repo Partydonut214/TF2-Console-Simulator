@@ -198,11 +198,16 @@ namespace TF2_Simulator
                 Totaldamage = randomdamage.Next(12, 61);
                 return Totaldamage;
             }
-           
+
             #endregion
 
             #region Sniper
-
+            if (ClassID == 8 && WeaponID == 167)
+            {
+                // Jarate [+35% Damage for 3 Turns]
+                Totaldamage = 1;
+                return Totaldamage; //Acts as a Verification against other classes using the Jarate.
+            }
             #endregion
 
             #region Spy

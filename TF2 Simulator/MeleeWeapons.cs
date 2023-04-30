@@ -9,7 +9,7 @@ namespace TF2_Simulator
 {
     internal class MeleeWeapons
     {
-        public static int Attack(int ClassID, int WeaponID, int PlayerCooldown, bool SecondaryTrigger)
+        public static int Attack(int ClassID, int WeaponID, int PlayerCooldown, bool SecondaryTrigger, int PlayerHP, int PlayerMAXHP)
         {
             var randomdamage = new Random();
             int Totaldamage = 0;
@@ -190,7 +190,58 @@ namespace TF2_Simulator
             #endregion
 
             #region Soldier
-
+            if (ClassID == 2 && WeaponID == 48)
+            {
+                // Shovel - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 2 && WeaponID == 49)
+            {
+                // Equalizer - Varies with HP.
+                Totaldamage = 0;
+                int Increaser = PlayerMAXHP - PlayerHP * 100;
+                int FinisedTotal = 100 - Increaser;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                Totaldamage = Totaldamage * Increaser / 100;
+                return Totaldamage;
+            }
+            if (ClassID == 2 && WeaponID == 50)
+            {
+                // Pain Train - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 2 && WeaponID == 51)
+            {
+                // Half-Zatochi - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 2 && WeaponID == 52)
+            {
+                // Disciplinary Action - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 2 && WeaponID == 53)
+            {
+                // Market Gardener - 32-64 [4. Perform a Market Garden] !!!Special Weapon!
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 2 && WeaponID == 54)
+            {
+                // Shovel - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Pyro
@@ -198,7 +249,13 @@ namespace TF2_Simulator
             #endregion
 
             #region Demoman
-
+            if (ClassID == 4 && WeaponID == 51)
+            {
+                // Half-Zatochi - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Heavy
