@@ -354,7 +354,7 @@ namespace TF2_Simulator
                 };
                 List<int> MeleeWeapons_CanInflictFire = new List<int>
                 {
-                    //Melee Weapons
+                    25 //Scout - Sun on a Stick
                 };
 
                 List<int> PrimaryWeapons_CanInflictJarate = new List<int>
