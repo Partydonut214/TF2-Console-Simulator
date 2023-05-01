@@ -202,11 +202,35 @@ namespace TF2_Simulator
             #endregion
 
             #region Sniper
+            if (ClassID == 8 && WeaponID == 166)
+            {
+                // SMG - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             if (ClassID == 8 && WeaponID == 167)
             {
                 // Jarate [+35% Damage for 3 Turns]
                 Totaldamage = 1;
                 return Totaldamage; //Acts as a Verification against other classes using the Jarate.
+            }
+            if (ClassID == 8 && WeaponID == 168)
+            {
+                // Self-Aware Beauty Mark [+35% Damage for 3 Turns]
+                Totaldamage = 1;
+                return Totaldamage; //Acts as a Verification against other classes using the Jarate.
+            }
+            if (ClassID == 8 && WeaponID == 166)
+            {
+                // SMG - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
             }
             #endregion
 
@@ -248,7 +272,7 @@ namespace TF2_Simulator
             }
             if (ClassID == 8)
             {
-                return "  ID 155 == Sniper Rifle\r\n  ID 156 == AWPer Hand\r\n  ID 157 == Huntsman\r\n  ID 158 == Fortified Compound\r\n  ID 159 == Sydney Sleeper\r\n  ID 160 == Bazaar Bargain\r\n  ID 161 == Machina\r\n  ID 162 == Shooting Star\r\n  ID 163 == Hitman's Heatmaker\r\n  ID 164 == Classic";
+                return "  ID 167 == Jarate\r\n";
             }
             if (ClassID == 9)
             {

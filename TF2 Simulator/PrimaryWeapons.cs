@@ -481,7 +481,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage;  }
                 return Totaldamage;

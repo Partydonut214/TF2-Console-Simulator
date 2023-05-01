@@ -97,13 +97,16 @@ namespace TF2_Simulator
                 return Damage;
             }
             #endregion
+            #region Sniper_Primary
 
+            #endregion
             return 0;
         }
         public static string SecondaryFunctionName(int P, int S, int M)
         {
             if (M == 21) { return "Throw a Baseball"; } //Sandman
             if (M == 28) { return "Throw an Ornament"; } //Wrapped Assassin
+            if (P == 999) { return "Charge Weapon"; }
             return "error";
         }
         public static string SecondaryFunctionNameShort(int P, int S, int M)

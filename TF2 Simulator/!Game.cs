@@ -199,7 +199,7 @@ namespace TF2_Simulator
                 int P1_PrimaryWeaponID = 0;
                 int P1_SecondaryWeaponID = 0;
                 int P1_MeleeWeaponID = 0;
-                string P1_SecondaryFunctionName = "None";
+                string P1_SecondaryTriggerName = "";
                 string P1_SecondaryFunctionAttackString = "None";
                 string P1_SecondaryFunctionShort = "None";
                 int P1_WeaponSpecialStat = 0;
@@ -221,7 +221,6 @@ namespace TF2_Simulator
                 int P1_StatusMadMilkedCooldown = 0;
                 int P1_StatusBleedingCooldown = 0;
                 int P1_SecondaryTrigger = 0;
-                string P1_SecondaryTriggerName = "";
                 bool P1_SecondaryTriggerExists = false;
                 //Value Holders
                 int P1_Damage = 0;
@@ -2062,14 +2061,13 @@ namespace TF2_Simulator
                     {
                         if (Weapons_SpecialFunction.Contains(P1_PrimaryWeaponID) || Weapons_SpecialFunction.Contains(P1_SecondaryWeaponID) || Weapons_SpecialFunction.Contains(P1_MeleeWeaponID))
                         {
-                            P1_SecondaryFunctionName = Misc.SecondaryFunctionName(P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
+                            P1_SecondaryTriggerName = Misc.SecondaryFunctionName(P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
                             P1_SecondaryFunctionShort = Misc.SecondaryFunctionNameShort(P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
                             P1_SecondaryTriggerExists = true;
                             P1_SecondaryFunctionAttackString = Misc.SecondaryFunctionAttackPrompt_Player(PlayerName, EnemyPrefix, E1_ClassName, P1_PrimaryWeaponID, P1_SecondaryWeaponID, P1_MeleeWeaponID);
                         }
                         if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                         {
-                            P1_SecondaryTriggerExists = true;
                             P1_SecondaryTriggerName = $"Charge {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}";
                             P1_WeaponSpecialStat++;
                             if (P1_WeaponSpecialStat > 3)
@@ -2336,7 +2334,7 @@ namespace TF2_Simulator
                                 if (P1_PrimaryWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 1 && P1_Commitment! >= 2) if (PrimaryWeapons_SlotStealers.Contains(P1_PrimaryWeaponID) == false) { Console.WriteLine($"  1. {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}"); }
                                 if (P1_SecondaryWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 2 && P1_Commitment != 1 && P1_Commitment! >= 3) if (SecondaryWeapons_SlotStealers.Contains(P1_SecondaryWeaponID) == false) { Console.WriteLine($"  2. {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}"); }
                                 if (P1_MeleeWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 3 && P1_Commitment! <= 2 && P1_Commitment! >= 4) Console.WriteLine($"  3. {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
-                                if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists) { Console.WriteLine($"  4. {P1_SecondaryFunctionName}"); }
+                                if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists || Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID)) { Console.WriteLine($"  4. {P1_SecondaryTriggerName}"); }
 
                                 Console.WriteLine(Footer);
                                 Console.Write("Action: ");
@@ -2344,13 +2342,13 @@ namespace TF2_Simulator
                                 if (PlayerAction == "1" && P1_Commitment < 2)
                                 {
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
-                                    Console.Write(new String(' ', Console.BufferWidth));
+                                    Console.WriteLine(new String(' ', Console.BufferWidth));
                                     Console.ResetColor();
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(HeaderLong);
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName} attacked with their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
-                                    P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown_P, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
+                                    P1_Damage = PrimaryWeapons.Attack(P1_ClassID, P1_PrimaryWeaponID, P1_Cooldown_P, P1_SecondaryTriggerExists, P1_SecondaryTrigger);
                                     if (Medic_PrimaryWeapons.Contains(P1_PrimaryWeaponID))
                                     {
                                         if (P1_Cooldown_P > 0)
@@ -2378,6 +2376,7 @@ namespace TF2_Simulator
                                     Thread.Sleep(P1_ThreadSleep);
 
                                 }
+                                
                                 if (PlayerAction == "2")
                                 {
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
@@ -2405,6 +2404,41 @@ namespace TF2_Simulator
                                             P1_Health = P1_Health - P1_Damage;
                                             Console.WriteLine($"It Dealt {P1_Damage} Self-Damage!");
                                             P1_Damage = 0;
+                                        }
+                                    }
+                                    if (P1_ClassID == 8 && P1_SecondaryWeaponID == 167 || P1_SecondaryWeaponID == 168)
+                                    {
+                                        if (P1_Cooldown_S > 0)
+                                        {
+                                            Console.WriteLine("Your Jarate was still cooling down!");
+                                        }
+                                        if (P1_Cooldown_S == 0)
+                                        { 
+                                        Console.WriteLine("Threw Jarate at the Enemy!");
+                                        P1_Damage = 0;
+                                        P1_Cooldown_S = 5;
+                                            if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 3)
+                                            {
+                                                E1_StatusEffect_1_ID = 3; E1_StatusJaratedCooldown = 4;
+                                            }
+                                            else if (E1_StatusEffect_1_ID > 0)
+                                            {
+                                                if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 3)
+                                                {
+                                                    E1_StatusEffect_2_ID = 3; E1_StatusJaratedCooldown = 4;
+                                                }
+                                                else if (E1_StatusEffect_2_ID > 0)
+                                                {
+                                                    if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 3)
+                                                    {
+                                                        E1_StatusEffect_3_ID = 3; E1_StatusJaratedCooldown = 4;
+                                                    }
+                                                    else if (E1_StatusEffect_3_ID > 0)
+                                                    {
+                                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                     else
@@ -2436,7 +2470,7 @@ namespace TF2_Simulator
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
-                                if (PlayerAction == "4" && P1_SecondaryTriggerExists == false)
+                                if (PlayerAction == "4" && P1_SecondaryTriggerExists == false && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID) == false)
                                 {
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                                     Console.WriteLine(new String(' ', Console.BufferWidth));
@@ -2477,7 +2511,7 @@ namespace TF2_Simulator
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
-                                if (PlayerAction == "4" && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                                 if (PlayerAction == "4" && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                                 {
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                                     Console.WriteLine(new String(' ', Console.BufferWidth));
