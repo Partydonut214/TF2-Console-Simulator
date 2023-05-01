@@ -271,7 +271,34 @@ namespace TF2_Simulator
             #endregion
 
             #region Sniper
-
+            if (ClassID == 8 && WeaponID == 172)
+            {
+                // Kukri - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 173)
+            {
+                // Tribalman's Shiv - 16-32
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(16, 33);
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 174)
+            {
+                // Bushwacka - 32-64 // Take 20% more damage when equipped
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 175)
+            {
+                // Shahanshah - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Spy

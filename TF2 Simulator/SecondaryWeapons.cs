@@ -202,40 +202,58 @@ namespace TF2_Simulator
             #endregion
 
             #region Sniper
-            if (ClassID == 8 && WeaponID == 166)
+            if (ClassID == 8 && WeaponID == 165)
             {
                 // SMG - 6-9 x 1-6 [6-54]
                 Totaldamage = 0;
                 int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
                 for (int i = 0; i < BulletsFired; i++)
                 { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 166)
+            {
+                // Cleaner's Carbine - 10-12 x 1-4 [10-48]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 4); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(10, 13); } // creates a number between   [Damage]
                 return Totaldamage;
             }
             if (ClassID == 8 && WeaponID == 167)
             {
                 // Jarate [+35% Damage for 3 Turns]
-                Totaldamage = 1;
-                return Totaldamage; //Acts as a Verification against other classes using the Jarate.
+                Totaldamage = 0;
+                return Totaldamage;
             }
             if (ClassID == 8 && WeaponID == 168)
             {
                 // Self-Aware Beauty Mark [+35% Damage for 3 Turns]
-                Totaldamage = 1;
-                return Totaldamage; //Acts as a Verification against other classes using the Jarate.
-            }
-            if (ClassID == 8 && WeaponID == 166)
-            {
-                // SMG - 6-9 x 1-6 [6-54]
                 Totaldamage = 0;
-                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
-                for (int i = 0; i < BulletsFired; i++)
-                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 169)
+            {
+                // Razorback - [+35% Damage Resistance]
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 170)
+            {
+                // Darwin's Danger Shield - [+35% Damage Resistance]
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+            if (ClassID == 8 && WeaponID == 171)
+            {
+                // Cozy Camper - 0 [10 HP Healed Per Turn]
+                Totaldamage = 0;
                 return Totaldamage;
             }
             #endregion
 
             #region Spy
-            //Spy has no Primary Weapons.
+            
             #endregion
 
             return 0;
@@ -268,15 +286,15 @@ namespace TF2_Simulator
             }
             if (ClassID == 7)
             {
-                return "  ID 142 == Syringe Gun\r\n  ID 143 == Blutsauger\r\n  ID 144 == Crusader's Crossbow\r\n  ID 145 == Overdose";
+                return "  ID 146 == Medi Gun\r\n  ID 147 == Kritzkrieg\r\n  ID 148 == Quick-Fix\r\n  ID 149 == Vaccinator";
             }
             if (ClassID == 8)
             {
-                return "  ID 167 == Jarate\r\n";
+                return "  ID 167 == Jarate\r\n  ID 168 == Self-Aware Beauty Mark\r\n";
             }
             if (ClassID == 9)
             {
-                return "Spy doesn't have Primary Weapons";
+                return "  ID 999 == GUN\r\n  ID 168 == Self-Aware Beauty Mark\r\n";
             }
             return "Error";
         }

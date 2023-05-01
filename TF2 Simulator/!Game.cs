@@ -1,6 +1,7 @@
 ﻿// TF2 Text Based Fighting Sim
 
 using System.ComponentModel;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TF2_Simulator
 {
@@ -283,6 +284,9 @@ namespace TF2_Simulator
                 88, // Chargin' Targe
                 90, // Splendid Screen
                 91, // Tide Turner
+                169, // Razorback
+                170, // Darwin's Danger Shield
+                171, // Cozy Camper
 
             };
                 List<int> Demoman_SecondaryWeapons_StickyBombLaunchers = new List<int>
@@ -2069,7 +2073,7 @@ namespace TF2_Simulator
                         if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                         {
                             P1_SecondaryTriggerName = $"Charge {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}";
-                            P1_WeaponSpecialStat++;
+                            P1_SecondaryTrigger++;
                             if (P1_WeaponSpecialStat > 3)
                             {
                                 //Add Option to Fire
@@ -2531,10 +2535,6 @@ namespace TF2_Simulator
                                 if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                                 {
                                     P1_WeaponSpecialStat++;
-                                    if (P1_WeaponSpecialStat > 3)
-                                    {
-                                        //Add Option to Fire
-                                    }
                                 }
                                 #region In-Game Tests / Cheats
                                 if (PlayerAction.ToLower() == "quit")
@@ -2778,7 +2778,15 @@ namespace TF2_Simulator
                                             StatusEffect_BulletEnhancer = 3;
                                         }
                                         int E1_HealthPlaceHolder = E1_Health;
-                                        int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                        int Damage = 0;
+                                        if (P1_MeleeWeaponID != 174)
+                                        {
+                                            Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                        }
+                                        if (P1_MeleeWeaponID == 174)
+                                        {
+                                            P1_Damage = P1_Damage * 3;
+                                        }
                                         E1_Health = E1_Health - Damage;
                                         if (Damage > 0)
                                         { P1_Damage = 0; }
@@ -2940,15 +2948,7 @@ namespace TF2_Simulator
                                             Console.WriteLine(HeaderLong);
                                             Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}!");
-                                            E1_Damage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, E1_WeaponSpecialStat);
-                                            Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
-                                            P1_Health = P1_Health - E1_Damage;
-                                            if (P1_Health < 0) { P1_Health = 0; }
-                                            Console.ForegroundColor = Color_Player;
-                                            Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
-                                            Console.ForegroundColor = Color_Game;
-                                            Console.WriteLine(FooterLong);
-                                            Thread.Sleep(E1_ThreadSleep);
+                                            E1_Damage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, E1_SecondaryTrigger);
                                         }
                                         if (EnemyAction == 2)
                                         {
@@ -2958,14 +2958,6 @@ namespace TF2_Simulator
                                             Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}!");
                                             E1_Damage = SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
-                                            Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
-                                            P1_Health = P1_Health - E1_Damage;
-                                            if (P1_Health < 0) { P1_Health = 0; }
-                                            Console.ForegroundColor = Color_Player;
-                                            Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
-                                            Console.ForegroundColor = Color_Game;
-                                            Console.WriteLine(FooterLong);
-                                            Thread.Sleep(E1_ThreadSleep);
                                         }
                                         if (EnemyAction == 3)
                                         {
@@ -2980,15 +2972,6 @@ namespace TF2_Simulator
                                                 Console.WriteLine("Half-Zatochi Duel Won! By the Enemy.");
                                                 E1_Damage = P1_Health;
                                             }
-                                            Console.ForegroundColor = Color_Player;
-                                            Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
-                                            P1_Health = P1_Health - E1_Damage;
-
-                                            if (P1_Health < 0) { P1_Health = 0; }
-                                            Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
-                                            Console.ForegroundColor = Color_Game;
-                                            Console.WriteLine(FooterLong);
-                                            Thread.Sleep(E1_ThreadSleep);
                                         }
                                         if (EnemyAction == 4)
                                         {
@@ -3003,15 +2986,33 @@ namespace TF2_Simulator
                                                 Console.WriteLine("Half-Zatochi Duel Won! By the Enemy.");
                                                 E1_Damage = P1_Health;
                                             }
+                                        }
+                                        if (E1_Damage > 0)
+                                        {
+                                            if (P1_ClassID == 8 && P1_SecondaryWeaponID == 169 || P1_SecondaryWeaponID == 170)
+                                            {
+                                                E1_Damage = E1_Damage - (35 * E1_Damage / 100);
+                                                Console.WriteLine($"Protected against 35% of the damage!");
+                                            }
+                                            if (P1_MeleeWeaponID == 174)
+                                            {
+                                                E1_Damage = E1_Damage + (20 * E1_Damage / 100);
+                                                Console.WriteLine("Taken 20% more damage while holding the Bushwacka!");
+                                            }
                                             Console.ForegroundColor = Color_Player;
                                             Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
                                             P1_Health = P1_Health - E1_Damage;
                                             if (P1_Health < 0) { P1_Health = 0; }
+                                            if (P1_Health > 0 && P1_SecondaryWeaponID == 171 && P1_ClassID == 8)
+                                            {
+                                                Console.WriteLine("Healed 10 Health!");
+                                                P1_Health = P1_Health + 10;
+                                            }
                                             Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
-                                            Console.ForegroundColor = Color_Game;
-                                            Console.WriteLine(FooterLong);
-                                            Thread.Sleep(E1_ThreadSleep);
                                         }
+                                        Console.ForegroundColor = Color_Game;
+                                        Console.WriteLine(FooterLong);
+                                        Thread.Sleep(E1_ThreadSleep);
                                     }
                                     P1_StatusOnFireCooldown--;
                                     P1_StatusJaratedCooldown--;
