@@ -177,7 +177,7 @@ namespace TF2_Simulator
                 Totaldamage = 0;
                 return Totaldamage;
             }
-            if (ClassID == 5 && WeaponID == 115)
+            if (ClassID == 5 && WeaponID == 116)
             {
                 // Second Banana - +25-125 HP [2 Turn Faster Recharge]
                 Totaldamage = randomdamage.Next(25, 126);

@@ -32,13 +32,17 @@ namespace TF2_Simulator
             {
                 TotalDamage = TotalDamage + (TotalDamage * 35 / 100);
             }
-            if (EffectID == 5) //Mini-Crit Boost (+35% Damage) //Jarate and other Mini-Crit Inflicitng Weapons use this.
+            if (EffectID == 5) //Mini-Crit Boost (+35% Damage) Mini-Crit Inflicitng Weapons use this.
             {
                 TotalDamage = TotalDamage + (TotalDamage * 35 / 100);
             }
             if (EffectID == 6) //Crits
             {
                 TotalDamage = TotalDamage * 3;
+            }
+            if (EffectID == 7) //Marked For Death [Mini-Crits]
+            {
+                TotalDamage = TotalDamage + (TotalDamage * 35 / 100);
             }
             return TotalDamage;
         }

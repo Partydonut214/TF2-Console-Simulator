@@ -222,6 +222,7 @@ namespace TF2_Simulator
                 int P1_StatusJaratedCooldown = 0;
                 int P1_StatusMadMilkedCooldown = 0;
                 int P1_StatusBleedingCooldown = 0;
+                int P1_StatusMFDCooldown = 0;
                 int P1_SecondaryTrigger = 0;
                 bool P1_SecondaryTriggerExists = false;
                 //Value Holders
@@ -252,6 +253,7 @@ namespace TF2_Simulator
                 int E1_StatusJaratedCooldown = 0;
                 int E1_StatusMadMilkedCooldown = 0;
                 int E1_StatusBleedingCooldown = 0;
+                int E1_StatusMFDCooldown = 0;
                 int E1_SecondaryTrigger = 0;
                 string E1_SecondaryTriggerName = "";
                 bool E1_SecondaryTriggerExists = false;
@@ -2169,6 +2171,21 @@ namespace TF2_Simulator
                                     if (E1_StatusEffect_3_ID == 4) { E1_StatusEffect_3_ID = 0; }
                                 }
                                 #endregion
+                                #region Marked For Death Status Reset
+                                if (P1_StatusMFDCooldown == 0)
+                                {
+                                    if (P1_StatusEffect_1_ID == 7) { P1_StatusEffect_1_ID = 0; }
+                                    if (P1_StatusEffect_2_ID == 7) { P1_StatusEffect_2_ID = 0; }
+                                    if (P1_StatusEffect_3_ID == 7) { P1_StatusEffect_3_ID = 0; }
+                                }
+
+                                if (E1_StatusMFDCooldown == 0)
+                                {
+                                    if (E1_StatusEffect_1_ID == 7) { E1_StatusEffect_1_ID = 0; }
+                                    if (E1_StatusEffect_2_ID == 7) { E1_StatusEffect_2_ID = 0; }
+                                    if (E1_StatusEffect_3_ID == 7) { E1_StatusEffect_3_ID = 0; }
+                                }
+                                #endregion
 
                                 P1_Damage = 0;
                                 E1_Damage = 0;
@@ -2257,6 +2274,12 @@ namespace TF2_Simulator
                                     Console.WriteLine($"| Time Left: {P1_StatusBleedingCooldown} ");
                                     Console.WriteLine($"└─────────────────────────────────┘");
                                 }
+                                if (P1_StatusEffect_1_ID == 7 || P1_StatusEffect_2_ID == 7 || P1_StatusEffect_3_ID == 7)
+                                {
+                                    Console.WriteLine($"┌──YOU ARE MARKED FOR DEATH!!!────┐");
+                                    Console.WriteLine($"| Time Left: {P1_StatusMFDCooldown} ");
+                                    Console.WriteLine($"└─────────────────────────────────┘");
+                                }
                                 Console.ForegroundColor = Color_Enemy;
                                 // Enemy Status
                                 if (E1_StatusEffect_1_ID == 1 || E1_StatusEffect_2_ID == 1 || E1_StatusEffect_3_ID == 1)
@@ -2295,7 +2318,12 @@ namespace TF2_Simulator
                                     Console.WriteLine($"| Time Left: {E1_StatusBleedingCooldown} ");
                                     Console.WriteLine($"└────────────────────────────┘");
                                 }
-
+                                if (E1_StatusEffect_1_ID == 7 || E1_StatusEffect_2_ID == 7 || E1_StatusEffect_3_ID == 7)
+                                {
+                                    Console.WriteLine($"┌──THE ENEMY IS MARKED FOR DEATH!!!────┐");
+                                    Console.WriteLine($"| Time Left: {E1_StatusMFDCooldown} ");
+                                    Console.WriteLine($"└──────────────────────────────────────┘");
+                                }
                                 Console.ForegroundColor = Color_Player;
                                 if (P1_ClassID == 4 && Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID))
                                 {
@@ -2397,7 +2425,32 @@ namespace TF2_Simulator
                                     {
                                         P1_SecondaryTrigger = 1;
                                     }
-                                    
+                                    if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID)) 
+                                    {
+                                        P1_Damage = 0;
+                                        if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 1)
+                                        {
+                                            E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 4;
+                                        }
+                                        else if (E1_StatusEffect_1_ID > 0)
+                                        {
+                                            if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                            {
+                                                E1_StatusEffect_2_ID = 1; E1_StatusOnFireCooldown = 4;
+                                            }
+                                            else if (E1_StatusEffect_2_ID > 0)
+                                            {
+                                                if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                                {
+                                                    E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 4;
+                                                }
+                                                else if (E1_StatusEffect_3_ID > 0)
+                                                {
+                                                    Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                                }
+                                            }
+                                        }
+                                    }
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
@@ -2499,6 +2552,36 @@ namespace TF2_Simulator
                                         {
                                             P1_MaxHP = P1_MaxHP + 100;
                                         }
+                                        if (P1_SecondaryWeaponID == 115)
+                                        {
+                                            P1_Damage = 0;
+                                            if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 7)
+                                            {
+                                                E1_StatusEffect_1_ID = 7; E1_StatusMFDCooldown = 4;
+                                            }
+                                            else if (E1_StatusEffect_1_ID > 0)
+                                            {
+                                                if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 7)
+                                                {
+                                                    E1_StatusEffect_2_ID = 7; E1_StatusMFDCooldown = 4;
+                                                }
+                                                else if (E1_StatusEffect_2_ID > 0)
+                                                {
+                                                    if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 7)
+                                                    {
+                                                        E1_StatusEffect_3_ID = 7; E1_StatusMFDCooldown = 4;
+                                                    }
+                                                    else if (E1_StatusEffect_3_ID > 0)
+                                                    {
+                                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (P1_SecondaryWeaponID == 116)
+                                        {
+                                            P1_MaxHP = P1_MaxHP + 100;
+                                        }
                                         if (P1_Health > P1_MaxHP) { P1_Health = P1_MaxHP; }
                                     }
                                     else
@@ -2581,7 +2664,7 @@ namespace TF2_Simulator
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
-                                 if (PlayerAction == "4" && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
+                                if (PlayerAction == "4" && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                                 {
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                                     Console.WriteLine(new String(' ', Console.BufferWidth));
@@ -2594,10 +2677,10 @@ namespace TF2_Simulator
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
-                                if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
-                                {
-                                    E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
-                                }
+                             //   if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
+                             //   {
+                             //       E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
+                             //   }
                                 if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                                 {
                                     P1_WeaponSpecialStat++;
@@ -2697,7 +2780,7 @@ namespace TF2_Simulator
                                         {
                                             if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
                                             {
-                                                E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 3;
+                                                E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 4;
                                             }
                                             else if (E1_StatusEffect_3_ID > 0)
                                             {
@@ -2707,6 +2790,59 @@ namespace TF2_Simulator
                                     }
                                 }
 
+                                if (PlayerAction.ToLower() == "set mfd")
+                                {
+                                    P1_Damage = 0;
+                                    if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 7)
+                                    {
+                                        P1_StatusEffect_1_ID = 7; P1_StatusMFDCooldown = 4;
+                                    }
+                                    else if (P1_StatusEffect_1_ID > 0)
+                                    {
+                                        if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 7)
+                                        {
+                                            P1_StatusEffect_2_ID = 7; P1_StatusMFDCooldown = 4;
+                                        }
+                                        else if (P1_StatusEffect_2_ID > 0)
+                                        {
+                                            if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_2_ID == 7)
+                                            {
+                                                P1_StatusEffect_3_ID = 7; P1_StatusMFDCooldown = 4;
+                                            }
+                                            else if (P1_StatusEffect_3_ID > 0)
+                                            {
+                                                Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (PlayerAction.ToLower() == "set mfd enemy")
+                                {
+                                    P1_Damage = 0;
+                                    if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 7)
+                                    {
+                                        E1_StatusEffect_1_ID = 7; E1_StatusMFDCooldown = 4;
+                                    }
+                                    else if (E1_StatusEffect_1_ID > 0)
+                                    {
+                                        if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 7)
+                                        {
+                                            E1_StatusEffect_2_ID = 7; E1_StatusMFDCooldown = 4;
+                                        }
+                                        else if (E1_StatusEffect_2_ID > 0)
+                                        {
+                                            if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 7)
+                                            {
+                                                E1_StatusEffect_3_ID = 7; E1_StatusMFDCooldown = 4;
+                                            }
+                                            else if (E1_StatusEffect_3_ID > 0)
+                                            {
+                                                Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                            }
+                                        }
+                                    }
+                                }
                                 if (PlayerAction.ToLower() == "set jarate")
                                 {
                                     P1_Damage = 0;
@@ -2841,7 +2977,11 @@ namespace TF2_Simulator
                                         }
                                         if (E1_StatusEffect_1_ID == 6 || E1_StatusEffect_2_ID == 6 || E1_StatusEffect_3_ID == 6)
                                         {
-                                            StatusEffect_BulletEnhancer = 3;
+                                            StatusEffect_BulletEnhancer = 6;
+                                        }
+                                        if (E1_StatusEffect_1_ID == 7 || E1_StatusEffect_2_ID == 7 || E1_StatusEffect_3_ID == 7)
+                                        {
+                                            StatusEffect_BulletEnhancer = 7;
                                         }
                                         int E1_HealthPlaceHolder = E1_Health;
                                         int Damage = 0;
@@ -2881,6 +3021,7 @@ namespace TF2_Simulator
 
                                     if (P1_StatusEffect_1_ID > 0 || P1_StatusEffect_2_ID > 0 || P1_StatusEffect_3_ID > 0)
                                     {
+                                        bool ForceBreak = false;
                                         if (P1_StatusEffect_1_ID == 3 || P1_StatusEffect_2_ID == 3 || P1_StatusEffect_3_ID == 3)
                                         {
                                             StatusEffect_BulletEnhancer = 3;
@@ -2891,13 +3032,34 @@ namespace TF2_Simulator
                                         }
                                         if (P1_StatusEffect_1_ID == 6 || P1_StatusEffect_2_ID == 6 || P1_StatusEffect_3_ID == 6)
                                         {
-                                            StatusEffect_BulletEnhancer = 3;
+                                            StatusEffect_BulletEnhancer = 6;
+                                        }
+                                        if (P1_StatusEffect_1_ID == 7 || P1_StatusEffect_2_ID == 7 || P1_StatusEffect_3_ID == 7)
+                                        {
+                                            StatusEffect_BulletEnhancer = 7;
+                                        }
+                                        // ForceBreak if Poison Effect
+                                        if (P1_StatusEffect_1_ID == 1 || P1_StatusEffect_2_ID == 1 || P1_StatusEffect_3_ID == 1)
+                                        {
+                                            StatusEffect_BulletEnhancer = 1;
+                                        }
+                                        if (P1_StatusEffect_1_ID == 4 || P1_StatusEffect_2_ID == 4 || P1_StatusEffect_3_ID == 4)
+                                        {
+                                            StatusEffect_BulletEnhancer = 4;
+                                        }
+                                        if (StatusEffect_BulletEnhancer == 1 || StatusEffect_BulletEnhancer == 4)
+                                        {
+                                            ForceBreak = true;
+                                            break;
                                         }
                                         int P1_HealthPlaceHolder = P1_Health;
-                                        int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
-                                        P1_Health = P1_Health - Damage;
-                                        if (Damage > 0)
-                                        { P1_Damage = 0; }
+                                        if (ForceBreak == false)
+                                        {
+                                            int Damage = Misc.BulletEnhancer(StatusEffect_BulletEnhancer, P1_Damage);
+                                            P1_Health = P1_Health - Damage;
+                                            if (Damage > 0)
+                                            { P1_Damage = 0; }
+                                        }
                                         if (P1_Health < P1_HealthPlaceHolder)
                                         {
                                             if (StatusEffect_BulletEnhancer == 3)
@@ -2906,7 +3068,7 @@ namespace TF2_Simulator
                                                 Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
                                                 Console.WriteLine($"   └──────────────────────────────────────────┘");
                                             }
-                                            if (StatusEffect_BulletEnhancer == 5)
+                                            if (StatusEffect_BulletEnhancer == 5 || StatusEffect_BulletEnhancer == 7)
                                             {
                                                 Console.WriteLine($"   ┌──YOU TOOK MINI-CRIT DAMAGE!!!───────────────┐");
                                                 Console.WriteLine($"   | You have taken {P1_HealthPlaceHolder - P1_Health} Damage from the {EnemyPrefix} {E1_ClassName}!");
