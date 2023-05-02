@@ -267,7 +267,41 @@ namespace TF2_Simulator
             #endregion
 
             #region Medic
-
+            if (ClassID == 7 && WeaponID == 150)
+            {
+                // Bonesaw - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 151)
+            {
+                // Ubersaw - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 152)
+            {
+                // Vita-Saw - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 153)
+            {
+                // Amputator - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 7 && WeaponID == 154)
+            {
+                // Solemn Vow - 40-70
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(40, 71);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Sniper

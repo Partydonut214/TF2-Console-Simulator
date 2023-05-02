@@ -213,6 +213,7 @@ namespace TF2_Simulator
                 int P1_Cooldown_Damage = 0; //Damage Based
 
                 //Switches
+                bool P1_RoboSandvichResist = false;
 
                 int P1_StatusEffect_1_ID = 0;
                 int P1_StatusEffect_2_ID = 0;
@@ -254,6 +255,10 @@ namespace TF2_Simulator
                 int E1_SecondaryTrigger = 0;
                 string E1_SecondaryTriggerName = "";
                 bool E1_SecondaryTriggerExists = false;
+
+                //Switches
+                bool E1_RoboSandvichResist = false;
+
                 //Value Holders
                 int E1_Damage = 0;
                 #endregion
@@ -295,6 +300,15 @@ namespace TF2_Simulator
                 87, // Scottish Resistance
                 89, // Sticky Jumper
                 92, // Quickiebomb Launcher
+            };  
+                
+                List<int> Heavy_Lunchbox = new List<int>
+            {
+                111, // Sandvich
+                112, // Robo-Sandvich
+                113, // Dalokohs Bar
+                114, // Fishcake
+                115, // Buffalo Steak Sandvich
             };
 
                 List<int> Sniper_PrimaryWeapons_Charging = new List<int>
@@ -2074,10 +2088,19 @@ namespace TF2_Simulator
                         {
                             P1_SecondaryTriggerName = $"Charge {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}";
                             P1_SecondaryTrigger++;
-                            if (P1_WeaponSpecialStat > 3)
-                            {
-                                //Add Option to Fire
-                            }
+                        }
+                        if (P1_MeleeWeaponID == 152 && P1_ClassID == 7)
+                        {
+                            P1_Health = P1_Health + 10;
+                            P1_MaxHP = P1_MaxHP + 10;
+                            Console.ForegroundColor = Color_Game;
+                            Console.WriteLine($"   {HeaderShort}");
+                            Console.ForegroundColor = Color_Player;
+                            Console.WriteLine($"      {PlayerName} is Holding the Vita-Saw!");
+                            Console.WriteLine($"         +10 Max HP");
+                            Console.ForegroundColor = Color_Game;
+                            Console.WriteLine($"   {FooterShort}");
+                            Thread.Sleep(P1_ThreadSleep);
                         }
                         while (GameInputOK == false)
                         {
@@ -2410,7 +2433,7 @@ namespace TF2_Simulator
                                             P1_Damage = 0;
                                         }
                                     }
-                                    if (P1_ClassID == 8 && P1_SecondaryWeaponID == 167 || P1_SecondaryWeaponID == 168)
+                                    if (P1_ClassID == 8 && P1_SecondaryWeaponID == 167 || P1_SecondaryWeaponID == 168) // Jarate & Re-skin
                                     {
                                         if (P1_Cooldown_S > 0)
                                         {
@@ -2445,10 +2468,46 @@ namespace TF2_Simulator
                                             }
                                         }
                                     }
+                                    if (P1_ClassID == 5 && Heavy_Lunchbox.Contains(P1_SecondaryWeaponID))
+                                    {
+                                        if (P1_Cooldown_S > 0)
+                                        {
+                                            Console.WriteLine(Header);
+                                            Console.WriteLine($"   {PlayerName}'s {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)} is Still being Made!");
+                                            Console.WriteLine(Footer);
+                                            P1_Damage = 0;
+                                        }
+                                        if (P1_Cooldown_S == 0)
+                                        {
+                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                            P1_Health = P1_Health + P1_Damage;
+                                            Console.WriteLine(Header);
+                                            Console.WriteLine($"   {PlayerName} ate a {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}, and Healed {P1_Damage} Health!");
+                                            Console.WriteLine(Footer);
+                                            P1_Damage = 0;
+                                            P1_Cooldown_S = 5;
+                                        }
+                                        if (P1_SecondaryWeaponID == 112)
+                                        {
+                                            P1_RoboSandvichResist = true;
+                                        }
+                                        if (P1_SecondaryWeaponID == 113)
+                                        {
+                                            P1_MaxHP = P1_MaxHP + 50;
+                                        }
+                                        if (P1_SecondaryWeaponID == 114)
+                                        {
+                                            P1_MaxHP = P1_MaxHP + 100;
+                                        }
+                                        if (P1_Health > P1_MaxHP) { P1_Health = P1_MaxHP; }
+                                    }
                                     else
                                     {
-                                        Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
-                                        P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                        if (Medic_SecondaryWeapons.Contains(P1_SecondaryWeaponID) == false && SecondaryWeapons_SlotStealers.Contains(P1_SecondaryWeaponID) == false && Heavy_Lunchbox.Contains(P1_SecondaryWeaponID) == false)
+                                        {
+                                            Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
+                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                        }
                                     }
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
@@ -2468,7 +2527,14 @@ namespace TF2_Simulator
                                     if (P1_MeleeWeaponID == 51)
                                     {
                                         Console.WriteLine("Half-Zatochi Duel Won!");
-                                                P1_Damage = E1_Health;
+                                        P1_Damage = E1_Health;
+                                    }
+                                    if (P1_MeleeWeaponID == 151)
+                                    {
+                                        P1_Cooldown_S--;
+                                        Console.WriteLine($"  {HeaderShort}");
+                                        Console.WriteLine($"      - Gained 25% percent Uber on Hit!");
+                                        Console.WriteLine($"  {FooterShort}");
                                     }
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
@@ -2915,6 +2981,11 @@ namespace TF2_Simulator
                                     }
                                     #endregion
                                     Console.WriteLine(HeaderLong);
+                                    if (E1_RoboSandvichResist == true)
+                                    {
+                                        P1_Damage = P1_Damage - (35 * E1_Damage / 100);
+                                        Console.WriteLine($"The Enemy was Protected against 35% of the damage!");
+                                    }
                                     if (P1_Damage > 0)
                                     {
                                         Console.WriteLine($"Your Attack Dealt {P1_Damage} Damage to the {EnemyPrefix} {E1_ClassName}!");
@@ -2925,9 +2996,31 @@ namespace TF2_Simulator
                                     Console.WriteLine($"The {EnemyPrefix} {E1_ClassName}'s Remaining HP: {E1_Health}");
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
+                                    E1_RoboSandvichResist = false;
+                                    if (P1_MeleeWeaponID == 153 && P1_ClassID == 7 && P1_Health < P1_MaxHP && P1_Health > 0)
+                                    {
+                                        Console.ForegroundColor = Color_Game;
+                                        Console.WriteLine($"   {HeaderShort}");
+                                        Console.ForegroundColor = Color_Player;
+                                        Console.WriteLine("      Healed 3 HP! -- Amputator");
+                                        Console.ForegroundColor = Color_Game;
+                                        Console.WriteLine($"   {FooterShort}");
+                                        P1_Health = P1_Health + 3;
+                                    }
+                                    if (P1_ClassID == 7 && P1_Health < P1_MaxHP && P1_Health > 0)
+                                    {
+                                        Console.ForegroundColor = Color_Game;
+                                        Console.WriteLine($"   {HeaderShort}");
+                                        Console.ForegroundColor = Color_Player;
+                                        Console.WriteLine("      Regenerated 3 HP!");
+                                        Console.ForegroundColor = Color_Game;
+                                        Console.WriteLine($"   {FooterShort}");
+                                        P1_Health = P1_Health + 3;
+                                    }
                                     Thread.Sleep(E1_ThreadSleep);
                                     if (SkipDebug == false)
                                     {
+                                        Console.ForegroundColor = Color_Game;
                                         Console.WriteLine(HeaderLong);
                                         Console.ForegroundColor = Color_Player;
                                         Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
@@ -2999,6 +3092,11 @@ namespace TF2_Simulator
                                                 E1_Damage = E1_Damage + (20 * E1_Damage / 100);
                                                 Console.WriteLine("Taken 20% more damage while holding the Bushwacka!");
                                             }
+                                            if (P1_RoboSandvichResist == true)
+                                            {
+                                                E1_Damage = E1_Damage - (35 * E1_Damage / 100);
+                                                Console.WriteLine($"  - Protected against 35% damage for this turn!");
+                                            }
                                             Console.ForegroundColor = Color_Player;
                                             Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
                                             P1_Health = P1_Health - E1_Damage;
@@ -3014,6 +3112,10 @@ namespace TF2_Simulator
                                         Console.WriteLine(FooterLong);
                                         Thread.Sleep(E1_ThreadSleep);
                                     }
+
+                                    // VERY SPECIFIC BOOLS
+                                    P1_RoboSandvichResist = false;
+                                    
                                     P1_StatusOnFireCooldown--;
                                     P1_StatusJaratedCooldown--;
                                     P1_StatusMadMilkedCooldown--;

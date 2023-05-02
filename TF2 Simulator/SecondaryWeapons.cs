@@ -137,6 +137,52 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(3, 6); } // creates a number between   [Damage]
                 return Totaldamage;
             }
+            if (ClassID == 5 && WeaponID == 110)
+            {
+                // Family Business - 20 x 1-3 [20-60]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 4); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + 20; }
+                return Totaldamage;
+            }
+            //Lunchbox
+            if (ClassID == 5 && WeaponID == 111)
+            {
+                // Sandvich - +50-250HP
+                Totaldamage = randomdamage.Next(50, 251);
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 112)
+            {
+                // Robo-Sandvich - +50HP & 35% Damage Resist [1 Turn]
+                Totaldamage = 50;
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 113)
+            {
+                // Dalokohs Bar - +50-100HP +50 MAX_HP [INF / Stackable]
+                Totaldamage = randomdamage.Next(50, 101);
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 114)
+            {
+                // Fishcake - +50HP +100 MAX_HP [INF / Stackable]
+                Totaldamage = 50;
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 115)
+            {
+                // Buffalo Steak Sandvich - +0 HP & Marks Enemy for Death [3 Turns]
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 115)
+            {
+                // Second Banana - +25-125 HP [2 Turn Faster Recharge]
+                Totaldamage = randomdamage.Next(25, 126);
+                return Totaldamage;
+            }
             #endregion
 
             #region Engineer
