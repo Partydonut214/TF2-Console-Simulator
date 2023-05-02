@@ -52,6 +52,18 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
                 return Totaldamage;
             }
+            if (ClassID == 1 && WeaponID == 15)
+            {
+                // Mad Milk [+60% Damage returned as HP for 3 Turns]
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 16)
+            {
+                // Mutated Milk [+60% Damage returned as HP for 3 Turns]
+                Totaldamage = 0;
+                return Totaldamage;
+            }
             #endregion
 
             #region Soldier

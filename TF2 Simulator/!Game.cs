@@ -2490,6 +2490,41 @@ namespace TF2_Simulator
                                             P1_Damage = 0;
                                         }
                                     }
+                                    if (P1_ClassID == 1 && P1_SecondaryWeaponID == 15 || P1_SecondaryWeaponID == 16) // Mad Milk & Re-skin
+                                    {
+                                        if (P1_Cooldown_S > 0)
+                                        {
+                                            Console.WriteLine("Your Mad Milk was still cooling down!");
+                                        }
+                                        if (P1_Cooldown_S == 0)
+                                        {
+                                            Console.WriteLine("Threw Mad Milk at the Enemy!");
+                                            P1_Damage = 0;
+                                            P1_Cooldown_S = 5;
+                                            if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 2)
+                                            {
+                                                E1_StatusEffect_1_ID = 2; E1_StatusMadMilkedCooldown = 4;
+                                            }
+                                            else if (E1_StatusEffect_1_ID > 0)
+                                            {
+                                                if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 2)
+                                                {
+                                                    E1_StatusEffect_2_ID = 2; E1_StatusMadMilkedCooldown = 4;
+                                                }
+                                                else if (E1_StatusEffect_2_ID > 0)
+                                                {
+                                                    if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_3_ID == 2)
+                                                    {
+                                                        E1_StatusEffect_3_ID = 2; E1_StatusMadMilkedCooldown = 3;
+                                                    }
+                                                    else if (E1_StatusEffect_3_ID > 0)
+                                                    {
+                                                        Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                     if (P1_ClassID == 8 && P1_SecondaryWeaponID == 167 || P1_SecondaryWeaponID == 168) // Jarate & Re-skin
                                     {
                                         if (P1_Cooldown_S > 0)
@@ -2500,6 +2535,7 @@ namespace TF2_Simulator
                                         { 
                                         Console.WriteLine("Threw Jarate at the Enemy!");
                                         P1_Damage = 0;
+                                        P1_Cooldown_S = 5;
                                         P1_Cooldown_S = 5;
                                             if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 3)
                                             {
@@ -3172,6 +3208,11 @@ namespace TF2_Simulator
                                     }
                                     #endregion
                                     Console.WriteLine(HeaderLong);
+                                    if (E1_StatusMadMilkedCooldown > 0)
+                                    {
+                                        P1_Health = P1_Health + (P1_Damage * 60 / 100);
+                                        Console.WriteLine($"Gained {P1_Damage * 60 / 100} Health from the attack! [Mad Milk]");
+                                    }
                                     if (E1_RoboSandvichResist == true)
                                     {
                                         P1_Damage = P1_Damage - (35 * E1_Damage / 100);
@@ -3273,6 +3314,10 @@ namespace TF2_Simulator
                                         }
                                         if (E1_Damage > 0)
                                         {
+                                            if (P1_StatusMadMilkedCooldown > 0)
+                                            {
+                                                E1_Health = E1_Health + (E1_Damage * 60 / 100);
+                                            }
                                             if (P1_ClassID == 8 && P1_SecondaryWeaponID == 169 || P1_SecondaryWeaponID == 170)
                                             {
                                                 E1_Damage = E1_Damage - (35 * E1_Damage / 100);
