@@ -9,7 +9,7 @@ namespace TF2_Simulator
 {
     internal class SecondaryWeapons
     {
-        public static int Attack(int ClassID, int WeaponID, int PlayerCooldown, bool SecondaryTrigger)
+        public static int Attack(int ClassID, int WeaponID, int PlayerCooldown, bool SecondaryTrigger, int WeaponSpecialStat)
         {
             var randomdamage = new Random();
             int Totaldamage = 0;
@@ -115,7 +115,59 @@ namespace TF2_Simulator
             #endregion
 
             #region Demoman
+            if (ClassID == 4 && WeaponID == 86)
+            {
+                // Stickybomb Launcher - 20-50 [each sticky]
+                int Damage = 0;
+                for (int i = 0; i < WeaponSpecialStat; i++)
+                { Damage = Damage + randomdamage.Next(20, 51); } // creates a number between   [Damage]
+                return Damage;
+            }
+            if (ClassID == 4 && WeaponID == 87)
+            {
+                // Scottish Resistance - 20-50 [each sticky]
+                int Damage = 0;
+                int BulletsFired = WeaponSpecialStat;
+                for (int i = 0; i < BulletsFired; i++)
+                { Damage = Damage + randomdamage.Next(20, 51); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
 
+            if (ClassID == 4 && WeaponID == 88)
+            {
+                // Chargin' Targe - 0
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+
+            if (ClassID == 4 && WeaponID == 89)
+            {
+                // Sticky Jumper - 0 [each sticky]
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+
+            if (ClassID == 4 && WeaponID == 90)
+            {
+                // Splendid Screen - 0
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 91)
+            {
+                // Tide Turner - 0
+                Totaldamage = 0;
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 92)
+            {
+                // Quickiebomb Launcher - 0
+                int Damage = 0;
+                int BulletsFired = WeaponSpecialStat;
+                for (int i = 0; i < BulletsFired; i++)
+                { Damage = Damage + randomdamage.Next(20, 51); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Heavy
@@ -213,6 +265,15 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
                 return Totaldamage;
             }
+            if (ClassID == 6 && WeaponID == 133)
+            {
+                // Short Circuit - 10 x 1-5 [10-50]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 6); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + 10; } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Medic
@@ -299,7 +360,36 @@ namespace TF2_Simulator
             #endregion
 
             #region Spy
-            
+            if (ClassID == 9 && WeaponID == 176)
+            {
+                // Revolver - 30-50
+                Totaldamage = randomdamage.Next(30, 51);
+            }
+            if (ClassID == 9 && WeaponID == 176)
+            {
+                // Big Kill - 30-50
+                Totaldamage = randomdamage.Next(30, 51);
+            }
+            if (ClassID == 9 && WeaponID == 176)
+            {
+                // Ambassador - 30-50
+                Totaldamage = randomdamage.Next(30, 51);
+            }
+            if (ClassID == 9 && WeaponID == 176)
+            {
+                // L'Etranger - 30-50
+                Totaldamage = randomdamage.Next(30, 51);
+            }
+            if (ClassID == 9 && WeaponID == 176)
+            {
+                // Enforcer - 30-50
+                Totaldamage = randomdamage.Next(30, 51);
+            }
+            if (ClassID == 9 && WeaponID == 176)
+            {
+                // Diamondback - 30-50
+                Totaldamage = randomdamage.Next(30, 51);
+            }
             #endregion
 
             return 0;

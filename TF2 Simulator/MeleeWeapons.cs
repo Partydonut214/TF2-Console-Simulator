@@ -17,7 +17,7 @@ namespace TF2_Simulator
             
             #region AllClass
             if (WeaponID == 999)
-            {
+            { 
                 // Attacky Thingy - 32-64
                 Totaldamage = 0;
                 Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
@@ -245,7 +245,90 @@ namespace TF2_Simulator
             #endregion
 
             #region Pyro
-
+            if (ClassID == 3 && WeaponID == 68)
+            {
+                // Fire Axe - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 69)
+            {
+                // Lollichop - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 70)
+            {
+                // Axtinguisher - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 71)
+            {
+                // Postal Pummeler - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 72)
+            {
+                // Homewrecker - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 73)
+            {
+                // Maul - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 74)
+            {
+                // Powerjack - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 75)
+            {
+                // Back Scratcher - 48-80
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(48, 81);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 76)
+            {
+                // Sharpened Volcano Fragment - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 77)
+            {
+                // Third Degree - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 78)
+            {
+                // Neon Annihilator - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 79)
+            {
+                // Hot Hand - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Demoman
@@ -256,14 +339,188 @@ namespace TF2_Simulator
                 Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
                 return Totaldamage;
             }
+            if (ClassID == 4 && WeaponID == 93)
+            {
+                // Bottle - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 94)
+            {
+                // Scottish Handshake - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 95)
+            {
+                // Eyelander - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 96)
+            {
+                // Horseless Headless Horsemann's Headtaker - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 97)
+            {
+                // Nessie's Nine Iron - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 98)
+            {
+                // Scotsman's Skullcutter - 46-74
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(46, 75);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 99)
+            {
+                // Pain Train - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 100)
+            {
+                // Ullapool Caber - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 4 && WeaponID == 101)
+            {
+                // Claidheamh Mòr - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            // WeaponID 102 is a Accidental Duplicate.
+            if (ClassID == 4 && WeaponID == 103)
+            {
+                // Persian Persuader - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Heavy
-
+            if (ClassID == 5 && WeaponID == 118)
+            {
+                // Fists - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 119)
+            {
+                // Apoco-Fists - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 120)
+            {
+                // Killing Gloves of Boxing - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 121)
+            {
+                // Gloves of Running Urgently - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 122)
+            {
+                // Bread Bite - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 123)
+            {
+                // Warrior's Spirit - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 124)
+            {
+                // Fists of Steel - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 125)
+            {
+                // Eviction Notice - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 5 && WeaponID == 126)
+            {
+                // Holiday Punch - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Engineer
-
+            if (ClassID == 6 && WeaponID == 134)
+            {
+                // Wrench - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 135)
+            {
+                // Golden Wrench - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 136)
+            {
+                // Gunslinger - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 137)
+            {
+                // Southern Hospitality - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 138)
+            {
+                // Jag - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 6 && WeaponID == 139)
+            {
+                // Eureka Effect - 32-64
+                Totaldamage = 0;
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Medic
@@ -336,7 +593,110 @@ namespace TF2_Simulator
             #endregion
 
             #region Spy
-            //Spy has no Primary Weapons.
+            if (ClassID == 9 && WeaponID == 182)
+            {
+                // Knife - 32-64 [10% Chance for 9999]
+                Totaldamage = 0;
+                Special = 0;
+                Special = randomdamage.Next(1, 11);
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                if (Special == 1) 
+                {
+                    Totaldamage = 9999;
+                }
+                return Totaldamage;
+            }
+            if (ClassID == 9 && WeaponID == 183)
+            {
+                // Sharp Dresser - 32-64 [10% Chance for 9999]
+                Totaldamage = 0;
+                Special = 0;
+                Special = randomdamage.Next(1, 11);
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                if (Special == 1)
+                {
+                    Totaldamage = 9999;
+                }
+                return Totaldamage;
+            }
+            if (ClassID == 9 && WeaponID == 184)
+            {
+                // Black Rose - 32-64 [10% Chance for 9999]
+                Totaldamage = 0;
+                Special = 0;
+                Special = randomdamage.Next(1, 11);
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                if (Special == 1)
+                {
+                    Totaldamage = 9999;
+                }
+                return Totaldamage;
+            }
+            if (ClassID == 9 && WeaponID == 185)
+            {
+                // Your Eternal Reward - 32-64 [10% Chance for 9999]
+                Totaldamage = 0;
+                Special = 0;
+                Special = randomdamage.Next(1, 11);
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                if (Special == 1)
+                {
+                    Totaldamage = 9999;
+                }
+                return Totaldamage;
+            }
+            if (ClassID == 9 && WeaponID == 186)
+            {
+                // Wanga Prick - 32-64 [10% Chance for 9999]
+                Totaldamage = 0;
+                Special = 0;
+                Special = randomdamage.Next(1, 11);
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                if (Special == 1)
+                {
+                    Totaldamage = 9999;
+                }
+                return Totaldamage;
+            }
+            if (ClassID == 9 && WeaponID == 187)
+            {
+                // Conniver's Kunai - 32-64 [10% Chance for 9999]
+                Totaldamage = 0;
+                Special = 0;
+                Special = randomdamage.Next(1, 11);
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                if (Special == 1)
+                {
+                    Totaldamage = 9999;
+                }
+                return Totaldamage;
+            }
+            if (ClassID == 9 && WeaponID == 188)
+            {
+                // Big Earner - 32-64 [10% Chance for 9999]
+                Totaldamage = 0;
+                Special = 0;
+                Special = randomdamage.Next(1, 11);
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                if (Special == 1)
+                {
+                    Totaldamage = 9999;
+                }
+                return Totaldamage;
+            }
+            if (ClassID == 9 && WeaponID == 189)
+            {
+                // Spy-cicle - 32-64 [10% Chance for 9999]
+                Totaldamage = 0;
+                Special = 0;
+                Special = randomdamage.Next(1, 11);
+                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
+                if (Special == 1)
+                {
+                    Totaldamage = 9999;
+                }
+                return Totaldamage;
+            }
             #endregion
 
             return 0;

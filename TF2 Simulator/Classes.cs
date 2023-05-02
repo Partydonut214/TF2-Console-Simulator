@@ -57,15 +57,15 @@ namespace TF2_Simulator
         public static int StockMeleeWeapon(int ID)
         {
             if (ID <= 0) return 0;
-            if (ID == 1) return 999;
-            if (ID == 2) return 999;
-            if (ID == 3) return 999;
-            if (ID == 4) return 999;
-            if (ID == 5) return 999;
-            if (ID == 6) return 999;
-            if (ID == 7) return 999;
-            if (ID == 8) return 999;
-            if (ID == 9) return 999;
+            if (ID == 1) return 17;
+            if (ID == 2) return 48;
+            if (ID == 3) return 68;
+            if (ID == 4) return 93;
+            if (ID == 5) return 118;
+            if (ID == 6) return 134;
+            if (ID == 7) return 150;
+            if (ID == 8) return 172;
+            if (ID == 9) return 182;
             if (ID >= 10) return 0;
             return 0;
         }

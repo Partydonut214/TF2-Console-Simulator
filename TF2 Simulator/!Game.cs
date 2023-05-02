@@ -1012,7 +1012,7 @@ namespace TF2_Simulator
                                     if (SkipDebug == false)
                                     {
                                         Console.WriteLine($"Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}");
-                                        Console.WriteLine($"Attack: {SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists)}");
+                                        Console.WriteLine($"Attack: {SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists, P1_WeaponSpecialStat)}");
                                         Thread.Sleep(1500);
                                     }
                                     Selecting_Loadout = true;
@@ -2026,7 +2026,7 @@ namespace TF2_Simulator
                                         if (SkipDebug == false)
                                         {
                                             Console.WriteLine($"Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}");
-                                            Console.WriteLine($"Attack: {SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists)}");
+                                            Console.WriteLine($"Attack: {SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, E1_WeaponSpecialStat)}");
                                             Thread.Sleep(1500);
                                         }
                                         Selecting_Loadout = true;
@@ -2103,6 +2103,10 @@ namespace TF2_Simulator
                             Console.ForegroundColor = Color_Game;
                             Console.WriteLine($"   {FooterShort}");
                             Thread.Sleep(P1_ThreadSleep);
+                        }
+                        if (Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID)) 
+                        {
+                            P1_SecondaryTriggerName = $"Place a Stickybomb from {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}";
                         }
                         while (GameInputOK == false)
                         {
@@ -2328,7 +2332,7 @@ namespace TF2_Simulator
                                 if (P1_ClassID == 4 && Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID))
                                 {
                                     Console.WriteLine($"  ┌──Stickies Placed:───────┐");
-                                    Console.WriteLine($"  |            {PlayerWeaponFeature}            |      ");
+                                    Console.WriteLine($"  |            {P1_SecondaryTrigger}            |      ");
                                     Console.WriteLine($"  └─────────────────────────┘");
                                 }
                                 if (P1_ClassID == 7)
@@ -2378,7 +2382,7 @@ namespace TF2_Simulator
                                 if (P1_ClassID == 8)
                                 {
                                     Console.WriteLine($"  ┌──Charge Level:──┐");
-                                    Console.WriteLine($"  |        {P1_SecondaryTrigger}        | ");
+                                    Console.WriteLine($"  |        {P1_WeaponSpecialStat}        | ");
                                     Console.WriteLine($"  └─────────────────┘");
                                 }
                                 #endregion
@@ -2389,7 +2393,7 @@ namespace TF2_Simulator
                                 if (P1_PrimaryWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 1 && P1_Commitment! >= 2) if (PrimaryWeapons_SlotStealers.Contains(P1_PrimaryWeaponID) == false) { Console.WriteLine($"  1. {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}"); }
                                 if (P1_SecondaryWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 2 && P1_Commitment != 1 && P1_Commitment! >= 3) if (SecondaryWeapons_SlotStealers.Contains(P1_SecondaryWeaponID) == false) { Console.WriteLine($"  2. {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}"); }
                                 if (P1_MeleeWeaponID != 0) if (P1_Commitment == 0 || P1_Commitment == 3 && P1_Commitment! <= 2 && P1_Commitment! >= 4) Console.WriteLine($"  3. {MeleeWeapons.SpecificWeaponName(P1_MeleeWeaponID)}");
-                                if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists || Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID)) { Console.WriteLine($"  4. {P1_SecondaryTriggerName}"); }
+                                if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists || Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID) || Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID)) { Console.WriteLine($"  4. {P1_SecondaryTriggerName}"); }
 
                                 Console.WriteLine(Footer);
                                 Console.Write("Action: ");
@@ -2470,7 +2474,7 @@ namespace TF2_Simulator
                                         if (P1_Cooldown_S == 0)
                                         {
                                             Console.WriteLine($"{PlayerName} Used their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
-                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
                                             P1_Health = P1_Health + P1_Damage;
                                             Console.WriteLine($"It healed {P1_Damage} Health!");
                                             P1_Damage = 0;
@@ -2480,7 +2484,7 @@ namespace TF2_Simulator
                                         {
                                             Console.WriteLine($"{PlayerName} Used their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
                                             Console.WriteLine($"It Backfired!!! The {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)} was still Cooling down!!");
-                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
                                             P1_Health = P1_Health - P1_Damage;
                                             Console.WriteLine($"It Dealt {P1_Damage} Self-Damage!");
                                             P1_Damage = 0;
@@ -2532,7 +2536,7 @@ namespace TF2_Simulator
                                         }
                                         if (P1_Cooldown_S == 0)
                                         {
-                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists, P1_WeaponSpecialStat );
                                             P1_Health = P1_Health + P1_Damage;
                                             Console.WriteLine(Header);
                                             Console.WriteLine($"   {PlayerName} ate a {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}, and Healed {P1_Damage} Health!");
@@ -2584,12 +2588,28 @@ namespace TF2_Simulator
                                         }
                                         if (P1_Health > P1_MaxHP) { P1_Health = P1_MaxHP; }
                                     }
+                                    if (Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID))
+                                    {
+                                        Console.WriteLine($"{PlayerName} Detontated {P1_SecondaryTrigger} Stickies with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
+                                        P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists, P1_SecondaryTrigger);
+                                        E1_Health = E1_Health - P1_Damage;
+                                        if (P1_Damage > 0)
+                                        {
+                                            Console.WriteLine($"It dealt {P1_Damage} damage!");
+                                        }
+                                        if (P1_Damage == 0)
+                                        {
+                                            Console.WriteLine($"It dealt 0 damage! You need to place down stickybombs first!");
+                                        }
+                                        P1_Damage = 0;
+                                        P1_SecondaryTrigger = 0;
+                                    }
                                     else
                                     {
                                         if (Medic_SecondaryWeapons.Contains(P1_SecondaryWeaponID) == false && SecondaryWeapons_SlotStealers.Contains(P1_SecondaryWeaponID) == false && Heavy_Lunchbox.Contains(P1_SecondaryWeaponID) == false)
                                         {
                                             Console.WriteLine($"{PlayerName} attacked with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
-                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists);
+                                            P1_Damage = SecondaryWeapons.Attack(P1_ClassID, P1_SecondaryWeaponID, P1_Cooldown_S, P1_SecondaryTriggerExists, P1_WeaponSpecialStat);
                                         }
                                     }
                                     Console.ForegroundColor = Color_Game;
@@ -2623,7 +2643,7 @@ namespace TF2_Simulator
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
-                                if (PlayerAction == "4" && P1_SecondaryTriggerExists == false && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID) == false)
+                                if (PlayerAction == "4" && P1_SecondaryTriggerExists == false && Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID) == false && Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID) == false)
                                 {
                                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                                     Console.WriteLine(new String(' ', Console.BufferWidth));
@@ -2677,10 +2697,19 @@ namespace TF2_Simulator
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
-                             //   if (PrimaryWeapons_CanInflictFire.Contains(P1_PrimaryWeaponID))
-                             //   {
-                             //       E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 3;
-                             //   }
+                                if (PlayerAction == "4" && Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID))
+                                {
+                                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                    Console.WriteLine(new String(' ', Console.BufferWidth));
+                                    Console.ResetColor();
+                                    Console.ForegroundColor = Color_Game;
+                                    Console.WriteLine(HeaderLong);
+                                    Console.ForegroundColor = Color_Player;
+                                    Console.WriteLine($"{PlayerName} Placed a sticky with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
+                                    P1_SecondaryTrigger++;
+                                    Console.WriteLine(FooterLong);
+                                    Thread.Sleep(P1_ThreadSleep);
+                                }
                                 if (Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID))
                                 {
                                     P1_WeaponSpecialStat++;
@@ -3212,7 +3241,7 @@ namespace TF2_Simulator
                                             Console.WriteLine(HeaderLong);
                                             Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"The {EnemyPrefix} {E1_ClassName} attacked with their {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}!");
-                                            E1_Damage = SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists);
+                                            E1_Damage = SecondaryWeapons.Attack(E1_ClassID, E1_SecondaryWeaponID, E1_Cooldown, E1_SecondaryTriggerExists, E1_WeaponSpecialStat);
                                         }
                                         if (EnemyAction == 3)
                                         {
