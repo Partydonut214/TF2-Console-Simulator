@@ -705,39 +705,39 @@ namespace TF2_Simulator
         {
             if (ClassID == 1)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 17 == Bat\r\n  ID 18 == Holy Mackerel\r\n  ID 19 == Unarmed Combat\r\n  ID 20 == Batsaber\r\n  ID 21 == Sandman\r\n  ID 22 == Candy Cane\r\n  ID 23 == Boston Basher\r\n  ID 24 == Three-Rune Blade\r\n  ID 25 == Sun-on-a-Stick\r\n  ID 26 == Fan O'War\r\n  ID 27 == Atomizer\r\n  ID 28 == Wrap Assassin\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             if (ClassID == 2)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 48 == Shovel\r\n  ID 49 == Equalizer\r\n  ID 50 == Pain Train\r\n  ID 51 == Half-Zatoichi\r\n  ID 52 == Disciplinary Action\r\n  ID 53 == Market Gardener\r\n  ID 54 == Escape Plan\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             if (ClassID == 3)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 68 == Fire Axe\r\n  ID 69 == Lollichop\r\n  ID 70 == Axtinguisher\r\n  ID 71 == Postal Pummeler\r\n  ID 72 == Homewrecker\r\n  ID 73 == Maul\r\n  ID 74 == Powerjack\r\n  ID 75 == Back Scratcher\r\n  ID 76 == Sharpened Volcano Fragment\r\n  ID 77 == Third Degree\r\n  ID 78 == Neon Annihilator\r\n  ID 79 == Hot Hand\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             if (ClassID == 4)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 93 == Bottle\r\n  ID 94 == Scottish Handshake\r\n  ID 95 == Eyelander\r\n  ID 96 == Horseless Headless Horsemann's Headtaker\r\n  ID 97 == Nessie's Nine Iron\r\n  ID 98 == Scotsman's Skullcutter\r\n  ID 99 == Pain Train\r\n  ID 100 == Ullapool Caber\r\n  ID 101 == Claidheamh Mòr\r\n  ID 102 == Half-Zatoichi\r\n  ID 103 == Persian Persuader\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             if (ClassID == 5)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 118 == Fists\r\n  ID 119 == Apoco-Fists\r\n  ID 120 == Killing Gloves of Boxing\r\n  ID 121 == Gloves of Running Urgently\r\n  ID 122 == Bread Bite\r\n  ID 123 == Warrior's Spirit\r\n  ID 124 == Fists of Steel\r\n  ID 125 == Eviction Notice\r\n  ID 126 == Holiday Punch\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             if (ClassID == 6)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 134 == Wrench\r\n  ID 135 == Golden Wrench\r\n  ID 136 == Gunslinger\r\n  ID 137 == Southern Hospitality\r\n  ID 138 == Jag\r\n  ID 139 == Eureka Effect\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             if (ClassID == 7)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 150 == Bonesaw\r\n  ID 151 == Übersaw\r\n  ID 152 == Vita-Saw\r\n  ID 153 == Amputator\r\n  ID 154 == Solemn Vow\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             if (ClassID == 8)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 172 == Kukri\r\n  ID 173 == Tribalman's Shiv\r\n  ID 174 == Bushwacka\r\n  ID 175 == Shahanshah\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             if (ClassID == 9)
             {
-                return "  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
+                return "  ID 182 == Knife\r\n  ID 183 == Sharp Dresser\r\n  ID 184 == Black Rose\r\n  ID 185 == Your Eternal Reward\r\n  ID 186 == Wanga Prick\r\n  ID 187 == Conniver's Kunai\r\n  ID 188 == Big Earner\r\n  ID 189 == Spy-cicle\r\n  ID 200 == Saxxy\r\n  ID 201 == Frying Pan\r\n  ID 202 == Conscientious Objector\r\n  ID 203 == Freedom Staff\r\n  ID 204 == Bat Outta Hell\r\n  ID 205 == Memory Maker\r\n  ID 206 == Ham Shank\r\n  ID 207 == Necro Smasher\r\n  ID 208 == Crossing Guard\r\n  ID 209 == Prinny Machete\r\n  ID 210 == Golden Frying Pan\r\n  ID 999 == Attacky Thingy";
             }
             return "Error";
         }

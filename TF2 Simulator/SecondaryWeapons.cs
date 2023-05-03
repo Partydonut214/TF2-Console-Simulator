@@ -52,6 +52,24 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
                 return Totaldamage;
             }
+            if (ClassID == 1 && WeaponID == 10)
+            {
+                // Winger - 8-11 x 1-6 [8-66]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 1 && WeaponID == 11)
+            {
+                // Pretty Boy's Pocket Pistol - 6-9 x 1-6 [6-54]
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(1, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(6, 10); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             if (ClassID == 1 && WeaponID == 15)
             {
                 // Mad Milk [+60% Damage returned as HP for 3 Turns]
@@ -94,6 +112,12 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(7, 11); } // creates a number between   [Damage]
                 return Totaldamage;
             }
+            if (ClassID == 2 && WeaponID == 45)
+            {
+                // Righteous Bison - 10-40
+                Totaldamage = randomdamage.Next(10, 41);
+                return Totaldamage;
+            }
             #endregion
 
             #region Pyro
@@ -124,15 +148,52 @@ namespace TF2_Simulator
                 { Totaldamage = Totaldamage + randomdamage.Next(7, 11); } // creates a number between   [Damage]
                 return Totaldamage;
             }
+
+            if (ClassID == 3 && WeaponID == 62)
+            {
+                // Flare Gun - 30 //Ignites the Enemy on Hit
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(7, 11); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 63)
+            {
+                // Detonator - 30 //Ignites the Enemy on Hit
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(7, 11); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 64)
+            {
+                // Manmelter - 30 //Ignites the Enemy on Hit
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(7, 11); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
+            if (ClassID == 3 && WeaponID == 65)
+            {
+                // Scorch Shot - 30 //Ignites the Enemy on Hit
+                Totaldamage = 0;
+                int BulletsFired = randomdamage.Next(2, 7); // Creates a Randomizer to determine how many pellets/projectiles/bullets hit. Each bullet/pellet has a randomized damage within the range
+                for (int i = 0; i < BulletsFired; i++)
+                { Totaldamage = Totaldamage + randomdamage.Next(7, 11); } // creates a number between   [Damage]
+                return Totaldamage;
+            }
             #endregion
 
             #region Demoman
             if (ClassID == 4 && WeaponID == 86)
             {
-                // Stickybomb Launcher - 20-50 [each sticky]
+                // Stickybomb Launcher - 20-70 [each sticky]
                 int Damage = 0;
                 for (int i = 0; i < WeaponSpecialStat; i++)
-                { Damage = Damage + randomdamage.Next(20, 51); } // creates a number between   [Damage]
+                { Damage = Damage + randomdamage.Next(20, 71); } // creates a number between   [Damage]
                 return Damage;
             }
             if (ClassID == 4 && WeaponID == 87)
@@ -141,7 +202,7 @@ namespace TF2_Simulator
                 int Damage = 0;
                 int BulletsFired = WeaponSpecialStat;
                 for (int i = 0; i < BulletsFired; i++)
-                { Damage = Damage + randomdamage.Next(20, 51); } // creates a number between   [Damage]
+                { Damage = Damage + randomdamage.Next(20, 71); } // creates a number between   [Damage]
                 return Totaldamage;
             }
 
@@ -177,7 +238,7 @@ namespace TF2_Simulator
                 int Damage = 0;
                 int BulletsFired = WeaponSpecialStat;
                 for (int i = 0; i < BulletsFired; i++)
-                { Damage = Damage + randomdamage.Next(20, 51); } // creates a number between   [Damage]
+                { Damage = Damage + randomdamage.Next(20, 71); } // creates a number between   [Damage]
                 return Totaldamage;
             }
             #endregion
@@ -376,31 +437,37 @@ namespace TF2_Simulator
             {
                 // Revolver - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
+                return Totaldamage;
             }
             if (ClassID == 9 && WeaponID == 176)
             {
                 // Big Kill - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
+                return Totaldamage;
             }
             if (ClassID == 9 && WeaponID == 176)
             {
                 // Ambassador - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
+                return Totaldamage;
             }
             if (ClassID == 9 && WeaponID == 176)
             {
                 // L'Etranger - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
+                return Totaldamage;
             }
             if (ClassID == 9 && WeaponID == 176)
             {
                 // Enforcer - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
+                return Totaldamage;
             }
             if (ClassID == 9 && WeaponID == 176)
             {
                 // Diamondback - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
+                return Totaldamage;
             }
             #endregion
 
@@ -410,27 +477,27 @@ namespace TF2_Simulator
         {
             if (ClassID == 1)
             {
-                return "  ID 7 == Pistol\r\n  ID 8 == Lugermorph\r\n  ID 9 == C.A.P.P.E.R\r\n  ID 10 == Winger\r\n  ID 11 == Pretty Boy's Pocket Pistol\r\n  ID 12 == Flying Guillotine\r\n  ID 13 == Bonk! Atomic Punch\r\n  ID 14 == Crit-a-Cola\r\n  ID 15 == Mad Milk\r\n  ID 16 == Mutated Milk";
+                return "  ID 7 == Pistol\r\n  ID 8 == Lugermorph\r\n  ID 9 == C.A.P.P.E.R\r\n  ID 10 == Winger\r\n  ID 11 == Pretty Boy's Pocket Pistol\r\n  ID 13 == Bonk! Atomic Punch\r\n  ID 14 == Crit-a-Cola\r\n  ID 15 == Mad Milk\r\n  ID 16 == Mutated Milk";
             }
             if (ClassID == 2)
             {
-                return "  ID 38 == Shotgun\r\n  ID 39 == Reserve Shooter\r\n  ID 47 == Panic Attack";
+                return "  ID 38 == Shotgun\r\n  ID 39 == Reserve Shooter\r\n  ID 45 == Righteous Bison\r\n  ID 47 == Panic Attack";
             }
             if (ClassID == 3)
             {
-                return "  ID 38 == Shotgun\r\n  ID 39 == Reserve Shooter\r\n  ID 47 == Panic Attack";
+                return "  ID 38 == Shotgun\r\n  ID 39 == Reserve Shooter\r\n  ID 47 == Panic Attack\r\n  ID 62 == Flare Gun\r\n  ID 63 == Detonator\r\n  ID 64 == Manmelter\r\n  ID 65 == Scorch Shot";
             }
             if (ClassID == 4)
             {
-                return "  ID 80 == Grenade Launcher\r\n  ID 81 == Loch-n-Load\r\n  ID 82 == Ali Baba's Wee Booties\r\n  ID 83 == Bootlegger\r\n  ID 84 == Loose Cannon\r\n  ID 85 == Iron Bomber";
+                return "  ID 86 == Stickybomb Launcher\r\n  ID 87 == Scottish Resistance\r\n  ID 89 == Sticky Jumper";
             }
             if (ClassID == 5)
             {
-                return "  ID 38 == Shotgun\r\n  ID 47 == Panic Attack";
+                return "  ID 38 == Shotgun\r\n  ID 47 == Panic Attack\r\n  ID 110 == Family Business\r\n  ID 111 == Sandvich\r\n  ID 112 == Robo-Sandvich\r\n  ID 113 == Dalokohs Bar\r\n  ID 114 == Fishcake\r\n  ID 115 == Buffalo Steak Sandvich\r\n  ID 117 == Second Banana";
             }
             if (ClassID == 6)
             {
-                return "  ID 7 == Pistol\r\n  ID 8 == Lugermorph\r\n  ID 9 == C.A.P.P.E.R\r\n";
+                return "  ID 7 == Pistol\r\n  ID 8 == Lugermorph\r\n  ID 9 == C.A.P.P.E.R\r\n  ID 133 == Short Circuit";
             }
             if (ClassID == 7)
             {
@@ -438,11 +505,11 @@ namespace TF2_Simulator
             }
             if (ClassID == 8)
             {
-                return "  ID 167 == Jarate\r\n  ID 168 == Self-Aware Beauty Mark\r\n";
+                return "  ID 165 == SMG\r\n  ID 166 == Cleaner's Carbine\r\n  ID 167 == Jarate\r\n  ID 168 == Self-Aware Beauty Mark\r\n";
             }
             if (ClassID == 9)
             {
-                return "  ID 999 == GUN\r\n  ID 168 == Self-Aware Beauty Mark\r\n";
+                return "  ID 176 == Revolver\r\n  ID 177 == Big Kill\r\n  ID 178 == Ambassador\r\n  ID 179 == L'Etranger\r\n  ID 180 == Enforcer\r\n  ID 181 == Diamondback";
             }
             return "Error";
         }

@@ -623,7 +623,7 @@ namespace TF2_Simulator
             }
             if (ClassID == 4)
             {
-                return "  ID 80 == Grenade Launcher\r\n  ID 81 == Loch-n-Load\r\n  ID 82 == Ali Baba's Wee Booties\r\n  ID 83 == Bootlegger\r\n  ID 84 == Loose Cannon\r\n  ID 85 == Iron Bomber";
+                return "  ID 80 == Grenade Launcher\r\n  ID 81 == Loch-n-Load\r\n  ID 84 == Loose Cannon\r\n  ID 85 == Iron Bomber";
             }
             if (ClassID == 5)
             {
