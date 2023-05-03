@@ -378,7 +378,8 @@ namespace TF2_Simulator
                 };
                 List<int> MeleeWeapons_CanInflictFire = new List<int>
                 {
-                    25 //Scout - Sun on a Stick
+                    25, //Scout - Sun on a Stick
+                    76, //Sharpened Volcano Fragment
                 };
 
                 List<int> PrimaryWeapons_CanInflictJarate = new List<int>
@@ -790,8 +791,9 @@ namespace TF2_Simulator
 
                     }
                     #endregion
-                    /*
+
                     #region Help Menu
+                    /*
                     if ((UserInput.ToLower() == "!help") || (UserInput.ToLower() == "help") || UserInput == "10")
                     {
                         bool InputOKHelp = false;
@@ -926,8 +928,8 @@ namespace TF2_Simulator
                             }
                         }
                     }
-                    #endregion
                     */
+                    #endregion
                     #region Player Classes
                     if (int.TryParse(UserInput, out int ClassChoice))
                     {
@@ -965,7 +967,9 @@ namespace TF2_Simulator
                             bool Selecting_Loadout = true;
                             while (Selecting_Loadout == true)
                             {
+
                                 Selecting_Loadout = false;
+                                Console.ForegroundColor = Color_Game;
                                 Console.Clear();
                                 Console.WriteLine(Header);
                                 Console.WriteLine($"  ClassID: {P1_ClassID}");
@@ -994,7 +998,7 @@ namespace TF2_Simulator
                                     Console.WriteLine($"  === Selecting Primary Weapon");
                                     Console.WriteLine(PrimaryWeapons.Names(P1_ClassID));
                                     Console.WriteLine(Footer);
-                                    Console.Write("Weapon ID: ");
+                                    Console.Write("Weapon ID: "); Console.ForegroundColor = Color_Input;
                                     string PrimarySelecion = Console.ReadLine();
                                     if (int.TryParse(PrimarySelecion, out int PrimaryID)) { P1_PrimaryWeaponID = PrimaryID; }
                                     if (SkipDebug == false)
@@ -1015,7 +1019,7 @@ namespace TF2_Simulator
                                     Console.WriteLine($"  === Selecting Secondary Weapon");
                                     Console.WriteLine(SecondaryWeapons.Names(P1_ClassID));
                                     Console.WriteLine(Footer);
-                                    Console.Write("Weapon ID: ");
+                                    Console.Write("Weapon ID: "); Console.ForegroundColor = Color_Input;
                                     string SecondarySelecion = Console.ReadLine();
                                     if (int.TryParse(SecondarySelecion, out int SecondaryID)) { P1_SecondaryWeaponID = SecondaryID; }
                                     if (SkipDebug == false)
@@ -1036,7 +1040,7 @@ namespace TF2_Simulator
                                     Console.WriteLine($"  === Selecting Melee Weapon");
                                     Console.WriteLine(MeleeWeapons.Names(P1_ClassID));
                                     Console.WriteLine(Footer);
-                                    Console.Write("Weapon ID: ");
+                                    Console.Write("Weapon ID: "); Console.ForegroundColor = Color_Input;
                                     string MeleeSelecion = Console.ReadLine();
                                     if (int.TryParse(MeleeSelecion, out int MeleeID)) { P1_MeleeWeaponID = MeleeID; }
                                     if (SkipDebug == false)
@@ -1932,6 +1936,7 @@ namespace TF2_Simulator
                     while (InputEnemy == false)
                     {
                         InputEnemy = true;
+                        Console.ForegroundColor = Color_Game;
                         Console.Clear();
                         Console.WriteLine("Pick The Enemy's class!");
                         Console.WriteLine();
@@ -1949,7 +1954,7 @@ namespace TF2_Simulator
                         Console.WriteLine(FooterShort);
                         //Console.WriteLine("=========================");
                         Console.WriteLine();
-                        Console.Write("Choose a Class: ");
+                        Console.Write("Choose a Class: "); Console.ForegroundColor = Color_Input;
                         string UserInputEnemy = Console.ReadLine();
                         if (int.TryParse(UserInputEnemy, out int ClassChoice))
                         {
@@ -1981,6 +1986,7 @@ namespace TF2_Simulator
                                 {
                                     Selecting_Loadout = false;
                                     Console.Clear();
+                                    Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(Header);
                                     Console.WriteLine($"  ClassID: {E1_ClassID}");
                                     Console.WriteLine($"  Player Class: {E1_ClassName}");
@@ -1988,7 +1994,7 @@ namespace TF2_Simulator
                                     Console.WriteLine(Footer);
                                     Console.WriteLine();
                                     Console.WriteLine(Header);
-                                    Console.WriteLine($"Select your Loadout!");
+                                    Console.WriteLine($"Select Their Loadout!");
                                     Console.WriteLine($"1.  Primary Weapon: {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}");
                                     Console.WriteLine($"2.  Secondary Weapon: {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}");
                                     Console.WriteLine($"3.  Melee Weapon: {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}");
@@ -2008,7 +2014,7 @@ namespace TF2_Simulator
                                         Console.WriteLine($"  === Selecting Primary Weapon");
                                         Console.WriteLine(PrimaryWeapons.Names(E1_ClassID));
                                         Console.WriteLine(Footer);
-                                        Console.Write("Weapon ID: ");
+                                        Console.Write("Weapon ID: "); Console.ForegroundColor = Color_Input;
                                         string PrimarySelecion = Console.ReadLine();
                                         if (int.TryParse(PrimarySelecion, out int PrimaryID)) { E1_PrimaryWeaponID = PrimaryID; }
                                         if (SkipDebug == false)
@@ -2029,7 +2035,7 @@ namespace TF2_Simulator
                                         Console.WriteLine($"  === Selecting Secondary Weapon");
                                         Console.WriteLine(SecondaryWeapons.Names(E1_ClassID));
                                         Console.WriteLine(Footer);
-                                        Console.Write("Weapon ID: ");
+                                        Console.Write("Weapon ID: "); Console.ForegroundColor = Color_Input;
                                         string SecondarySelecion = Console.ReadLine();
                                         if (int.TryParse(SecondarySelecion, out int SecondaryID)) { E1_SecondaryWeaponID = SecondaryID; }
                                         if (SkipDebug == false)
@@ -2050,7 +2056,7 @@ namespace TF2_Simulator
                                         Console.WriteLine($"  === Selecting Melee Weapon");
                                         Console.WriteLine(MeleeWeapons.Names(E1_ClassID));
                                         Console.WriteLine(Footer);
-                                        Console.Write("Weapon ID: ");
+                                        Console.Write("Weapon ID: "); Console.ForegroundColor = Color_Input;
                                         string MeleeSelecion = Console.ReadLine();
                                         if (int.TryParse(MeleeSelecion, out int MeleeID)) { E1_MeleeWeaponID = MeleeID; }
                                         if (SkipDebug == false)
@@ -2441,7 +2447,7 @@ namespace TF2_Simulator
                                 if (P1_Commitment == 0 || P1_Commitment == 4 && P1_Commitment! <= 3) if (P1_SecondaryTriggerExists || Sniper_PrimaryWeapons_Charging.Contains(P1_PrimaryWeaponID) || Demoman_SecondaryWeapons_StickyBombLaunchers.Contains(P1_SecondaryWeaponID)) { Console.WriteLine($"  4. {P1_SecondaryTriggerName}"); }
 
                                 Console.WriteLine(Footer);
-                                Console.Write("Action: ");
+                                Console.Write("Action: "); Console.ForegroundColor = Color_Input;
                                 string PlayerAction = Console.ReadLine();
                                 if (PlayerAction == "1")
                                 {
@@ -2753,6 +2759,31 @@ namespace TF2_Simulator
                                         Console.WriteLine($"      - Gained 25% percent Uber on Hit!");
                                         Console.WriteLine($"  {FooterShort}");
                                     }
+                                    if (MeleeWeapons_CanInflictFire.Contains(P1_MeleeWeaponID))
+                                    {
+                                        if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 1)
+                                        {
+                                            E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 4;
+                                        }
+                                        else if (E1_StatusEffect_1_ID > 0)
+                                        {
+                                            if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                            {
+                                                E1_StatusEffect_2_ID = 1; E1_StatusOnFireCooldown = 4;
+                                            }
+                                            else if (E1_StatusEffect_2_ID > 0)
+                                            {
+                                                if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                                {
+                                                    E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 4;
+                                                }
+                                                else if (E1_StatusEffect_3_ID > 0)
+                                                {
+                                                    Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                                }
+                                            }
+                                        }
+                                    }
                                     Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
@@ -2772,6 +2803,32 @@ namespace TF2_Simulator
                                         Console.WriteLine("Half-Zatochi Duel Won!");
                                                 P1_Damage = E1_Health;
                                     }
+                                    if (MeleeWeapons_CanInflictFire.Contains(P1_MeleeWeaponID))
+                                    {
+                                        if (E1_StatusEffect_1_ID == 0 || E1_StatusEffect_1_ID == 1)
+                                        {
+                                            E1_StatusEffect_1_ID = 1; E1_StatusOnFireCooldown = 4;
+                                        }
+                                        else if (E1_StatusEffect_1_ID > 0)
+                                        {
+                                            if (E1_StatusEffect_2_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                            {
+                                                E1_StatusEffect_2_ID = 1; E1_StatusOnFireCooldown = 4;
+                                            }
+                                            else if (E1_StatusEffect_2_ID > 0)
+                                            {
+                                                if (E1_StatusEffect_3_ID == 0 || E1_StatusEffect_2_ID == 1)
+                                                {
+                                                    E1_StatusEffect_3_ID = 1; E1_StatusOnFireCooldown = 4;
+                                                }
+                                                else if (E1_StatusEffect_3_ID > 0)
+                                                {
+                                                    Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                                }
+                                            }
+                                        }
+                                    }
+                                    Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }                                
@@ -2808,6 +2865,7 @@ namespace TF2_Simulator
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName} charged their {PrimaryWeapons.SpecificWeaponName(P1_PrimaryWeaponID)}!");
                                     P1_SecondaryTrigger++;
+                                    Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
@@ -2821,6 +2879,7 @@ namespace TF2_Simulator
                                     Console.ForegroundColor = Color_Player;
                                     Console.WriteLine($"{PlayerName} Placed a sticky with their {SecondaryWeapons.SpecificWeaponName(P1_SecondaryWeaponID)}!");
                                     P1_SecondaryTrigger++;
+                                    Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(FooterLong);
                                     Thread.Sleep(P1_ThreadSleep);
                                 }
@@ -3248,6 +3307,7 @@ namespace TF2_Simulator
                                         }
                                     }
                                     #endregion
+                                    Console.ForegroundColor = Color_Game;
                                     Console.WriteLine(HeaderLong);
                                     if (E1_StatusMadMilkedCooldown > 0)
                                     {
@@ -3321,7 +3381,7 @@ namespace TF2_Simulator
                                         {
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(HeaderLong);
-                                            Console.ForegroundColor = Color_Player;
+                                            Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"{EnemyPrefix} {E1_ClassName} attacked with their {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}!");
                                             E1_Damage = PrimaryWeapons.Attack(E1_ClassID, E1_PrimaryWeaponID, E1_Cooldown_P, E1_SecondaryTriggerExists, E1_SecondaryTrigger);
                                             if (Medic_PrimaryWeapons.Contains(E1_PrimaryWeaponID))
@@ -3379,7 +3439,7 @@ namespace TF2_Simulator
                                         {
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(HeaderLong);
-                                            Console.ForegroundColor = Color_Player;
+                                            Console.ForegroundColor = Color_Enemy;
                                             if (E1_ClassID == 7 && Medic_SecondaryWeapons.Contains(E1_SecondaryWeaponID))
                                             {
                                                 if (E1_Cooldown_S == 0)
@@ -3603,7 +3663,7 @@ namespace TF2_Simulator
                                         {
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(HeaderLong);
-                                            Console.ForegroundColor = Color_Player;
+                                            Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"{EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
                                             E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown_M, E1_SecondaryTriggerExists, E1_Health, E1_MaxHP);
                                             if (E1_MeleeWeaponID == 51)
@@ -3618,6 +3678,31 @@ namespace TF2_Simulator
                                                 Console.WriteLine($"      - Gained 25% percent Uber on Hit!");
                                                 Console.WriteLine($"  {FooterShort}");
                                             }
+                                            if (MeleeWeapons_CanInflictFire.Contains(E1_MeleeWeaponID))
+                                            {
+                                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 1)
+                                                {
+                                                    P1_StatusEffect_1_ID = 1; P1_StatusOnFireCooldown = 4;
+                                                }
+                                                else if (P1_StatusEffect_1_ID > 0)
+                                                {
+                                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 1)
+                                                    {
+                                                        P1_StatusEffect_2_ID = 1; P1_StatusOnFireCooldown = 4;
+                                                    }
+                                                    else if (P1_StatusEffect_2_ID > 0)
+                                                    {
+                                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_2_ID == 1)
+                                                        {
+                                                            P1_StatusEffect_3_ID = 1; P1_StatusOnFireCooldown = 4;
+                                                        }
+                                                        else if (P1_StatusEffect_3_ID > 0)
+                                                        {
+                                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                                        }
+                                                    }
+                                                }
+                                            }
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(FooterLong);
                                             Thread.Sleep(E1_ThreadSleep);
@@ -3626,7 +3711,7 @@ namespace TF2_Simulator
                                         {
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(HeaderLong);
-                                            Console.ForegroundColor = Color_Player;
+                                            Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"{EnemyPrefix} {E1_ClassName} attacked with their {MeleeWeapons.SpecificWeaponName(E1_MeleeWeaponID)}!");
                                             E1_Damage = MeleeWeapons.Attack(E1_ClassID, E1_MeleeWeaponID, E1_Cooldown_M, E1_SecondaryTriggerExists, E1_Health, E1_MaxHP);
                                             if (E1_MeleeWeaponID == 51)
@@ -3634,6 +3719,32 @@ namespace TF2_Simulator
                                                 Console.WriteLine("Half-Zatochi Duel Won!");
                                                 E1_Damage = P1_Health;
                                             }
+                                            if (MeleeWeapons_CanInflictFire.Contains(E1_MeleeWeaponID))
+                                            {
+                                                if (P1_StatusEffect_1_ID == 0 || P1_StatusEffect_1_ID == 1)
+                                                {
+                                                    P1_StatusEffect_1_ID = 1; P1_StatusOnFireCooldown = 4;
+                                                }
+                                                else if (P1_StatusEffect_1_ID > 0)
+                                                {
+                                                    if (P1_StatusEffect_2_ID == 0 || P1_StatusEffect_2_ID == 1)
+                                                    {
+                                                        P1_StatusEffect_2_ID = 1; P1_StatusOnFireCooldown = 4;
+                                                    }
+                                                    else if (P1_StatusEffect_2_ID > 0)
+                                                    {
+                                                        if (P1_StatusEffect_3_ID == 0 || P1_StatusEffect_2_ID == 1)
+                                                        {
+                                                            P1_StatusEffect_3_ID = 1; P1_StatusOnFireCooldown = 4;
+                                                        }
+                                                        else if (P1_StatusEffect_3_ID > 0)
+                                                        {
+                                                            Console.WriteLine("Error: All Slots Full. Dropping Effect.");
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(FooterLong);
                                             Thread.Sleep(E1_ThreadSleep);
                                         }
@@ -3660,9 +3771,10 @@ namespace TF2_Simulator
                                         {
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(HeaderLong);
-                                            Console.ForegroundColor = Color_Player;
+                                            Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"{EnemyPrefix} {E1_ClassName} charged their {PrimaryWeapons.SpecificWeaponName(E1_PrimaryWeaponID)}!");
                                             E1_SecondaryTrigger++;
+                                            Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(FooterLong);
                                             Thread.Sleep(E1_ThreadSleep);
                                         }
@@ -3670,9 +3782,10 @@ namespace TF2_Simulator
                                         {
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(HeaderLong);
-                                            Console.ForegroundColor = Color_Player;
+                                            Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"{EnemyPrefix} {E1_ClassName} Placed a sticky with their {SecondaryWeapons.SpecificWeaponName(E1_SecondaryWeaponID)}!");
                                             E1_SecondaryTrigger++;
+                                            Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(FooterLong);
                                             Thread.Sleep(E1_ThreadSleep);
                                         }
@@ -3765,10 +3878,6 @@ namespace TF2_Simulator
                                             Console.WriteLine($"You were Protected against 35% of the damage!");
                                         }
 
-
-
-
-
                                         /* Fall Back Code incase everything goes terribly wrong
                                         if (EnemyAction == 1)
                                         {
@@ -3856,15 +3965,17 @@ namespace TF2_Simulator
                                             
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(HeaderLong);
-                                            Console.ForegroundColor = Color_Player;
+                                            Console.ForegroundColor = Color_Enemy;
                                             Console.WriteLine($"It Dealt {E1_Damage} Damage to {PlayerName}!");
                                             P1_Health = P1_Health - E1_Damage;
                                             if (P1_Health < 0) { P1_Health = 0; }
                                             if (P1_Health > 0 && P1_SecondaryWeaponID == 171 && P1_ClassID == 8)
                                             {
+                                                Console.ForegroundColor = Color_Player;
                                                 Console.WriteLine("Healed 10 Health!");
                                                 P1_Health = P1_Health + 10;
                                             }
+                                            Console.ForegroundColor = Color_Player;
                                             Console.WriteLine($"{PlayerName}'s Remaining HP: {P1_Health}");
                                             Console.ForegroundColor = Color_Game;
                                             Console.WriteLine(FooterLong);
@@ -3907,7 +4018,7 @@ namespace TF2_Simulator
                                     if (E1_Cooldown_S < 0) { E1_Cooldown_S = 0; }
                                     if (E1_Cooldown_M < 0) { E1_Cooldown_M = 0; }
                                     if (E1_Cooldown_E < 0) { E1_Cooldown_E = 0; }
-                                } //QuittingGame's Closer is placed here although the PlayerHP is set to 0, the game doesn't seem to quit.
+                                }
                             }
                             bool EndingTriggered = false;
                             if (P1_Health <= 0 && E1_Health <= 0 && EndingTriggered != true)
@@ -3950,7 +4061,7 @@ namespace TF2_Simulator
                                 //Console.WriteLine($"  ");
                                 //Console.WriteLine($"  ");
                                 Console.WriteLine(Footer);
-                                Console.Write("Choice: ");
+                                Console.Write("Choice: "); Console.ForegroundColor = Color_Input;
                                 string GameResetDecider = Console.ReadLine();
                                 if (GameResetDecider.ToLower() == "y" || GameResetDecider.ToLower() == "yes")
                                 {

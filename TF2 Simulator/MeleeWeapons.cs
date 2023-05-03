@@ -15,6 +15,7 @@ namespace TF2_Simulator
             int Totaldamage = 0;
             int Special = 0;
             
+
             #region AllClass
             if (WeaponID == 999)
             { 
@@ -237,7 +238,7 @@ namespace TF2_Simulator
             }
             if (ClassID == 2 && WeaponID == 54)
             {
-                // Shovel - 32-64
+                // Escape Plan - 32-64
                 Totaldamage = 0;
                 Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between  [Damage]
                 return Totaldamage;
@@ -585,9 +586,16 @@ namespace TF2_Simulator
             }
             if (ClassID == 8 && WeaponID == 175)
             {
-                // Shahanshah - 32-64
+                // Shahanshah - 16-32 -- 40-68 +DMG if Lower than 50% or -DMG if above 50%
                 Totaldamage = 0;
-                Totaldamage = Totaldamage + randomdamage.Next(32, 65);  // creates a number between 32-64 [Damage]
+                if (PlayerHP < PlayerMAXHP / 2)
+                {
+                    Totaldamage = randomdamage.Next(40,69);
+                }
+                if (PlayerHP > PlayerMAXHP / 2)
+                {
+                    Totaldamage = randomdamage.Next(16, 33);
+                }
                 return Totaldamage;
             }
             #endregion
