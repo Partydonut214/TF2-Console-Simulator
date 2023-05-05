@@ -439,31 +439,31 @@ namespace TF2_Simulator
                 Totaldamage = randomdamage.Next(30, 51);
                 return Totaldamage;
             }
-            if (ClassID == 9 && WeaponID == 176)
+            if (ClassID == 9 && WeaponID == 177)
             {
                 // Big Kill - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
                 return Totaldamage;
             }
-            if (ClassID == 9 && WeaponID == 176)
+            if (ClassID == 9 && WeaponID == 178)
             {
                 // Ambassador - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
                 return Totaldamage;
             }
-            if (ClassID == 9 && WeaponID == 176)
+            if (ClassID == 9 && WeaponID == 179)
             {
                 // L'Etranger - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
                 return Totaldamage;
             }
-            if (ClassID == 9 && WeaponID == 176)
+            if (ClassID == 9 && WeaponID == 180)
             {
                 // Enforcer - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
                 return Totaldamage;
             }
-            if (ClassID == 9 && WeaponID == 176)
+            if (ClassID == 9 && WeaponID == 181)
             {
                 // Diamondback - 30-50
                 Totaldamage = randomdamage.Next(30, 51);
@@ -477,7 +477,7 @@ namespace TF2_Simulator
         {
             if (ClassID == 1)
             {
-                return "  ID 7 == Pistol\r\n  ID 8 == Lugermorph\r\n  ID 9 == C.A.P.P.E.R\r\n  ID 10 == Winger\r\n  ID 11 == Pretty Boy's Pocket Pistol\r\n  ID 13 == Bonk! Atomic Punch\r\n  ID 14 == Crit-a-Cola\r\n  ID 15 == Mad Milk\r\n  ID 16 == Mutated Milk";
+                return "  ID 7 == Pistol\r\n  ID 8 == Lugermorph\r\n  ID 9 == C.A.P.P.E.R\r\n  ID 10 == Winger\r\n  ID 11 == Pretty Boy's Pocket Pistol\r\n  ID 15 == Mad Milk\r\n  ID 16 == Mutated Milk";
             }
             if (ClassID == 2)
             {

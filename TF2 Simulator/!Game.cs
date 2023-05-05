@@ -2433,7 +2433,7 @@ namespace TF2_Simulator
                                 if (P1_ClassID == 8)
                                 {
                                     Console.WriteLine($"  ┌──Charge Level:──┐");
-                                    Console.WriteLine($"  |        {P1_WeaponSpecialStat}        | ");
+                                    Console.WriteLine($"  |        {P1_SecondaryTrigger}        | ");
                                     Console.WriteLine($"  └─────────────────┘");
                                 }
                                 #endregion

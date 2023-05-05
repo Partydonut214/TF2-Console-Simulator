@@ -493,7 +493,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage; }
                 return Totaldamage;
@@ -505,7 +505,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat < 4)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 if (WeaponSpecialStat == 4)
                 {
@@ -514,7 +514,6 @@ namespace TF2_Simulator
                 else { Totaldamage = Damage; }
                 return Totaldamage;
             }
-
             if (ClassID == 8 && WeaponID == 158)
             {
                 // Fortified Compound - 50 [50+]
@@ -522,7 +521,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage; }
                 return Totaldamage;
@@ -534,7 +533,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage; }
                 return Totaldamage;
@@ -546,7 +545,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage; }
                 return Totaldamage;
@@ -558,7 +557,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage; }
                 return Totaldamage;
@@ -570,7 +569,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage; }
                 return Totaldamage;
@@ -582,7 +581,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage; }
                 return Totaldamage;
@@ -594,7 +593,7 @@ namespace TF2_Simulator
                 if (WeaponSpecialStat == 0) { WeaponSpecialStat = 1; }
                 if (WeaponSpecialStat > 1)
                 {
-                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 25 / 100);
+                    Totaldamage = Damage + (Damage * WeaponSpecialStat * 125 / 100);
                 }
                 else { Totaldamage = Damage; }
                 return Totaldamage;
